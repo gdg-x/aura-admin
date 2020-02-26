@@ -1,5 +1,8 @@
 <template>
-  <div><h1>HEy</h1></div>
+  <v-app>
+    <router-view></router-view>  
+  </v-app>
+  
 </template>
 
 <script>
