@@ -19,7 +19,7 @@
                         v-model="password"
                         outlined
                     ></v-text-field>
-                    <v-btn class="primary" :loading="loading" block>Login</v-btn>
+                    <v-btn v-on:click="login" class="primary" :loading="loading" block>Login</v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -27,20 +27,28 @@
 </template>
 
 <script>
-// import firebase from '@/firebase';
+import firebase from '@/config/firebase'
 export default {
     name:"Login",
     data:()=>({
         email:'',
         password:'',
-        loading: false
+        loading: false,
+        alertMsg:''
     }),
+    mounted(){
+        if(firebase.auth.currentUser){
+            this.$router.replace('/')
+        }else{
+            this.alertMsg = 'Kindly login'
+        }
+    },
     methods:{
         login(){
             this.loading = true
             firebase.auth.signInWithEmailAndPassword(this.email,this.password).then((user)=>{
                 this.loading = false
-                this.$router.replace('/home')
+                this.$router.replace('/')
                 console.log(user)
             }).catch(e=>{
                 this.loading=false
