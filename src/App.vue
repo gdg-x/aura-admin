@@ -26,17 +26,22 @@
     </v-snackbar>
     <!-- v-if="$route.meta.requiresAuth" -->
     <AuraAdminToolbar />
-    <router-view></router-view>  
+    <AuraAdminDrawer/>
+    <AuraAdminView/> 
   </v-app>
   
 </template>
 
 <script>
 import AuraAdminToolbar from '@/components/Core/Toolbar'
+import AuraAdminDrawer from '@/components/Core/Drawer'
+import AuraAdminView from '@/components/Core/Views'
 export default {
   name: 'App',
   components:{
-    AuraAdminToolbar
+    AuraAdminToolbar,
+    AuraAdminDrawer,
+    AuraAdminView
   },
   data: () => ({
     refreshing: false,

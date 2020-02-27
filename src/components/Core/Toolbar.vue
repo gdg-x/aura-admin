@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar dark app fixed class="primary">
+    <v-app-bar dark app fixed clipped-left class="primary">
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Aura Admin</v-toolbar-title>
         <v-spacer></v-spacer>

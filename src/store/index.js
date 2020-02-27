@@ -5,11 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    drawer: false,
+    drawer: true,
     items:[
       {
         text:'Home',
-        to: '/', 
+        to: '/home', 
         icon:'mdi-home',
       },
       {

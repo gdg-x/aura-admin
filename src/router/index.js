@@ -13,6 +13,14 @@ const routes = [
     }
   },
   {
+    path: '/home',
+    name: 'HomePage',
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
+    meth:{
+      requiresAuth:true
+    }
+  },
+  {
     path: '/login',
     name: "Login",
     component: () => import(/* webpackChunkName: "login" */ '../views/Login'),
