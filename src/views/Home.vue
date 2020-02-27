@@ -1,13 +1,13 @@
 <template>
   <v-content>
-    <v-containe fluid>
+    <v-container fluid>
       <v-row>
         <v-col>
           <p>{{userEmail}}</p>
           <v-btn class="primary" v-on:click="logout">Logout</v-btn>
         </v-col>
       </v-row>
-    </v-containe>
+    </v-container>
   </v-content>
 </template>
 

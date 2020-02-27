@@ -24,15 +24,20 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
     </v-snackbar>
+    <!-- v-if="$route.meta.requiresAuth" -->
+    <AuraAdminToolbar />
     <router-view></router-view>  
   </v-app>
   
 </template>
 
 <script>
-
+import AuraAdminToolbar from '@/components/Core/Toolbar'
 export default {
   name: 'App',
+  components:{
+    AuraAdminToolbar
+  },
   data: () => ({
     refreshing: false,
     registration: null,
