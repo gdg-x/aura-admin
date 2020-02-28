@@ -2,6 +2,7 @@ module.exports = {
   "transpileDependencies": [
     "vuetify"
   ],
+  productionSourceMap: false,
   pwa: {
     name: 'Aura Admin',
     workboxPluginMode: 'InjectManifest',
