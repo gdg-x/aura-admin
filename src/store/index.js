@@ -16,6 +16,26 @@ export default new Vuex.Store({
         text:'Events',
         to: '/events', 
         icon:'mdi-assistant',
+      },
+      {
+        text:'Team',
+        to: '/team', 
+        icon:'mdi-assistant',
+      },
+      {
+        text:'Speakers',
+        to: '/speakers', 
+        icon:'mdi-assistant',
+      },
+      {
+        text:'Notification',
+        to: '/notification', 
+        icon:'mdi-assistant',
+      },
+      {
+        text:'Config',
+        to: '/config', 
+        icon:'mdi-assistant',
       }
     ]
   },
