@@ -5,77 +5,85 @@ import store from '@/store/index';
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "home" */ '../views/Home'),
+    meta: {
+      requiresAuth: true,
+      title: "Home",
     }
   },
   {
     path: '/home',
     name: 'HomePage',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "home" */ '../views/Home'),
+    meta: {
+      requiresAuth: true,
+      title: "Home"
     }
   },
   {
     path: '/login',
     name: "Login",
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login'),
-    meta:{
-      requiresAuth:false
+    component: () => import( /* webpackChunkName: "login" */ '../views/Login'),
+    meta: {
+      requiresAuth: false,
+      title: "Login"
     }
   },
   {
     path: '/team',
     name: "Team",
-    component: () => import(/* webpackChunkName: "team" */ '../views/Team'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "team" */ '../views/Team'),
+    meta: {
+      requiresAuth: true,
+      title: "Team"
     }
   },
   {
     path: '/speakers',
     name: "Speakers",
-    component: () => import(/* webpackChunkName: "speakers" */ '../views/Speakers'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "speakers" */ '../views/Speakers'),
+    meta: {
+      requiresAuth: true,
+      title: "Speakers"
     }
   },
   {
     path: '/config',
     name: "Config",
-    component: () => import(/* webpackChunkName: "login" */ '../views/Config'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "login" */ '../views/Config'),
+    meta: {
+      requiresAuth: true,
+      title: "Config"
     }
   },
   {
     path: '/events',
     name: "Events",
-    component: () => import(/* webpackChunkName: "events" */ '../views/Events'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "events" */ '../views/Events'),
+    meta: {
+      requiresAuth: true,
+      title: "Events"
     }
   },
   {
     path: '/notifications',
     name: "Notifications",
-    component: () => import(/* webpackChunkName: "events" */ '../views/Notifications'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "events" */ '../views/Notifications'),
+    meta: {
+      requiresAuth: true,
+      title: "Notifications"
     }
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meta:{
-      requiresAuth:true
+    component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+    meta: {
+      requiresAuth: true,
+      title: "About"
     }
   }
 ];
@@ -87,18 +95,18 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // if (to.meta.title) {
-  //   document.title = to.meta.title;
-  // }
+  if (to.meta.title) {
+    document.title = to.meta.title + " - Aura Admin";
+  }
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (firebase.auth.currentUser) {
-        next();
+      next();
     } else {
       next('login');
     }
-  } else if(firebase.auth.currentUser && to.name=="Login") {
+  } else if (firebase.auth.currentUser && to.name == "Login") {
     next("/");
-  }else{
+  } else {
     next();
   }
 });
