@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import firebase from '@/config/firebase';
+import store from '@/store/index';
 
 Vue.use(VueRouter);
 
@@ -76,12 +78,31 @@ const routes = [
       requiresAuth:true
     }
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+
+router.beforeEach((to, from, next) => {
+  // if (to.meta.title) {
+  //   document.title = to.meta.title;
+  // }
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (firebase.auth.currentUser) {
+        next();
+    } else {
+      next('login');
+    }
+  } else if(firebase.auth.currentUser && to.name=="Login") {
+    next("/");
+  }else{
+    next();
+  }
+});
+
+
 
 export default router

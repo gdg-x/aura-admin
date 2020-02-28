@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     drawer: true,
     isLoggedin:false,
+    role:"demo",
     items:[
       {
         text:'Home',
@@ -48,6 +49,7 @@ export default new Vuex.Store({
   mutations: {
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer),
+    roleSet:(state, payload)=>(state.role = payload),
   },
   actions: {
   },
