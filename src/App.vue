@@ -25,8 +25,8 @@
         </v-btn>
     </v-snackbar>
     <!-- v-if="$route.meta.requiresAuth" -->
-    <AuraAdminToolbar />
-    <AuraAdminDrawer/>
+    <AuraAdminToolbar v-if="$route.meta.requiresAuth"/>
+    <AuraAdminDrawer v-if="$route.meta.requiresAuth"/>
     <AuraAdminView/> 
   </v-app>
   

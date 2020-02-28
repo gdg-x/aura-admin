@@ -8,7 +8,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -16,7 +16,7 @@ const routes = [
     path: '/home',
     name: 'HomePage',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -24,7 +24,7 @@ const routes = [
     path: '/login',
     name: "Login",
     component: () => import(/* webpackChunkName: "login" */ '../views/Login'),
-    meth:{
+    meta:{
       requiresAuth:false
     }
   },
@@ -32,7 +32,7 @@ const routes = [
     path: '/team',
     name: "Team",
     component: () => import(/* webpackChunkName: "team" */ '../views/Team'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -40,7 +40,7 @@ const routes = [
     path: '/speakers',
     name: "Speakers",
     component: () => import(/* webpackChunkName: "speakers" */ '../views/Speakers'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -48,7 +48,7 @@ const routes = [
     path: '/config',
     name: "Config",
     component: () => import(/* webpackChunkName: "login" */ '../views/Config'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -56,7 +56,7 @@ const routes = [
     path: '/events',
     name: "Events",
     component: () => import(/* webpackChunkName: "events" */ '../views/Events'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -64,7 +64,7 @@ const routes = [
     path: '/notifications',
     name: "Notifications",
     component: () => import(/* webpackChunkName: "events" */ '../views/Notifications'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   },
@@ -72,7 +72,7 @@ const routes = [
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meth:{
+    meta:{
       requiresAuth:true
     }
   }

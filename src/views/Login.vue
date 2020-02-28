@@ -54,7 +54,6 @@ export default {
                 this.loading=false
                 alert('Alert '+e);
             })
-            this.loading = false
         }
     }
 }
