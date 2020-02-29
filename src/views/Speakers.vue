@@ -1,5 +1,5 @@
 <template>
-     <v-container>
+     <v-container class="">
         <v-row >
             <v-col>
                 <Snakebar :message="SMsg" :isShow="SVisible" :color="SColor" :timeout="STimeout" />
@@ -22,17 +22,49 @@
                 </v-toolbar>
             </v-col>
         </v-row>
-        <v-row>
+        <!-- <v-row class="hidden-sm-and-down mr-2">
             <v-col class="google-font">
                 <v-data-table
                     :search="search"
                     :headers="headers"
                     :items="SpeakersData"
+                    :loading="loadingData"
                     item-key="name"
                     class="elevation-1"
                 >
                 </v-data-table>
             </v-col>
+        </v-row> -->
+        <!--                 :items-per-page.sync="itemsPerPage"
+                :footer-props="{ itemsPerPageOptions }" -->
+        <v-row class="px-2">
+            <v-container>
+             <v-data-iterator
+                :items="SpeakersData"
+                :loading = "loadingData"
+                loading-text="Loading Speakers from Dir"
+                :search="search"
+                disable-pagination
+                hide-default-footer
+              >
+                <template v-slot:default="props">
+                  <v-row class="">
+                  <v-col col="12" cols="6" md="2" lg="2" sm="3" v-for="(item) in props.items" :key="item.name" class="pa-1">
+                    <div v-on:click="showTeam(item.id)" style="cursor: pointer;" class="text-center py-3 elevation-1" >
+                      
+                      <v-avatar size="100">
+                          <img 
+                          :src="item.image" alt=""
+                          >
+                      </v-avatar>
+                      <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{item.name}}</p>
+                      <p class="mt-0 mb-0 google-font mt-0" style="font-size:80%">{{item.designation}}</p>
+                    </div>
+                  </v-col>
+                  </v-row>
+                </template>
+              </v-data-iterator>
+            </v-container>
         </v-row>
     </v-container>
 </template>
@@ -49,6 +81,9 @@
         Snakebar
     },
     data:()=>({
+        loadingData: false,
+        itemsPerPageOptions: [8, 16, 32],
+        itemsPerPage: 8,
         search:'',
         SMsg:'',
         SVisible:false,
@@ -75,20 +110,28 @@
         this.ShowAllSpeakers()
     },
     methods: {
+      showTeam(id){
+        this.$router.replace('/speakers/'+id)
+      },
       SpeakerAddedd(){
         this.SMsg = 'Speaker Created Successfully'
         this.SVisible = true
         this.SColor = 'green'
+        this.ShowAllSpeakers()
       },
       ShowAllSpeakers(){
+          this.SpeakersData = []
+          this.loadingData = true
           firebase.firestore.collection('Speakers').get()
           .then((snapshot) => {
             snapshot.forEach((doc) => {
                 this.SpeakersData.push(doc.data())
             });
-            console.log(this.SpeakersData)
+            this.loadingData = false
+            // console.log(this.SpeakersData)
           })
           .catch((err) => {
+              this.loadingData = false
               console.log('Error getting documents', err);
           });
       }
