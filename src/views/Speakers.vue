@@ -18,7 +18,7 @@
                         class="hidden-sm-and-down mr-2"
                     ></v-text-field>
 
-                    <AddSpeaker @showSuccess="SpeakerAddedd" />
+                    <AddSpeaker @showSuccess="ShowSnakebar('Speaker Created Successfully', true, 'green')" />
                 </v-toolbar>
             </v-col>
         </v-row>
@@ -34,8 +34,8 @@
                 >
                 </v-data-table>
             </v-col>
-        </v-row> -->
-        <!--                 :items-per-page.sync="itemsPerPage"
+        </v-row> 
+              :items-per-page.sync="itemsPerPage"
                 :footer-props="{ itemsPerPageOptions }" -->
         <v-row class="px-2">
             <v-container>
@@ -104,6 +104,11 @@
             { text: 'Actions', value: '' }
         ]
     }),
+    created(){
+        if(this.$route.query.msg){
+            this.ShowSnakebar('Speaker Removed Sucessfully', true, 'green')
+        }
+    },
     computed:{
     },
     mounted(){
@@ -113,10 +118,10 @@
       showTeam(id){
         this.$router.replace('/speakers/'+id)
       },
-      SpeakerAddedd(){
-        this.SMsg = 'Speaker Created Successfully'
-        this.SVisible = true
-        this.SColor = 'green'
+      ShowSnakebar(msg,visible,color){
+        this.SMsg = msg
+        this.SVisible = visible
+        this.SColor = color
         this.ShowAllSpeakers()
       },
       ShowAllSpeakers(){

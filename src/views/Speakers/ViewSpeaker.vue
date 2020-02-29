@@ -15,8 +15,8 @@
                     <div class="flex-grow-1"></div>
                     <!-- <editTeam :teamData="teamData" v-on:editedSuccess="editedSuccessFun" class="mr-2" v-if="showTeamData"/>
                     &nbsp;
-                    <removeTeam class="mr-1" v-if="showTeamData" :teamData="{id:$route.params.id,name:teamData.name}" /> -->
-
+                    <removeTeam class="mr-1" v-if="showTeamData" :teamData="{id:$route.params.id,name:teamData.name}" /> --> 
+                    
                     <!-- <v-tooltip bottom v-if="showTeamData">
                         <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on" target="_blank" v-on:click="showPublicURL($route.params.id)">
@@ -25,6 +25,7 @@
                         </template>
                         <span>Show Public URL</span>
                     </v-tooltip> -->
+                    <RemoveSpeaker :SpeakerData="{id:$route.params.id,name:speakerData.name}"/>
                 </v-toolbar>
         </v-row>
 
@@ -102,9 +103,13 @@
 </template>
 
 <script>
+    import RemoveSpeaker from '@/components/Speakers/RemoveSpeaker'
     import firebase from '@/config/firebase'
     export default{
         name:"ViewSpeaker",
+        components:{
+            RemoveSpeaker
+        },
         data: ()=>({
             speakerData:[],
             showLoader: true,

@@ -187,9 +187,7 @@ export default {
         .doc(Data.id)
         .set(Data)
         .then(res => {
-            console.log(res);
             this.dialog = false;
-            alert('Added')
             this.addSpeakerLoading = false;
             this.$emit("showSuccess", true);
         })
