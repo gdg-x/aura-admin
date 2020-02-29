@@ -51,6 +51,15 @@ const routes = [{
     }
   },
   {
+    path: '/speakers/:id',
+    name: "Speaker-Details",
+    component: () => import( /* webpackChunkName: "speakers" */ '../views/Speakers/ViewSpeaker'),
+    meta: {
+      requiresAuth: true,
+      title: "Speakers Details"
+    }
+  },
+  {
     path: '/config',
     name: "Config",
     component: () => import( /* webpackChunkName: "login" */ '../views/Config'),
