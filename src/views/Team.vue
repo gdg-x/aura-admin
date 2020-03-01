@@ -19,8 +19,24 @@
             prepend-inner-icon="mdi-search-web"
             label="Search"
             single-line
-            class="mr-2"
+            class="mr-2 hidden-sm-and-down"
           ></v-text-field>
+          <v-slide-x-reverse-transition><v-text-field
+            flat
+            v-if="isSearch"
+            v-model="search"
+            solo-inverted
+            hide-details
+            prepend-inner-icon="mdi-search-web"
+            label="Search"
+            single-line
+            class="mr-2 hidden-md-and-up"
+          ></v-text-field></v-slide-x-reverse-transition>
+          <v-btn fab small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
+            <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
+            <v-icon dark v-else>mdi-close</v-icon>
+        </v-btn>
+        &nbsp;
           <AddTeam @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
@@ -103,6 +119,7 @@ export default {
     AddTeam
   },
   data: () => ({
+    isSearch:false,
     search: "",
     snakeBarMessage: "",
     isSnakeBarVisible: false,
@@ -122,6 +139,10 @@ export default {
   methods: {
     changeSnakebar(vale) {
       this.isSnakeBarVisible = vale;
+    },
+    openCloseSearch(){
+      this.isSearch = !this.isSearch
+      this.search = "";
     },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
