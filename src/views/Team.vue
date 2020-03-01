@@ -2,7 +2,7 @@
   <v-container>
     <Snakebar
       :message="snakeBarMessage"
-      :isShow="isSnakeBarVisible"
+      :isShow.sync="isSnakeBarVisible"
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     />
@@ -55,7 +55,13 @@
                     :key="item.id"
                     class="pa-1"
                   >
-                    <v-card style="cursor: pointer;user-select: none" height="100%" v-ripple @click="gotoTeamDetails(item.id)" class="text-center elevation-1">
+                    <v-card
+                      style="cursor: pointer;user-select: none"
+                      height="100%"
+                      v-ripple
+                      @click="gotoTeamDetails(item.id)"
+                      class="text-center elevation-1"
+                    >
                       <v-card-text style="height:100%">
                         <v-avatar size="100">
                           <img
@@ -100,7 +106,7 @@ export default {
     search: "",
     snakeBarMessage: "",
     isSnakeBarVisible: false,
-    snakeBarColor: "",
+    snakeBarColor: "green",
     snakeBarTimeOut: 5000,
     isLoading: false,
     showDialog: false,
@@ -108,9 +114,15 @@ export default {
   }),
   computed: {},
   mounted() {
-    this.showData();
+    if (this.$route.query.msg) {
+      this.showSnakeBar("Team Removed Sucessfully");
+    }else
+      this.showData();
   },
   methods: {
+    changeSnakebar(vale) {
+      this.isSnakeBarVisible = vale;
+    },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
@@ -120,8 +132,8 @@ export default {
       this.$router.push("/team/" + id);
     },
     showData() {
-      this.isLoading = true;
       this.teamData = [];
+      this.isLoading = true;
       console.log("Calling Show Data");
       firebase.firestore
         .collection("team")

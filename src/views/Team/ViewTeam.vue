@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <Snakebar
-      v-model="snakeBarMessage"
-      :isShow="isSnakeBarVisible"
+      :message="snakeBarMessage"
+      :isShow.sync="isSnakeBarVisible"
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     />
@@ -19,6 +19,7 @@
             <span>Team</span>
           </v-btn>
           <v-spacer></v-spacer>
+          <DeleteTeam :TeamInfo="teamInfo" @RemoveSuceess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -33,7 +34,10 @@
           <v-row>
             <v-col col="12" sm="5" md="3" class="pa-1 elevation-1 py-5 text-center">
               <v-avatar size="120">
-                <img :src="(teamInfo.image.length>0)?teamInfo.image:require('@/assets/img/default_avatar.jpg')" :alt="teamInfo.id" />
+                <img
+                  :src="(teamInfo.image.length>0)?teamInfo.image:require('@/assets/img/default_avatar.jpg')"
+                  :alt="teamInfo.id"
+                />
               </v-avatar>
 
               <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{teamInfo.name}}</p>
@@ -111,13 +115,15 @@
 </template>
 
 <script>
-import Snakebar from "@/components/Common/Snakebar";
 import firebase from "@/config/firebase";
+import Snakebar from "@/components/Common/Snakebar";
+import DeleteTeam from "@/components/Team/DeleteTeam";
 
 export default {
   name: "ViewTeam",
   components: {
-    Snakebar
+    Snakebar,
+    DeleteTeam
   },
   data: () => ({
     snakeBarMessage: "",
@@ -132,6 +138,11 @@ export default {
     this.getTeamData();
   },
   methods: {
+    showSnakeBar(text) {
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
+      this.showData();
+    },
     goToTeam() {
       this.$router.replace("/team");
     },
