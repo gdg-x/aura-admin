@@ -205,7 +205,7 @@
           :disabled="!valid"
           :loading="loading"
           @click="UpdateData"
-        >Update {{teamData.name}} Details</v-btn>
+        >Update {{teamData.name.split(" ")[0]}} Details</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
