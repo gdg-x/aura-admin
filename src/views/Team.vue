@@ -55,20 +55,25 @@
                     :key="item.id"
                     class="pa-1"
                   >
-                    <div style="cursor: pointer;" v-ripple class="text-center py-3 elevation-1">
-                      <v-avatar size="100">
-                        <img
-                          :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
-                          alt
-                        />
-                      </v-avatar>
-                      <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{item.name}}</p>
-                      <p
-                        class="mt-0 mb-0 google-font mt-0 caption"
-                        style="font-size:60%"
-                      >{{item.designation}}</p>
-                      <v-chip class="ma-1" x-small>{{item.role}}</v-chip>
-                    </div>
+                    <v-card style="cursor: pointer;user-select: none" height="100%" v-ripple class="text-center elevation-1">
+                      <v-card-text style="height:100%">
+                        <v-avatar size="100">
+                          <img
+                            :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
+                            alt
+                          />
+                        </v-avatar>
+                        <p
+                          class="mt-3 mb-0 google-font black--text"
+                          style="font-size:120%"
+                        >{{item.name}}</p>
+                        <p
+                          class="mt-0 mb-0 google-font caption"
+                          style="font-size:60%"
+                        >{{item.designation}}</p>
+                        <v-chip class="ma-1" x-small>{{item.role}}</v-chip>
+                      </v-card-text>
+                    </v-card>
                   </v-col>
                 </v-row>
               </template>
