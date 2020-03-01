@@ -15,11 +15,20 @@
             class="ma-0 google-font mb-0"
             style="border-radius:5px;text-transform: capitalize;text-decoration:none;"
           >
-            <v-icon left>mdi-arrow-left-thick</v-icon>
-            <span>Team</span>
+            <v-icon left style="font-size:150%">mdi-arrow-left-thick</v-icon>
+            <span style="font-size:120%">Team</span>
           </v-btn>
           <v-spacer></v-spacer>
-          <DeleteTeam :TeamInfo="teamInfo" @RemoveSuceess="showSnakeBar" />
+          <EditTeam
+            :teamData="teamInfo"
+            v-if="!showLoader && !userNotFound"
+            @editedSuccess="showSnakeBar"
+          />
+          <DeleteTeam
+            :TeamInfo="teamInfo"
+            @RemoveSuceess="showSnakeBar"
+            v-if="!showLoader && !userNotFound"
+          />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -32,31 +41,51 @@
       <v-col cols="12" md="12" class>
         <v-container fluid>
           <v-row>
-            <v-col col="12" sm="5" md="3" class="pa-1 elevation-1 py-5 text-center">
-              <v-avatar size="120">
-                <img
-                  :src="(teamInfo.image.length>0)?teamInfo.image:require('@/assets/img/default_avatar.jpg')"
-                  :alt="teamInfo.id"
-                />
-              </v-avatar>
+            <v-col col="12" sm="5" md="3" class="pa-0 text-center">
+              <v-card height="100%">
+                <v-card-title
+                    class="grey lighten-4 google-font"
+                    primary-title
+                    :style="{'background-image':'url(https://iambharat.tk/images/backImage.jpg)'}"
+                    style="background-position:right top;padding-top:30%;"
+                  ></v-card-title>
+                <v-card-text class="px-5 pb-5" style="margin-top: -60px;">
+                  <v-avatar size="120">
+                    <img
+                      :src="(teamInfo.image.length>0)?teamInfo.image:require('@/assets/img/default_avatar.jpg')"
+                      :alt="teamInfo.id"
+                    />
+                  </v-avatar>
 
-              <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{teamInfo.name}}</p>
-              <p class="mt-1 mb-0 google-font mt-0" style="font-size:100%">{{teamInfo.designation}}</p>
+                  <p class="mt-3 mb-0 google-font black--text" style="font-size:120%">{{teamInfo.name}}</p>
+                  <p
+                    class="mt-1 mb-0 google-font mt-0"
+                    style="font-size:100%"
+                  >{{teamInfo.designation}}</p>
 
-              <v-chip class="mt-2" small>{{teamInfo.role}}</v-chip>
+                  <v-chip class="mt-2" small>{{teamInfo.role}}</v-chip>
 
-              <br />
-              <br />
-              <v-chip class="ma-1" v-if="teamInfo.visible" dark label color="green" small>Visible</v-chip>
-              <v-chip class="ma-1" v-else label dark color="red" small>Not Visible</v-chip>
+                  <br />
+                  <br />
+                  <v-chip
+                    class="ma-1"
+                    v-if="teamInfo.visible"
+                    dark
+                    label
+                    color="green"
+                    small
+                  >Visible</v-chip>
+                  <v-chip class="ma-1" v-else label dark color="red" small>Not Visible</v-chip>
 
-              <v-chip class="ma-1" v-if="teamInfo.active" dark label color="green" small>Active</v-chip>
-              <v-chip class="ma-1" v-else label dark color="red" small>Not Active</v-chip>
+                  <v-chip class="ma-1" v-if="teamInfo.active" dark label color="green" small>Active</v-chip>
+                  <v-chip class="ma-1" v-else label dark color="red" small>Not Active</v-chip>
 
-              <br />
-              <br />
+                  <br />
+                  <br />
 
-              <br />
+                  <br />
+                </v-card-text>
+              </v-card>
             </v-col>
 
             <v-col col="12" sm="7" md="9" class="elevation-1 py-5 text-left pa-5">
@@ -118,17 +147,19 @@
 import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
 import DeleteTeam from "@/components/Team/DeleteTeam";
+import EditTeam from "@/components/Team/EditTeam";
 
 export default {
   name: "ViewTeam",
   components: {
     Snakebar,
-    DeleteTeam
+    DeleteTeam,
+    EditTeam
   },
   data: () => ({
     snakeBarMessage: "",
     isSnakeBarVisible: false,
-    snakeBarColor: "",
+    snakeBarColor: "green",
     snakeBarTimeOut: 5000,
     showLoader: true,
     userNotFound: true,
@@ -141,7 +172,7 @@ export default {
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
-      this.showData();
+      this.getTeamData();
     },
     goToTeam() {
       this.$router.replace("/team");
