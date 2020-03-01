@@ -1,14 +1,24 @@
 <template>
-  <v-snackbar :timeout="timeout" v-model="isShow">
+  <v-snackbar :timeout="timeout" right bottom v-model="showS">
     {{ message }}
-    <v-btn :color="color" text @click="isShow = false">Close</v-btn>
+    <v-btn :color="color" text @click="showS = false">Close</v-btn>
   </v-snackbar>
 </template>
 
 <script>
 export default {
   name: "CustomSnakebar",
-  props: ["message", "isShow", "color", "timeout"]
+  props: ["message", "isShow", "color", "timeout"],
+  computed: {
+        showS: {
+            get: function() {
+                return this.isShow
+            },
+            set: function(value) {
+                this.$emit('update:isShow', value)
+            }
+        }
+    }
 };
 </script>
 
