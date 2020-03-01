@@ -1,15 +1,14 @@
 <template>
     <v-navigation-drawer app clipped v-model="drawer">
-        <v-list-item>
-            <v-list-item-content>
-            <v-list-item-title class="title">
-                Application
-            </v-list-item-title>
-            <v-list-item-subtitle>
-                subtext
-            </v-list-item-subtitle>
-            </v-list-item-content>
-        </v-list-item>
+        <v-list-item two-line>
+      <v-list-item-avatar>
+        <img :src="require('@/assets/img/default_avatar.jpg')" />
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-list-item-title>Name</v-list-item-title>
+        <v-list-item-subtitle>Email</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
         <v-divider></v-divider>
         <v-list dense shaped >
             <v-list-item
@@ -31,6 +30,11 @@
                 
             </v-list-item>
         </v-list>
+        <template v-slot:append>
+      <div class="pl-1">
+        <p class="subtitle-2">Version: 0.0.1</p>
+      </div>
+    </template>
     </v-navigation-drawer>
 </template>
 

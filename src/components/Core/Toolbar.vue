@@ -1,16 +1,8 @@
 <template>
-    <v-app-bar dark app fixed clipped-left class="primary">
+    <v-app-bar app fixed clipped-left class="white black--text">
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Aura Admin</v-toolbar-title>
         <v-spacer></v-spacer>
-
-        <v-btn icon>
-            <v-icon>mdi-heart</v-icon>
-        </v-btn>
-
-        <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-        </v-btn>
         <v-btn text v-on:click="logout">
             Logout
         </v-btn>
