@@ -55,7 +55,7 @@
                     :key="item.id"
                     class="pa-1"
                   >
-                    <v-card style="cursor: pointer;user-select: none" height="100%" v-ripple class="text-center elevation-1">
+                    <v-card style="cursor: pointer;user-select: none" height="100%" v-ripple @click="gotoTeamDetails(item.id)" class="text-center elevation-1">
                       <v-card-text style="height:100%">
                         <v-avatar size="100">
                           <img
@@ -115,6 +115,9 @@ export default {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
       this.showData();
+    },
+    gotoTeamDetails(id) {
+      this.$router.push("/team/" + id);
     },
     showData() {
       this.isLoading = true;

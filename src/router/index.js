@@ -42,6 +42,15 @@ const routes = [{
     }
   },
   {
+    path: '/team/:id',
+    name: "Team-Details",
+    component: () => import( /* webpackChunkName: "team-details" */ '../views/Team/ViewTeam'),
+    meta: {
+      requiresAuth: true,
+      title: "Team Details"
+    }
+  },
+  {
     path: '/speakers',
     name: "Speakers",
     component: () => import( /* webpackChunkName: "speakers" */ '../views/Speakers'),
@@ -53,7 +62,7 @@ const routes = [{
   {
     path: '/speakers/:id',
     name: "Speaker-Details",
-    component: () => import( /* webpackChunkName: "speakers" */ '../views/Speakers/ViewSpeaker'),
+    component: () => import( /* webpackChunkName: "speakers-details" */ '../views/Speakers/ViewSpeaker'),
     meta: {
       requiresAuth: true,
       title: "Speakers Details"
