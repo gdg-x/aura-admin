@@ -25,7 +25,9 @@
                         </template>
                         <span>Show Public URL</span>
                     </v-tooltip> -->
+                    
                     <RemoveSpeaker :SpeakerData="{id:$route.params.id,name:speakerData.name}"/>
+                    <!-- <EditSpeaker :speakerData="speakerData" /> -->
                 </v-toolbar>
         </v-row>
 
@@ -54,6 +56,7 @@
             <v-container>
                 <v-row>
                     <v-col col="12" md="3" cols="12" class="pa-1 elevation-1 py-5 text-center">
+                        {{speakerData}}
                         <v-avatar size="120">
                             <img 
                             :src="speakerData.image" alt=""
@@ -104,14 +107,16 @@
 
 <script>
     import RemoveSpeaker from '@/components/Speakers/RemoveSpeaker'
+    // import EditSpeaker from '@/components/Speakers/EditSpeaker'
     import firebase from '@/config/firebase'
     export default{
         name:"ViewSpeaker",
         components:{
             RemoveSpeaker
+            // EditSpeaker
         },
         data: ()=>({
-            speakerData:[],
+            speakerData:{},
             showLoader: true,
             userNotFound: false
         }),
