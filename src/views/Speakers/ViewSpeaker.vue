@@ -56,10 +56,9 @@
             <v-container>
                 <v-row>
                     <v-col col="12" md="3" cols="12" class="pa-1 elevation-1 py-5 text-center">
-                        {{speakerData}}
                         <v-avatar size="120">
                             <img 
-                            :src="speakerData.image" alt=""
+                            :src="(speakerData.image.length>0)?speakerData.image:require('@/assets/img/default_avatar.jpg')" alt=""
                             >
                         </v-avatar>
                         

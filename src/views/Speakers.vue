@@ -54,7 +54,7 @@
                       
                       <v-avatar size="100">
                           <img 
-                          :src="item.image" alt=""
+                          :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')" alt=""
                           >
                       </v-avatar>
                       <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{item.name}}</p>
