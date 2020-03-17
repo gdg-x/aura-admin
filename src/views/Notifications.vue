@@ -7,7 +7,8 @@
 
 <script>
 export default {
-  name: "Notifications"
+  name: "Notifications",
+  data:()=>({})
 };
 </script>
 
