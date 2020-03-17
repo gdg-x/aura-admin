@@ -1,4 +1,4 @@
-# aura_admin new v
+# aura_admin new 
 
 ## Project setup
 ```
