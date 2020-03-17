@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 const routes = [{
     path: '/',
     name: 'Home',
-    component: () => import( /* webpackChunkName: "home" */ '../views/Home'),
+    component: () => import( /* webpackChunkName: "home" */ '@/views/Home'),
     meta: {
       requiresAuth: true,
       title: "Home",
@@ -17,7 +17,7 @@ const routes = [{
   {
     path: '/home',
     name: 'HomePage',
-    component: () => import( /* webpackChunkName: "home" */ '../views/Home'),
+    component: () => import( /* webpackChunkName: "home1" */ '@/views/Home'),
     meta: {
       requiresAuth: true,
       title: "Home"
@@ -26,7 +26,7 @@ const routes = [{
   {
     path: '/login',
     name: "Login",
-    component: () => import( /* webpackChunkName: "login" */ '../views/Login'),
+    component: () => import( /* webpackChunkName: "login" */ '@/views/Login'),
     meta: {
       requiresAuth: false,
       title: "Login"
@@ -35,7 +35,7 @@ const routes = [{
   {
     path: '/team',
     name: "Team",
-    component: () => import( /* webpackChunkName: "team" */ '../views/Team'),
+    component: () => import( /* webpackChunkName: "team" */ '@/views/Team'),
     meta: {
       requiresAuth: true,
       title: "Team"
@@ -44,7 +44,7 @@ const routes = [{
   {
     path: '/team/:id',
     name: "Team-Details",
-    component: () => import( /* webpackChunkName: "team-details" */ '../views/Team/ViewTeam'),
+    component: () => import( /* webpackChunkName: "team-details" */ '@/views/Team/ViewTeam'),
     meta: {
       requiresAuth: true,
       title: "Team Details"
@@ -53,7 +53,7 @@ const routes = [{
   {
     path: '/speakers',
     name: "Speakers",
-    component: () => import( /* webpackChunkName: "speakers" */ '../views/Speakers'),
+    component: () => import( /* webpackChunkName: "speakers" */ '@/views/Speakers'),
     meta: {
       requiresAuth: true,
       title: "Speakers"
@@ -62,7 +62,7 @@ const routes = [{
   {
     path: '/speakers/:id',
     name: "Speaker-Details",
-    component: () => import( /* webpackChunkName: "speakers-details" */ '../views/Speakers/ViewSpeaker'),
+    component: () => import( /* webpackChunkName: "speakers-details" */ '@/views/Speakers/ViewSpeaker'),
     meta: {
       requiresAuth: true,
       title: "Speakers Details"
@@ -71,7 +71,7 @@ const routes = [{
   {
     path: '/config',
     name: "Config",
-    component: () => import( /* webpackChunkName: "login" */ '../views/Config'),
+    component: () => import( /* webpackChunkName: "login" */ '@/views/Config'),
     meta: {
       requiresAuth: true,
       title: "Config"
@@ -80,16 +80,16 @@ const routes = [{
   {
     path: '/events',
     name: "Events",
-    component: () => import( /* webpackChunkName: "events" */ '../views/Events'),
+    component: () => import( /* webpackChunkName: "events" */ '@/views/Events'),
     meta: {
       requiresAuth: true,
       title: "Events"
     }
   },
   {
-    path: '/notifications',
-    name: "Notifications",
-    component: () => import( /* webpackChunkName: "events" */ '../views/Notifications'),
+    path: '/notification',
+    name: "Notification",
+    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Notifications'),
     meta: {
       requiresAuth: true,
       title: "Notifications"
@@ -98,7 +98,7 @@ const routes = [{
   {
     path: '/about',
     name: 'About',
-    component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue'),
     meta: {
       requiresAuth: true,
       title: "About"
@@ -130,4 +130,4 @@ router.beforeEach((to, from, next) => {
 });
 
 
-export default router
+export default router;
