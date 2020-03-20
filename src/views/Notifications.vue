@@ -7,7 +7,7 @@
       :timeout="snakeBarTimeOut"
     />
     <v-row justify="center" align="center">
-        <v-col cols="12" md="11">
+        <v-col cols="12" md="12">
           <v-toolbar class="elevation-1">
             <v-toolbar-title class="google-font">PushNotifications Details:</v-toolbar-title>
             <div class="flex-grow-1"></div>
