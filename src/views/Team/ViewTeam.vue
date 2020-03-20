@@ -34,7 +34,7 @@
     </v-row>
     <v-row justify="center" align="center" class v-if="showLoader">
       <v-col cols="12" md="12" class="text-center">
-        <v-progress-circular :width="4" :size="70" color="indigo" indeterminate></v-progress-circular>
+        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
       </v-col>
     </v-row>
     <v-row v-else-if="!showLoader && !userNotFound">
@@ -44,20 +44,24 @@
             <v-col col="12" sm="5" md="3" class="pa-0 text-center">
               <v-card height="100%">
                 <v-card-title
-                    class="grey lighten-4 google-font"
-                    primary-title
-                    :style="{'background-image':'url(https://iambharat.tk/images/backImage.jpg)'}"
-                    style="background-position:right top;padding-top:30%;"
-                  ></v-card-title>
-                <v-card-text class="px-5 pb-5" style="margin-top: -60px;">
-                  <v-avatar size="120">
+                  class="grey lighten-4 google-font"
+                  primary-title
+                  :style="{'background-image':'url(https://iambharat.tk/images/backImage.jpg)'}"
+                  style="background-position:right top;padding-top:30%;"
+                ></v-card-title>
+                <v-card-text class="px-5 pb-5" style="margin-top: -70px;">
+                  <v-avatar size="130">
                     <img
                       :src="(teamInfo.image.length>0)?teamInfo.image:require('@/assets/img/default_avatar.jpg')"
                       :alt="teamInfo.id"
+                      style="border-style: solid;border-width: 5px;border-color:white"
                     />
                   </v-avatar>
 
-                  <p class="mt-3 mb-0 google-font black--text" style="font-size:120%">{{teamInfo.name}}</p>
+                  <p
+                    class="mt-3 mb-0 google-font black--text"
+                    style="font-size:120%"
+                  >{{teamInfo.name}}</p>
                   <p
                     class="mt-1 mb-0 google-font mt-0"
                     style="font-size:100%"
@@ -88,7 +92,7 @@
               </v-card>
             </v-col>
 
-            <v-col col="12" sm="7" md="9" class="elevation-1 py-5 text-left pa-5">
+            <v-col col="12" sm="7" md="9" class="py-5 text-left pa-5">
               <p class="mb-0">
                 <b>Bio</b>
               </p>

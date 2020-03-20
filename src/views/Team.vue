@@ -47,7 +47,7 @@
         <v-container fluid class="pa-0">
           <v-row justify="center" align="center" v-if="isLoading">
             <v-col col="12" md="2" class="text-center">
-              <v-progress-circular :width="4" :size="70" color="indigo" indeterminate></v-progress-circular>
+              <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
             </v-col>
           </v-row>
           <div v-else>
