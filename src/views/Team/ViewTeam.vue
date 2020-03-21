@@ -135,12 +135,27 @@
         </v-container>
       </v-col>
     </v-row>
-    <v-row justify="center" align="center" class v-else>
-      <v-col cols="12" md="11">
-        <v-container fluid>
-          <v-row class="elevation-1 pa-3 white">
-            <v-col>
-              <h1>User Not Found</h1>
+
+    <v-row justify="center" align="center" v-else>
+      <v-col cols="12" md="12">
+        <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+          <v-row justify="center" align="center" class="pa-3">
+            <v-col md="4" class="text-center">
+              <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
+              <h1 class="google-font">User Not Found</h1>
+              <p class="google-font">The requested URL /{{this.$route.params.id}} was not found on this server. That’s all we know.</p>
+              <br>
+              <v-btn
+                color="indigo"
+                dark
+                depressed
+                @click="goToTeam"
+                class="ma-0 google-font mb-0"
+                style="border-radius:5px;text-transform: capitalize;text-decoration:none;"
+              >
+                <v-icon left style="font-size:150%">mdi-arrow-left-thick</v-icon>
+                <span style="font-size:120%">Back to Team</span>
+              </v-btn>
             </v-col>
           </v-row>
         </v-container>
