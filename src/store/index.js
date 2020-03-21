@@ -21,23 +21,24 @@ export default new Vuex.Store({
       {
         text: 'Team',
         to: '/team',
-        icon: 'mdi-assistant',
+        icon: 'mdi-nature-people',
       },
       {
         text: 'Speakers',
         to: '/speakers',
-        icon: 'mdi-assistant',
+        icon: 'mdi-account-multiple',
       },
       {
         text: 'Notification',
         to: '/notification',
-        icon: 'mdi-assistant',
+        icon: 'mdi-bell',
       },
       {
         text: 'Config',
         to: '/config',
-        icon: 'mdi-assistant',
+        icon: 'mdi-widgets',
       }
+      
     ]
   },
   getters: {
