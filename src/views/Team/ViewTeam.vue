@@ -43,7 +43,7 @@
       <v-col cols="12" md="12" class>
         <v-container fluid>
           <v-row>
-            <v-col col="12" sm="5" md="2" class="pa-0 text-center">
+            <v-col col="12" sm="5" md="3" xl="2" class="pa-0 text-center">
               <v-card height="100%" class="elevation-0" style="border:1px solid #e0e0e0">
                 <v-card-title
                   class="grey lighten-4 google-font"
@@ -94,7 +94,7 @@
               </v-card>
             </v-col>
 
-            <v-col col="12" sm="7" md="10" class="py-5 text-left pa-5 team-details">
+            <v-col col="12" sm="7" md="9" xl="10" class="py-5 text-left pa-5">
               <p class="mb-0">
                 <b>Bio</b>
               </p>
