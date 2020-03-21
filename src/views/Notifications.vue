@@ -91,7 +91,7 @@ export default {
     ]
   }),
   methods: {
-    // Show snakebar after adding new Notifications
+    // Show snakebar
     addedd(e) {
       if (e.length > 0) {
         this.snakeBarMessage = e;
