@@ -29,6 +29,11 @@ export default new Vuex.Store({
         icon: 'mdi-account-multiple',
       },
       {
+        text: 'Partners',
+        to: '/partners',
+        icon: 'mdi-kodi',
+      },
+      {
         text: 'Notification',
         to: '/notification',
         icon: 'mdi-bell',

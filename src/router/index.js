@@ -42,6 +42,15 @@ const routes = [{
     }
   },
   {
+    path: '/partners',
+    name: "Partners",
+    component: () => import( /* webpackChunkName: "team" */ '@/views/Partners'),
+    meta: {
+      requiresAuth: true,
+      title: "Partners"
+    }
+  },
+  {
     path: '/team/:id',
     name: "Team-Details",
     component: () => import( /* webpackChunkName: "team-details" */ '@/views/Team/ViewTeam'),
