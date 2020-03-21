@@ -80,7 +80,7 @@ export default {
         firebase.firestore.collection("pushNotifications").add(data).then(res=>{
             console.log(res);
             this.isAdding = false;
-            this.$emit("addedSuccess", true);
+            this.$emit("addedSuccess", "Push Notification Added Success");
             this.dialog = false;
         })
     }

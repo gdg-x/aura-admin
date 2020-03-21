@@ -44,8 +44,9 @@
             loading-text="Loading... Please wait"
           >
             <template v-slot:item.action="{ item }">
-              <!-- view selected notification -->
-              <ViewNotification :dialogData="item"/>
+              <!-- view Selected Notification -->
+              <ViewNotification :dialogData="item" />
+              <SendNotification @addedSuccess="addedd" :data="item" />
               <!-- <v-icon small class="mr-2" @click="edit(item)">mdi-lead-pencil</v-icon> -->
               <!-- <v-icon small>mdi-send</v-icon> -->
             </template>
@@ -62,13 +63,15 @@ import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";  // Global Snakebar Compoment
 import AddNotification from "@/components/Notification/AddNotification";  // Add new Notification component
 import ViewNotification from "@/components/Notification/ViewNotification";
+import SendNotification from "@/components/Notification/SendNotification";
 
 export default {
   name: "Notifications",
   components: {
     Snakebar,
     AddNotification,
-    ViewNotification
+    ViewNotification,
+    SendNotification
   },
   data: () => ({
     isSearch: false,
@@ -90,10 +93,10 @@ export default {
   methods: {
     // Show snakebar after adding new Notifications
     addedd(e) {
-      if (e == "true" || e == true) {
-        this.snakeBarMessage = "Added Success";
+      if (e.length > 0) {
+        this.snakeBarMessage = e;
         this.isSnakeBarVisible = true;
-        //  this.loadData();
+        this.loadData();
       }
     },
     // Get Data from firestore
