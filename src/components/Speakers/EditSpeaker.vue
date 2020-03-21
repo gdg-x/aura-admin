@@ -1,380 +1,341 @@
 <template>
-    <v-dialog
-      v-model="dialog"
-      width="1200"
-    >
-      <template v-slot:activator="{  }">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                color="primary"
-                v-on="on" 
-                @click.stop="dialog = true" 
-                dark
-              >
-                <v-icon >mdi-lead-pencil</v-icon>
-              </v-btn>
-          </template>
-          <span>Edit {{speakerData.name}} Details </span>
-        </v-tooltip>
-      </template>
-      <v-card v-if="dialog">
-        <v-card-title
-          class="headline white"
-          primary-title
-          
-        >
-        <!-- {{+(docId)+1}} -->
-          Edit {{speakerData.name}} Details
-        </v-card-title>
-
-        <v-card-text class="">
-          <v-container fluid class="pa-0">
-              <v-row class="pa-0">
-                <v-col md="12" cols="12">
-                  <v-form
-                        ref="form"
-                        v-model="valid"
-                        lazy-validation
-                  >
-                    <!-- Row 1 -->
-                    <v-row class="pa-3">
-                      <v-col md="12" cols="12" class="pa-1 ma-0">
-                        <p style="font-size:120%" class="my-0">Team Member Status</p>
-                      </v-col>
-
-                      <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                        <v-select
-                        :items="items"
-                        v-model="updatedData.active"
-                        label="Active Status"
-                        outlined
-                        ></v-select>
-                      </v-col>
-
-                      <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                        <v-select
-                        :items="items"
-                        v-model="updatedData.visible"
-                        label="Visiblity Status"
-                        outlined
-                        ></v-select>
-                      </v-col>
-
-                      <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            v-model="updatedData.id"
-                            class="ma-0"
-                            disabled
-                            label="ID"
-                            type="text"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                        <v-select
-                            :items="teamRole"
-                            v-model="updatedData.role"
-                            label="Role"
-                            outlined
-                        ></v-select>
-                      </v-col>
-
-                    </v-row>
-                    <!-- Row 1 -->
-
-                    <!-- Row 2 -->
-                    <v-row class="pa-3">
-                      <v-col md="12" cols="12" class="pa-1 ma-0">
-                        <p style="font-size:120%" class="my-0">Team Member Info</p>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            v-model="updatedData.name"
-                            :rules="nameRules"
-                            class="ma-0"
-                            label="Name"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            v-model="updatedData.designation"
-                            class="ma-0"
-                            :rules="nameRules"
-                            label="Desigination"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            v-model="updatedData.image"
-                            class="ma-0"
-                            label="Image URL"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
-                        <v-textarea
-                        outlined
-                        name="input-7-4"
-                        v-model="updatedData.bio"
-                        label="Bio"
-                        ></v-textarea>
-                      </v-col>
-
-                    </v-row>
-                    <!-- Row 2 -->
-
-
-                    <!-- Row 3 -->
-                    <v-row class="pa-3">
-                      <v-col md="12" cols="12" class="pa-1 ma-0">
-                        <p style="font-size:120%" class="my-0">Personal Info</p>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.mbnumber"
-                            label="Contact Number"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-
-                      <v-col md="8" xs="8" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.email"
-                            :rules="emailRules"
-                            label="Email Id"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                    </v-row>
-                    <!-- Row 3 -->
-
-                    <!-- Row 4 -->
-                    <v-row class="pa-3">
-                      <v-col md="12" cols="12" class="pa-1 ma-0">
-                        <p style="font-size:120%" class="my-0">Social Links</p>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            label="Facebook"
-                            outlined
-                            v-model="updatedData.socialLinks.facebook"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            label="Github"
-                            v-model="updatedData.socialLinks.github"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.socialLinks.linkedin"
-                            label="Linkedin"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.socialLinks.meetup"
-                            label="Meetup"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.socialLinks.twitter"
-                            label="Twitter"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-text-field
-                            class="ma-0"
-                            v-model="updatedData.socialLinks.web"
-                            label="Website/Blog"
-                            outlined
-                        ></v-text-field>
-                      </v-col>
-
-                    </v-row>
-                    <!-- Row 4 -->
-
-                  </v-form> 
-                </v-col>
-              </v-row>
-             
-          </v-container>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <div class="flex-grow-1"></div>
-          <v-btn
-            color="primary"
-            text
-            @click="dialog = false"
-          >
-            Close
+  <v-dialog v-model="dialog" scrollable width="1200">
+    <template v-slot:activator="{  }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon color="primary" v-on="on" @click.stop="dialog = true" dark>
+            <v-icon>mdi-lead-pencil</v-icon>
+            <!--  -->
           </v-btn>
-          <v-btn
-            color="primary"
-            :disabled="!valid"
-            :loading="loading"
-            @click="UpdateData"
-          >
-            Update {{speakerData.name}} Details
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+        </template>
+        <span>Edit {{speakerData.name}} Details</span>
+      </v-tooltip>
+    </template>
+
+    <v-card v-if="dialog">
+      <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title>Edit {{speakerData.name}} Details | Speaker</v-card-title>
+
+      <v-card-text class>
+        <v-container fluid class="pa-0">
+          <v-row class="pa-0">
+            <v-col md="12" cols="12">
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <!-- {{speakerData}} -->
+                <!-- Row 1 -->
+                <v-row class="pa-3  py-0 my-0">
+                  <v-col md="12" cols="12" class="pa-1 py-0 ma-0 mb-2">
+                    <p style="font-size:120%" class="my-0">Speaker Status</p>
+                  </v-col>
+
+                  <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
+                    <v-select
+                      :items="items"
+                      v-model="updatedData.visible"
+                      label="Visiblity Status"
+                      outlined
+                    ></v-select>
+                  </v-col>
+
+                  <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.id"
+                      class="ma-0"
+                      disabled
+                      label="ID"
+                      type="text"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                </v-row>
+                <!-- Row 1 -->
+
+                <!-- Row 2 -->
+                <v-row class="pa-3 py-0 my-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0 mb-2">
+                    <p style="font-size:120%" class="my-0">Speaker Info</p>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.name"
+                      :rules="nameRules"
+                      class="ma-0"
+                      label="Name"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.designation"
+                      class="ma-0"
+                      :rules="nameRules"
+                      label="Desigination"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.image"
+                      class="ma-0"
+                      label="Image URL"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                   <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                      <v-text-field
+                        v-model="updatedData.company.name"
+                        class="ma-0"
+                        :rules="nameRules"
+                        label="Company Name"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 mr-2">
+                      <v-text-field
+                        v-model="updatedData.company.url"
+                        class="ma-0"
+                        label="Company URL"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                      <v-text-field
+                        v-model="updatedData.city"
+                        class="ma-0"
+                        :rules="nameRules"
+                        label="City"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                      <v-text-field
+                        v-model="updatedData.country"
+                        class="ma-0"
+                        :rules="nameRules"
+                        label="Country"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+
+                  <v-col md="12" xs="12" cols="12" class="pa-1 py-0 ma-0">
+                    <v-textarea outlined name="input-7-4" v-model="updatedData.bio" label="Bio"></v-textarea>
+                  </v-col>
+                </v-row>
+                <!-- Row 2 -->
+
+                <!-- Row 3 -->
+                <v-row class="pa-3 py-0 my-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0 mb-3">
+                    <p style="font-size:120%" class="my-0">Personal Info</p>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.mbnumber"
+                      label="Contact Number"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="8" xs="8" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.email"
+                      :rules="emailRules"
+                      label="Email Id"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <!-- Row 3 -->
+
+                <!-- Row 4 -->
+                <v-row class="pa-3">
+                  <v-col md="12" cols="12" class="pa-1 mb-3 ma-0">
+                    <p style="font-size:120%" class="my-0">Social Links</p>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      label="Facebook"
+                      outlined
+                      v-model="updatedData.socialLinks.facebook"
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      label="Github"
+                      v-model="updatedData.socialLinks.github"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.socialLinks.linkedin"
+                      label="Linkedin"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.socialLinks.medium"
+                      label="Medium"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.socialLinks.twitter"
+                      label="Twitter"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      class="ma-0"
+                      v-model="updatedData.socialLinks.web"
+                      label="Website/Blog"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <!-- Row 4 -->
+              </v-form>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <div class="flex-grow-1"></div>
+        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+        <v-btn
+          color="indigo"
+          depressed
+          dark
+          :disabled="!valid"
+          :loading="loading"
+          @click="UpdateData"
+        >Update {{speakerData.name.split(" ")[0]}} Details</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
-  import firebase from "@/config/firebase";
-  export default {
-    props:{
-        speakerData:{}
-    },
-    data:()=>({
-        valid: true,
-        nameRules: [
-            v => !!v || 'Name is required',
-            v => (v && v.length <= 20) || 'Name must be less than 10 characters',
-        ],
-        emailRules: [
-            v => !!v || 'E-mail is required',
-            v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-        ],
-        teamRole:["Core Team","Organizing Team", "Volunteer"],
-        dialog: false,
-        loading:false,
-        items:[true,false],
-        active:Boolean,
-        visible: Boolean,
-        id:'',
-        mbnumber:'',
-        name:'',
-        facebook:'',
-        github:'',
-        linkedin:'',
-        email:'',
-        meetup:'',
-        twitter:'',
-        web:'',
-        bio:'',
-        imageURL:'',
-        image:'',
-        designation:'',
-        role:null,
-        updatedData:{
-            active: this.speakerData.active,
-            visible: this.speakerData.visible,
-            name:this.speakerData.name,
-            designation: this.speakerData.designation,
-            mbnumber: this.speakerData.mbnumber,
-            email:this.speakerData.email,
-            image:this.speakerData.image,
-            bio:this.speakerData.bio,
-            id: this.speakerData.id,
-            role:this.speakerData.role,
-            socialLinks:{
-                facebook: this.speakerData.socialLinks.facebook,
-                github: this.speakerData.socialLinks.github,
-                linkedin: this.speakerData.socialLinks.linkedin,
-                meetup: this.speakerData.socialLinks.meetup,
-                twitter: this.speakerData.socialLinks.twitter,
-                web: this.speakerData.socialLinks.web,
-            }
+import firebase from "@/config/firebase";
+
+export default {
+  props: {
+    speakerData: {}
+  },
+  data() {
+    return {
+      imageUpload: [],
+      imagePre: "",
+      imageUploading: false,
+      valid: true,
+      dialogImageUload: false,
+      nameRules: [
+        v => !!v || "Name is required",
+        v => (v && v.length <= 20) || "Name must be less than 10 characters"
+      ],
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      teamRole: ["Core Team", "Organizing Team", "Volunteer"],
+      dialog: false,
+      loading: false,
+      items: [true, false],
+      updatedData: {
+        visible: this.speakerData.visible,
+        id: this.speakerData.id,
+        name: this.speakerData.name,
+        designation: this.speakerData.designation,
+        mbnumber: this.speakerData.mbnumber,
+        email: this.speakerData.email,
+        image: this.speakerData.image,
+        bio: this.speakerData.bio,
+        city: this.speakerData.city,
+        country: this.speakerData.country,
+        company: {
+          name: this.speakerData.company.name,
+          url: this.speakerData.company.url
+        },
+        socialLinks: {
+          facebook: this.speakerData.socialLinks.facebook,
+          github: this.speakerData.socialLinks.github,
+          linkedin: this.speakerData.socialLinks.linkedin,
+          medium: this.speakerData.socialLinks.medium,
+          twitter: this.speakerData.socialLinks.twitter,
+          web: this.speakerData.socialLinks.web
         }
-    }),
-    mounted(){
-        console.log("12",speakerData);
-    },
-    methods:{
-        UpdateData(){
-            var self =this
-            self.loading = true
-            if (this.$refs.form.validate()) {
-                console.log(this.updatedData)
-                console.log(this.speakerData.id)
-                
-                firebase.firestore.collection("Speakers").where("id", "==", this.speakerData.id)
-                .get()
-                .then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        console.log(doc.id, " => ", doc.data());
-                        // Build doc ref from doc.id
-                        
-                        firebase.firestore().collection("team").doc(doc.id).update({
-                            active: self.updatedData.active,
-                            visible: self.updatedData.visible,
-                            name:self.updatedData.name,
-                            designation: self.updatedData.designation,
-                            mbnumber: self.updatedData.mbnumber,
-                            email:self.updatedData.email,
-                            image:self.updatedData.image,
-                            bio:self.updatedData.bio,
-                            id: self.updatedData.id,
-                            role:self.updatedData.role,
-                            socialLinks:{
-                                facebook: self.updatedData.socialLinks.facebook,
-                                github: self.updatedData.socialLinks.github,
-                                linkedin: self.updatedData.socialLinks.linkedin,
-                                meetup: self.updatedData.socialLinks.meetup,
-                                twitter: self.updatedData.socialLinks.twitter,
-                                web: self.updatedData.socialLinks.web,
-                            }
-                        });
-                    });
-                }).then(()=>{
-                    // alert('Data Updated')
-                  self.loading = false
-                  self.dialog = false 
-                  self.$emit('editedSuccess')
-                }).catch(e=>{
-                    console.log(e)
-                    self.loading = false
-                })
-                // firebase.firestore().collection('team').where('id','==', this.speakerData.id)
-                // update(Data).then(res=>{
-                //     // console.log(res)
-                //     alert('Updated')
-                //     this.dialog = false
-                //     this.$emit('showSuccess')
-                // }).catch(e=>{
-                //     console.log(e)
-                // })
+      }
+    };
+  },
+  methods: {
+    UpdateData() {
+      if (this.$refs.form.validate()) {
+        this.loading = true;
+        // console.log(this.updatedData);
+        // console.log(this.speakerData.id);
+
+        firebase.firestore
+          .collection("Speakers")
+          .doc(this.speakerData.id)
+          .update({
+            visible: this.updatedData.visible,
+            name: this.updatedData.name,
+            designation: this.updatedData.designation,
+            mbnumber: this.updatedData.mbnumber,
+            email: this.updatedData.email,
+            image: this.updatedData.image,
+            bio: this.updatedData.bio,
+            city: this.updatedData.city,
+            country: this.updatedData.country,
+            company: {
+              name: this.updatedData.company.name,
+              url: this.updatedData.company.url
+            },
+            socialLinks: {
+              facebook: this.updatedData.socialLinks.facebook,
+              github: this.updatedData.socialLinks.github,
+              linkedin: this.updatedData.socialLinks.linkedin,
+              medium: this.updatedData.socialLinks.medium,
+              twitter: this.updatedData.socialLinks.twitter,
+              web: this.updatedData.socialLinks.web
             }
-            
-        }
+          })
+          .then(() => {
+            this.loading = false;
+            this.dialog = false;
+            this.$emit("editedSuccess", this.speakerData.name+" Edited Success");
+          })
+          .catch(e => {
+            console.log(e);
+            this.loading = false;
+          });
+      }
     }
   }
+};
 </script>

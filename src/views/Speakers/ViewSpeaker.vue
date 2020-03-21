@@ -1,147 +1,220 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-toolbar class="elevation-1">
-                    
-                <router-link
-                    to="/speakers"
-                    class="ma-0 google-font mb-0"
-                    style="border-radius:5px;text-transform: capitalize;text-decoration:none;color:black"
+  <v-container fluid>
+    <Snakebar
+      :message="snakeBarMessage"
+      :isShow.sync="isSnakeBarVisible"
+      :color="snakeBarColor"
+      :timeout="snakeBarTimeOut"
+    />
+    <v-row>
+      <v-col cols="12">
+        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+          <v-btn
+            text
+            @click="goToTeam"
+            class="ma-0 google-font mb-0"
+            style="border-radius:5px;text-transform: capitalize;text-decoration:none;"
+          >
+            <v-icon left style="font-size:150%">mdi-arrow-left-thick</v-icon>
+            <span style="font-size:120%">Speaker</span>
+          </v-btn>
+          <v-spacer></v-spacer>
+          <EditSpeaker
+            :speakerData="speakerInfo"
+            v-if="!showLoader && !userNotFound"
+            @editedSuccess="showSnakeBar"
+          />
+          <DeleteSpeaker
+            :SpeakerInfo="speakerInfo"
+            @RemoveSuceess="showSnakeBar"
+            v-if="!showLoader && !userNotFound"
+          />
+        </v-toolbar>
+      </v-col>
+    </v-row>
+
+    <v-row justify="center" align="center" class v-if="showLoader">
+      <v-col cols="12" md="12" class="text-center">
+        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+      </v-col>
+    </v-row>
+
+    <v-row v-else-if="!showLoader && !userNotFound">
+      <v-col cols="12" md="12" class>
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12" sm="5" md="3" xl="2" class="pa-0 text-center">
+              <v-card height="100%" class="elevation-0" style="border:1px solid #e0e0e0">
+                <v-card-title
+                  class="grey lighten-4 google-font"
+                  primary-title
+                  :style="{'background-image':'url(https://iambharat.tk/images/backImage.jpg)'}"
+                  style="background-position:right top;padding-top:30%;"
+                ></v-card-title>
+                <v-card-text class="px-5 pb-5" style="margin-top: -70px;">
+                  <v-avatar size="130">
+                    <img
+                      :src="(speakerInfo.image.length>0)?speakerInfo.image:require('@/assets/img/default_avatar.jpg')"
+                      :alt="speakerInfo.id"
+                      style="border-style: solid;border-width: 5px;border-color:white"
+                    />
+                  </v-avatar>
+
+                  <p
+                    class="mt-3 mb-0 google-font black--text"
+                    style="font-size:120%"
+                  >{{speakerInfo.name}}</p>
+                  <p
+                    class="mt-1 mb-0 google-font mt-0"
+                    style="font-size:100%"
+                  >{{speakerInfo.designation}}</p>
+
+                  <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.city}}, {{speakerInfo.country}}</p>
+
+                  <br />
+                  <v-chip
+                    class="ma-1"
+                    v-if="speakerInfo.visible"
+                    dark
+                    label
+                    color="green"
+                    small
+                  >Visible</v-chip>
+                  <v-chip class="ma-1" v-else label dark color="red" small>Not Visible</v-chip>
+
+                  <br />
+
+                  <br />
+                </v-card-text>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" sm="7" md="9" xl="10" class="py-5 text-left pa-5">
+              <p class="mb-0">
+                <b>Bio</b>
+              </p>
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.bio}}</p>
+
+              <p class="mb-0 mt-3">
+                <b>Email</b>
+              </p>
+              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.email}}</p>
+
+              <p class="mb-0 mt-3">
+                <b>Mobile</b>
+              </p>
+              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.mbnumber}}</p>
+
+              <p class="mb-0 mt-3">
+                <b>User ID</b>
+              </p>
+              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.id}}</p>
+
+              <p class="mb-0 mt-3">
+                <b>Social Links</b>
+              </p>
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
+                <span
+                  style="cursor: pointer;"
+                  v-for="(slink,i) in speakerInfo.socialLinks"
+                  :key="i"
+                  class="mr-1"
                 >
-                <v-icon left>mdi-arrow-left-thick</v-icon>
-                Speakers</router-link>
-                &nbsp;
-                <!-- <v-toolbar-title>Team Details: </v-toolbar-title> -->
-                    <div class="flex-grow-1"></div>
-                    <!-- <editTeam :teamData="teamData" v-on:editedSuccess="editedSuccessFun" class="mr-2" v-if="showTeamData"/>
-                    &nbsp;
-                    <removeTeam class="mr-1" v-if="showTeamData" :teamData="{id:$route.params.id,name:teamData.name}" /> --> 
-                    
-                    <!-- <v-tooltip bottom v-if="showTeamData">
-                        <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" target="_blank" v-on:click="showPublicURL($route.params.id)">
-                            <v-icon color="indigo">mdi-eye</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Show Public URL</span>
-                    </v-tooltip> -->
-                    
-                    <RemoveSpeaker :SpeakerData="{id:$route.params.id,name:speakerData.name}"/>
-                    <!-- <EditSpeaker :speakerData="speakerData" /> -->
-                </v-toolbar>
-        </v-row>
-
-        <!-- Loading -->
-        <v-row class="my-5" v-if="showLoader">
-            <v-col class="text-center">
-                <v-progress-circular
-                :size="70"
-                :width="5"
-                color="primary"
-                indeterminate
-                ></v-progress-circular>
+                  <a v-if="slink" :href="slink" target="_blank" style="text-decoration:none;">
+                    <v-chip small ripple style="text-transform: uppercase;">{{i}}</v-chip>
+                  </a>
+                </span>
+              </p>
             </v-col>
-        </v-row>
-        <!-- Loading -->
-
-        <!-- Not Found -->
-        <v-row class="my-5" v-else-if="userNotFound">
-            <v-col class="text-center elevation-1">
-                <h1 class="google-font">User Not Found</h1>
+          </v-row>
+        </v-container>
+      </v-col>
+    </v-row>
+    <v-row justify="center" align="center" class v-else>
+      <v-col cols="12" md="11">
+        <v-container fluid>
+          <v-row class="elevation-1 pa-3 white">
+            <v-col>
+              <h1>User Not Found</h1>
             </v-col>
-        </v-row>
-        <!-- Not Found -->
-
-        <v-row class="mt-3" v-else>
-            <v-container>
-                <v-row>
-                    <v-col col="12" md="3" cols="12" class="pa-1 elevation-1 py-5 text-center">
-                        <v-avatar size="120">
-                            <img 
-                            :src="(speakerData.image.length>0)?speakerData.image:require('@/assets/img/default_avatar.jpg')" alt=""
-                            >
-                        </v-avatar>
-                        
-                        <p class="mt-3 mb-0 google-font mb-0" style="font-size:120%">{{speakerData.name}}</p>
-                        <p class="mt-1 mb-0 google-font mt-0" style="font-size:100%">{{speakerData.designation}}</p>
-
-                        <br><br>
-                        <v-chip class="ma-1" v-if="speakerData.visible" dark label color="green" small>Visible</v-chip>
-                        <v-chip class="ma-1" v-else label dark color="red" small>Not Visible</v-chip>
-                        
-                    </v-col>
-
-                    <v-col col="12" md="9" cols="12" class="pa-1 elevation-1 py-5 px-5">
-                        <p class="mb-0"><b>Bio</b></p>
-                        <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerData.bio}}</p>
-
-                        <p class="mb-0 mt-3"><b>Email</b></p>
-                        <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerData.email}}</p>
-
-                        <p class="mb-0 mt-3"><b>Mobile</b></p>
-                        <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerData.mbnumber}}</p>
-
-                        <p class="mb-0 mt-3"><b>User ID</b></p>
-                        <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerData.id}}</p>
-
-                        <p class="mb-0 mt-3"><b>Social Links</b></p>
-                        <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
-                            <span style="cursor: pointer;" v-for="(slink,i) in speakerData.socialLinks" :key="i" class="mr-1">
-                                <a v-if="slink" :href="slink" target="_blank" style="text-decoration:none;">
-                                    <v-chip small style="text-transform: uppercase;">{{i}}</v-chip>
-                                </a>
-                            </span>
-                        </p>
-                        
-                    </v-col>
-
-                </v-row>
-            </v-container>
-            
-        </v-row>
-
-        
-    </v-container>
+          </v-row>
+        </v-container>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-    import RemoveSpeaker from '@/components/Speakers/RemoveSpeaker'
-    // import EditSpeaker from '@/components/Speakers/EditSpeaker'
-    import firebase from '@/config/firebase'
-    export default{
-        name:"ViewSpeaker",
-        components:{
-            RemoveSpeaker
-            // EditSpeaker
-        },
-        data: ()=>({
-            speakerData:{},
-            showLoader: true,
-            userNotFound: false
-        }),
-        mounted(){
-            this.getTeamData()
-        },
-        methods:{
-            getTeamData(){
-                this.showLoader = true
-                this.userNotFound = false
-                firebase.firestore.collection('Speakers').doc(this.$route.params.id).get().then(doc=>{
-                    console.log(doc.data())
-                    if(doc.data() == undefined){
-                        this.showLoader = false
-                        this.userNotFound = true
-                    }
-                    else if(doc.data()){
-                        this.showLoader = false
-                        this.speakerData = doc.data()
-                    }
-                    else{
-                        this.showLoader = false
-                        this.userNotFound = true
-                    }
-                })
-            },
-        }
+import firebase from "@/config/firebase";
+import Snakebar from "@/components/Common/Snakebar";
+import DeleteSpeaker from "@/components/Speakers/DeleteSpeaker";
+import EditSpeaker from "@/components/Speakers/EditSpeaker";
+
+export default {
+  name: "ViewTeam",
+  components: {
+    Snakebar,
+    DeleteSpeaker,
+    EditSpeaker
+  },
+  data: () => ({
+    snakeBarMessage: "",
+    isSnakeBarVisible: false,
+    snakeBarColor: "green",
+    snakeBarTimeOut: 5000,
+    showLoader: true,
+    userNotFound: true,
+    speakerInfo: {}
+  }),
+  mounted() {
+    this.getSpeakerData();
+  },
+  methods: {
+    showSnakeBar(text) {
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
+      this.getSpeakerData();
+    },
+    goToTeam() {
+      this.$router.replace("/speakers");
+    },
+    getSpeakerData() {
+      this.showLoader = true;
+      this.userNotFound = false;
+      firebase.firestore
+        .collection("Speakers")
+        .doc(this.$route.params.id)
+        .get()
+        .then(doc => {
+        //   console.log(doc.data());
+          if (doc.data() == undefined) {
+            this.showLoader = false;
+            this.userNotFound = true;
+          } else if (doc.data()) {
+            this.showLoader = false;
+            this.speakerInfo = doc.data();
+          } else {
+            this.showLoader = false;
+            this.userNotFound = true;
+          }
+        })
+        .catch(e => {
+          console.log("Message" + e);
+          this.showLoader = false;
+          this.userNotFound = true;
+        });
     }
+  }
+};
 </script>
+
+<style scoped>
+.team-details{
+  border:1px solid #e0e0e0;
+  border-radius:5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left:0px;
+  background:white;
+}
+</style>

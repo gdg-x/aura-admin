@@ -11,6 +11,8 @@
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Team</v-toolbar-title>
           <v-spacer></v-spacer>
+
+          <!-- Desktop -->
           <v-text-field
             flat
             v-model="search"
@@ -21,7 +23,9 @@
             single-line
             class="mr-2 hidden-sm-and-down"
           ></v-text-field>
+          <!-- Desktop -->
 
+          <!-- Mobile -->
           <v-slide-x-reverse-transition>
             <v-text-field
               flat
@@ -40,6 +44,7 @@
             <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
             <v-icon dark v-else>mdi-close</v-icon>
           </v-btn>
+          <!-- Mobile -->
           &nbsp;
           <AddTeam @showSuccess="showSnakeBar" />
         </v-toolbar>
@@ -159,16 +164,13 @@ export default {
     showData() {
       this.teamData = [];
       this.isLoading = true;
-      console.log("Calling Show Data");
       firebase.firestore
         .collection("team")
         .get()
         .then(snapshot => {
-          console.log(snapshot);
           snapshot.forEach(doc => {
             this.teamData.push(doc.data());
           });
-          console.log(this.teamData);
           this.isLoading = false;
         })
         .catch(err => {
