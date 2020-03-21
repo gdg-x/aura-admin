@@ -6,7 +6,7 @@
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     />
-    <v-row>
+    <v-row class="">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Team</v-toolbar-title>
