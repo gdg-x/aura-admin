@@ -2,14 +2,19 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="1200">
       <template v-slot:activator="{ on }">
+        <!-- For Large screen (Laptops and up) -->
         <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
+        <!-- For small Screen (Tablet and smaller) -->
         <v-btn fab small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card>
-        <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title dark>Create New Team Member</v-card-title>
-
+        <v-card-title
+          class="google-font elevation-1 indigo white--text py-5"
+          primary-title
+          dark
+        >Create New Team Member</v-card-title>
         <v-card-text>
           <v-container fluid>
             <v-row class="pa-0">
@@ -196,7 +201,7 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase';
+import firebase from "@/config/firebase";
 export default {
   props: [],
   data() {
@@ -283,15 +288,14 @@ export default {
             web: this.web
           }
         };
-        firebase
-          .firestore
+        firebase.firestore
           .collection("team")
           .doc(Data.id)
           .set(Data)
           .then(res => {
             this.loading = false;
             this.dialog = false;
-            this.$emit("showSuccess","Team Member Added Success");
+            this.$emit("showSuccess", "Team Member Added Success");
 
             // firebase.auth.createUserWithEmailAndPassword(this.email, this.password).then((user)=>{
             //   console.log(user.user.uid);
@@ -315,7 +319,7 @@ export default {
           .catch(e => {
             this.loading = false;
             console.log(e);
-              this.$emit("showSuccess","Failed to Add Team Member");
+            this.$emit("showSuccess", "Failed to Add Team Member");
           });
       }
     }
