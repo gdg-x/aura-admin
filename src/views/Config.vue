@@ -1,8 +1,7 @@
 <template>
     <v-container>
-        <h1>Config</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugiat aut, sunt dolorem quas earum dicta eum unde nemo assumenda nostrum ex quos. Sed corporis aut repellat quibusdam animi ut.</p>
-
+        <h3 class="google-font mb-0">Config</h3>
+        <p class="google-font mb-5">Lorem ipsum dolor sit amet consectetur</p>
         <v-tabs v-model="tab" show-arrows background-color="grey lighten-3" >
             <v-tab key="item1">General</v-tab>
             <v-tab key="item2">Community Guidelines</v-tab>
@@ -12,11 +11,9 @@
         </v-tabs>
 
         <v-tabs-items v-model="tab" style="border:1px solid #e0e0e0;border-radius:5px;">
-            <v-tab-item key="item1">
-                <v-card flat>
-                    <v-card-text>
-                        <General/>
-                    </v-card-text>
+            <v-tab-item key="item1" class="pa-0 ma-0">
+                <v-card flat class="pa-0 ma-0 px-2">
+                    <General/>
                 </v-card>
             </v-tab-item>
             <v-tab-item key="item2">
