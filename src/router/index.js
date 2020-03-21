@@ -87,6 +87,15 @@ const routes = [{
     }
   },
   {
+    path: '/meetup-events',
+    name: "Meetup Events",
+    component: () => import( /* webpackChunkName: "Meetup Events" */ '@/views/Events/MeetupEvents'),
+    meta: {
+      requiresAuth: true,
+      title: "Meetup Events"
+    }
+  },
+  {
     path: '/notification',
     name: "Notification",
     component: () => import( /* webpackChunkName: "notifications" */ '@/views/Notifications'),
