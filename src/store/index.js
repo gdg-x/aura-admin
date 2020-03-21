@@ -28,11 +28,11 @@ export default new Vuex.Store({
         to: '/speakers',
         icon: 'mdi-account-multiple',
       },
-      {
-        text: 'Partners',
-        to: '/partners',
-        icon: 'mdi-kodi',
-      },
+      // {
+      //   text: 'Partners',
+      //   to: '/partners',
+      //   icon: 'mdi-kodi',
+      // },
       {
         text: 'Notification',
         to: '/notification',

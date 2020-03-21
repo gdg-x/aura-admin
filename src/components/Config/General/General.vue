@@ -1,14 +1,156 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
-                <v-text-field
-                    label="Community Name"
-                    outlined
-                ></v-text-field>
-            </v-col>
-            <v-col>
+            <v-col md="4">
+                <v-row>
+                    <v-col>
+                        <div class="pa-4 grey lighten-4">
+                            <p class="google-font my-0 py-0 mb-2" >Community Info</p>
+                            <v-text-field
+                                class="my-0 py-0"
+                                label="Community Name"
+                                outlined
+                            ></v-text-field>
+
+                            <v-text-field
+                                class="my-0 py-0"
+                                label="Community Website Link"
+                                outlined
+                            ></v-text-field>
+
+                            <v-text-field
+                                class="my-0 py-0"
+                                label="Community Meetup Link"
+                                outlined
+                            ></v-text-field>
+                        </div>
+                        <div class="pa-4 mt-5 grey lighten-4">
+                            <p class="google-font my-0 py-0 mb-2" >Blogs</p>
+                            <v-text-field
+                                class="my-0 py-0"
+                                label="Medium Blog"
+                                outlined
+                            ></v-text-field>
+                            <v-text-field
+                                class="my-0 py-0"
+                                label="Dev.to Blog"
+                                outlined
+                            ></v-text-field>
+                        </div>
+                    </v-col>
+                </v-row>
                 
+            </v-col>
+            <v-col md="8">
+                <v-row class="my-0 py-0">
+                    <v-col class="mb-0 pb-0">
+                        <v-textarea
+                            outlined
+                            name="input-7-4"
+                            label="Community Short Description"
+                            value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+                            class="mb-0 pb-0"
+                        ></v-textarea>
+                    </v-col>
+                    <v-col class="mb-0 pb-0">
+                        <v-textarea
+                            outlined
+                            name="input-7-4"
+                            label="Community Long Description"
+                            value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+                            class="mb-0 pb-0"
+                        ></v-textarea>
+                    </v-col>
+                </v-row>
+
+                <!-- Socail Links -->
+                <v-row class="my-0 py-0">
+                    <v-col md="12" class="my-0 py-0">
+                        <p>Social Links</p>
+                    </v-col>
+                    <v-col class="my-0 py-0">
+                        <v-row class="my-0 py-0">
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Linkedin"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Twitter"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Github"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row class="my-0 py-0">
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Instagram"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Facebook"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                            <v-col class="my-0 py-0">
+                                <v-text-field
+                                    class="my-0 py-0"
+                                    label="Medium"
+                                    outlined
+                                ></v-text-field>
+                            </v-col>
+                        </v-row>
+                        
+                    </v-col>
+                </v-row>
+                <!-- Socail Links -->
+
+                <!-- Hashtag -->
+                <v-row class="my-0 py-0">
+                    <v-col md="12" class="my-0 py-0">
+                        <p>HashTags</p>
+                    </v-col>
+                    <v-col class="my-0 py-0">
+                        <v-combobox
+                            v-model="chips"
+                            :items="hashtag"
+                            chips
+                            clearable
+                            label="Community Hashtags"
+                            multiple
+                            outlined
+                            
+                        >
+                            <template v-slot:selection="{ attrs, item, select, selected }">
+                            <v-chip
+                                v-bind="attrs"
+                                :input-value="selected"
+                                close
+                                @click="select"
+                                @click:close="remove(item)"
+                            >
+                                <strong>{{ item }}</strong>
+                            </v-chip>
+                            </template>
+                        </v-combobox>
+                    </v-col>
+                </v-row>
+                <!-- Hashtag -->
             </v-col>
         </v-row>
     </v-container>
@@ -17,13 +159,18 @@
 export default {
   name: "Config",
   data: () => ({
-    tab:null
+    tab:null,
+    chips:[],
+    hashtag: []
   }),
   mounted() {
    
   },
   methods: {
-    
+    remove (item) {
+        this.chips.splice(this.chips.indexOf(item), 1)
+        this.chips = [...this.chips]
+    },
   }
 };
 </script>
