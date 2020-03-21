@@ -1,6 +1,6 @@
 <template>
-    <v-content>
-        <v-container fluid>
+    <v-content class="grey lighten-5">
+        <v-container fluid >
             <v-slide-y-reverse-transition>
                 <router-view v-show="show" />   
             </v-slide-y-reverse-transition>

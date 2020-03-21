@@ -3,9 +3,14 @@
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Aura Admin</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text v-on:click="logout">
-            Logout
-        </v-btn>
+        <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                <v-btn icon v-on="on" v-on:click="logout">
+                    <v-icon>mdi-logout-variant</v-icon>
+                </v-btn>
+            </template>
+            <span>Logout</span>
+        </v-tooltip>
     </v-app-bar>
 </template>
 <script>

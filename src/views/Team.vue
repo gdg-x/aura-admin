@@ -8,7 +8,7 @@
     />
     <v-row>
       <v-col>
-        <v-toolbar class="elevation-1">
+        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Team</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-text-field
@@ -21,22 +21,26 @@
             single-line
             class="mr-2 hidden-sm-and-down"
           ></v-text-field>
-          <v-slide-x-reverse-transition><v-text-field
-            flat
-            v-if="isSearch"
-            v-model="search"
-            solo-inverted
-            hide-details
-            prepend-inner-icon="mdi-search-web"
-            label="Search"
-            single-line
-            class="mr-2 hidden-md-and-up"
-          ></v-text-field></v-slide-x-reverse-transition>
+
+          <v-slide-x-reverse-transition>
+            <v-text-field
+              flat
+              v-if="isSearch"
+              v-model="search"
+              solo-inverted
+              hide-details
+              prepend-inner-icon="mdi-search-web"
+              label="Search"
+              single-line
+              class="mr-2 hidden-md-and-up"
+            ></v-text-field>
+          </v-slide-x-reverse-transition>
+
           <v-btn fab small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
             <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
             <v-icon dark v-else>mdi-close</v-icon>
-        </v-btn>
-        &nbsp;
+          </v-btn>
+          &nbsp;
           <AddTeam @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
@@ -72,11 +76,11 @@
                     class="pa-1"
                   >
                     <v-card
-                      style="cursor: pointer;user-select: none"
+                      style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
                       height="100%"
                       v-ripple
                       @click="gotoTeamDetails(item.id)"
-                      class="text-center elevation-1"
+                      class="text-center elevation-0"
                     >
                       <v-card-text style="height:100%">
                         <v-avatar size="100">

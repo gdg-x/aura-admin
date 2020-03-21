@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" scrollable width="1200">
       <template v-slot:activator="{ on }">
-        <v-btn color="indigo hidden-sm-and-down" dark v-on="on">Add New Team Member</v-btn>
+        <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
         <v-btn fab small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>

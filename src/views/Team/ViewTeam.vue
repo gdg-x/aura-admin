@@ -8,7 +8,7 @@
     />
     <v-row>
       <v-col cols="12">
-        <v-toolbar class="elevation-1">
+        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-btn
             text
             @click="goToTeam"
@@ -32,17 +32,19 @@
         </v-toolbar>
       </v-col>
     </v-row>
+
     <v-row justify="center" align="center" class v-if="showLoader">
       <v-col cols="12" md="12" class="text-center">
         <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
       </v-col>
     </v-row>
+
     <v-row v-else-if="!showLoader && !userNotFound">
       <v-col cols="12" md="12" class>
         <v-container fluid>
           <v-row>
-            <v-col col="12" sm="5" md="3" class="pa-0 text-center">
-              <v-card height="100%">
+            <v-col col="12" sm="5" md="2" class="pa-0 text-center">
+              <v-card height="100%" class="elevation-0" style="border:1px solid #e0e0e0">
                 <v-card-title
                   class="grey lighten-4 google-font"
                   primary-title
@@ -92,7 +94,7 @@
               </v-card>
             </v-col>
 
-            <v-col col="12" sm="7" md="9" class="py-5 text-left pa-5">
+            <v-col col="12" sm="7" md="10" class="py-5 text-left pa-5 team-details">
               <p class="mb-0">
                 <b>Bio</b>
               </p>
@@ -211,5 +213,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.team-details{
+  border:1px solid #e0e0e0;
+  border-radius:5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left:0px;
+  background:white;
+}
 </style>
