@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" scrollable width="1200">
+    <v-dialog v-model="dialog" persistent scrollable width="1200">
       <template v-slot:activator="{ on }">
         <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
         <v-btn fab small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
@@ -8,7 +8,7 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title class="headline" primary-title dark>Create New Team Member</v-card-title>
+        <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title dark>Create New Team Member</v-card-title>
 
         <v-card-text>
           <v-container fluid>
@@ -180,9 +180,11 @@
 
         <v-card-actions>
           <div class="flex-grow-1"></div>
-          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="primary"
+            color="indigo"
+            dark
+            depressed
             :disabled="!valid"
             :loading="loading"
             @click="SaveEvent"

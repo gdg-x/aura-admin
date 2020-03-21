@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" scrollable width="1200">
+  <v-dialog v-model="dialog" persistent scrollable width="1200">
     <template v-slot:activator="{  }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">

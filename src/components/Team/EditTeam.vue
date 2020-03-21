@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" scrollable width="1200">
+  <v-dialog v-model="dialog" persistent scrollable width="1200">
     <template v-slot:activator="{  }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -13,7 +13,7 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="headline white" primary-title>Edit {{teamData.name}} Details</v-card-title>
+      <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title>Edit {{teamData.name}} Details</v-card-title>
 
       <v-card-text class>
         <v-container fluid class="pa-0">
@@ -199,9 +199,11 @@
 
       <v-card-actions>
         <div class="flex-grow-1"></div>
-        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
         <v-btn
-          color="primary"
+          color="indigo"
+          depressed
+          dark
           :disabled="!valid"
           :loading="loading"
           @click="UpdateData"
