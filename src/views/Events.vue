@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <h1>Events</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugiat aut, sunt dolorem quas earum dicta eum unde nemo assumenda nostrum ex quos. Sed corporis aut repellat quibusdam animi ut.</p>
-    </div>
+    <v-container fluid class="">
+        <h1 class="google-font mb-0">Events</h1>
+        <p class="google-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugiat aut, sunt dolorem quas earum dicta eum unde nemo assumenda nostrum ex quos. Sed corporis aut repellat quibusdam animi ut.</p>
+    </v-container>
 </template>
 
 <script>
