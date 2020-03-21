@@ -15,8 +15,7 @@
             <v-tab-item key="item1">
                 <v-card flat>
                     <v-card-text>
-                        <p>Item 1</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
+                        <General/>
                     </v-card-text>
                 </v-card>
             </v-tab-item>
@@ -57,8 +56,12 @@
 </template>
 
 <script>
+import General from '@/components/Config/General/General'
 export default {
   name: "Config",
+  components:{
+    General
+  },
   data: () => ({
     tab:null
   }),
