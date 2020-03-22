@@ -2,7 +2,10 @@
   <v-dialog v-model="dialog" persistent width="800" scrollable>
     <template v-slot:activator="{ on }">
       <!-- eye icon -->
-      <v-icon small class="mr-2" v-on="on">mdi-eye</v-icon>
+      <v-btn icon v-on="on" class="mr-2">
+        <v-icon>mdi-eye</v-icon>
+      </v-btn>
+      <!-- <v-icon small class="mr-2" v-on="on">mdi-eye</v-icon> -->
     </template>
     <v-card>
       <v-card-title class="headline google-font" primary-title>{{ dialogData.title }}</v-card-title>

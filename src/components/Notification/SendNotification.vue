@@ -2,10 +2,13 @@
   <v-dialog v-model="dialog" hide-overlay persistent width="300">
     <template v-slot:activator="{ on }">
       <!-- send icon -->
-      <v-icon small class="mr-2" v-on="on" @click="send">mdi-send</v-icon>
+      <v-btn icon v-on="on" class="mr-2">
+        <v-icon>mdi-send</v-icon>
+      </v-btn>
+      <!-- <v-icon small class="mr-2" v-on="on" @click="send">mdi-send</v-icon> -->
     </template>
     <v-card color="primary" dark>
-      <v-card-text>
+      <v-card-text class="py-5">
         Sending Notifications
         <v-progress-linear indeterminate color="white" class="mb-0 mt-1"></v-progress-linear>
       </v-card-text>

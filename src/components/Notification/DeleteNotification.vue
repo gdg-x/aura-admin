@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
     <template v-slot:activator="{ on }">
-      <v-icon small class="mr-2" v-on="on">mdi-delete</v-icon>
+      <v-btn icon v-on="on" class="mr-2">
+        <v-icon>mdi-delete</v-icon>
+      </v-btn>
     </template>
 
     <v-card>
