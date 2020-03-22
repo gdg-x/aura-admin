@@ -10,8 +10,8 @@
     <v-row justify="center" align="center">
       <v-col cols="12" md="12">
         <!-- Toolbar for PushNotifications -->
-        <v-toolbar class="elevation-1">
-          <v-toolbar-title class="google-font">PushNotifications Details:</v-toolbar-title>
+        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+          <v-toolbar-title class="google-font">Push Notifications Details:</v-toolbar-title>
           <div class="flex-grow-1"></div>
           <!-- Search Field for notifications -->
           <v-text-field
@@ -35,11 +35,12 @@
         <v-col cols="12" md="12">
           <!-- Data table for showing pushnotifications -->
           <v-data-table
+            style="border:1px solid #e0e0e0;border-radius:5px;"
             :headers="headers"
             :items="pushData"
             :items-per-page="10"
             :search="search"
-            class="elevation-1 google-font"
+            class="elevation-0 google-font"
             :loading="isLoading"
             loading-text="Loading... Please wait"
           >
