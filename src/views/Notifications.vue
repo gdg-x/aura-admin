@@ -47,6 +47,7 @@
             <template v-slot:item.action="{ item }">
               <!-- view Selected Notification -->
               <ViewNotification :dialogData="item" />
+              <EditNotification @addedSuccess="addedd" :editDialogData="item" />
               <SendNotification @addedSuccess="addedd" :data="item" />
               <!-- <v-icon small class="mr-2" @click="edit(item)">mdi-lead-pencil</v-icon> -->
               <!-- <v-icon small>mdi-send</v-icon> -->
@@ -65,6 +66,7 @@ import Snakebar from "@/components/Common/Snakebar";  // Global Snakebar Compome
 import AddNotification from "@/components/Notification/AddNotification";  // Add new Notification component
 import ViewNotification from "@/components/Notification/ViewNotification";
 import SendNotification from "@/components/Notification/SendNotification";
+import EditNotification from '@/components/Notification/EditNotification';
 
 export default {
   name: "Notifications",
@@ -72,7 +74,8 @@ export default {
     Snakebar,
     AddNotification,
     ViewNotification,
-    SendNotification
+    SendNotification,
+    EditNotification
   },
   data: () => ({
     isSearch: false,

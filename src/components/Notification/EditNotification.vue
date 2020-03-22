@@ -1,0 +1,84 @@
+<template>
+  <v-dialog v-model="dialog" width="800" scrollable>
+    <template v-slot:activator="{ on }">
+      <v-icon small class="mr-2" v-on="on">mdi-lead-pencil</v-icon>
+    </template>
+    <v-card>
+      <v-card-title class="headline google-font" primary-title>Edit Notification</v-card-title>
+
+      <v-card-text>
+        <v-container fluid>
+          <v-row align="center">
+            <v-col cols="12" md="6" class="pa-1 ma-0">
+              <v-text-field v-model="editDialogData.title" label="Title" type="text" outlined></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6" class="pa-1 ma-0">
+              <v-text-field v-model="editDialogData.image" label="Image Link" type="url" outlined></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6" class="pa-1 ma-0 order-2 order-md-1">
+              <v-textarea v-model="editDialogData.body" label="Body" type="text" outlined></v-textarea>
+            </v-col>
+            <v-col cols="12" md="6" class="pa-1 ma-0 order-1 order-md-2">
+              <v-img :src="(editDialogData.image.length > 10)?editDialogData.image:''"></v-img>
+            </v-col>
+            <v-col cols="12" md="6" class="pa-1 ma-0">
+              <v-text-field v-model="editDialogData.regLink" label="Reg Link" type="url" outlined></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6" class="pa-1 ma-0">
+              <v-text-field v-model="editDialogData.eventID" label="Event ID" type="text" outlined></v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card-text>
+
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+        <v-btn
+          color="green"
+          text
+          :loading="isAdding"
+          @click="updateNotification(editDialogData.id)"
+        >Update</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+
+<script>
+import firebase from "@/config/firebase";
+
+export default {
+  name: "EditNotifications",
+  props: ["editDialogData"],
+  data: () => ({
+    dialog: false,
+    isAdding: false
+  }),
+  methods: {
+    updateNotification(id) {
+      this.isAdding = true;
+      firebase.firestore
+        .collection("pushNotifications")
+        .doc(id)
+        .update({
+          body: this.editDialogData.body,
+          title: this.editDialogData.title,
+          image: this.editDialogData.image,
+          regLink: this.editDialogData.regLink,
+          eventID: this.editDialogData.eventID
+        })
+        .then(() => {
+          this.isAdding = false;
+          this.dialog = false;
+          this.$emit("addedSuccess", "Notification updated");
+        });
+    }
+  }
+};
+</script>
+
+<style>
+</style>
