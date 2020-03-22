@@ -40,7 +40,7 @@
             ></v-text-field>
           </v-slide-x-reverse-transition>
 
-          <v-btn fab small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
+          <v-btn fab x-small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
             <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
             <v-icon dark v-else>mdi-close</v-icon>
           </v-btn>

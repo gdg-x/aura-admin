@@ -5,7 +5,7 @@
         <!-- For Large screen (Laptops and up) -->
         <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
         <!-- For small Screen (Tablet and smaller) -->
-        <v-btn fab small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
+        <v-btn fab x-small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
