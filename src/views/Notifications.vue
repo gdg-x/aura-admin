@@ -48,9 +48,8 @@
               <!-- view Selected Notification -->
               <ViewNotification :dialogData="item" />
               <EditNotification @addedSuccess="addedd" :editDialogData="item" />
+              <DeleteNotification @addedSuccess="addedd" :data="item" />
               <SendNotification @addedSuccess="addedd" :data="item" />
-              <!-- <v-icon small class="mr-2" @click="edit(item)">mdi-lead-pencil</v-icon> -->
-              <!-- <v-icon small>mdi-send</v-icon> -->
             </template>
           </v-data-table>
         </v-col>
@@ -67,6 +66,7 @@ import AddNotification from "@/components/Notification/AddNotification";  // Add
 import ViewNotification from "@/components/Notification/ViewNotification";
 import SendNotification from "@/components/Notification/SendNotification";
 import EditNotification from '@/components/Notification/EditNotification';
+import DeleteNotification from '@/components/Notification/DeleteNotification'
 
 export default {
   name: "Notifications",
@@ -75,7 +75,8 @@ export default {
     AddNotification,
     ViewNotification,
     SendNotification,
-    EditNotification
+    EditNotification,
+    DeleteNotification
   },
   data: () => ({
     isSearch: false,
