@@ -1,14 +1,12 @@
 <template>
-  <v-content>
-    <v-container fluid>
-      <v-row>
-        <v-col>
-          <p>{{userEmail}}</p>
-          <v-btn class="primary" v-on:click="logout">Logout</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-content>
+  <v-container style="max-width:1600px">
+    <v-row>
+      <v-col>
+        <p>{{userEmail}}</p>
+        <v-btn class="primary" v-on:click="logout">Logout</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

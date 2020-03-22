@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container style="max-width:1600px">
     <!-- Global Snakebar -->
     <Snakebar
       :message="snakeBarMessage"

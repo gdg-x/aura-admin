@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="" style="max-width:1600px">
     <Snakebar
       :message="snakeBarMessage"
       :isShow.sync="isSnakeBarVisible"
@@ -63,7 +63,7 @@
             <v-data-iterator
               :items="teamData"
               :loading="isLoading"
-              loading-text="Loading Speakers from Dir"
+              loading-text="Loading Team from Dir"
               :search="search"
               disable-pagination
               hide-default-footer

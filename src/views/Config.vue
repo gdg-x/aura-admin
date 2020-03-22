@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="" style="max-width:1600px">
         <h3 class="google-font mb-0">Config</h3>
         <p class="google-font mb-5">Lorem ipsum dolor sit amet consectetur</p>
         <v-tabs v-model="tab" show-arrows background-color="grey lighten-3" >

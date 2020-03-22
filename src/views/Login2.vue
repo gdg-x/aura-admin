@@ -1,36 +1,14 @@
 <template>
-  <v-container fuild class="pa-0 ">
-
+  <v-container fuild class="red ma-0 pa-0">
     <!-- Desktop -->
-    <v-row align="center" justify="center" class="d-none d-sm-block mt-5 pt-5" >
-      <v-col md="8" lg="10" offset-md="1" sm="12" class="my-5 py-5" style="max-width:1300px;margin-left:auto;margin-right:auto"> 
-        <v-container fluid class="ma-0 pa-0 white elevation-1 mt-5">
-          <v-row align="stretch" justify="center" class="ma-0 pa-0">
-            <v-col md="5" lg="5" sm="6" class="pa-5"> 
-              <h4 class="google-font primary--text mb-5">Aura Admin</h4>
-              <br>
-              <p class="google-font mt-5 mb-0 primary--text" style="font-size:200%">Managing Aura App</p>
-              <p class="google-font mb-5 mt-0">Welcome, Please login to your account.</p>
-              <br>
-              <v-text-field class="ma-0 pa-0" label="Email" v-model="email" outlined></v-text-field>
-              <v-text-field class="ma-0 pa-0" label="Password" type="password" v-model="password" outlined></v-text-field>
-              <v-btn v-on:click="login" class="primary" style="height:38px;width:150px" :loading="loading" depressed>Login</v-btn>
-              <br><br><br><br>
-              <a href="" class="mr-3">Privacy & Policy</a>
-              <a href="" class="mr-3">Support</a>
-              <a href="" class="mr-3" >About</a>
-            </v-col>
-            <v-col md="7" lg="7" sm="6" class="grey lighten-4 pa-0"> 
-              <v-img style="float:right" :src="require('@/assets/img/svg/login.svg')" width="70vh"></v-img>
-            </v-col>
-          </v-row>
-        </v-container>
+    <v-row align="center" justify="center" class="hidden-sm-and-down blue">
+      <v-col> 
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit accusantium vitae culpa vero odio ea. Culpa aperiam rem aspernatur magnam unde eius totam ullam atque impedit? Aliquid eos accusamus magni!</p>
       </v-col>
     </v-row>
     <!-- Desktop -->
-
     <!-- Mobile -->
-    <v-row align="center" justify="center" class="mobile-view ma-0 pa-0 hidden-sm-and-up">
+    <!-- <v-row align="center" justify="center" class="mobile-view ma-0 pa-0 hidden-md-and-up">
       <v-container fluid class="ma-0 pa-0" style="height:100vh">
         <v-row class="ma-0 pa-0 py-5 blue" style="height:60vh;">
           <v-col class="ma-0 py-auto text-center" style="height:60vh">
@@ -49,7 +27,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-row>
+    </v-row> -->
     <!-- Mobile -->
   </v-container>
 </template>
@@ -108,10 +86,4 @@ export default {
   height: 100vh;
   background: white;
 }
-a{
-  color:black;
-  font-size:90%;
-  text-decoration: none;
-}
-
 </style>
