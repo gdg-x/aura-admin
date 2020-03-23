@@ -15,6 +15,7 @@
           <!-- Desktop -->
           <v-text-field
             flat
+            dense
             v-model="search"
             solo-inverted
             hide-details
@@ -29,7 +30,6 @@
           <v-slide-x-reverse-transition>
             <v-text-field
               flat
-              dense
               v-if="isSearch"
               v-model="search"
               solo-inverted

@@ -48,7 +48,7 @@
           <!-- Mobile -->
           &nbsp;
 
-          <v-btn-toggle background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
+          <v-btn-toggle borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn v-on="on">
