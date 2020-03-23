@@ -48,7 +48,7 @@
           <!-- Mobile -->
           &nbsp;
 
-          <v-btn-toggle borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
+          <v-btn-toggle v-if="teamData.length" borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn v-on="on">
@@ -91,93 +91,119 @@
             </v-col>
           </v-row>
           <div v-else >
-            <v-data-iterator
-              :items="teamData"
-              v-if="dataView == 0"
-              :loading="isLoading"
-              loading-text="Loading Team from Dir"
-              :search="search"
-              disable-pagination
-              hide-default-footer
-            >
-              <template v-slot:default="props">
-                <v-row>
-                  <v-col
-                    col="12"
-                    cols="6"
-                    md="2"
-                    lg="2"
-                    sm="3"
-                    v-for="(item) in props.items"
-                    :key="item.id"
-                    class="pa-1"
-                  >
-                    <v-card
-                      style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
-                      height="100%"
-                      v-ripple
-                      @click="gotoTeamDetails(item.id)"
-                      class="text-center elevation-0"
+            <!-- Check the Condition Where we have a Data or not -->
+            <div v-if="teamData.length">
+              <!-- Grid View -->
+              <v-data-iterator
+                :items="teamData"
+                v-if="dataView == 0"
+                :loading="isLoading"
+                loading-text="Loading Team from Dir"
+                :search="search"
+                disable-pagination
+                hide-default-footer
+              >
+                <template v-slot:default="props">
+                  <v-row>
+                    <v-col
+                      col="12"
+                      cols="6"
+                      md="2"
+                      lg="2"
+                      sm="3"
+                      v-for="(item) in props.items"
+                      :key="item.id"
+                      class="pa-1"
                     >
-                      <v-card-text style="height:100%">
-                        <v-avatar size="100">
-                          <img
-                            :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
-                            alt
-                          />
-                        </v-avatar>
-                        <p
-                          class="mt-3 mb-0 google-font black--text"
-                          style="font-size:120%"
-                        >{{item.name}}</p>
-                        <p
-                          class="mt-0 mb-0 google-font caption"
-                          style="font-size:60%"
-                        >{{item.designation}}</p>
-                        <v-chip class="ma-1" x-small>{{item.role}}</v-chip>
-                      </v-card-text>
-                    </v-card>
+                      <v-card
+                        style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
+                        height="100%"
+                        v-ripple
+                        @click="gotoTeamDetails(item.id)"
+                        class="text-center elevation-0"
+                      >
+                        <v-card-text style="height:100%">
+                          <v-avatar size="100">
+                            <img
+                              :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
+                              alt
+                            />
+                          </v-avatar>
+                          <p
+                            class="mt-3 mb-0 google-font black--text"
+                            style="font-size:120%"
+                          >{{item.name}}</p>
+                          <p
+                            class="mt-0 mb-0 google-font caption"
+                            style="font-size:60%"
+                          >{{item.designation}}</p>
+                          <v-chip class="ma-1" x-small>{{item.role}}</v-chip>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </template>
+              </v-data-iterator>
+              <!-- Grid View -->
+              <!-- Table View -->
+              <div v-else class="pa-0 ma-0">
+                <v-row>
+                  <v-col class="pa-1">
+                    <v-data-table
+                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      :search="search"
+                      :loading="isLoading"
+                      :headers="headers"
+                      :items="teamData"
+                      :items-per-page="5"
+                      class="elevation-0 ma-0 pa-0"
+                    >
+                      <template v-slot:item.active="{ item }">
+                        <v-chip small v-if="item.active == true" color="success">Active</v-chip>
+                        <v-chip v-else small dark color="red">Inctive</v-chip>
+                      </template>
+                      <template v-slot:item.actions="{ item }">
+
+                        <v-tooltip bottom>
+                          <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on" @click="gotoTeamDetails(item.id)">
+                              <v-icon>mdi-eye</v-icon>
+                            </v-btn>
+                          </template>
+                          <span>{{item.name}} Details</span>
+                        </v-tooltip>
+                        
+                        <!-- <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
+                          <v-icon>mdi-eye</v-icon>
+                        </v-btn> -->
+                      </template>
+                    </v-data-table>
                   </v-col>
                 </v-row>
-              </template>
-            </v-data-iterator>
+                
+              </div>
+              <!-- Table View -->
+            </div>
+            <!-- Check the Condition Where we have a Data or not -->
 
-            <div v-else class="pa-0 ma-0">
-              <v-row>
-                <v-col class="pa-1">
-                  <v-data-table
-                    style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
-                    :search="search"
-                    :loading="isLoading"
-                    :headers="headers"
-                    :items="teamData"
-                    :items-per-page="5"
-                    class="elevation-0 ma-0 pa-0"
-                  >
-                    <template v-slot:item.active="{ item }">
-                      <v-chip small v-if="item.active == true" color="success">Active</v-chip>
-                      <v-chip v-else small dark color="red">Inctive</v-chip>
-                    </template>
-                    <template v-slot:item.actions="{ item }">
-
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on }">
-                          <v-btn icon v-on="on" @click="gotoTeamDetails(item.id)">
-                            <v-icon>mdi-eye</v-icon>
-                          </v-btn>
-                        </template>
-                        <span>{{item.name}} Details</span>
-                      </v-tooltip>
-                      
-                      <!-- <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
-                        <v-icon>mdi-eye</v-icon>
-                      </v-btn> -->
-                    </template>
-                  </v-data-table>
+            <div v-else>
+              <v-row justify="center" align="center">
+                <v-col cols="12" md="12" class="pa-1">
+                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                    <v-row justify="center" align="center" class="pa-3">
+                      <v-col md="4" class="text-center">
+                        <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
+                        <h1 class="google-font">Team Members Data Not Found</h1>
+                        <p class="google-font">Kindly add Team member</p>
+                        <br>
+                        <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-col>
               </v-row>
-              
             </div>
+            
             
           </div>
         </v-container>
@@ -253,6 +279,7 @@ export default {
         .then(snapshot => {
           snapshot.forEach(doc => {
             this.teamData.push(doc.data());
+            // this.teamData = [];
           });
           this.isLoading = false;
         })
