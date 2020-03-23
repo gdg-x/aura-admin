@@ -1,7 +1,7 @@
 <template>
   <v-container style="width:95%">
     <v-row class="mb-0">
-     <v-col>
+     <v-col class="">
        <h1 class="google-font d-none d-sm-none d-md-block">Dashboard</h1>
        <p class="google-font d-block d-sm-none mb-0">Dashboard</p>
      </v-col>
@@ -128,6 +128,7 @@ import firebase from '@/config/firebase'
 export default {
   name: 'Home',
   data:()=>({
+    alert:true,
     userEmail:'',
     teamData:[],
     teamLoader:true,

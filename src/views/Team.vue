@@ -46,7 +46,17 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-          <AddTeam @showSuccess="showSnakeBar" />
+
+          <v-btn-toggle background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
+            <v-btn>
+              <v-icon>mdi-grid</v-icon>
+            </v-btn>
+
+            <v-btn>
+              <v-icon>mdi-format-list-bulleted</v-icon>
+            </v-btn>
+          </v-btn-toggle>
+          <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -55,13 +65,24 @@
       <v-col cols="12 ">
         <v-container fluid class="pa-0">
           <v-row justify="center" align="center" v-if="isLoading">
-            <v-col col="12" md="2" class="text-center">
-              <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+            <v-col col="12" md="2" cols="6" v-for="n in 6" :key="n" class="text-center">
+              <v-sheet
+                :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
+                class=""
+              >
+                <v-skeleton-loader
+                  class="mx-auto"
+                  max-width="300"
+                  type="card"
+                ></v-skeleton-loader>
+              </v-sheet>
+              <!-- <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular> -->
             </v-col>
           </v-row>
-          <div v-else>
+          <div v-else >
             <v-data-iterator
               :items="teamData"
+              v-if="dataView == 0"
               :loading="isLoading"
               loading-text="Loading Team from Dir"
               :search="search"
@@ -109,6 +130,27 @@
                 </v-row>
               </template>
             </v-data-iterator>
+
+            <v-data-table
+              v-else
+              style="border:1px solid #e0e0e0;border-radius:5px;background:white"
+              :search="search"
+              :loading="isLoading"
+              :headers="headers"
+              :items="teamData"
+              :items-per-page="5"
+              class="elevation-0 ma-0 pa-0"
+            >
+              <template v-slot:item.active="{ item }">
+                <v-chip small v-if="item.active == true" color="success">Active</v-chip>
+                <v-chip v-else small dark color="red">Inctive</v-chip>
+              </template>
+              <template v-slot:item.actions="{ item }">
+                <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
+                  <v-icon>mdi-eye</v-icon>
+                </v-btn>
+              </template>
+            </v-data-table>
           </div>
         </v-container>
       </v-col>
@@ -123,11 +165,13 @@ import AddTeam from "@/components/Team/AddTeam";
 
 export default {
   name: "TeamView",
+  inject: ['theme'],
   components: {
     Snakebar,
     AddTeam
   },
   data: () => ({
+    dataView:0,
     isSearch:false,
     search: "",
     snakeBarMessage: "",
@@ -136,7 +180,18 @@ export default {
     snakeBarTimeOut: 5000,
     isLoading: false,
     showDialog: false,
-    teamData: []
+    teamData: [],
+    headers: [
+      {
+        text: 'Name',
+        align: 'start',
+        value: 'name',
+      },
+      { text: 'Role', value: 'role' },
+      { text: 'Designation', value: 'designation' },
+      { text: 'Status', value: 'active' },
+      { text: 'Actions', value: 'actions', sortable: false, },
+    ],
   }),
   computed: {},
   mounted() {
