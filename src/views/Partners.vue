@@ -80,37 +80,38 @@
                     :key="item.id"
                     class="pa-1"
                   >
-                    <v-card
-                      style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
-                      height="100%"
-                      v-ripple
-                      @click="gotoTeamDetails(item.id)"
-                      class="text-center elevation-0"
-                    >
-                      <v-card-text style="height:100%">
-                        <v-img
-                        :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
-                        width="100%"
-                        contain
-                        />
-                        <p
-                          class="mt-3 mb-0 google-font black--text"
-                          style="font-size:120%"
-                        >{{item.name}}</p>
-                        <v-chip
-                            class="ma-1"
-                            v-if="item.visible"
-                            dark
-                            label
-                            color="green"
-                            small
-                        >Visible</v-chip>
-                        <v-chip class="ma-1" v-else label dark color="red" small>Not Visible</v-chip>
+                    <v-container 
+                    class="py-0" 
+                    v-ripple
+                    @click="gotoPartnerDetails(item.id)"
+                    style="border:1px solid #e0e0e0;border-radius:5px;background:white;cursor: pointer;user-select: none;">
+                      <v-row class="">
+                        <v-col class="grey lighten-4 pa-0" >
+                          <v-img :aspect-ratio="16/9" :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
+                        </v-col>
+                      </v-row>
+                      <v-row class="">
+                        <v-col style="background:white">
+                          <p
+                            class="mb-0 google-font black--text"
+                            style="font-size:110%"
+                          >{{item.name}}</p>
+                          <v-chip
+                              class="mr-1"
+                              v-if="item.visible"
+                              dark
+                              label
+                              color="green"
+                              x-small
+                          >Visible</v-chip>
+                          <v-chip class="mr-1" v-else label dark color="red" x-small>Not Visible</v-chip>
 
-                        <v-chip class="ma-1" v-if="item.active" dark label color="green" small>Active</v-chip>
-                        <v-chip class="ma-1" v-else label dark color="red" small>Not Active</v-chip>
-                      </v-card-text>
-                    </v-card>
+                          <v-chip class="mr-1" v-if="item.active" dark label color="green" x-small>Active</v-chip>
+                          <v-chip class="mr-1" v-else label dark color="red" x-small>Not Active</v-chip>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                    
                   </v-col>
                 </v-row>
               </template>
@@ -147,7 +148,7 @@ export default {
   computed: {},
   mounted() {
     if (this.$route.query.msg) {
-      this.showSnakeBar("Team Removed Sucessfully");
+      this.showSnakeBar("Partner Removed Sucessfully");
     }else
       this.showData();
   },
@@ -164,8 +165,8 @@ export default {
       this.isSnakeBarVisible = true;
       this.showData();
     },
-    gotoTeamDetails(id) {
-      this.$router.push("/team/" + id);
+    gotoPartnerDetails(id) {
+      this.$router.push("/partners/" + id);
     },
     showData() {
       this.partnersData = [];
@@ -186,6 +187,17 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.client-logo{
+    height: 90px;
+    padding: 12px 12px;
+    border-radius: 7px;
+    background: white;
+    border: 1px solid #ebebeb;
+    text-align: center;
+}  
+</style>
 
 
 // TODO: TO UPDATE SNAKEBAR a
