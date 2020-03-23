@@ -1,16 +1,16 @@
 <template>
-    <v-navigation-drawer app clipped v-model="drawer">
+    <v-navigation-drawer app clipped v-model="drawer" >
         <v-list-item two-line>
-      <v-list-item-avatar>
-        <img :src="require('@/assets/img/default_avatar.jpg')" />
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-list-item-title>Name</v-list-item-title>
-        <v-list-item-subtitle>Email</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+        <v-list-item-avatar>
+            <img :src="require('@/assets/img/default_avatar.jpg')" />
+        </v-list-item-avatar>
+        <v-list-item-content>
+            <v-list-item-title>Name</v-list-item-title>
+            <v-list-item-subtitle>Email</v-list-item-subtitle>
+        </v-list-item-content>
+        </v-list-item >
         <v-divider></v-divider>
-        <v-list dense shaped >
+        <v-list dense>
             <v-list-item
                 v-for="(link, i) in links"
                 :key="i"
@@ -31,10 +31,10 @@
             </v-list-item>
         </v-list>
         <template v-slot:append>
-      <div class="pl-1">
-        <p class="subtitle-2">Version: 0.0.1</p>
-      </div>
-    </template>
+        <div class="pl-1">
+            <p class="subtitle-2">Version: 0.0.1</p>
+        </div>
+        </template>
     </v-navigation-drawer>
 </template>
 

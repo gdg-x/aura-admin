@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width:1600px">
     <Snakebar
       :message="snakeBarMessage"
       :isShow.sync="isSnakeBarVisible"
