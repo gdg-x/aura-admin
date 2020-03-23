@@ -16,7 +16,7 @@
             style="border-radius:5px;text-transform: capitalize;text-decoration:none;"
           >
             <v-icon left style="font-size:150%">mdi-arrow-left-thick</v-icon>
-            <span style="font-size:120%">Speaker</span>
+            <span style="font-size:120%">Speakers</span>
           </v-btn>
           <v-spacer></v-spacer>
           <EditSpeaker
@@ -118,7 +118,7 @@
               <p class="mb-0 mt-3">
                 <b>Social Links</b>
               </p>
-              <p v-if="speakerInfo.socialLinks.length" class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
                 <span
                   style="cursor: pointer;"
                   v-for="(slink,i) in speakerInfo.socialLinks"
@@ -130,7 +130,6 @@
                   </a>
                 </span>
               </p>
-              <p v-else class="mt-1 mb-0 google-font mt-0" style="font-size:110%">No Data Found</p>
             </v-col>
           </v-row>
         </v-container>

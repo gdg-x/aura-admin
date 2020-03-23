@@ -98,7 +98,7 @@
               <p class="mb-0">
                 <b>Bio</b>
               </p>
-              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.bio}}</p>
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.bio.length?teamInfo.bio:'No Data Found'}}</p>
 
               <p class="mb-0 mt-3">
                 <b>Email</b>
@@ -108,7 +108,7 @@
               <p class="mb-0 mt-3">
                 <b>Mobile</b>
               </p>
-              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.mbnumber}}</p>
+              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.mbnumber.length?teamInfo.mbnumber:'No Data Found'}}</p>
 
               <p class="mb-0 mt-3">
                 <b>User ID</b>
@@ -116,7 +116,7 @@
               <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.id}}</p>
 
               <p class="mb-0 mt-3">
-                <b>Social Links</b>
+                <b>Social Links:</b>
               </p>
               <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
                 <span
@@ -124,7 +124,7 @@
                   v-for="(slink,i) in teamInfo.socialLinks"
                   :key="i"
                   class="mr-1"
-                >
+                > 
                   <a v-if="slink" :href="slink" target="_blank" style="text-decoration:none;">
                     <v-chip small ripple style="text-transform: uppercase;">{{i}}</v-chip>
                   </a>
