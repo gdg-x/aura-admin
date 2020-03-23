@@ -87,7 +87,7 @@
                     style="border:1px solid #e0e0e0;border-radius:5px;background:white;cursor: pointer;user-select: none;">
                       <v-row class="">
                         <v-col class="grey lighten-4 pa-0" >
-                          <v-img :aspect-ratio="16/9" :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
+                          <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
                         </v-col>
                       </v-row>
                       <v-row class="">

@@ -47,7 +47,7 @@
                 <div class="pa-0">
                     <v-img
                         :src="(partnerInfo.image.length>0)?partnerInfo.image:require('@/assets/img/default_avatar.jpg')"
-                        :aspect-ratio="16/9"
+                        :aspect-ratio="16/6.5"
                         class="grey lighten-4"
                     ></v-img>
                 </div>
