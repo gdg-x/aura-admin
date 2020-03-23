@@ -25,18 +25,18 @@
     </v-row>
 
     <v-row class="px-5" style="margin-top:-80px"> 
-
+      
       <v-col class="pa-1" md="3" lg="3" cols="6" style="">
         <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
-              <v-col md="3" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-assistant</v-icon>
+              <v-col md="6" lg="4" class="pa-5 text-center d-none d-sm-none d-md-block">
+                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-assistant</v-icon>
               </v-col>
-              <v-col md="9" class="pa-5">
+              <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Events</p>
                 <p class="google-font my-0" style="font-size:280%">145</p>
-                <p class="google-font my-0" style="font-size:80%">View All Events</p>
+                <p class="google-font my-0" v-on:click="goToRoute('/events')" style="font-size:80%;cursor: pointer;user-select: none;">View All Events</p>
               </v-col>
             </v-row>
           </v-container>
@@ -48,13 +48,20 @@
         <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
-              <v-col md="3" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-nature-people</v-icon>
+              <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
+                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-nature-people</v-icon>
               </v-col>
-              <v-col md="9" class="pa-5">
+              <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Team</p>
-                <p class="google-font my-0" style="font-size:280%">14</p>
-                <p class="google-font my-0" style="font-size:80%">View Team</p>
+                <v-progress-circular
+                  indeterminate
+                  v-if="teamLoader"
+                  class="my-4"
+                  color="primary"
+                ></v-progress-circular>
+                <p v-else class="google-font my-0" style="font-size:280%">{{teamData.length?teamData.length:0}}</p>
+                
+                <p class="google-font my-0" v-on:click="goToRoute('/team')" style="font-size:80%;cursor: pointer;user-select: none;">View Team</p>
               </v-col>
             </v-row>
           </v-container>
@@ -65,13 +72,19 @@
         <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
-              <v-col md="3" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-account-multiple</v-icon>
+              <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
+                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-account-multiple</v-icon>
               </v-col>
-              <v-col md="9" class="pa-5">
-                <p class="google-font my-0">Speaker</p>
-                <p class="google-font my-0" style="font-size:280%">10</p>
-                <p class="google-font my-0" style="font-size:80%">View All Speaker</p>
+              <v-col md="6" lg="8" class="pa-5">
+                <p class="google-font my-0">Speakers</p>
+                <v-progress-circular
+                  indeterminate
+                  v-if="speakersLoader"
+                  class="my-4"
+                  color="primary"
+                ></v-progress-circular>
+                <p v-else class="google-font my-0" style="font-size:280%">{{speakersData.length?speakersData.length:0}}</p>
+                <p class="google-font my-0" v-on:click="goToRoute('/speakers')" style="font-size:80%;cursor: pointer;user-select: none;">View All Speakers</p>
               </v-col>
             </v-row>
           </v-container>
@@ -83,13 +96,19 @@
         <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
-              <v-col md="3" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-kodi</v-icon>
+              <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
+                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-kodi</v-icon>
               </v-col>
-              <v-col md="9" class="pa-5">
+              <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Partners</p>
-                <p class="google-font my-0" style="font-size:280%">5</p>
-                <p class="google-font my-0" style="font-size:80%">View All Partners</p>
+                <v-progress-circular
+                  indeterminate
+                  v-if="partnersLoader"
+                  class="my-4"
+                  color="primary"
+                ></v-progress-circular>
+                <p v-else class="google-font my-0" style="font-size:280%">{{partnersData.length?partnersData.length:0}}</p>
+                <p class="google-font my-0" v-on:click="goToRoute('/partners')" style="font-size:80%;cursor: pointer;user-select: none;">View All Partners</p>
               </v-col>
             </v-row>
           </v-container>
@@ -109,11 +128,20 @@ import firebase from '@/config/firebase'
 export default {
   name: 'Home',
   data:()=>({
-    userEmail:''
+    userEmail:'',
+    teamData:[],
+    teamLoader:true,
+    speakersData:[],
+    speakersLoader:true,
+    partnersData:[],
+    partnersLoader:true
   }),
   mounted(){
     if(firebase.auth.currentUser){
-        this.userEmail = firebase.auth.currentUser.email
+      this.userEmail = firebase.auth.currentUser.email
+      this.GetAllTeam()
+      this.GetAllSpeakers()
+      this.GetAllPartners()
     }else{
         this.$router.replace('login')
     }
@@ -123,6 +151,60 @@ export default {
         firebase.auth.signOut().then(()=>{
             this.$router.replace('/login')
         })
+    },
+    goToRoute(path) {
+      this.$router.replace(path);
+    },
+    GetAllTeam(){
+      this.teamLoader = true
+      this.teamData = []
+      firebase.firestore
+      .collection("team")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.teamData.push(doc.data());
+          this.teamLoader = false
+        });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+        this.teamLoader = false
+      });
+    },
+    GetAllSpeakers(){
+      this.speakersLoader = true
+      this.speakersData = []
+      firebase.firestore
+      .collection("Speakers")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.speakersData.push(doc.data());
+          this.speakersLoader = false
+        });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+        this.speakersLoader = false
+      });
+    },
+    GetAllPartners(){
+      this.partnersLoader = true
+      this.partnersData = []
+      firebase.firestore
+      .collection("partners")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.partnersData.push(doc.data());
+          this.partnersLoader = false
+        });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+        this.partnersLoader = false
+      });
     }
   }
 }
