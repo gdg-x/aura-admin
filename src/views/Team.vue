@@ -48,6 +48,7 @@
           <!-- Mobile -->
           &nbsp;
 
+          <!-- Toggle Menu for View -->
           <v-btn-toggle v-if="teamData.length" borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
@@ -67,6 +68,7 @@
               <span>Table View</span>
             </v-tooltip>
           </v-btn-toggle>
+          <!-- Toggle Menu for View -->
           <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
@@ -173,9 +175,6 @@
                           <span>{{item.name}} Details</span>
                         </v-tooltip>
                         
-                        <!-- <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
-                          <v-icon>mdi-eye</v-icon>
-                        </v-btn> -->
                       </template>
                     </v-data-table>
                   </v-col>
