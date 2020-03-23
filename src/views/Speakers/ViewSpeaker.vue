@@ -93,7 +93,12 @@
               <p class="mb-0">
                 <b>Bio</b>
               </p>
-              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.bio}}</p>
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.bio.length?speakerInfo.bio:'No Data Found'}}</p>
+
+              <p class="mb-0 mt-3">
+                <b>Company</b>
+              </p>
+              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.company.name}}</p>
 
               <p class="mb-0 mt-3">
                 <b>Email</b>
@@ -103,7 +108,7 @@
               <p class="mb-0 mt-3">
                 <b>Mobile</b>
               </p>
-              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.mbnumber}}</p>
+              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.mbnumber.length?speakerInfo.mbnumber:'No Data Found'}}</p>
 
               <p class="mb-0 mt-3">
                 <b>User ID</b>
@@ -113,7 +118,7 @@
               <p class="mb-0 mt-3">
                 <b>Social Links</b>
               </p>
-              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
+              <p v-if="speakerInfo.socialLinks.length" class="mt-1 mb-0 google-font mt-0" style="font-size:110%">
                 <span
                   style="cursor: pointer;"
                   v-for="(slink,i) in speakerInfo.socialLinks"
@@ -125,6 +130,7 @@
                   </a>
                 </span>
               </p>
+              <p v-else class="mt-1 mb-0 google-font mt-0" style="font-size:110%">No Data Found</p>
             </v-col>
           </v-row>
         </v-container>
