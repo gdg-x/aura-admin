@@ -48,13 +48,23 @@
           &nbsp;
 
           <v-btn-toggle background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
-            <v-btn>
-              <v-icon>mdi-grid</v-icon>
-            </v-btn>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn v-on="on">
+                  <v-icon>mdi-grid</v-icon>
+                </v-btn>
+              </template>
+              <span>Grid View</span>
+            </v-tooltip>
 
-            <v-btn>
-              <v-icon>mdi-format-list-bulleted</v-icon>
-            </v-btn>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn v-on="on">
+                  <v-icon>mdi-format-list-bulleted</v-icon>
+                </v-btn>
+              </template>
+              <span>Table View</span>
+            </v-tooltip>
           </v-btn-toggle>
           <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
@@ -90,7 +100,7 @@
               hide-default-footer
             >
               <template v-slot:default="props">
-                <v-row class>
+                <v-row>
                   <v-col
                     col="12"
                     cols="6"
@@ -131,26 +141,43 @@
               </template>
             </v-data-iterator>
 
-            <v-data-table
-              v-else
-              style="border:1px solid #e0e0e0;border-radius:5px;background:white"
-              :search="search"
-              :loading="isLoading"
-              :headers="headers"
-              :items="teamData"
-              :items-per-page="5"
-              class="elevation-0 ma-0 pa-0"
-            >
-              <template v-slot:item.active="{ item }">
-                <v-chip small v-if="item.active == true" color="success">Active</v-chip>
-                <v-chip v-else small dark color="red">Inctive</v-chip>
-              </template>
-              <template v-slot:item.actions="{ item }">
-                <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
-                  <v-icon>mdi-eye</v-icon>
-                </v-btn>
-              </template>
-            </v-data-table>
+            <div v-else class="pa-0 ma-0">
+              <v-row>
+                <v-col class="pa-1">
+                  <v-data-table
+                    style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                    :search="search"
+                    :loading="isLoading"
+                    :headers="headers"
+                    :items="teamData"
+                    :items-per-page="5"
+                    class="elevation-0 ma-0 pa-0"
+                  >
+                    <template v-slot:item.active="{ item }">
+                      <v-chip small v-if="item.active == true" color="success">Active</v-chip>
+                      <v-chip v-else small dark color="red">Inctive</v-chip>
+                    </template>
+                    <template v-slot:item.actions="{ item }">
+
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                          <v-btn icon v-on="on" @click="gotoTeamDetails(item.id)">
+                            <v-icon>mdi-eye</v-icon>
+                          </v-btn>
+                        </template>
+                        <span>{{item.name}} Details</span>
+                      </v-tooltip>
+                      
+                      <!-- <v-btn icon v-on="on" class="mr-2" @click="gotoTeamDetails(item.id)">
+                        <v-icon>mdi-eye</v-icon>
+                      </v-btn> -->
+                    </template>
+                  </v-data-table>
+                </v-col>
+              </v-row>
+              
+            </div>
+            
           </div>
         </v-container>
       </v-col>
