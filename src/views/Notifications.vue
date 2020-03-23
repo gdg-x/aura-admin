@@ -16,6 +16,7 @@
           <!-- Search Field for notifications -->
           <v-text-field
             flat
+            dense
             v-model="search"
             solo-inverted
             hide-details
