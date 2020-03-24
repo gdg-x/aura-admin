@@ -3,7 +3,7 @@
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" dark color="red" @click.stop="dialog = true">
+          <v-btn fab x-small outlined class="mx-1" icon v-on="on" dark color="indigo" @click.stop="dialog = true">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </template>

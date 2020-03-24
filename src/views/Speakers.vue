@@ -30,6 +30,7 @@
           <v-slide-x-reverse-transition>
             <v-text-field
               flat
+              dense
               v-if="isSearch"
               v-model="search"
               solo-inverted

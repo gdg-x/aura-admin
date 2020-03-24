@@ -18,7 +18,7 @@
           align="center"
           justify="center"
         >
-          <div class="display-3">{{ slide }} Slide</div>
+          <div class="display-1">{{ slide }} Slide</div>
         </v-row>
       </v-sheet>
     </v-carousel-item>

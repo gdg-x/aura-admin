@@ -229,6 +229,7 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.partnersData.push(doc.data());
+          console.log(doc.data())
           this.partnersLoader = false
         });
       })

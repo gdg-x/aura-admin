@@ -3,9 +3,8 @@
     <template v-slot:activator="{  }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn icon color="primary" v-on="on" @click.stop="dialog = true" dark>
+          <v-btn fab x-small outlined class="mx-1" icon color="indigo" v-on="on" @click.stop="dialog = true" dark>
             <v-icon>mdi-lead-pencil</v-icon>
-            <!--  -->
           </v-btn>
         </template>
         <span>Edit {{partnerData.name}} Details</span>
