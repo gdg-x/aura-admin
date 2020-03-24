@@ -5,7 +5,9 @@
         <v-spacer></v-spacer>
         <offline @detected-condition="handleConnectivityChange"></offline>
 
-        <v-btn v-if="isOffline" color="red" small outlined disabled>Offline</v-btn>
+        <!-- <p>los</p> -->
+        <v-toolbar-title v-if="isOffline" style="border:1px solid red;border-radius:6px;color:red;font-size:90%" class="google-font px-2">Offline</v-toolbar-title>
+        <!-- <v-btncolor="red" small outlined disabled>Offline</v-btn> -->
         <v-tooltip bottom>
             <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on" v-on:click="logout">
@@ -52,11 +54,6 @@
             }else{
                 this.isOffline=true
             }
-            // if(status){
-
-            // }
-            // status?this.isOffline=true:this.isOffline=false
-            // console.log(status);
         }
     }
   }
