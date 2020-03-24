@@ -5,7 +5,8 @@ import store from '@/store/index';
 
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: '/',
     name: 'Home',
     component: () => import( /* webpackChunkName: "home" */ '@/views/Home'),
