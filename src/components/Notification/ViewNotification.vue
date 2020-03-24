@@ -7,7 +7,7 @@
       </v-btn>
       <!-- <v-icon small class="mr-2" v-on="on">mdi-eye</v-icon> -->
     </template>
-    <v-card>
+    <v-card v-if="dialog">
       <v-card-title class="headline google-font" primary-title>{{ dialogData.title }}</v-card-title>
       <v-card-text>
         <v-row align="center">

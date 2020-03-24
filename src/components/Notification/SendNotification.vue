@@ -7,7 +7,7 @@
       </v-btn>
       <!-- <v-icon small class="mr-2" v-on="on" @click="send">mdi-send</v-icon> -->
     </template>
-    <v-card color="primary" dark>
+    <v-card color="primary" dark v-if="dialog">
       <v-card-text class="py-5">
         Sending Notifications
         <v-progress-linear indeterminate color="white" class="mb-0 mt-1"></v-progress-linear>

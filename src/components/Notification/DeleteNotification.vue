@@ -6,7 +6,7 @@
       </v-btn>
     </template>
 
-    <v-card>
+    <v-card v-if="dialog">
       <v-card-title class="google-font heading">Are you sure?</v-card-title>
       <v-card-text
         class="google-font"

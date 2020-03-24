@@ -248,7 +248,6 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
-  computed: {},
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar("Team Removed Sucessfully");

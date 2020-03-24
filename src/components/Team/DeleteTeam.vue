@@ -11,7 +11,7 @@
       </v-tooltip>
     </template>
 
-    <v-card>
+    <v-card v-if="dialog">
       <v-card-title class="google-font heading">Are you sure?</v-card-title>
       <v-card-text class="google-font">Would you like to remove {{ TeamInfo.name }} form the Team?</v-card-text>
       <v-card-actions>

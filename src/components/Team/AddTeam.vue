@@ -9,7 +9,7 @@
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card>
+      <v-card v-if="dialog">
         <v-card-title
           class="google-font elevation-1 indigo white--text py-5"
           primary-title
@@ -241,6 +241,9 @@ export default {
       designation: "",
       role: null
     };
+  },
+  mounted(){
+    console.log('Add Team component created')
   },
   methods: {
     onFileChange() {

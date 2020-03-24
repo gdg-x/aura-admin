@@ -6,7 +6,7 @@
       </v-btn>
       <!-- <v-icon small class="mr-2" v-on="on">mdi-lead-pencil</v-icon> -->
     </template>
-    <v-card>
+    <v-card v-if="dialog">
       <v-card-title class="headline google-font" primary-title>Edit Notification</v-card-title>
 
       <v-card-text>
