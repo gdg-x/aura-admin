@@ -1,12 +1,6 @@
 <template>
   <v-app class="grey lighten-2">
-    <!-- <v-system-bar app dark color="primary">
-      <v-spacer></v-spacer>
-      <v-icon>mdi-wifi-strength-4</v-icon>
-      <v-icon>mdi-signal-cellular-outline</v-icon>
-      <v-icon>mdi-battery</v-icon>
-      <span>12:30</span>
-    </v-system-bar> -->
+    
     <v-snackbar
         v-model="snackWithButtons"
         :timeout="timeout"
@@ -79,7 +73,8 @@ export default {
       this.snackWithButtons = false;
       if (!this.registration || !this.registration.waiting) { return; }
       this.registration.waiting.postMessage('skipWaiting');
-    }
+    },
+    
   }
 };
 </script>
