@@ -26,7 +26,7 @@
 
     <v-row class="px-5" style="margin-top:-80px"> 
       
-      <v-col class="pa-1" md="3" lg="3" cols="6" style="">
+      <v-col class="pa-1" md="3" sm="3" lg="3" cols="6" style="">
         <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
