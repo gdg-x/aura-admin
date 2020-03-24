@@ -154,7 +154,7 @@ export default {
         })
     },
     goToRoute(path) {
-      this.$router.replace(path);
+      this.$router.push(path);
     },
     GetAllTeam(){
       this.teamLoader = true

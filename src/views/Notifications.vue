@@ -36,6 +36,7 @@
         <v-col cols="12" md="12">
           <!-- Data table for showing pushnotifications -->
           <v-data-table
+            :mobile-breakpoint="0"
             style="border:1px solid #e0e0e0;border-radius:5px;"
             :headers="headers"
             :items="pushData"

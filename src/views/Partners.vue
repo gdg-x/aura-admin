@@ -150,6 +150,7 @@
                     <v-data-table
                       style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
                       :search="search"
+                      :mobile-breakpoint="0"
                       :loading="isLoading"
                       :headers="headers"
                       :items="partnersData"
