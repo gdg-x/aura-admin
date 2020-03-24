@@ -28,6 +28,7 @@
     <!-- v-if="$route.meta.requiresAuth" -->
     <AuraAdminToolbar v-if="$route.meta.requiresAuth"/>
     <AuraAdminDrawer v-if="$route.meta.requiresAuth"/>
+    <!-- <AuraAdminBottomNav v-if="$route.meta.requiresAuth" /> -->
     <AuraAdminView/> 
   </v-app>
   
@@ -36,12 +37,14 @@
 <script>
 import AuraAdminToolbar from '@/components/Core/Toolbar'
 import AuraAdminDrawer from '@/components/Core/Drawer'
+// import AuraAdminBottomNav from '@/components/Core/BottomNav'
 import AuraAdminView from '@/components/Core/Views'
 export default {
   name: 'App',
   components:{
     AuraAdminToolbar,
     AuraAdminDrawer,
+    // AuraAdminBottomNav,
     AuraAdminView
   },
   data: () => ({
