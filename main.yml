@@ -2,7 +2,7 @@
 #   slack: aurapro:fSvcq8RpdYOo6Jg8BOgoiXzV
 - name: GitHub Action for Firebase
   uses: w9jds/firebase-action@v1.3.0
-  
+
 name: Build and Deploy
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Vue CLI
-        uses: npm install -g @vue/cli@latest
+        uses: npm install @vue/cli@latest
       - name: Install Dependencies
         run: npm install
       - name: Build
