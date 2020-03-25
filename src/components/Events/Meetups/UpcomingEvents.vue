@@ -1,8 +1,8 @@
 <template>
-    <v-container class="pa-0 ma-0">
+    <v-container class="px-5 ma-0 lightModeCard">
         <v-row class="my-0 pa-0" >
             <v-col md="12" lg="12" sm="12" cols="12">
-                <p class="google-font my-0">Upcoming Meetup Events</p>
+                <p class="google-font my-0" style="">Upcoming Meetup Events</p>
             </v-col>
         </v-row>
         <v-row class="my-0 pa-0" v-if="UpcomingMeetupData.length">
