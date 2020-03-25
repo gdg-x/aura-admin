@@ -20,11 +20,11 @@
         </v-col>
       </v-row>
       <v-row justify="center" align="stretch">  
-        <v-col class="lightModeCard my-3 pa-5 mx-3">
+        <v-col class="lightModeCard my-3 pa-5" md="3">
           <h1>Custom Event</h1>
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum, a. Asperiores voluptas deleniti quo eius repellendus repudiandae veniam, velit repellat voluptates minima dicta beatae ea libero, cumque mollitia neque quaerat.</p>
         </v-col>
-        <v-col class="my-0 py-0">
+        <v-col class="my-0 py-0" md="9">
           <MeetupEvents class="my-0 py-0"/>
         </v-col>
       </v-row>
