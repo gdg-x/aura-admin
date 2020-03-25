@@ -19,15 +19,12 @@
     <v-tabs-items v-model="tab" style="border:1px solid #e0e0e0;border-radius:5px;">
       <v-tab-item key="item1" class="pa-0 ma-0">
         <v-card flat class="pa-0 ma-0 px-2">
-          <General @show="showSnakeBar"/>
+          <General @show="showSnakeBar" />
         </v-card>
       </v-tab-item>
-      <v-tab-item key="item2">
-        <v-card flat>
-          <v-card-text>
-            <p>Item 2</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
-          </v-card-text>
+      <v-tab-item key="item2" class="pa-0 ma-0">
+        <v-card flat class="pa-0 ma-0 px-2">
+          <CommunityGuidelines @show="showSnakeBar" />
         </v-card>
       </v-tab-item>
       <v-tab-item key="item3">
@@ -62,11 +59,13 @@
 import Snakebar from "@/components/Common/Snakebar";
 
 import General from "@/components/Config/General/General";
+import CommunityGuidelines from "@/components/Config/CommunityGuidelines";
 
 export default {
   name: "Config",
   components: {
     General,
+    CommunityGuidelines,
     Snakebar
   },
   data: () => ({
@@ -74,14 +73,14 @@ export default {
     snakeBarMessage: "",
     isSnakeBarVisible: false,
     snakeBarColor: "green",
-    snakeBarTimeOut: 5000,
+    snakeBarTimeOut: 5000
   }),
   mounted() {},
   methods: {
-      showSnakeBar(e){
-          this.snakeBarMessage = e;
-          this.isSnakeBarVisible = true;
-      }
+    showSnakeBar(e) {
+      this.snakeBarMessage = e;
+      this.isSnakeBarVisible = true;
+    }
   }
 };
 </script>
