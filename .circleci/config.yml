@@ -12,6 +12,9 @@ jobs:
             - 'v1-dependencies-{{ checksum "package.json" }}'
             - v1-dependencies-
       - run: 'npm install'
+      - run:
+            name: Install Firebase
+            command: npm install --save-dev firebase-tools
       - save_cache:
           paths:
             - node_modules
@@ -21,4 +24,4 @@ jobs:
           command: 'npm run build'
       - run:
           name: 'Deploy to Firebase Hosting'
-          command: './node_modules/.bin/firebase deploy --token=$FKEY'
+          command: 'firebase deploy --token=$FKEY'
