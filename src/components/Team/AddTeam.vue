@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent scrollable width="1200">
+    <v-dialog v-model="dialog" persistent scrollable width="1100">
       <template v-slot:activator="{ on }">
         <!-- For Large screen (Laptops and up) -->
         <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
@@ -9,39 +9,42 @@
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card v-if="dialog">
+      <v-card v-if="dialog" class="" style="border-radius:7px">
         <v-card-title
-          class="google-font elevation-1 indigo white--text py-5"
+          class="google-font elevation-3"
           primary-title
           dark
-        >Create New Team Member</v-card-title>
-        <v-card-text>
+        >Add New Team Member <div class="flex-grow-1"></div> asd</v-card-title>
+        <v-card-text class="px-1">
           <v-container fluid>
             <v-row class="pa-0">
               <v-col md="12" cols="12">
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-row class="pa-3">
+                  <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Team Member Status</p>
+                      <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                    </v-col>
+                    <v-col md="12" cols="12" class="pa-1 ma-0">
+                      <p style="font-size:120%" class="my-0 mb-2">Team Member Status</p>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="active" label="Active Status" outlined></v-select>
+                      <v-select :items="items" v-model="active" :rules="idRules" label="Active Status*" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="visible" label="Visiblity Status" outlined></v-select>
+                      <v-select :items="items" v-model="visible" :rules="idRules" label="Visiblity Status*" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="id" class="ma-0" label="ID" type="text" outlined></v-text-field>
+                      <v-text-field v-model="id" class="ma-0" :rules="idRules" label="ID*" type="text" outlined></v-text-field>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="teamRole" v-model="role" label="Role" outlined></v-select>
+                      <v-select :items="teamRole" v-model="role" :rules="idRules" label="Role*" outlined></v-select>
                     </v-col>
                   </v-row>
-                  <v-row class="pa-3">
+                  <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0">Team Member Info</p>
                     </v-col>
@@ -51,7 +54,7 @@
                         v-model="name"
                         :rules="nameRules"
                         class="ma-0"
-                        label="Name"
+                        label="Name*"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -61,7 +64,7 @@
                         v-model="designation"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Desigination"
+                        label="Desigination*"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -118,7 +121,7 @@
                       <v-textarea outlined name="input-7-4" v-model="bio" label="Bio"></v-textarea>
                     </v-col>
                   </v-row>
-                  <v-row class="pa-3">
+                  <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0">Personal Info</p>
                     </v-col>
@@ -132,7 +135,7 @@
                         class="ma-0"
                         v-model="email"
                         :rules="emailRules"
-                        label="Email Id"
+                        label="Email Id*"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -146,7 +149,7 @@
                       ></v-text-field>
                     </v-col>
                   </v-row>
-                  <v-row class="pa-3">
+                  <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0">Social Links</p>
                     </v-col>
@@ -183,7 +186,7 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions>
+        <v-card-actions class="grey lighten-4 py-5">
           <div class="flex-grow-1"></div>
           <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
           <v-btn
@@ -211,6 +214,10 @@ export default {
       imageUploading: false,
       valid: true,
       dialogImageUload: false,
+      idRules: [
+        v => !!v || "Field Value is required",
+        v => (v && v.length <= 30) || "Name must be less than 30 characters"
+      ],
       nameRules: [
         v => !!v || "Name is required",
         v => (v && v.length <= 50) || "Name must be less than 50 characters"
