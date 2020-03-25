@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Install Vue CLI
-        uses: npm install @vue/cli@latest
       - name: Install Dependencies
         run: npm install
       - name: Build
