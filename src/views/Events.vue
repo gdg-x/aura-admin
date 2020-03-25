@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <v-container class="primary py-5" style="">
+    <div class="">
+      <v-container fluid class="primary py-5" style="">
         <v-row class="mb-5 pb-5">
           <v-col class="mb-5 px-5 pb-5">
             <h1 class="google-font mb-0" style="color:white">Events</h1>
@@ -9,12 +9,16 @@
         </v-row>
       </v-container>
       <v-container class="" style="margin-top:-100px" >
-        <!-- <v-row>
-          <v-col>
-            <h1 class="google-font mb-0">Events</h1>
-            <p class="google-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugiat aut, sunt dolorem quas earum dicta eum unde nemo assumenda nostrum ex quos. Sed corporis aut repellat quibusdam animi ut.</p>
+        <v-row justify="center" align="center" class="">
+          <v-col></v-col>
+          <v-col class="">
+            <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+              <v-toolbar-title class="google-font mr-3">Events</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn>Add New Event</v-btn>
+            </v-toolbar>
           </v-col>
-        </v-row> -->
+        </v-row>
 
         <v-row justify="center" align="center" class="px-2">
           <v-col class="" >
