@@ -1,27 +1,52 @@
+witmy: &witmy
+  docker:
+    - image: circleci/node:7.10
+    
 version: 2
 jobs:
   build:
-    docker:
-      - image: 'circleci/node:8'
-    working_directory: ~/repo
-    
+    <<: *witmy
     steps:
       - checkout
       - restore_cache:
           keys:
-            - 'v1-dependencies-{{ checksum "package.json" }}'
-            - v1-dependencies-
-      - run: 'npm install'
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run: yarn install
+
       - save_cache:
           paths:
             - node_modules
-          key: 'v1-dependencies-{{ checksum "package.json" }}'
+          key: v1-dependencies-{{ checksum "package.json" }}
+
       - run:
-          name: 'Build Project'
-          command: 'npm run build'
+          name: Build app in production mode
+          command: |
+            yarn build
+
+      - persist_to_workspace:
+          root: .
+          paths:
+              - .
+  deploy:
+    <<: *witmy
+    steps:
+      - attach_workspace:
+          at: .
+
       - run:
-          name: 'Firebase CLI Install'
-          command: 'npm install -g firebase-tools'
-      - run:
-          name: 'Deploy to Firebase Hosting'
-          command: firebase deploy --token "$FKEY" --only hosting
+          name: Deploy Master to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=MY_TOKEN
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
