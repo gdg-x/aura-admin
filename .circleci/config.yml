@@ -20,5 +20,8 @@ jobs:
           name: 'Build Project'
           command: 'npm run build'
       - run:
+          name: 'Firebase CLI Install'
+          command: 'npm install -g firebase-tools'
+      - run:
           name: 'Deploy to Firebase Hosting'
-          command: ./node_modules/.bin/firebase deploy --token "$FKEY" --only hosting
+          command: firebase deploy --token "$FKEY" --only hosting
