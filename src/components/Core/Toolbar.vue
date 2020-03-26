@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app fixed clipped-left class="white black--text">
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
-        <v-toolbar-title class="google-font">Aura Admin</v-toolbar-title>
+        <v-toolbar-title class="google-font">Aura 2.0 Admin</v-toolbar-title>
         <v-spacer></v-spacer>
         <offline @detected-condition="handleConnectivityChange"></offline>
 
