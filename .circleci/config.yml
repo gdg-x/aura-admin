@@ -13,7 +13,7 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Build app in production mode
           command: |
-            yarn build
+            npm run build
 
       - persist_to_workspace:
           root: .
@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Deploy Master to Firebase
-          command: ./node_modules/.bin/firebase deploy --token=MY_TOKEN
+          command: ./node_modules/.bin/firebase deploy --token=FKEY
 
 workflows:
   version: 2
