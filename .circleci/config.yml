@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Build app in production mode
           command: |
-            npm run build
+            npm build
 
       - persist_to_workspace:
           root: .
