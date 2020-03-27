@@ -51,7 +51,7 @@
               <ViewNotification :dialogData="item" />
               <EditNotification @addedSuccess="addedd" :editDialogData="item" />
               <DeleteNotification @addedSuccess="addedd" :data="item" />
-              <SendNotification @addedSuccess="addedd" :data="item" />
+              <SendNotification @addedSuccess="addedd" :dataA="item" />
             </template>
           </v-data-table>
         </v-col>

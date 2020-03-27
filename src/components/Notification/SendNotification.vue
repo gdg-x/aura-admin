@@ -2,7 +2,7 @@
   <v-dialog v-model="dialog" hide-overlay persistent width="300">
     <template v-slot:activator="{ on }">
       <!-- send icon -->
-      <v-btn icon v-on="on" class="mr-2">
+      <v-btn icon v-on="on" @click="send" class="mr-2">
         <v-icon>mdi-send</v-icon>
       </v-btn>
       <!-- <v-icon small class="mr-2" v-on="on" @click="send">mdi-send</v-icon> -->
@@ -24,16 +24,16 @@ export default {
   data: () => ({
     dialog: false
   }),
-  props:['data'],
+  props:['dataA'],
   methods:{
     send() {
-      this.dialog = true;
+      console.log(this.dataA);
       firebase.firestore
         .collection("pushNotifications")
-        .doc(this.data.id)
+        .doc(this.dataA.id)
         .update({
           sentTime: new Date(),
-          noTimeSend: this.data.noTimeSend + 1
+          noTimeSend: this.dataA.noTimeSend + 1
         })
         .then(() => {
           firebase.firestore
