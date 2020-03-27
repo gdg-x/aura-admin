@@ -47,13 +47,14 @@ jobs:
              command: pwd
          - run:
              name: Install Firebase
-             command: npm install --save-dev firebase-tools
+             command: npm install -g firebase-tools
          - run:
              name: look in directory
              command: ls -ltr
          - run:
              name: Deploy Master to Firebase
-             command: npm run firebase deploy --token=$FKEY    
+             command: firebase deploy --token=$FKEY --non-interactive
+             
 
 workflows:
   version: 2
