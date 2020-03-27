@@ -47,7 +47,7 @@ jobs:
              command: pwd
          - run:
              name: Install Firebase
-             command: npm install -g firebase-tools
+             command: sudo npm install -g firebase-tools
          - run:
              name: look in directory
              command: ls -ltr
