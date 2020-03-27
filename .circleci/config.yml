@@ -53,7 +53,7 @@ jobs:
              command: ls -ltr
          - run:
              name: Deploy Master to Firebase
-             command: npm run firebase-deploy -- --token=$FKEY    
+             command: npm run firebase deploy --token=$FKEY    
 
 workflows:
   version: 2
