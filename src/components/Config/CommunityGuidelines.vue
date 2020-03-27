@@ -8,7 +8,7 @@
     <v-row class="ma-0 pa-0" v-else>
       <v-col cols="12" sm="6">
         <v-toolbar class="elevation-0 mb-3" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">Community Guidelines Setting</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">Community Guidelines Setting v.2</v-toolbar-title>
           <v-spacer></v-spacer>
           <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
         </v-toolbar>
