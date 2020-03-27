@@ -12,7 +12,7 @@
           <v-toolbar-title class="google-font mr-3">Events</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn>
-          <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn>
+          <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
         </v-toolbar>
       </v-col>
     </v-row>

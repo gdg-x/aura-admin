@@ -1,240 +1,259 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent scrollable width="1300">
+    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" scrollable >
       <template v-slot:activator="{ on }">
         <v-btn fab x-small color="indigo" outlined dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card v-if="dialog" class="" style="border-radius:7px">
-        <v-card-title
-          class="google-font lightModeCard"
-          primary-title
-          dark
-        >Add New Custom <div class="flex-grow-1"></div> asd</v-card-title>
+      <v-card v-if="dialog" class="" style="">
+        <v-toolbar color="white">
+          <v-btn icon @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title class="google-font">New Custom Event</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn text @click="dialog = false">Save</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
         <v-card-text class="px-1">
-          <v-container fluid>
-            <v-row class="pa-0">
-              <v-col md="12" cols="12">
+            <v-container fluid class="" style="">
                 <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-row class="pa-3 py-0">
-                    <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                <v-row justify="center" align="start">
+                    <v-col md="3" lg="2" cols="12" sm="3">
+                        <img style="width:100%;text-align:center" :src="require('@/assets/img/svg/dataentry.svg')"/>
+                        <h3 class="google-font">New Custom Event </h3>
+                        <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi dolore facilis maiores sed doloribus ratione omnis modi saepe impedit laboriosam officia eligendi vel optio nulla voluptas, sapiente, fugiat eos ullam.
                     </v-col>
-                    <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0 mb-2">Custom Event Status</p>
-                    </v-col>
+                    <v-col md="8" lg="9" cols="12" sm="8">
+                        <v-row>
+                            <v-col class="ma-0" md="12" cols="12">
+                                <h4 class="google-font mb-0">Event Status</h4>
+                                <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil dignissimos atque delectus eum itaque unde necessitatibus excepturi provident debitis similique ullam blanditiis reiciendis ea perferendis in? Iusto, facilis.</p>
+                            </v-col>
+                            <v-col md="3" cols="6" class="ma-0">
+                            <v-select :items="items" v-model="active" :rules="idRules" label="Active Status*" outlined></v-select>
+                            </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="active" :rules="idRules" label="Active Status*" outlined></v-select>
-                    </v-col>
+                            <v-col md="3" cols="6" class="ma-0">
+                            <v-select :items="items" v-model="visible" :rules="idRules" label="Visiblity Status*" outlined></v-select>
+                            </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="visible" :rules="idRules" label="Visiblity Status*" outlined></v-select>
-                    </v-col>
+                            <v-col md="3" xs="12" cols="12" class="ma-0">
+                            <v-text-field v-model="id" class="ma-0" :rules="idRules" label="Event ID*" type="text" outlined></v-text-field>
+                            </v-col>
+                        </v-row>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="id" class="ma-0" :rules="idRules" label="ID*" type="text" outlined></v-text-field>
-                    </v-col>
+                        <v-row>
+                            <v-col class="ma-0" md="12" cols="12">
+                                <h4 class="google-font mb-0">Event Info</h4>
+                                <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
+                            </v-col>
 
-                  </v-row>
-                  <v-row class="pa-3 py-0">
-                    <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Custom Event Info</p>
-                    </v-col>
+                            <v-col md="5" xs="3" cols="12" class="ma-0">
+                            <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event Name*" type="text" outlined></v-text-field>
+                            </v-col>
 
-                    <v-col md="5" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event Name*" type="text" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-menu
-                            ref="menu"
-                            v-model="menu"
-                            :close-on-content-click="false"
-                            :return-value.sync="date"
-                            transition="scale-transition"
-                            offset-y
-                            min-width="290px"
-                        >
-                            <template v-slot:activator="{ on }">
-                                <v-text-field
-                                    v-model="date"
-                                    label="Date"
-                                    outlined
-                                    :rules="nameRules"
-                                    v-on="on"
-                                ></v-text-field>
-                            </template>
-                            <v-date-picker v-model="date" no-title scrollable>
-                            <v-spacer></v-spacer>
-                            <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                            <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                            </v-date-picker>
-                        </v-menu>
-                    </v-col>
-
-                    <v-col md="2" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event Start Time*" type="time" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="2" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event End Time*" type="time" outlined></v-text-field>
-                    </v-col>
-                    <v-col md="6" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="imageURL" class="ma-0" label="Venue" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="6" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="12" xs="4" cols="12" class="pa-1 ma-0">
-                     <v-combobox
-                        chips
-                        v-model="eventData.hashtags"
-                        clearable
-                        label="Event Hashtags"
-                        multiple
-                        outlined>
-                            <template v-slot:selection="{ attrs, item, select, selected }">
-                                <v-chip
-                                v-bind="attrs"
-                                :input-value="selected"
-                                close
-                                @click="select"
-                                @click:close="remove(item)"
+                            <v-col md="3" xs="3" cols="12" class="ma-0">
+                            <v-menu
+                                    ref="menu"
+                                    v-model="menu"
+                                    :close-on-content-click="false"
+                                    :return-value.sync="date"
+                                    transition="scale-transition"
+                                    offset-y
+                                    min-width="290px"
                                 >
-                                <strong class="google-font">{{ item }}</strong>
-                                </v-chip>
-                            </template>
-                        </v-combobox>
-                    </v-col>
+                                    <template v-slot:activator="{ on }">
+                                        <v-text-field
+                                            v-model="date"
+                                            label="Date"
+                                            outlined
+                                            :rules="nameRules"
+                                            v-on="on"
+                                        ></v-text-field>
+                                    </template>
+                                    <v-date-picker v-model="date" no-title scrollable>
+                                    <v-spacer></v-spacer>
+                                    <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                                    <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                                    </v-date-picker>
+                                </v-menu>
+                            </v-col>
 
-                    <!-- Image URL Upload Model -->
-                    <!-- <v-col cols="12" sm="6" class="pa-1 ma-0">
-                        <v-dialog v-model="dialogImageUload" max-width="290">
-                          <template v-slot:activator="{ on }">
-                            <v-btn
-                              color="primary"
-                              :loading="imageUploading"
-                              dark
-                              class="mt-n6"
-                              v-on="on"
-                            >Upload Image</v-btn>
-                          </template>
-                          <v-card>
-                            <v-card-title>Upload Speaker Image</v-card-title>
-                            <v-card-text>
-                              <v-img :src="imagePre" class="mb-6"></v-img>
+                            <v-col md="2" xs="3" cols="12" class="ma-0">
+                            <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event Start Time*" type="time" outlined></v-text-field>
+                            </v-col>
 
-                              <v-file-input
-                                v-model="imageUpload"
-                                accept="image/*"
-                                label="File input"
-                                prepend-icon
-                                @change="onFileChange"
+                            <v-col md="2" xs="3" cols="12" class="ma-0">
+                            <v-text-field v-model="name" class="ma-0" :rules="idRules" label="Event End Time*" type="time" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="4" xs="4" cols="12" class="ma-0">
+                            <v-text-field v-model="imageURL" class="ma-0" label="Venue" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="8" xs="4" cols="12" class="ma-0">
+                                <v-text-field v-model="imageURL" class="ma-0" label="Venue Google Maps Link" outlined></v-text-field>
+                            </v-col>
+
+                            <v-col md="6" xs="4" cols="12" class="ma-0">
+                            <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
+                            </v-col>
+
+                            <v-col md="6" xs="4" cols="12" class="ma-0">
+                            <v-combobox
+                                chips
+                                v-model="eventData.hashtags"
+                                clearable
+                                label="Event Hashtags"
+                                multiple
+                                outlined>
+                                    <template v-slot:selection="{ attrs, item, select, selected }">
+                                        <v-chip
+                                        v-bind="attrs"
+                                        :input-value="selected"
+                                        close
+                                        @click="select"
+                                        @click:close="remove(item)"
+                                        >
+                                        <strong class="google-font">{{ item }}</strong>
+                                        </v-chip>
+                                    </template>
+                                </v-combobox>
+                            </v-col>
+
+                            <v-col md="12" xs="12" cols="12" class="ma-0">
+                            <v-textarea outlined name="input-7-4" v-model="bio" label="Event Description"></v-textarea>
+                            </v-col>
+                        </v-row>
+
+                        <v-row>
+                            <v-col class="ma-0" md="12" cols="12">
+                                <h4 class="google-font mb-0">Speaker & Partners Info</h4>
+                                <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
+                            </v-col>
+                            <v-col md="6" xs="6" lg="4" cols="12" class="ma-0">
+                                <v-select
+                                v-model="selectedSpeaker"
+                                :items="speakersData"
                                 outlined
-                              ></v-file-input>
-                            </v-card-text>
-                            <v-card-actions>
-                              <v-spacer></v-spacer>
-                              <v-btn
-                                color="green darken-1"
-                                text
-                                @click="dialogImageUload = false"
-                              >Disagree</v-btn>
-                              <v-btn color="green darken-1" text @click="uploadImage">Agree</v-btn>
-                            </v-card-actions>
-                          </v-card>
-                        </v-dialog>
-                    </v-col>-->
-                    <!-- Image URL Upload Model -->
+                                item-text="name"
+                                item-value="id"
+                                label="Select Speaker"
+                                multiple>
+                                    <template v-slot:selection="{ item, index }">
+                                        <v-chip small v-if="index === 0">
+                                            <span>{{ item.name }}</span>
+                                        </v-chip>
+                                        <span
+                                            v-if="index === 1"
+                                            class="grey--text caption"
+                                        >(+{{ speakersData.length - 1 }} others)</span>
+                                    </template>
+                                </v-select>
+                            </v-col>
+                            <v-col md="6" xs="6" lg="4" cols="12" class="ma-0">
+                                <v-select
+                                v-model="selectedPartners"
+                                :items="partnersData"
+                                outlined
+                                item-text="name"
+                                item-value="id"
+                                label="Select Partners"
+                                multiple>
+                                    <template v-slot:selection="{ item, index }">
+                                        <v-chip small v-if="index === 0">
+                                            <span>{{ item.name }}</span>
+                                        </v-chip>
+                                        <span
+                                            v-if="index === 1"
+                                            class="grey--text caption"
+                                        >(+{{ partnersData.length - 1 }} others)</span>
+                                    </template>
+                                </v-select>
+                            </v-col>
+                        </v-row>
 
-                    <!-- <v-col md="4" xs="12" cols="12" class="pa-1 ma-0">
-                        <v-img :src="imageURL" class="mt-n7"></v-img>
-                    </v-col>-->
+                        <v-row>
+                            <v-col class="ma-0" md="12" cols="12">
+                                <h4 class="google-font mb-0">Event Links Info</h4>
+                                <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
+                            </v-col>
+                            <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                                <v-text-field v-model="sd" class="ma-0" label="Event Meetup URL" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                                <v-text-field v-model="sd" class="ma-0" label="Event Registration Link" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                                <v-text-field v-model="sd" class="ma-0" label="Event Facebook Page Link" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                                <v-text-field v-model="sd" class="ma-0" label="Event Feedback Link" outlined></v-text-field>
+                            </v-col>
+                            <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                                <v-text-field v-model="sd" class="ma-0" label="Call For Speaker Link" outlined></v-text-field>
+                            </v-col>
+                        </v-row>
 
-                    <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
-                      <v-textarea outlined name="input-7-4" v-model="bio" label="Event Description"></v-textarea>
-                    </v-col>
-                  </v-row>
-                  <v-row class="pa-3 py-0">
-                    <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Speakers Info</p>
-                    </v-col>
-                    <v-col md="8" xs="4" cols="12" class="pa-1 ma-0">
-                        <v-select
-                        v-model="selectedSpeaker"
-                        :items="speakersData"
-                        outlined
-                        item-text="name"
-                        item-value="id"
-                        label="Select Speaker"
-                        multiple>
-                            <template v-slot:selection="{ item, index }">
-                                <v-chip small v-if="index === 0">
-                                    <span>{{ item.name }}</span>
-                                </v-chip>
-                                <span
-                                    v-if="index === 1"
-                                    class="grey--text caption"
-                                >(+{{ speakersData.length - 1 }} others)</span>
-                            </template>
-                        </v-select>
-                    </v-col>
+                        <v-row>
+                            <v-col class="ma-0" md="12" cols="12" style="">
+                                <h4 class="google-font mb-0">Event Agenda Info</h4>
+                                <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
+                            </v-col>
+                            <v-col class="ma-0" md="12" cols="12">
+                                <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+                                    <v-toolbar-title class="google-font mr-3">Event Agenda </v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                    <AddNewAgenda :data.sync="eventData.agenda"/>
+                                </v-toolbar>
+                            </v-col>
 
-                   
-                  </v-row>
-                  <v-row class="pa-3 py-0">
-                    <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Social Links</p>
-                    </v-col>
+                            <v-col cols="12" v-if="eventData.agenda.length<=0" class="">
+                                <v-img :src="require('@/assets/img/svg/DataNotFound.svg')" :height="150" contain></v-img>
+                                <p class="google-font my-0 py-0 mb-2 text-center">No Agenda found</p>
+                            </v-col>
 
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" label="Facebook" outlined v-model="facebook"></v-text-field>
+                            <v-col cols="12">
+                                <v-row v-for="(item,idx) in eventData.agenda" :key="idx">
+                                    <v-col md="12" class="my-1 py-0">
+                                        <v-data-table
+                                            :headers="headers"
+                                            :items="eventData.agenda"
+                                            :items-per-page="5"
+                                            class="elevation-0 lightModeCard"
+                                        >
+                                            <template v-slot:item.actions="{ item }">
+                                               <EditAgenda class="red" :data.sync = "item"/>
+                                               <RemoveAgenda :data.sync = "item"/>
+                                            </template>
+                                        </v-data-table>
+                                    </v-col>
+                                </v-row>
+                            </v-col>
+                            
+                        </v-row>
                     </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" label="Github" v-model="github" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="linkedin" label="Linkedin" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="meetup" label="Meetup" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="twitter" label="Twitter" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="web" label="Website/Blog" outlined></v-text-field>
-                    </v-col>
-                  </v-row>
+                    
+                </v-row>
                 </v-form>
-              </v-col>
-            </v-row>
-          </v-container>
+            </v-container>
         </v-card-text>
 
         <v-divider></v-divider>
 
-        <v-card-actions class="grey lighten-4 py-5">
+        <!-- <v-card-actions class="indigo py-5 elevation-5">
           <div class="flex-grow-1"></div>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="white" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="indigo"
-            dark
+            color="white"
             depressed
             :disabled="!valid"
             :loading="loading"
             @click="SaveEvent"
-          >Add New Team Member</v-btn>
-        </v-card-actions>
+          >Save</v-btn>
+        </v-card-actions> -->
       </v-card>
     </v-dialog>
   </div>
@@ -242,12 +261,33 @@
 
 <script>
 import firebase from "@/config/firebase";
+import AddNewAgenda from "@/components/Events/CustomEvents/AddNewAgenda"
+import EditAgenda from "@/components/Events/CustomEvents/EditAgenda"
+import RemoveAgenda from "@/components/Events/CustomEvents/RemoveAgenda"
 export default {
+  components:{
+    AddNewAgenda,
+    EditAgenda,
+    RemoveAgenda
+  },
   props: [],
   data() {
     return {
       menu:false,
       imageUpload: [],
+      headers:[
+          {
+            text: 'Start Time',
+            value: 'starttime',
+          },
+          {
+            text: 'End Time',
+            value: 'endtime',
+          },
+          { text: 'Title', value: 'title' },
+          { text: 'Description', value: 'des' },
+          { text: 'Actions', sortable: false, value: 'actions' },
+      ],
       imagePre: "",
       imageUploading: false,
       valid: true,
@@ -265,35 +305,52 @@ export default {
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
       ],
       teamRole: ["Organizing Team", "Core Team", "Volunteer"],
-      dialog: false,
+      dialog: true,
       loading: false,
       items: [true, false],
-      active: Boolean,
-      visible: Boolean,
-      id: "",
-      mbnumber: "",
-      name: "",
-      facebook: "",
-      github: "",
-      linkedin: "",
-      email: "",
-      meetup: "",
-      twitter: "",
-      password: "",
-      web: "",
-      bio: "",
-      imageURL: "",
-      designation: "",
-      role: null,
       eventData:{
-        hashtags:[]
+        id:'',
+        active: Boolean,
+        visible: Boolean,
+        name:'',
+        image:'',
+        date:'',
+        des:'',
+        venue:{
+            name:'',
+            googlemapsurl:''
+        },
+        links:{
+            meetup:'',
+            facebook:'',
+            registration:'',
+            feedback:'',
+            callforspeaker:''
+        },
+        time:{
+            starttime:'',
+            endtime:''
+        },
+        hashtags:[],
+        speakers:[],
+        partners:[],
+        agenda:[
+            {
+                starttime:'5',
+                endtime:'5',
+                title:'asfdsafsaf',
+                des:'asfasdfsdfsdfdfdsfdsfdsfdsf'
+            }]
       },
       speakersData:[],
-      selectedSpeaker:[]
+      selectedSpeaker:[],
+      selectedPartners:[],
+      partnersData:[]
     };
   },
   mounted(){
     this.ShowSpeakers()
+    this.ShowPartners()
     console.log('Add Team component created')
   },
   methods: {
@@ -305,9 +362,21 @@ export default {
           snapshot.forEach(doc => {
             this.speakersData.push(doc.data());
             console.log(this.speakersData)
-            // this.speakersData = [];
           });
-        //   this.isLoading = false;
+        })
+        .catch(err => {
+          console.log("Error getting documents", err);
+        });
+    },
+    ShowPartners(){
+        firebase.firestore
+        .collection("partners")
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            this.partnersData.push(doc.data());
+            console.log(this.partnersData)
+          });
         })
         .catch(err => {
           console.log("Error getting documents", err);
