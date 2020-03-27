@@ -1,52 +1,76 @@
-witmy: &witmy
-  docker:
-    - image: circleci/node:7.10
-    
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
 version: 2
 jobs:
-  build:
-    <<: *witmy
+  build-job:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.8.0
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
+      # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install
+      - run: yarn run build
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - dist
+            - package.json
+            - firebase.json
+            - .firebaserc
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
 
-      - run:
-          name: Build app in production mode
-          command: |
-            npm build
+      # run tests!
+      - run: yarn run test:unit 
 
-      - persist_to_workspace:
-          root: .
-          paths:
-              - .
-  deploy:
-    <<: *witmy
-    steps:
-      - attach_workspace:
-          at: .
-
-      - run:
-          name: Deploy Master to Firebase
-          command: ./node_modules/.bin/firebase deploy --token=FKEY
+  deploy-job:
+       docker:
+         - image: circleci/node:10.8.0
+       working_directory: ~/repo 
+       steps:
+         - restore_cache:
+             keys:
+              - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }} 
+         - run:
+             name: show directory 
+             command: pwd
+         - run:
+             name: Install Firebase
+             command: npm install --save-dev firebase-tools
+         - run:
+             name: look in directory
+             command: ls -ltr
+         - run:
+             name: Deploy Master to Firebase
+             command: npm run firebase-deploy -- --token=$FKEY    
 
 workflows:
   version: 2
-  build-and-deploy:
+
+  -deploy:
     jobs:
-      - build
-      - deploy:
+      - build-job
+      - deploy-job:
           requires:
-            - build
+            - build-job
           filters:
             branches:
               only: master
