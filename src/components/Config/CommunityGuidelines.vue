@@ -32,35 +32,18 @@
               <v-list-item-subtitle>{{item.des}}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-              <EditGuideline :data.sync="item" />
+              <v-row>
+                <v-col cols="1">
+                  <EditGuideline :data.sync="item" />
+                </v-col>
+                <v-col cols="1">
+                  <v-btn icon>
+                    <v-icon @click="deleteguideline(idx)">mdi-delete</v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-list-item-action>
           </v-list-item>
-          <!-- <v-col
-            cols="12"
-            class="my-1 py-0"
-            v-else
-            v-for="(item,idx) in communityGuidelines.communityGuidelines"
-            :key="idx"
-          >
-          <v-card>
-            <v-card-title>
-              <v-row align="space-between" justify="space-between">
-                <v-col cols="6">asd</v-col>
-                <v-col cols="6">asd</v-col>
-              </v-row>
-            </v-card-title>
-            <v-card-text>{{ item.des }}</v-card-text>
-          </v-card>
-            <v-textarea
-              outlined
-              :label="item.name"
-              v-model="item.des"
-              auto-grow="true"
-              rows="3"
-              disabled="true"
-              class="mb-0 pb-0"
-            ></v-textarea>
-          </v-col>-->
         </v-row>
       </v-col>
       <v-col cols="12" sm="6">
@@ -70,7 +53,7 @@
             outlined
             name="codeofconduct"
             label="Community Code of Conduct"
-            auto-grow="true"
+            :auto-grow="true"
             v-model="communityGuidelines.codeOfConduct"
             class="mb-0 mt-3 pb-0"
           ></v-textarea>
@@ -110,10 +93,15 @@ export default {
       codeOfConduct: ""
     }
   }),
-  mounted() {
+  created() {
     this.getData();
   },
   methods: {
+    deleteguideline(index) {
+      console.log(index);
+      console.log(this.communityGuidelines.communityGuidelines[index]);
+      this.communityGuidelines.communityGuidelines.splice(index, 1);
+    },
     setData() {
       this.isAdding = true;
       firebase.firestore

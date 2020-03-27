@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="500">
       <template v-slot:activator="{ on }">
-        <v-btn fab elevation="0" x-small flat v-on="on">
+        <v-btn fab elevation="0" x-small text v-on="on">
           <v-icon>mdi-lead-pencil</v-icon>
         </v-btn>
       </template>
@@ -39,7 +39,7 @@
             depressed
             @click="addGuid"
             :loading="loading"
-          >Add</v-btn>
+          >Edit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
