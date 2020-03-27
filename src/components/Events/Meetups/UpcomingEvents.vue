@@ -1,8 +1,8 @@
 <template>
-    <v-container class="px-5 ma-0 lightModeCard">
-        <v-row class="my-0 pa-0" >
-            <v-col md="12" lg="12" sm="12" cols="12">
-                <p class="google-font my-0" style="">Upcoming Meetup Events</p>
+    <v-container class="pa-0 ma-0">
+        <v-row class="my-0 pa-0 px-3" >
+            <v-col md="12" lg="12" sm="12" class="lightModeCard" cols="12">
+                <p class="google-font my-0" style="font-size:130%">Upcoming Meetup Events</p>
             </v-col>
         </v-row>
         <v-row class="my-0 pa-0" v-if="UpcomingMeetupData.length">
@@ -11,8 +11,9 @@
             </v-col>
         </v-row>
         <v-row class="my-0 pa-0" v-else >
-            <v-col class="my-0" md="3" lg="3" sm="6" cols="12">
+            <v-col class="my-0 text-center" md="3" lg="3" sm="6" cols="12">
                 <div class="lightModeCard pa-3">
+                    <img style="width:20%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
                     <p class="google-font mt-3">Meetup Upcomimg Event not Found</p>
                 </div>
             </v-col>
@@ -46,7 +47,8 @@ export default {
         GetAllUpcomingMeetupEvents(){
             fetch(MeetupURL).then(res=>res.json()).then(data=>{
                 console.log(data)
-                this.UpcomingMeetupData =data
+                // this.UpcomingMeetupData =data
+                this.UpcomingMeetupData = []
             })
         }
     }

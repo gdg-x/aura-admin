@@ -6,7 +6,7 @@
       <template v-slot:activator="{ on }">
           <div 
             v-on="on" 
-            style="cursor: pointer;"
+            style="cursor: pointer;border-left:8px solid #4E5FBB"
             class="pa-3 ma-0 lightModeCard">
               <!-- <v-chip color="primary" label outlined class="mt-1 mb-0" small>{{data.data.status}}</v-chip> -->
               <p class="google-font mt-1 mb-0" style="font-size:90%">{{data.data.local_date | dateFilter}}</p>
