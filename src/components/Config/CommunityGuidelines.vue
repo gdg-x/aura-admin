@@ -7,12 +7,12 @@
     </v-row>
     <v-row class="ma-0 pa-0" v-else>
       <v-col cols="12" sm="6">
-        <v-row class="py-0 my-2" justify="space-between">
+        <v-row class="py-0 my-2 ma-0" justify="space-between" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa"> 
           <v-col cols="6">
-            <p class="google-font">Community Guidelines</p>
+            <p class="google-font mb-0 mt-1">Community Guidelines</p>
           </v-col>
           <v-spacer></v-spacer>
-          <v-col cols="2">
+          <v-col cols="2" class="">
             <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
           </v-col>
         </v-row>
@@ -23,7 +23,7 @@
           </v-col>
           <v-list-item
             v-else
-            class="my-0 py-0"
+            class="my-0 mb-2 py-0 lightModeCard"
             v-for="(item,idx) in communityGuidelines.communityGuidelines"
             :key="idx"
           >
