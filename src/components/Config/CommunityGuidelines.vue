@@ -12,7 +12,7 @@
             <p class="google-font">Community Guidelines</p>
           </v-col>
           <v-spacer></v-spacer>
-          <v-col cols="3">
+          <v-col cols="2">
             <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
           </v-col>
         </v-row>
@@ -21,13 +21,36 @@
             <v-img :src="require('@/assets/img/svg/DataNotFound.svg')" :height="150" contain></v-img>
             <p class="google-font my-0 py-0 mb-2 text-center">No Community Guidelines found</p>
           </v-col>
-          <v-col
-            cols="6"
+          <v-list-item
+            v-else
             class="my-0 py-0"
+            v-for="(item,idx) in communityGuidelines.communityGuidelines"
+            :key="idx"
+          >
+            <v-list-item-content>
+              <v-list-item-title>{{item.name}}</v-list-item-title>
+              <v-list-item-subtitle>{{item.des}}</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action>
+              <EditGuideline :data.sync="item" />
+            </v-list-item-action>
+          </v-list-item>
+          <!-- <v-col
+            cols="12"
+            class="my-1 py-0"
             v-else
             v-for="(item,idx) in communityGuidelines.communityGuidelines"
             :key="idx"
           >
+          <v-card>
+            <v-card-title>
+              <v-row align="space-between" justify="space-between">
+                <v-col cols="6">asd</v-col>
+                <v-col cols="6">asd</v-col>
+              </v-row>
+            </v-card-title>
+            <v-card-text>{{ item.des }}</v-card-text>
+          </v-card>
             <v-textarea
               outlined
               :label="item.name"
@@ -37,7 +60,7 @@
               disabled="true"
               class="mb-0 pb-0"
             ></v-textarea>
-          </v-col>
+          </v-col>-->
         </v-row>
       </v-col>
       <v-col cols="12" sm="6">
@@ -47,6 +70,7 @@
             outlined
             name="codeofconduct"
             label="Community Code of Conduct"
+            auto-grow="true"
             v-model="communityGuidelines.codeOfConduct"
             class="mb-0 mt-3 pb-0"
           ></v-textarea>
@@ -69,11 +93,13 @@
 import firebase from "@/config/firebase";
 
 import AddGuideline from "@/components/Config/CommunityGuidelines/AddGuideline";
+import EditGuideline from "@/components/Config/CommunityGuidelines/EditGuideline";
 
 export default {
   name: "Config",
   components: {
-    AddGuideline
+    AddGuideline,
+    EditGuideline
   },
   data: () => ({
     tab: null,
