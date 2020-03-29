@@ -12,17 +12,6 @@
           <v-spacer></v-spacer>
           <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
         </v-toolbar>
-        <!-- <v-row class="py-0 my-2 ma-0" justify="space-between" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa"> 
-
-          <v-col cols="6">
-            <p class="google-font mb-0 mt-1">Community Guidelines</p>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="2" class="">
-            <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
-          </v-col>
-        </v-row> -->
-
         <v-row class="ma-0 pa-0">
           <v-col cols="12" v-if="communityGuidelines.communityGuidelines.length<=0">
             <v-img :src="require('@/assets/img/svg/DataNotFound.svg')" :height="150" contain></v-img>
@@ -138,8 +127,8 @@ export default {
             return;
           }
           doc = doc.data();
-          console.log(doc);
-          console.log(Object.keys(doc).length);
+          // console.log(doc);
+          // console.log(Object.keys(doc).length);
           if (Object.keys(doc).length > 0) {
             console.log("yes");
             console.log(doc.communityGuidelines);

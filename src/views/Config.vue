@@ -29,7 +29,7 @@
       </v-tab-item>
       <v-tab-item key="item3">
         <v-card flat>
-          <v-card-text>
+          <v-card-text class="">
             <Footer @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
@@ -44,7 +44,7 @@
       <v-tab-item key="item5">
         <v-card flat>
           <v-card-text>
-            <KeysAndSecurity @show="showSnakeBar"/>
+             <KeysAndSecurity @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -54,7 +54,6 @@
 
 <script>
 import Snakebar from "@/components/Common/Snakebar";
-
 import General from "@/components/Config/General/General";
 import CommunityGuidelines from "@/components/Config/CommunityGuidelines/CommunityGuidelines";
 import Footer from "@/components/Config/Footer/Footer"

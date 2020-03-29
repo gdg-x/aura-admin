@@ -14,24 +14,101 @@
     <v-row class="ma-0 pa-0" v-else>
       <v-col md="12" cols="12">
         <v-row>
-          <v-col md="10">
-             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+          <v-col md="12">
+            <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                 <v-toolbar-title class="google-font mr-3">Mange Links </v-toolbar-title>
                 <v-spacer></v-spacer>
+                <v-btn dark :loading="isAdding" @click="saveData" class="indigo mx-2" depressed>Save Links</v-btn>
                 <FooterLink @show="showSnakeBar" :data="this.linksData" />
             </v-toolbar>
+            <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Links will not be saved until and unless, if you will click the save button</p>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col md="10" v-if="linksData.length">
-
-            {{linksData}}
+        <v-row class="my-0 py-0">
+          <v-col md="12" v-if="linksData" class="my-0 py-0">
+              
+              <v-row class="my-0 py-0">
+                  <v-col md="3" cols="12" class="">
+                      <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
+                        <p>About</p>
+                        <v-row v-for="(item,i) in (linksData.links.About)" :key="i">
+                            <v-col class="my-0 py-1">
+                                <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+                                    <v-toolbar-title class="google-font mr-3">{{item.linkname}} </v-toolbar-title>
+                                    <v-spacer></v-spacer>
+                                    <UpdateFooterLink  :data.sync="item"/>
+                                    <v-btn fab outlined x-small text>
+                                        <v-icon @click="deleteData(i,item.linktype)">mdi-delete</v-icon>
+                                    </v-btn>
+                                </v-toolbar>
+                            </v-col>
+                        </v-row>
+                      </div>
+                  </v-col>
+                  <v-col md="3" cols="12" class="">
+                      <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
+                      <p>Resources</p>
+                      <v-row v-for="(item,i) in (linksData.links.Resources)" :key="i">
+                        <v-col class="my-0 py-1">
+                            <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+                                <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
+                                <v-spacer></v-spacer>
+                                <UpdateFooterLink  :data.sync="item"/>
+                                <v-btn fab outlined x-small text>
+                                    <v-icon @click="deleteData(i,item.linktype)">mdi-delete</v-icon>
+                                </v-btn>
+                            </v-toolbar>
+                        </v-col>
+                      </v-row>
+                      </div>
+                  </v-col>
+                  <v-col md="3" cols="12">
+                      <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
+                      <p>Developer Cosnsole</p>
+                      <v-row v-for="(item,i) in (linksData.links['Developer Console'])" :key="i">
+                        <v-col class="my-0 py-1">
+                            <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+                                <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
+                                <v-spacer></v-spacer>
+                                <UpdateFooterLink  :data.sync="item"/>
+                                <v-btn fab outlined x-small text>
+                                    <v-icon @click="deleteData(i,item.linktype)">mdi-delete</v-icon>
+                                </v-btn>
+                            </v-toolbar>
+                        </v-col>
+                      </v-row>
+                      </div>
+                  </v-col>
+                  <v-col md="3" cols="12">
+                      <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
+                      <p>Footer End Session Link</p>
+                      <v-row v-for="(item,i) in (linksData.links['Footer End Session Link'])" :key="i">
+                        <v-col class="my-0 py-1">
+                            <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+                                <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
+                                <v-spacer></v-spacer>
+                                <UpdateFooterLink  :data.sync="item"/>
+                                <v-btn fab outlined x-small text>
+                                    <v-icon @click="deleteData(i,item.linktype)">mdi-delete</v-icon>
+                                </v-btn>
+                            </v-toolbar>
+                        </v-col>
+                      </v-row>
+                      </div>
+                  </v-col>
+                
+              </v-row>
+            
           </v-col>
+        </v-row>
+
+        <v-row>
+            <v-col md="10">
+                
+            </v-col>
         </v-row>
       </v-col>
       <v-col md="5" cols="12">
-        
-
       
       </v-col>
 
@@ -44,10 +121,12 @@
 import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
 import FooterLink from "@/components/Config/Footer/AddFooterLink"
+import UpdateFooterLink from "@/components/Config/Footer/EditFooterLink"
 export default {
   components:{
     FooterLink,
-    Snakebar
+    Snakebar,
+    UpdateFooterLink
   },
   name: "Config",
   data: () => ({
@@ -58,7 +137,12 @@ export default {
     isSnakeBarVisible: false,
     snakeBarColor: "green",
     snakeBarTimeOut: 5000,
-    linksData:[]
+    linksData:{
+        "About":[],
+        "Resources":[],
+        "Developer Console":[],
+        "Footer End Session Link":[]
+    }
   }),
   mounted() {
     this.getData();
@@ -69,7 +153,27 @@ export default {
       this.isSnakeBarVisible = true;
       this.getData()
     },
+    deleteData(index,child) {
+      this.linksData.links[child].splice(index, 1);
+    },
+    saveData(){
+        this.isAdding = true;
+        firebase.firestore
+        .collection("config")
+        .doc("footer")
+        .set(this.linksData)
+        .then(() => {
+          this.$emit("show", "Links Updated Success");
+          this.isAdding = false;
+        })
+        .catch(e => {
+          this.$emit("show", e);
+          this.isAdding = false;
+          console.log(e);
+        });
+    },
     getData() {
+      this.linksData = []
       this.isLoading = true;
       firebase.firestore
         .collection("config")
@@ -82,13 +186,13 @@ export default {
             return;
           }
           doc = doc.data();
-          this.linksData = doc
-        
-          console.log(doc);
-          console.log(Object.keys(doc).length);
-        //   if (Object.keys(doc).length > 0) {
-        //     this.communityinfo = doc;
-        //   }
+          if (Object.keys(doc).length > 0) {
+            // console.log("yes");
+            // console.log(doc.communityGuidelines);
+            this.linksData = doc;
+            console.log(this.linksData)
+          }
+        //   this.linksData = doc
           this.isLoading = false;
         })
         .catch(e => {

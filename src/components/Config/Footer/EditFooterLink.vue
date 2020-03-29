@@ -2,38 +2,38 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="500">
       <template v-slot:activator="{ on }">
-        <v-btn fab x-small color="indigo" outlined dark v-on="on">
-          <v-icon dark>mdi-plus</v-icon>
+        <v-btn fab elevation="0" outlined x-small text v-on="on">
+          <v-icon>mdi-lead-pencil</v-icon>
         </v-btn>
       </template>
       <v-card v-if="dialog" class >
         <v-card-title class="google-font" primary-title dark>
-          Add New Footer Link
+          Update Footer Link
         </v-card-title>
         <v-card-text class="px-5">
           <v-container fluid>
             <v-row class="pa-0">
-              <v-col cols="12" class="pa-1 ma-0" ref="form">
-                  <!-- {{data}} -->
+              <v-col cols="12" class="pa-1 ma-0">
                 <v-select
                     :items="items"
+                    v-model="data.linktype"
                     outlined
+                    disabled
                     label="Link Type"
-                    v-model="SelectedLinkType"
                 ></v-select>
-
                 <v-text-field
                     label="Link Name"
-                    :rules="[() => !!linkname || 'This field is required']"
-                    v-model="linkname"
+                    :rules="[() => !!data.linkname || 'This field is required']"
+                    v-model="data.linkname"
                     outlined
                 ></v-text-field>
                 <v-text-field
                     label="Link"
-                    v-model="link"
-                    :rules="[() => !!link || 'This field is required']"
+                    v-model="data.link"
+                    :rules="[() => !!data.link || 'This field is required']"
                     outlined
                 ></v-text-field>
+                
               </v-col>
             </v-row>
           </v-container>
@@ -48,9 +48,9 @@
             color="indigo"
             dark
             depressed
-            @click="addData"
+            @click="addGuid"
             :loading="loading"
-          >Add</v-btn>
+          >Edit</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -59,14 +59,12 @@
 
 <script>
 import firebase from '@/config/firebase';
+
 export default {
     props:['data'],
-    components:{
-    },
     data:()=>({
         dialog:false,
         loading:false,
-        isAdding: false,
         SelectedLinkType:'',
         link:'',
         linkname:'',
@@ -77,32 +75,11 @@ export default {
             "Footer End Session Link"
         ]
     }),
-    mounted(){
-        // this.ShowPartners()
-    },
     methods:{
-        addData(){
-
-            this.loading = true
-            var datalink={
-                link:this.link,
-                linkname:this.linkname,
-                linktype:this.SelectedLinkType
-            }
-
-            if(this.SelectedLinkType == 'About'){
-                this.data.links['About'].push(datalink)
-            }else if(this.SelectedLinkType == 'Resources'){
-                this.data.links['Resources'].push(datalink)
-            }else if(this.SelectedLinkType == 'Developer Console'){
-                this.data.links['Developer Console'].push(datalink)
-            }else if(this.SelectedLinkType == 'Footer End Session Link'){
-                this.data.links['Footer End Session Link'].push(datalink)
-            }
-            this.loading = false;  
-            this.dialog = false
-        },
-     
+      addGuid(){
+        console.log(this.data);
+        this.dialog = false;
+      }
     }
 };
 </script>
