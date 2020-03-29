@@ -12,7 +12,7 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title>Edit {{partnerData.name}} Details</v-card-title>
+      <v-card-title class="google-font" style="border-bottom:1px solid #e0e0e0;" primary-title>Edit {{partnerData.name}} Details</v-card-title>
 
       <v-card-text class>
         <v-container fluid class="pa-0">

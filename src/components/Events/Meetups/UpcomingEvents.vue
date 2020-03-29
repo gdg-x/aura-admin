@@ -47,8 +47,8 @@ export default {
         GetAllUpcomingMeetupEvents(){
             fetch(MeetupURL).then(res=>res.json()).then(data=>{
                 console.log(data)
-                // this.UpcomingMeetupData =data
-                this.UpcomingMeetupData = []
+                this.UpcomingMeetupData =data
+                // this.UpcomingMeetupData = []
             })
         }
     }

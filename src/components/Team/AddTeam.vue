@@ -11,10 +11,13 @@
       </template>
       <v-card v-if="dialog" class="" style="border-radius:7px">
         <v-card-title
-          class="google-font elevation-3"
+          class="google-font"
           primary-title
+          style="border-bottom:1px solid #e0e0e0;"
           dark
-        >Add New Team Member <div class="flex-grow-1"></div> asd</v-card-title>
+        >Add New Team Member 
+        <!-- <div class="flex-grow-1"></div> asd -->
+        </v-card-title>
         <v-card-text class="px-1">
           <v-container fluid>
             <v-row class="pa-0">

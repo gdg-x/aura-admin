@@ -8,7 +8,7 @@
         </v-btn>
       </template>
       <v-card v-if="dialog">
-        <v-card-title class="google-font elevation-1 indigo white--text py-5" primary-title dark>Add New Speaker</v-card-title>
+        <v-card-title class="google-font" style="border-bottom:1px solid #e0e0e0;" primary-title dark>Add New Speaker</v-card-title>
         <v-card-text>
           <v-container fluid>
             <v-row class="pa-0">
@@ -17,7 +17,7 @@
                  <!-- Speaker Status -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Speaker Status</p>
+                      <p style="font-size:120%" class="my-0 mb-2">Speaker Status</p>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">

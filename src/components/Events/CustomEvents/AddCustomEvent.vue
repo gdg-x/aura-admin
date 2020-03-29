@@ -306,7 +306,7 @@ export default {
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
       ],
       teamRole: ["Organizing Team", "Core Team", "Volunteer"],
-      dialog: true,
+      dialog: false,
       loading: false,
       items: [true, false],
       eventData:{

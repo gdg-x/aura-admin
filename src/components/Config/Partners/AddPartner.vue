@@ -7,7 +7,7 @@
         </v-btn>
       </template>
       <v-card v-if="dialog" class >
-        <v-card-title class="google-font" primary-title dark>
+        <v-card-title class="google-font" style="border-bottom:1px solid #e0e0e0;" primary-title dark>
           Add New Partner
         </v-card-title>
         <v-card-text class="px-5">
