@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer app clipped v-model="drawer" >
+    <v-navigation-drawer app clipped v-model="drawer" width="280px">
         <v-list-item two-line>
         <v-list-item-avatar>
             <img :src="require('@/assets/img/default_avatar.jpg')" />
