@@ -1,0 +1,100 @@
+<template>
+  <v-container fluid class="ma-0 pa-0">
+    <v-row justify="center" align="center" class v-if="isLoading">
+      <v-col cols="12" md="12" class="text-center">
+        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+      </v-col>
+    </v-row>
+
+    <v-row class="ma-0 pa-0" v-else>
+      <v-col cols="12" md="6" class="mb-0 pb-0">
+        <v-text-field class="my-0 py-0" label="Mail Gun API Key" v-model="key.mail_champ" outlined></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6" class="mb-0 pb-0">
+        <v-text-field class="my-0 py-0" label="Mail Champ API Key" v-model="key.mail_gun" outlined></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6" class="mb-0 pb-0">
+        <v-text-field
+          class="my-0 py-0"
+          label="Meetup Community UserName"
+          v-model="key.meetup"
+          outlined
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12">
+        <v-btn
+          depressed
+          color="indigo"
+          :loading="isAdding"
+          @click="setData"
+          dark
+        >Save Keys & Security</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+import firebase from '@/config/firebase';
+export default {
+  name: "KeysandSecurity",
+  data: () => ({
+    isLoading: false,
+    isAdding:false,
+    key:{
+        mail_champ:"",
+        mail_gun:"",
+        meetup:""
+    }
+  }),
+  created(){
+      this.getData();
+  },
+  methods:{
+      setData() {
+        this.isAdding = true;
+        firebase.firestore
+            .collection("config")
+            .doc("keysandsecurity")
+            .set(this.key)
+            .then(() => {
+            this.$emit("show", "Keys & Security Updated");
+            this.isAdding = false;
+            })
+            .catch(e => {
+            this.$emit("show", e);
+            this.isAdding = false;
+            console.log(e);
+            });
+    },
+      getData() {
+      this.isLoading = true;
+      firebase.firestore
+        .collection("config")
+        .doc("keysandsecurity")
+        .get()
+        .then(doc => {
+          console.log(doc);
+          if (!doc.exists) {
+            this.isLoading = false;
+            return;
+          }
+          doc = doc.data();
+          console.log(doc);
+          console.log(Object.keys(doc).length);
+          if (Object.keys(doc).length > 0) {
+            this.key = doc;
+          }
+          this.isLoading = false;
+        })
+        .catch(e => {
+          console.log(e);
+          this.isLoading = false;
+        });
+  }
+  }
+};
+</script>
+
+<style>
+</style>

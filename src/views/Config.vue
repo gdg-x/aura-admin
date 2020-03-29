@@ -44,8 +44,7 @@
       <v-tab-item key="item5">
         <v-card flat>
           <v-card-text>
-            <p>Item 5</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
+            <KeysAndSecurity @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -57,8 +56,9 @@
 import Snakebar from "@/components/Common/Snakebar";
 
 import General from "@/components/Config/General/General";
-import CommunityGuidelines from "@/components/Config/CommunityGuidelines";
+import CommunityGuidelines from "@/components/Config/CommunityGuidelines/CommunityGuidelines";
 import Footer from "@/components/Config/Footer/Footer"
+import KeysAndSecurity from "@/components/Config/Keys/Keys";
 // import Partners from "@/components/Config/Partners/Partners";
 
 export default {
@@ -67,7 +67,8 @@ export default {
     General,
     CommunityGuidelines,
     Snakebar,
-    Footer
+    Footer,
+    KeysAndSecurity
     // Partners
   },
   data: () => ({

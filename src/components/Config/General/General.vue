@@ -234,7 +234,7 @@ export default {
         .doc("general")
         .set(this.communityinfo)
         .then(() => {
-          this.$emit("show", "Community Data Added Success");
+          this.$emit("show", "Community Data Updated Success");
           this.isAdding = false;
         })
         .catch(e => {

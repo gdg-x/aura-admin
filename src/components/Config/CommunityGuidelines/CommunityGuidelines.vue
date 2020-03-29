@@ -116,7 +116,7 @@ export default {
         .doc("communityguidelines")
         .set(this.communityGuidelines)
         .then(() => {
-          this.$emit("show", "Community Guidelines Added Success");
+          this.$emit("show", "Community Guidelines Updated Success");
           this.isAdding = false;
         })
         .catch(e => {
