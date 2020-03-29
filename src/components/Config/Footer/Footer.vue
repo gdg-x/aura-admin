@@ -9,12 +9,13 @@
     <v-row justify="center" align="center" class v-if="isLoading">
       <v-col cols="12" md="12" class="text-center">
         <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+        <p class="google-font mt-2">Getting Footer Settings</p>
       </v-col>
     </v-row>
-    <v-row class="ma-0 pa-0" v-else>
-      <v-col md="12" cols="12">
-        <v-row>
-          <v-col md="12">
+    <v-row class="ma-0 pa-0 px-1" v-else>
+      <v-col md="12" cols="12" class="pa-0 my-0">
+        <v-row class="py-0 my-0 mt-1">
+          <v-col md="12" class="my-0 py-0">
             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                 <v-toolbar-title class="google-font mr-3">Mange Links </v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -187,12 +188,8 @@ export default {
           }
           doc = doc.data();
           if (Object.keys(doc).length > 0) {
-            // console.log("yes");
-            // console.log(doc.communityGuidelines);
             this.linksData = doc;
-            console.log(this.linksData)
           }
-        //   this.linksData = doc
           this.isLoading = false;
         })
         .catch(e => {

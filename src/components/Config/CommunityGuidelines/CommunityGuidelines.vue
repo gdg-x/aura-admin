@@ -3,10 +3,25 @@
     <v-row justify="center" align="center" class v-if="isLoading">
       <v-col cols="12" md="12" class="text-center">
         <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+        <p class="google-font mt-2">Getting Community Guidelines Settings</p>
       </v-col>
     </v-row>
+    
     <v-row class="ma-0 pa-0" v-else>
-      <v-col cols="12" sm="6">
+      <v-col md="12" class="my-0 py-0 mt-5">
+        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+            <v-toolbar-title class="google-font mr-3">Mange Community Guidelines </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn
+              depressed
+              color="indigo"
+              dark
+              :loading="isAdding"
+              @click="setData"
+            >Save Community Guidelines Settings</v-btn>
+        </v-toolbar>
+      </v-col>
+      <v-col cols="12" sm="6" md="6" class="">
         <v-toolbar class="elevation-0 mb-3" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Community Guidelines Setting v.2</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -55,15 +70,7 @@
           ></v-textarea>
         </div>
       </v-col>
-      <v-col>
-        <v-btn
-          depressed
-          color="indigo"
-          dark
-          :loading="isAdding"
-          @click="setData"
-        >Save Community Guidelines Settings</v-btn>
-      </v-col>
+ 
     </v-row>
   </v-container>
 </template>
