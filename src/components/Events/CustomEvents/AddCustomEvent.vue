@@ -197,7 +197,7 @@
                             </v-col>
                         </v-row>
 
-                        <v-row>
+                        <v-row class="">
                             <v-col class="ma-0" md="12" cols="12" style="">
                                 <h4 class="google-font mb-0">Event Agenda Info</h4>
                                 <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
@@ -216,9 +216,10 @@
                             </v-col>
 
                             <v-col cols="12">
-                                <v-row v-for="(item,idx) in eventData.agenda" :key="idx">
+                                <v-row >
                                     <v-col md="12" class="my-1 py-0">
                                         <v-data-table
+                                            v-for="(item,idx) in eventData.agenda" :key="idx"
                                             :headers="headers"
                                             :items="eventData.agenda"
                                             :items-per-page="5"

@@ -30,6 +30,7 @@
       <v-tab-item key="item3">
         <v-card flat>
           <v-card-text>
+            
             <p>Item 3</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
           </v-card-text>
@@ -38,8 +39,7 @@
       <v-tab-item key="item4">
         <v-card flat>
           <v-card-text>
-            <p>Item 4</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
+            <Partners @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -60,13 +60,15 @@ import Snakebar from "@/components/Common/Snakebar";
 
 import General from "@/components/Config/General/General";
 import CommunityGuidelines from "@/components/Config/CommunityGuidelines";
+import Partners from "@/components/Config/Partners/Partners";
 
 export default {
   name: "Config",
   components: {
     General,
     CommunityGuidelines,
-    Snakebar
+    Snakebar,
+    Partners
   },
   data: () => ({
     tab: null,
