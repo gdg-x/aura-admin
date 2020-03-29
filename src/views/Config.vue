@@ -12,7 +12,7 @@
       <v-tab key="item1">General</v-tab>
       <v-tab key="item2">Community Guidelines</v-tab>
       <v-tab key="item3">Footer Config</v-tab>
-      <v-tab key="item4">Partners</v-tab>
+      <!-- <v-tab key="item4">Partners</v-tab> -->
       <v-tab key="item5">Keys & Securities</v-tab>
     </v-tabs>
 
@@ -30,19 +30,17 @@
       <v-tab-item key="item3">
         <v-card flat>
           <v-card-text>
-            
-            <p>Item 3</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores illo blanditiis iste atque accusamus expedita? Veniam, cum! Quia magnam quisquam aliquid, illo totam incidunt! Ea, fuga error? Numquam, nostrum ut.</p>
+            <Footer @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
       </v-tab-item>
-      <v-tab-item key="item4">
+      <!-- <v-tab-item key="item4">
         <v-card flat>
           <v-card-text>
             <Partners @show="showSnakeBar"/>
           </v-card-text>
         </v-card>
-      </v-tab-item>
+      </v-tab-item> -->
       <v-tab-item key="item5">
         <v-card flat>
           <v-card-text>
@@ -60,7 +58,8 @@ import Snakebar from "@/components/Common/Snakebar";
 
 import General from "@/components/Config/General/General";
 import CommunityGuidelines from "@/components/Config/CommunityGuidelines";
-import Partners from "@/components/Config/Partners/Partners";
+import Footer from "@/components/Config/Footer/Footer"
+// import Partners from "@/components/Config/Partners/Partners";
 
 export default {
   name: "Config",
@@ -68,7 +67,8 @@ export default {
     General,
     CommunityGuidelines,
     Snakebar,
-    Partners
+    Footer
+    // Partners
   },
   data: () => ({
     tab: null,

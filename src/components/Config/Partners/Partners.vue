@@ -20,20 +20,12 @@
                     <v-spacer></v-spacer>
                     <AddPartner @show="showSnakeBar" />
                 </v-toolbar>
-              {{partnersData}}
+              <!-- {{partnersData}} -->
           </v-col>
         </v-row>
       </v-col>
      
-      <v-col>
-        <v-btn
-          depressed
-          color="indigo"
-          :loading="isAdding"
-          @click="setData"
-          dark
-        >Save General Settings</v-btn>
-      </v-col>
+     
     </v-row>
   </v-container>
 </template>
@@ -56,7 +48,7 @@ export default {
     snakeBarMessage: "",
     isSnakeBarVisible: false,
     snakeBarColor: "green",
-    snakeBarTimeOut: 5000
+    snakeBarTimeOut: 5000,
   }),
   mounted() {
     this.getData();
@@ -85,6 +77,8 @@ export default {
     },
 
     ShowPartners(){
+        this.partnersData = []
+        let dummuyPartners = {}
         firebase.firestore
         .collection("config")
         .doc("partners")
@@ -95,21 +89,17 @@ export default {
             this.isLoading = false;
             return;
           }
-          doc = doc.data();
-          for(let a=0;a<doc.length;a++){
-            firebase.firestore.collection("partners").where('id','==',doc[a]).get().then(function(querySnapshot) {
+          doc = doc.data().partnersid;
+          doc.map(res=>{
+            firebase.firestore.collection("partners").where('id','==',res).get().then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
-                    console.log(doc.id, " => ", doc.data());
+                    console.log(doc.data());
                 });
             })
-          }
-
-          
-          console.log(doc);
-        //   console.log(Object.keys(doc).length);
-        //   if (Object.keys(doc).length > 0) {
-        //     this.communityinfo = doc;
-        //   }
+          })
+        //   for(let a=0;a<doc.length;a++){
+            
+        //   } 
           this.isLoading = false;
         })
         .catch(e => {
