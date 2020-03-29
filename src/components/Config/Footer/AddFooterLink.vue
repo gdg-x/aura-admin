@@ -14,6 +14,7 @@
           <v-container fluid>
             <v-row class="pa-0">
               <v-col cols="12" class="pa-1 ma-0" ref="form">
+                  {{data}}
                 <v-select
                     :items="items"
                     outlined
@@ -59,6 +60,7 @@
 <script>
 import firebase from '@/config/firebase';
 export default {
+    props:['data'],
     components:{
     },
     data:()=>({
@@ -73,38 +75,39 @@ export default {
             "Resources",
             "Developer Console",
             "Footer End Session Link"
-        ]
+        ],
+        FooterLinks:{
+            links:{
+                "About":[],
+                "Resources":[],
+                "Developer Console":[]
+            }
+        }
     }),
     mounted(){
         // this.ShowPartners()
     },
     methods:{
-        ShowPartners(){
-            firebase.firestore
-            .collection("partners")
-            .get()
-            .then(snapshot => {
-            snapshot.forEach(doc => {
-                this.partnersData.push(doc.data());
-                // console.log(this.partnersData)
-            });
-            })
-            .catch(err => {
-            console.log("Error getting documents", err);
-            });
-        },
         addData(){
             this.loading = true
-
             var datalink={
-                linkname:this.linkname,
                 link:this.link,
+                linkname:this.linkname,
                 linktype:this.SelectedLinkType
             }
+
+            if(this.SelectedLinkType == 'About'){
+                this.data.links['About'].push(datalink)
+            }else if(this.SelectedLinkType == 'Resources'){
+                this.data.links['Resources'].push(datalink)
+            }else if(this.SelectedLinkType == 'Developer Console'){
+                this.data.links['Developer Console'].push(datalink)
+            }
+            
             firebase.firestore
             .collection("config")
             .doc("footer")
-            .push(datalink)
+            .set(this.data)
             .then(() => {
                 this.dialog = false
                 this.$emit("show", "Footer Link Added Success");

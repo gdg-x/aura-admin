@@ -12,46 +12,30 @@
       </v-col>
     </v-row>
     <v-row class="ma-0 pa-0" v-else>
-      <v-col md="7" cols="12">
+      <v-col md="12" cols="12">
         <v-row>
-          <v-col>
+          <v-col md="10">
              <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                 <v-toolbar-title class="google-font mr-3">Mange Links </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <FooterLink @show="showSnakeBar" />
+                <FooterLink @show="showSnakeBar" :data="this.linksData" />
             </v-toolbar>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col md="10" v-if="linksData.length">
+
+            {{linksData}}
           </v-col>
         </v-row>
       </v-col>
       <v-col md="5" cols="12">
-        <v-row class="my-0 py-0">
-          <v-col class="mb-0 pb-0" cols="12">
-            <v-textarea
-              outlined
-              label="Community Short Description"
-              class="mb-0 pb-0"
-            ></v-textarea>
-          </v-col>
-          <v-col class="mb-0 pb-0" cols="12">
-            <v-textarea
-              outlined
-              label="Community Long Description"
-              class="mb-0 pb-0"
-            ></v-textarea>
-          </v-col>
-        </v-row>
+        
 
       
       </v-col>
 
       <v-col>
-        <v-btn
-          depressed
-          color="indigo"
-          :loading="isAdding"
-          @click="setData"
-          dark
-        >Save General Settings</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -74,7 +58,7 @@ export default {
     isSnakeBarVisible: false,
     snakeBarColor: "green",
     snakeBarTimeOut: 5000,
-    
+    linksData:[]
   }),
   mounted() {
     this.getData();
@@ -83,28 +67,13 @@ export default {
     showSnakeBar(e) {
       this.snakeBarMessage = e;
       this.isSnakeBarVisible = true;
-    },
-    setData() {
-      this.isAdding = true;
-      firebase.firestore
-        .collection("config")
-        .doc("general")
-        .set(this.communityinfo)
-        .then(() => {
-          this.$emit("show", "Community Data Added Success");
-          this.isAdding = false;
-        })
-        .catch(e => {
-          this.$emit("show", e);
-          this.isAdding = false;
-          console.log(e);
-        });
+      this.getData()
     },
     getData() {
       this.isLoading = true;
       firebase.firestore
         .collection("config")
-        .doc("general")
+        .doc("footer")
         .get()
         .then(doc => {
           console.log(doc);
@@ -113,26 +82,13 @@ export default {
             return;
           }
           doc = doc.data();
+          this.linksData = doc
+        
           console.log(doc);
           console.log(Object.keys(doc).length);
-          if (Object.keys(doc).length > 0) {
-            this.communityinfo = doc;
-            // this.communityinfo.name = doc.name;
-            // this.communityinfo.email = doc.email;
-            // this.communityinfo.website = doc.website;
-            // this.communityinfo.meetupLink = doc.meetupLink;
-            // this.communityinfo.shortDescription = doc.shortDescription;
-            // this.communityinfo.longDescription = doc.longDescription;
-            // this.communityinfo.socialLinks.medium = doc.socialLinks.medium;
-            // this.communityinfo.socialLinks.facebook = doc.socialLinks.facebook;
-            // this.communityinfo.socialLinks.linkedin = doc.socialLinks.linkedin;
-            // this.communityinfo.socialLinks.twitter = doc.socialLinks.twitter;
-            // this.communityinfo.socialLinks.github = doc.socialLinks.github;
-            // this.communityinfo.socialLinks.instagram = doc.socialLinks.instagram;
-            // this.communityinfo.blogs.medium = doc.blogs.medium;
-            // this.communityinfo.blogs.devto = doc.blogs.devto;
-            // this.communityinfo.hashtags = doc.hashtags;
-          }
+        //   if (Object.keys(doc).length > 0) {
+        //     this.communityinfo = doc;
+        //   }
           this.isLoading = false;
         })
         .catch(e => {
