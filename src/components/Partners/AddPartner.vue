@@ -12,7 +12,7 @@
       <v-card v-if="dialog">
         <v-card-title
           class="google-font"
-        style="border-bottom:1px solid #e0e0e0;"
+          style="border-bottom:1px solid #e0e0e0;"
           primary-title
           dark
         >Add New Partner</v-card-title>

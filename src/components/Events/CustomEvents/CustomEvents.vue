@@ -1,9 +1,15 @@
 <template>
     <v-container class="pa-0 ma-0">
+        <Snakebar
+        :message="snakeBarMessage"
+        :isShow.sync="isSnakeBarVisible"
+        :color="snakeBarColor"
+        :timeout="snakeBarTimeOut"
+        />
         <v-row class="my-0 py-0">
             <v-col>
                 <v-toolbar class="elevation-0 mb-5" style="border:1px solid #e0e0e0;border-radius:5px;">
-                    <v-toolbar-title class="google-font mr-3">All Custom Events: {{MeetupData.length}}</v-toolbar-title>
+                    <v-toolbar-title class="google-font mr-3">All Custom Events: {{customEventData.length}}</v-toolbar-title>
                     <v-spacer></v-spacer>
 
                     <!-- Desktop -->
@@ -42,7 +48,7 @@
                     </v-btn>
                     <!-- Mobile -->
                     &nbsp;
-                    <AddNewCustomEvent class="ml-2"/>
+                    <AddNewCustomEvent @showSuccess="showSnakeBar" class="ml-2"/>
                 </v-toolbar>
 
                 <!-- {{MeetupData}}   -->
@@ -50,16 +56,14 @@
                     :search="search"
                     mobile-breakpoint="no"
                     :headers="headers"
-                    :items="MeetupData"
+                    :loading="isLoading"
+                    :items="customEventData"
                     :items-per-page="10"
                     style="border:1px solid #e0e0e0;border-radius:5px;"
                 >
-                    <template v-slot:item.status="{ item }">
-                        <v-chip small v-if="item.status == 'past'" dark color="red">Past</v-chip>
-                        <v-chip v-else small dark color="green">Upcoming</v-chip>
-                    </template>
-                    <template v-slot:item.link="{ item }">
-                        <a :href="item.link" target="_blank">See More</a>
+                    <template v-slot:item.active="{ item }">
+                        <v-chip x-small v-if="item.Active == false" dark color="red">Inactive</v-chip>
+                        <v-chip v-else x-small dark color="green">Active</v-chip>
                     </template>
                 </v-data-table>
             </v-col>
@@ -68,22 +72,64 @@
 </template>
 
 <script>
+import firebase from "@/config/firebase";
+import Snakebar from "@/components/Common/Snakebar";
 import AddNewCustomEvent from '@/components/Events/CustomEvents/AddCustomEvent'
 export default {
     components:{
-        AddNewCustomEvent
+        AddNewCustomEvent,
+        Snakebar
     },
     name:'MeetupEvents',
     data:()=>({
         search:'',
         isSearch:false,
-       
-        MeetupData:[]
+        isLoading:true,
+        headers: [
+          {
+            text: 'Event Name',
+            align: 'start',
+            value: 'name',
+          },
+          { text: 'Date', value: 'date' },
+          { text: 'Active', value: 'active' },
+          { text: 'Venue', value: 'venue.name' }
+        ],
+        snakeBarMessage: "",
+        isSnakeBarVisible: false,
+        snakeBarColor: "green",
+        snakeBarTimeOut: 5000,
+        customEventData:[]
     }),
     mounted(){
-        this.GetAllMeetupEvents()
+        this.showCustomEvents()
     },
     methods:{
+        showCustomEvents(){
+            this.isLoading = true
+             this.customEventData = []
+            firebase.firestore
+            .collection("events")
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    this.customEventData.push(doc.data());
+                    this.isLoading = false
+                    // console.log(this.customEventData)
+                });
+            
+            })
+            .catch(err => {
+                this.isLoading = false;
+                console.log("Error getting documents", err);
+            });
+            
+        },
+        showSnakeBar(e) {
+            this.snakeBarMessage = e;
+            this.isSnakeBarVisible = true;
+            this.showCustomEvents()
+        },
         openCloseSearch(){
             this.isSearch = !this.isSearch
             this.search = "";

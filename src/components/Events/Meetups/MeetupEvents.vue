@@ -51,6 +51,7 @@
                     mobile-breakpoint="no"
                     :headers="headers"
                     :items="MeetupData"
+                    :loading="isLoading"
                     :items-per-page="10"
                     style="border:1px solid #e0e0e0;border-radius:5px;"
                 >
@@ -77,6 +78,7 @@ export default {
     data:()=>({
         search:'',
         isSearch:false,
+        isLoading:true,
         headers: [
           {
             text: 'Event Name',
@@ -93,17 +95,21 @@ export default {
         MeetupData:[]
     }),
     mounted(){
-        this.GetAllMeetupEvents()
+        this.getAllMeetupEvents();
     },
     methods:{
         openCloseSearch(){
             this.isSearch = !this.isSearch
             this.search = "";
         },
-        GetAllMeetupEvents(){
+        getAllMeetupEvents(){
+            this.isLoading = true
             fetch(MeetupURL).then(res=>res.json()).then(data=>{
-                console.log(data)
                 this.MeetupData = data
+                this.isLoading = false
+            }).catch(e=>{
+                this.isLoading = false;
+                console.log('Error ', e)
             })
         }
     }

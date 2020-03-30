@@ -74,6 +74,7 @@ export default {
         loading:false,
         name:"",
         des:"",
+        title:'',
         starttime:'',
         endtime:''
     }),
@@ -89,21 +90,6 @@ export default {
         this.name="";
         this.des="";
         this.dialog = false;
-        // firebase.firestore
-        // .collection("config")
-        // .doc("communityguidelines")
-        // .set({
-        //   communityGuidelines:this.data
-        // },{ merge: true })
-        // .then(() => {
-        //   this.$emit("show", "Community Data Added Success");
-        //   this.loading = false;
-        // })
-        // .catch(e => {
-        //   this.$emit("show", e);
-        //   this.loading = false;
-        //   console.log(e);
-        // });
       }
     }
 };

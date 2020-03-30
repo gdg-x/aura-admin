@@ -84,31 +84,16 @@ export default {
     }),
     methods:{
       addGuid(){
-        console.log(this.data);
-        this.data.push({
-            starttime:this.starttime,
-            endtime:this.endtime,
-            title:this.title,
-            des:this.des
-        });
-        this.name="";
-        this.des="";
-        this.dialog = false;
-        // firebase.firestore
-        // .collection("config")
-        // .doc("communityguidelines")
-        // .set({
-        //   communityGuidelines:this.data
-        // },{ merge: true })
-        // .then(() => {
-        //   this.$emit("show", "Community Data Added Success");
-        //   this.loading = false;
-        // })
-        // .catch(e => {
-        //   this.$emit("show", e);
-        //   this.loading = false;
-        //   console.log(e);
+        // console.log(this.data);
+        // this.data.push({
+        //     starttime:this.starttime,
+        //     endtime:this.endtime,
+        //     title:this.title,
+        //     des:this.des
         // });
+        // this.name="";
+        // this.des="";
+        this.dialog = false;
       }
     }
 };

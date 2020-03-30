@@ -25,7 +25,7 @@
 
     <v-row>
       <v-col md="4" class="">
-        <CustomEvents/>
+        <CustomEvents />
         <!-- <v-container>
           <v-row>
             <v-col class="lightModeCard pa-5">
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import Snakebar from "@/components/Common/Snakebar";
 import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
 import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
 import CustomEvents from '@/components/Events/CustomEvents/CustomEvents'
@@ -52,14 +53,23 @@ export default {
   components:{
     MeetupEvents,
     UpcomingMeetupEvents,
-    CustomEvents
+    CustomEvents,
+    Snakebar
   },
   data:()=>({
-    userEmail:''
+    userEmail:'',
+    snakeBarMessage: "",
+    isSnakeBarVisible: false,
+    snakeBarColor: "green",
+    snakeBarTimeOut: 5000
   }),
   mounted(){
   },
   methods:{
+    showSnakeBar(e) {
+      this.snakeBarMessage = e;
+      this.isSnakeBarVisible = true;
+    }
   }
 }
 </script>
