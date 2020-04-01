@@ -106,6 +106,15 @@ const routes = [
     }
   },
   {
+    path: '/events/:id',
+    name: "Event-Details",
+    component: () => import( /* webpackChunkName: "team-details" */ '@/views/Events/ViewEvent'),
+    meta: {
+      requiresAuth: true,
+      title: "Event Details"
+    }
+  },
+  {
     path: '/notification',
     name: "Notification",
     component: () => import( /* webpackChunkName: "notifications" */ '@/views/Notifications'),

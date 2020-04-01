@@ -65,6 +65,17 @@
                         <v-chip x-small v-if="item.Active == false" dark color="red">Inactive</v-chip>
                         <v-chip v-else x-small dark color="green">Active</v-chip>
                     </template>
+                    <template v-slot:item.view="{ item }">
+                        <!-- <p @click="goToEventDetails(item.id)">See More</p> -->
+                        <v-tooltip bottom>
+                        <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on" @click="goToEventDetails(item.id)">
+                              <v-icon>mdi-eye</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>{{item.name}} Details</span>
+                        </v-tooltip>
+                    </template>
                 </v-data-table>
             </v-col>
         </v-row>
@@ -93,7 +104,8 @@ export default {
           },
           { text: 'Date', value: 'date' },
           { text: 'Active', value: 'active' },
-          { text: 'Venue', value: 'venue.name' }
+          { text: 'Venue', value: 'venue.name' },
+          { text: 'View', value: 'view' }
         ],
         snakeBarMessage: "",
         isSnakeBarVisible: false,
@@ -105,6 +117,9 @@ export default {
         this.showCustomEvents()
     },
     methods:{
+        goToEventDetails(id){
+            this.$router.push("/events/" + id);
+        },
         showCustomEvents(){
             this.isLoading = true
              this.customEventData = []
@@ -115,7 +130,7 @@ export default {
                 snapshot.forEach(doc => {
                     this.customEventData.push(doc.data());
                     this.isLoading = false
-                    // console.log(this.customEventData)
+                    // console.log('S1', this.customEventData)
                 });
             
             })
