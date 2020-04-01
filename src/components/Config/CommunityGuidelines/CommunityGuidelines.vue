@@ -20,6 +20,7 @@
               @click="setData"
             >Save Community Guidelines Settings</v-btn>
         </v-toolbar>
+        <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settings will not be saved until and unless, if you will click the save button</p>
       </v-col>
       <v-col cols="12" sm="6" md="6" class="">
         <v-toolbar class="elevation-0 mb-3" style="border:1px solid #e0e0e0;border-radius:5px;">

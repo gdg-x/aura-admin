@@ -20,6 +20,7 @@
               dark
             >Save Keys & Security</v-btn>
         </v-toolbar>
+        <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settings will not be saved until and unless, if you will click the save button</p>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
         <v-text-field class="my-0 py-0" label="Mail Gun API Key" v-model="key.mail_champ" outlined></v-text-field>

@@ -1,5 +1,5 @@
 <template>
-    <v-container class="pa-0 ma-0">
+    <v-container fluid class="pa-0 ma-0">
         <v-row class="my-0 pa-0 px-3" >
             <v-col md="12" lg="12" sm="12" class="lightModeCard" cols="12">
                 <p class="google-font my-0" style="font-size:130%">Upcoming Meetup Events</p>
