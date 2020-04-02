@@ -223,7 +223,6 @@
                                 <v-row >
                                     <v-col md="12" class="my-1 py-0" v-if="eventData.agenda">
                                         <v-data-table
-                                            v-for="(item,idx) in eventData.agenda" :key="idx"
                                             :headers="headers"
                                              mobile-breakpoint="0"
                                             :items.sync="eventData.agenda"
