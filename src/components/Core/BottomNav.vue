@@ -3,27 +3,36 @@
         app
         grow
         v-model="bottomNav"
+        color="indigo"
+        class="hidden-md-and-up"
     >
-        <v-btn value="recent">
-            <span>Recent</span>
-            <v-icon>mdi-history</v-icon>
+        <v-btn to="/">
+            <span>Home</span>
+            <v-icon>mdi-home</v-icon>
         </v-btn>
 
-        <v-btn value="favorites">
-            <span>Favorites</span>
-            <v-icon>mdi-heart</v-icon>
+        <v-btn to="/events">
+            <span>Events</span>
+            <v-icon>mdi-assistant</v-icon>
         </v-btn>
 
-        <v-btn value="nearby">
-            <span>Nearby</span>
-            <v-icon>mdi-map-marker</v-icon>
+        <v-btn to="/team">
+            <span>Team</span>
+            <v-icon>mdi-nature-people</v-icon>
+        </v-btn>
+
+        <v-btn to="/speakers">
+            <span>Speakers</span>
+            <v-icon>mdi-account-multiple</v-icon>
         </v-btn>
     </v-bottom-navigation>
 </template>
 
 <script>
 export default {
-    name:'',
-
+    data:()=>({
+        name:'',
+        bottomNav:''
+    })
 }
 </script>
