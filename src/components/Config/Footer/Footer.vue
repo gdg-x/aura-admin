@@ -32,7 +32,7 @@
                   <v-col md="3" cols="12" class="">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                         <p>About</p>
-                        <v-row v-for="(item,i) in (linksData.links.About)" :key="i">
+                        <v-row v-for="(item,i) in (linksData.About)" :key="i">
                             <v-col class="my-0 py-1">
                                 <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                     <v-toolbar-title class="google-font mr-3">{{item.linkname}} </v-toolbar-title>
@@ -49,7 +49,7 @@
                   <v-col md="3" cols="12" class="">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Resources</p>
-                      <v-row v-for="(item,i) in (linksData.links.Resources)" :key="i">
+                      <v-row v-for="(item,i) in (linksData.Resources)" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -66,7 +66,7 @@
                   <v-col md="3" cols="12">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Developer Cosnsole</p>
-                      <v-row v-for="(item,i) in (linksData.links['Developer Console'])" :key="i">
+                      <v-row v-for="(item,i) in (linksData['Developer Console'])" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -83,7 +83,7 @@
                   <v-col md="3" cols="12">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Footer End Session Link</p>
-                      <v-row v-for="(item,i) in (linksData.links['Footer End Session Link'])" :key="i">
+                      <v-row v-for="(item,i) in (linksData['Footer End Session Link'])" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -162,7 +162,7 @@ export default {
         firebase.firestore
         .collection("config")
         .doc("footer")
-        .set(this.linksData)
+        .set({links:this.linksData})
         .then(() => {
           this.$emit("show", "Links Updated Success");
           this.isAdding = false;
@@ -174,7 +174,7 @@ export default {
         });
     },
     getData() {
-      this.linksData = []
+      this.linksData = {}
       this.isLoading = true;
       firebase.firestore
         .collection("config")
@@ -188,7 +188,7 @@ export default {
           }
           doc = doc.data();
           if (Object.keys(doc).length > 0) {
-            this.linksData = doc;
+            this.linksData = doc.links;
           }
           this.isLoading = false;
         })

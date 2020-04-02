@@ -91,13 +91,13 @@ export default {
             }
 
             if(this.SelectedLinkType == 'About'){
-                this.data.links['About'].push(datalink)
+                this.data['About'].push(datalink)
             }else if(this.SelectedLinkType == 'Resources'){
-                this.data.links['Resources'].push(datalink)
+                this.data['Resources'].push(datalink)
             }else if(this.SelectedLinkType == 'Developer Console'){
-                this.data.links['Developer Console'].push(datalink)
+                this.data['Developer Console'].push(datalink)
             }else if(this.SelectedLinkType == 'Footer End Session Link'){
-                this.data.links['Footer End Session Link'].push(datalink)
+                this.data['Footer End Session Link'].push(datalink)
             }
             this.loading = false;  
             this.dialog = false
