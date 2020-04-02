@@ -11,7 +11,9 @@
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Events</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn>
+          <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
+          <AddNewCustomEvent @showSuccess="showSnakeBar" class="ml-2"/>
+          
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
         </v-toolbar>
       </v-col>
@@ -48,13 +50,15 @@ import Snakebar from "@/components/Common/Snakebar";
 import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
 import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
 import CustomEvents from '@/components/Events/CustomEvents/CustomEvents'
+import AddNewCustomEvent from '@/components/Events/CustomEvents/AddCustomEvent'
 export default {
   name: 'Events',
   components:{
     MeetupEvents,
     UpcomingMeetupEvents,
     CustomEvents,
-    Snakebar
+    Snakebar,
+    AddNewCustomEvent
   },
   data:()=>({
     userEmail:'',

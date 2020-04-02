@@ -1,10 +1,17 @@
 <template>
   <div class="text-center">
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition" scrollable >
-      <template v-slot:activator="{ on }">
-        <v-btn fab x-small color="indigo" outlined dark v-on="on">
-          <v-icon dark>mdi-plus</v-icon>
-        </v-btn>
+      <template v-slot:activator="{ }">
+
+        <v-tooltip bottom> 
+          <template v-slot:activator="{ on }">
+            <v-btn fab x-small color="indigo" outlined dark v-on="on" @click.stop="dialog = true">
+              <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <span>Add New Custom Event</span>
+        </v-tooltip>
+
       </template>
       <v-card v-if="dialog" class="" style="">
         <v-toolbar color="white">

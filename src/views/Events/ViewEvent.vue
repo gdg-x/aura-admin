@@ -23,12 +23,12 @@
             :teamData="teamInfo"
             v-if="!showLoader && !userNotFound"
             @editedSuccess="showSnakeBar"
-          />
-          <DeleteTeam
-            :TeamInfo="teamInfo"
+          /> -->
+          <DeleteEvent
+            :EventInfo="eventInfo"
             @RemoveSuceess="showSnakeBar"
             v-if="!showLoader && !userNotFound"
-          /> -->
+          />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -45,12 +45,14 @@
             <v-row class="pa-0">
                 <v-col md="3" class="">
                     <div class="pa-3" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
-                        <p class="google-font" style="font-size:150%">{{eventInfo.name}}</p>
-                        <p class="google-font">( {{eventInfo.time.starttime}} - {{eventInfo.time.endtime}} )</p>
-                        <p class="google-font">{{eventInfo.date}}</p>
-                        <p class="google-font">{{eventInfo.venue.name}}</p>
+                        <p class="google-font" style="font-size:180%">{{eventInfo.name}}</p>
+                        <p class="google-font my-0"><b>Time: </b> {{eventInfo.time.starttime}} - {{eventInfo.time.endtime}}</p>
+                        <p class="google-font my-0"><b>Date: </b> {{eventInfo.date}}</p>
+                        <p class="google-font my-0"><b>Vanue: </b> <a :href="eventInfo.venue.googlemapslink">{{eventInfo.venue.name}}</a></p>
+
+                        <br>
                         <v-chip
-                            class="ma-1"
+                            class="mr-1"
                             v-if="eventInfo.visible"
                             dark
                             label
@@ -61,24 +63,25 @@
 
                         <v-chip class="ma-1" v-if="eventInfo.active" dark label color="green" small>Active</v-chip>
                         <v-chip class="ma-1" v-else label dark color="red" small>Not Active</v-chip>
-                        
-                            <div>
-                                <v-btn v-if="eventInfo.links.callforspeaker" :href="eventInfo.links.callforspeaker" class="ma-1" label small>Call For Speakers</v-btn>
+                        <br><br>
+                        <p class="google-font"><b>Important Links</b></p>
+                        <div>
+                            <v-btn color="pink" dark target="_blank" v-if="eventInfo.links.callforspeaker" :href="eventInfo.links.callforspeaker" class="ma-1" label small>Call For Speakers</v-btn>
 
-                                <v-btn v-if="eventInfo.links.facebook" :href="eventInfo.links.facebook" class="ma-1" label small>Facebook</v-btn>
+                            <v-btn color="indigo" dark target="_blank" v-if="eventInfo.links.facebook" :href="eventInfo.links.facebook" class="ma-1" label small>Facebook</v-btn>
 
-                                <v-btn v-if="eventInfo.links.feedback" :href="eventInfo.links.feedback" class="ma-1" label small>Facebook</v-btn>
-                                
-                                <v-btn v-if="eventInfo.links.meetup" :href="eventInfo.links.meetup" class="ma-1" label small>Meetup</v-btn>
+                            <v-btn color="success" dark target="_blank" v-if="eventInfo.links.feedback" :href="eventInfo.links.feedback" class="ma-1" label small>Feedback</v-btn>
+                            
+                            <v-btn color="red" dark target="_blank" v-if="eventInfo.links.meetup" :href="eventInfo.links.meetup" class="ma-1" label small>Meetup</v-btn>
 
-                                <v-btn v-if="eventInfo.links.registration" :href="eventInfo.links.registration" class="ma-1" label small>Registration</v-btn>                  
-                            </div>
+                            <v-btn color="primary" dark target="_blank" v-if="eventInfo.links.registration" :href="eventInfo.links.registration" class="ma-1" label small>Registration</v-btn>                  
+                        </div>
                     </div>
                 </v-col>
                 <v-col class="pa-3" md="9">
                     <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
                         <v-img
-                            :src="eventInfo.image"
+                            :src="(eventInfo.image.length>0)?eventInfo.image:'https://www.itl.cat/pngfile/big/212-2125399_blue-white-material-design-4k-white-material-background.jpg'"
                             width="100%"
                             cover
                             style="border-top-left-radius:5px;"
@@ -133,10 +136,10 @@
                                         <h4 class="google-font">Speakers</h4>
                                         <v-container class="pa-0">
                                             <v-row>
-                                                <v-col class="ma-0" md="4" v-for="(item,i) in eventInfo.speakers" :key="i">
+                                                <v-col class="ma-0" md="4" sm="6" v-for="(item,i) in eventInfo.speakers" :key="i">
                                                     <div v-for="(itemp,j) in speakersInfo" :key="j">
                                                         <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
-                                                            <v-avatar size="100">
+                                                            <v-avatar size="80">
                                                                 <img
                                                                 :src="itemp.image"
                                                                 :lazy-src="itemp.image">
@@ -168,85 +171,32 @@
                                         </v-container>
                                     </v-col>
                                 </v-row>
+
+                                <v-row>
+                                    <v-col>
+                                        <h4 class="google-font">Agenda</h4>
+                                        <p class="google-font" v-if="eventInfo.agenda.length == 0">No Agenda</p>
+                                        <dir v-else>
+                                           <v-data-table
+                                            :mobile-breakpoint="0"
+                                            style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                                            :headers="headers"
+                                            :items="eventInfo.agenda"
+                                            :items-per-page="5"
+                                            class="elevation-0 ma-0 pa-0 mt-2"
+                                            >
+                                           </v-data-table>
+                                        </dir>
+                                    </v-col>
+                                </v-row>
                             </v-container>
-                            
 
-                            
-                            
-                            <!-- <br><br>
-                            {{speakersInfo}}
-                            <br>
-                            <br>
-
-                            {{eventInfo}} -->
                         </div>
                     </div>
                 </v-col>
             </v-row>
         </v-container>
      
-   
-
-
-      <!-- <v-col cols="12" md="12">
-        <v-container fluid>
-          <v-row>
-            <v-col cols="12" sm="5" md="3" xl="3" class="pa-0 text-center">
-              <v-card height="100%" class="elevation-0" style="border:1px solid #e0e0e0">
-                
-                <v-card-text class="px-5 pb-5">
-                    
-                  
-
-                </v-card-text>
-              </v-card>
-            </v-col>
-
-            <v-col cols="12" sm="7" md="9" xl="9" class="py-0 text-left" >
-
-                <v-img
-                    :src="eventInfo.image"
-                    width="100%"
-                    cover
-                    style="border-top-left-radius:5px;"
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,1)"
-                    height="300px"
-                    class=""
-                >
-                    <template v-slot:placeholder>
-                        <v-row
-                        class="fill-height ma-0"
-                        align="center"
-                        justify="center"
-                        >
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                        </v-row>
-                    </template>
-                    <v-card-title
-                        class="fill-height align-end google-font pb-5 white--text"
-                    >
-                        <p>
-                            <span style="font-size:150%">
-                            {{eventInfo.name}} 
-                            </span>
-                        </p> 
-                    </v-card-title>
-                    <v-layout
-                        slot="placeholder"
-                        fill-height
-                        align-center
-                        justify-center
-                        ma-0
-                    > 
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                    </v-layout>
-                </v-img>
-                
-                
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col> -->
     </v-row>
 
     <v-row justify="center" align="center" v-else>
@@ -280,14 +230,14 @@
 <script>
 import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
-// import DeleteTeam from "@/components/Team/DeleteTeam";
+import DeleteEvent from "@/components/Events/subcomponents/DeleteEvent";
 // import EditTeam from "@/components/Team/EditTeam";
 
 export default {
   name: "ViewTeam",
   components: {
     Snakebar,
-    // DeleteTeam,
+    DeleteEvent,
     // EditTeam
   },
   data: () => ({
@@ -300,7 +250,17 @@ export default {
     eventInfo: {},
     partnersInfo:[],
     tempData:[],
-    speakersInfo:[]
+    speakersInfo:[],
+    headers: [
+      {
+        text: 'Start Time',
+        align: 'start',
+        value: 'starttime',
+      },
+      { text: 'End Time', value: 'endtime' },
+      { text: 'Title', value: 'title' },
+      { text: 'Description', value: 'des' }
+    ]
   }),
   mounted() {
     this.getEventData();
