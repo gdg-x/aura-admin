@@ -5,8 +5,8 @@
             <img :src="require('@/assets/img/default_avatar.jpg')" />
         </v-list-item-avatar>
         <v-list-item-content>
-            <v-list-item-title>Name</v-list-item-title>
-            <v-list-item-subtitle>Email</v-list-item-subtitle>
+            <v-list-item-title class="google-font">Community Lead</v-list-item-title>
+            <v-list-item-subtitle>{{ communtiemail }}</v-list-item-subtitle>
         </v-list-item-content>
         </v-list-item >
         <v-divider></v-divider>
@@ -31,8 +31,8 @@
             </v-list-item>
         </v-list>
         <template v-slot:append>
-        <div class="pl-1">
-            <p class="subtitle-2">Version: 0.0.1</p>
+        <div class="pl-2">
+            <p class="subtitle-2 google-font">Version: 0.1.1 - AURA</p>
         </div>
         </template>
     </v-navigation-drawer>
@@ -42,11 +42,12 @@
     import {
         mapGetters,
         mapMutations
-    } from 'vuex'
+    } from 'vuex';
+    import firebase from '@/config/firebase'
     export default {
         name:"Drawer",
         data:()=>({
-
+            communtiemail:""
         }),
         computed:{
             ...mapGetters(['links']),
@@ -59,8 +60,14 @@
                 }
             }
         },
+        mounted(){
+            this.getCurrentUser();  
+        },
         methods:{
             ...mapMutations(['setDrawer']),
+            getCurrentUser(){
+                this.communtiemail = firebase.auth.currentUser.email;
+            },
             onClick (e, item) {
             e.stopPropagation()
                 if (item.to === '/') {
