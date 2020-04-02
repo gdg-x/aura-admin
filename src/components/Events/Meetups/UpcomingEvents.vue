@@ -38,11 +38,9 @@
 </template>
 
 <script>
+import firebase from "@/config/firebase";
 import UpcomingEventCard from '@/components/Events/Meetups/UpcomingEventCard'
-let configData = {
-    'MeetupURLName':'GDG-Jalandhar'
-}
-let MeetupURL ='https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+configData.MeetupURLName+'/events?events?&sign=true'
+
 export default {
     name:'MeetupEvents',
     components:{
@@ -52,20 +50,40 @@ export default {
         search:'',
         loader:true,
         showNetworkError:false,
-        UpcomingMeetupData:[]
+        UpcomingMeetupData:[],
+        MeetupURLID:{},
     }),
     mounted(){
-        this.GetAllUpcomingMeetupEvents()
+        this.getConfig()
     },
     methods:{
+        getConfig(){
+            firebase.firestore
+            .collection("config")
+            .doc('keysandsecurity')
+            .get()
+            .then(doc => {
+            if (doc.data() == undefined) {
+                console.log('Not Found')
+            } else if (doc.data()) {
+                this.MeetupURLID = doc.data().meetup
+                this.GetAllUpcomingMeetupEvents(this.MeetupURLID)
+            } else {
+                console.log('Not Found')
+            }
+            })
+            .catch(e => {
+            console.log("Message" + e);
+            });
+        },
         openCloseSearch(){
             this.isSearch = !this.isSearch
             this.search = "";
         },
-        GetAllUpcomingMeetupEvents(){
+        GetAllUpcomingMeetupEvents(path){
             this.loader = true
             this.showNetworkError = false
-            fetch(MeetupURL).then(res=>res.json()).then(data=>{
+            fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+path+'/events?events?&sign=true').then(res=>res.json()).then(data=>{
                 this.UpcomingMeetupData = data
                 this.loader = false
             }).catch(e=>{
