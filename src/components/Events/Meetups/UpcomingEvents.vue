@@ -66,7 +66,7 @@ export default {
             this.loader = true
             this.showNetworkError = false
             fetch(MeetupURL).then(res=>res.json()).then(data=>{
-                this.UpcomingMeetupData =data
+                this.UpcomingMeetupData = data
                 this.loader = false
             }).catch(e=>{
                 this.showNetworkError = true

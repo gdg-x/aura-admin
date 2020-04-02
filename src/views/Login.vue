@@ -2,7 +2,7 @@
   <v-container fuild class="pa-0 fill-height">
     <!-- Desktop -->
     <v-row align="center" justify="center" class="d-none d-sm-block" >
-      <v-col md="8" lg="10" offset-md="1" sm="12" class="my-5 py-5" style="max-width:1300px;margin-left:auto;margin-right:auto"> 
+      <v-col md="8" lg="10" offset-md="1" sm="12" class="py-5" style="max-width:1300px;margin-left:auto;margin-right:auto"> 
         <v-container fluid class="ma-0 pa-0 white elevation-1 mt-5">
           <v-row align="stretch" justify="center" class="ma-0 pa-0">
             <v-col md="5" lg="5" sm="6" class="pa-5"> 
