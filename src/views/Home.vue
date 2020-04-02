@@ -13,7 +13,7 @@
        <v-container class="mb-5 py-5">
          <v-row class="mb-5" >
            <v-col md="9" class="my-0 py-0">
-              <h1 class="google-font mb-0" style="color:#3F51B5">Welcome! Username</h1>
+              <h1 class="google-font mb-0" style="color:#3F51B5">Welcome Lead!</h1>
               <p class="google-font mb-0">Manage your community</p>
            </v-col>
            <v-col md="3" style="margin-top:-185px" class="d-none d-sm-none d-md-block">
@@ -113,35 +113,7 @@
             </v-row>
           </v-container>
         </div>
-      </v-col>
-
-      <v-col class="pa-1" md="3" lg="3" cols="12" style="">
-        <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
-          <v-container class="py-0">
-            <v-row justify="center" align="center">
-              <v-col class="pa-0">
-                <card/>
-              </v-col>
-              <!-- <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-kodi</v-icon>
-              </v-col>
-              <v-col md="6" lg="8" class="pa-5">
-                <p class="google-font my-0">Partners</p>
-                <v-progress-circular
-                  indeterminate
-                  v-if="partnersLoader"
-                  class="my-4"
-                  color="primary"
-                ></v-progress-circular>
-                <p v-else class="google-font my-0" style="font-size:280%">{{partnersData.length?partnersData.length:0}}</p>
-                <p class="google-font my-0" v-on:click="goToRoute('/partners')" style="font-size:80%;cursor: pointer;user-select: none;">View All Partners</p>
-              </v-col> -->
-            </v-row>
-          </v-container>
-        </div>
-      </v-col>
-
-      
+      </v-col>      
 
     </v-row>
   </v-container>
@@ -150,12 +122,10 @@
 <script>
 // @ is an alias to /src
 import firebase from '@/config/firebase'
-import card from '@/components/Home/Card'
 
 export default {
   name: 'Home',
   components:{
-    card
   },
   data:()=>({
     alert:true,
@@ -229,7 +199,6 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.partnersData.push(doc.data());
-          console.log(doc.data())
           this.partnersLoader = false
         });
       })

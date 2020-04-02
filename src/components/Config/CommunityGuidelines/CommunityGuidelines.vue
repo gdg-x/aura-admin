@@ -18,7 +18,7 @@
               dark
               :loading="isAdding"
               @click="setData"
-            >Save Community Guidelines Settings</v-btn>
+            >Save Guidelines</v-btn>
         </v-toolbar>
         <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settings will not be saved until and unless, if you will click the save button</p>
       </v-col>
