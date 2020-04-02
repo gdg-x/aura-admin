@@ -1,8 +1,7 @@
 <template>
-  <v-container fuild class="pa-0 ">
-
+  <v-container fuild class="pa-0 fill-height">
     <!-- Desktop -->
-    <v-row align="center" justify="center" class="d-none d-sm-block mt-5 pt-5" >
+    <v-row align="center" justify="center" class="d-none d-sm-block" >
       <v-col md="8" lg="10" offset-md="1" sm="12" class="my-5 py-5" style="max-width:1300px;margin-left:auto;margin-right:auto"> 
         <v-container fluid class="ma-0 pa-0 white elevation-1 mt-5">
           <v-row align="stretch" justify="center" class="ma-0 pa-0">
@@ -32,8 +31,8 @@
     <!-- Mobile -->
     <v-row align="center" justify="center" class="mobile-view ma-0 pa-0 hidden-sm-and-up">
       <v-container fluid class="ma-0 pa-0" style="height:100vh">
-        <v-row class="ma-0 pa-0 py-5 blue" style="height:60vh;">
-          <v-col class="ma-0 py-auto text-center" style="height:60vh">
+        <v-row class="ma-0 pa-0 py-5 blue">
+          <v-col class="ma-0 py-auto text-center">
             <span style="border:1px solid #e0e0e0;border-radius:5px;font-size:80%;color:white;width:300px" class="pa-2 google-font primary">This Portal in Development Mode</span>
 
             <v-img :src="require('@/assets/img/home.svg')"></v-img>
