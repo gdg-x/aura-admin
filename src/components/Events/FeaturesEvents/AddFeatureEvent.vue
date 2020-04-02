@@ -108,20 +108,16 @@ export default {
         .doc("data")
         .get()
         .then(snapshot => {
-          // console.log(snapshot);
-          // console.log(snapshot.data())
-          //  this.selectedEvents = snapshot.data();
-          //  console.log(snapshot.doc())
+          if (!snapshot.exists) {
+            this.isLoading = false;
+            return;
+          }
           this.selectedEvents = snapshot.data().eventid;
-
-          // snapshot.forEach(doc => {
-          //   this.selectedEvents.push(doc);
-          // });
-          this.loading = false;
           this.loading = false;
         })
         .catch(err => {
           this.loading = false;
+          this.$emit("show", "Error getting documents")
           console.log("Error getting documents", err);
         });
     },
