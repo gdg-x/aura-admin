@@ -45,7 +45,7 @@ const routes = [
   {
     path: '/partners',
     name: "Partners",
-    component: () => import( /* webpackChunkName: "team" */ '@/views/Partners'),
+    component: () => import( /* webpackChunkName: "partners" */ '@/views/Partners'),
     meta: {
       requiresAuth: true,
       title: "Partners"
@@ -54,7 +54,7 @@ const routes = [
   {
     path: '/partners/:id',
     name: "Partners-Details",
-    component: () => import( /* webpackChunkName: "team-details" */ '@/views/Partners/ViewPartner'),
+    component: () => import( /* webpackChunkName: "partners-details" */ '@/views/Partners/ViewPartner'),
     meta: {
       requiresAuth: true,
       title: "Partner Details"
@@ -90,7 +90,7 @@ const routes = [
   {
     path: '/config',
     name: "Config",
-    component: () => import( /* webpackChunkName: "login" */ '@/views/Config'),
+    component: () => import( /* webpackChunkName: "config" */ '@/views/Config'),
     meta: {
       requiresAuth: true,
       title: "Config"
@@ -108,7 +108,7 @@ const routes = [
   {
     path: '/events/:id',
     name: "Event-Details",
-    component: () => import( /* webpackChunkName: "team-details" */ '@/views/Events/ViewEvent'),
+    component: () => import( /* webpackChunkName: "event-details" */ '@/views/Events/ViewEvent'),
     meta: {
       requiresAuth: true,
       title: "Event Details"
