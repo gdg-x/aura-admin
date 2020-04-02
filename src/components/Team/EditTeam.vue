@@ -264,8 +264,6 @@ export default {
     UpdateData() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        console.log(this.updatedData);
-        console.log(this.teamData.id);
 
         firebase.firestore
           .collection("team")

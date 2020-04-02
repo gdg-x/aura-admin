@@ -19,11 +19,11 @@
             <span style="font-size:120%">Events</span>
           </v-btn>
           <v-spacer></v-spacer>
-          <!-- <EditTeam
-            :teamData="teamInfo"
+          <EditEvent
+            :eventInfo="eventInfo"
             v-if="!showLoader && !userNotFound"
             @editedSuccess="showSnakeBar"
-          /> -->
+          />
           <DeleteEvent
             :EventInfo="eventInfo"
             @RemoveSuceess="showSnakeBar"
@@ -155,7 +155,7 @@
                                         <h4 class="google-font">Partners</h4>
                                         <v-container class="pa-0">
                                             <v-row>
-                                                <v-col class="ma-0" md="4" v-for="(item,i) in eventInfo.partners" :key="i">
+                                                <v-col class="ma-0" md="3" v-for="(item,i) in eventInfo.partners" :key="i">
                                                     <div v-for="(itemp,j) in partnersInfo" :key="j">
                                                         <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
                                                             <!-- <v-avatar size="100">
@@ -231,14 +231,14 @@
 import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
 import DeleteEvent from "@/components/Events/subcomponents/DeleteEvent";
-// import EditTeam from "@/components/Team/EditTeam";
+import EditEvent from "@/components/Events/CustomEvents/EditCustomEvent";
 
 export default {
   name: "ViewTeam",
   components: {
     Snakebar,
     DeleteEvent,
-    // EditTeam
+    EditEvent
   },
   data: () => ({
     snakeBarMessage: "",
@@ -284,7 +284,7 @@ export default {
         .doc(this.$route.params.id)
         .get()
         .then(doc => {
-          console.log(doc.data());
+          // console.log(doc.data());
           if (doc.data() == undefined) {
             this.showLoader = false;
             this.userNotFound = true;

@@ -6,10 +6,10 @@
         <v-tooltip bottom> 
           <template v-slot:activator="{ on }">
             <v-btn fab x-small color="indigo" outlined dark v-on="on" @click.stop="dialog = true">
-              <v-icon dark>mdi-plus</v-icon>
+              <v-icon dark>mdi-lead-pencil</v-icon>
             </v-btn>
           </template>
-          <span>Add New Custom Event</span>
+          <span>Edit {{eventInfo.name}}</span>
         </v-tooltip>
 
       </template>
@@ -18,9 +18,9 @@
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title class="google-font">New Custom Event</v-toolbar-title>
+          <v-toolbar-title class="google-font">Edit {{eventInfo.name}}</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="indigo" :loading="loading" depressed dark @click="SaveEvent"> Save Event</v-btn> 
+          <v-btn color="indigo" :loading="loading" depressed dark @click="SaveEvent"> Edit Event</v-btn> 
         </v-toolbar>
         <v-card-text class="px-1">
             <v-container fluid class="" style="">
@@ -28,7 +28,7 @@
                 <v-row justify="center" align="start">
                     <v-col md="3" lg="2" cols="12" sm="3">
                         <img style="width:100%;text-align:center" :src="require('@/assets/img/svg/dataentry.svg')"/>
-                        <h3 class="google-font">New Custom Event </h3>
+                        <h3 class="google-font">Edit {{eventInfo.name}} </h3>
                         <p class="google-font mb-0" style="color:red">*indicates required field</p>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi dolore facilis maiores sed doloribus ratione omnis modi saepe impedit laboriosam officia eligendi vel optio nulla voluptas, sapiente, fugiat eos ullam.
                     </v-col>
@@ -39,15 +39,15 @@
                                 <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil dignissimos atque delectus eum itaque unde necessitatibus excepturi provident debitis similique ullam blanditiis reiciendis ea perferendis in? Iusto, facilis.</p>
                             </v-col>
                             <v-col md="3" cols="6" class="ma-0">
-                            <v-select :items="items" v-model="eventData.active" label="Active Status*" outlined></v-select>
+                            <v-select :items="items" v-model="updatedeventData.active" label="Active Status*" outlined></v-select>
                             </v-col>
 
                             <v-col md="3" cols="6" class="ma-0">
-                            <v-select :items="items" v-model="eventData.visible" label="Visiblity Status*" outlined></v-select>
+                            <v-select :items="items" v-model="updatedeventData.visible" label="Visiblity Status*" outlined></v-select>
                             </v-col>
 
                             <v-col md="3" xs="12" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.id" class="ma-0" :rules="idRules" label="Event ID*" type="text" outlined></v-text-field>
+                            <v-text-field disabled v-model="updatedeventData.id" class="ma-0" :rules="idRules" label="Event ID*" type="text" outlined></v-text-field>
                             </v-col>
                         </v-row>
 
@@ -58,7 +58,7 @@
                             </v-col>
 
                             <v-col md="5" xs="3" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.name" class="ma-0" :rules="idRules" label="Event Name*" type="text" outlined></v-text-field>
+                            <v-text-field v-model="updatedeventData.name" class="ma-0" :rules="idRules" label="Event Name*" type="text" outlined></v-text-field>
                             </v-col>
 
                             <v-col md="3" xs="3" cols="12" class="ma-0">
@@ -66,49 +66,49 @@
                                     ref="menu"
                                     v-model="menu"
                                     :close-on-content-click="false"
-                                    :return-value.sync="eventData.date"
+                                    :return-value.sync="updatedeventData.date"
                                     transition="scale-transition"
                                     offset-y
                                     min-width="290px"
                                 >
                                     <template v-slot:activator="{ on }">
                                         <v-text-field
-                                            v-model="eventData.date"
+                                            v-model="updatedeventData.date"
                                             label="Date *"
                                             outlined
                                             v-on="on"
                                         ></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="eventData.date" no-title scrollable>
+                                    <v-date-picker v-model="updatedeventData.date" no-title scrollable>
                                     <v-spacer></v-spacer>
                                     <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                                    <v-btn text color="primary" @click="$refs.menu.save(eventData.date)">OK</v-btn>
+                                    <v-btn text color="primary" @click="$refs.menu.save(updatedeventData.date)">OK</v-btn>
                                     </v-date-picker>
                                 </v-menu>
                             </v-col>
 
                             <v-col md="2" xs="3" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.time.starttime" class="ma-0" :rules="idRules" label="Event Start Time*" type="time" outlined></v-text-field>
+                            <v-text-field v-model="updatedeventData.time.starttime" class="ma-0" :rules="idRules" label="Event Start Time*" type="time" outlined></v-text-field>
                             </v-col>
 
                             <v-col md="2" xs="3" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.time.endtime" class="ma-0" :rules="idRules" label="Event End Time*" type="time" outlined></v-text-field>
+                            <v-text-field v-model="updatedeventData.time.endtime" class="ma-0" :rules="idRules" label="Event End Time*" type="time" outlined></v-text-field>
                             </v-col>
                             <v-col md="4" xs="4" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.venue.name" class="ma-0" label="Venue" outlined></v-text-field>
+                            <v-text-field v-model="updatedeventData.venue.name" class="ma-0" label="Venue" outlined></v-text-field>
                             </v-col>
                             <v-col md="8" xs="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.venue.googlemapsurl" class="ma-0" label="Venue Google Maps Link" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.venue.googlemapsurl" class="ma-0" label="Venue Google Maps Link" outlined></v-text-field>
                             </v-col>
 
                             <v-col md="6" xs="4" cols="12" class="ma-0">
-                            <v-text-field v-model="eventData.image" class="ma-0" label="Image URL" outlined></v-text-field>
+                            <v-text-field v-model="updatedeventData.image" class="ma-0" label="Image URL" outlined></v-text-field>
                             </v-col>
 
                             <v-col md="6" xs="4" cols="12" class="ma-0">
                             <v-combobox
                                 chips
-                                v-model="eventData.hashtags"
+                                v-model="updatedeventData.hashtags"
                                 clearable
                                 label="Event Hashtags"
                                 multiple
@@ -128,7 +128,7 @@
                             </v-col>
 
                             <v-col md="12" xs="12" cols="12" class="ma-0">
-                            <v-textarea outlined name="input-7-4" v-model="eventData.des" label="Event Description"></v-textarea>
+                            <v-textarea outlined name="input-7-4" v-model="updatedeventData.des" label="Event Description"></v-textarea>
                             </v-col>
                         </v-row>
 
@@ -139,7 +139,7 @@
                             </v-col>
                             <v-col md="6" xs="6" lg="4" cols="12" class="ma-0">
                                 <v-select
-                                v-model="eventData.speakers"
+                                v-model="updatedeventData.speakers"
                                 :items="speakersData"
                                 outlined
                                 item-text="name"
@@ -159,7 +159,7 @@
                             </v-col>
                             <v-col md="6" xs="6" lg="4" cols="12" class="ma-0">
                                 <v-select
-                                v-model="eventData.partners"
+                                v-model="updatedeventData.partners"
                                 :items="partnersData"
                                 outlined
                                 item-text="name"
@@ -185,19 +185,19 @@
                                 <p class="google-font mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil </p>
                             </v-col>
                             <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.links.meetup" class="ma-0" label="Event Meetup URL" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.links.meetup" class="ma-0" label="Event Meetup URL" outlined></v-text-field>
                             </v-col>
                             <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.links.registration" class="ma-0" label="Event Registration Link" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.links.registration" class="ma-0" label="Event Registration Link" outlined></v-text-field>
                             </v-col>
                             <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.links.facebook" class="ma-0" label="Event Facebook Page Link" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.links.facebook" class="ma-0" label="Event Facebook Page Link" outlined></v-text-field>
                             </v-col>
                             <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.links.feedback" class="ma-0" label="Event Feedback Link" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.links.feedback" class="ma-0" label="Event Feedback Link" outlined></v-text-field>
                             </v-col>
                             <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
-                                <v-text-field v-model="eventData.links.callforspeaker" class="ma-0" label="Call For Speaker Link" outlined></v-text-field>
+                                <v-text-field v-model="updatedeventData.links.callforspeaker" class="ma-0" label="Call For Speaker Link" outlined></v-text-field>
                             </v-col>
                         </v-row>
 
@@ -210,23 +210,23 @@
                                 <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                     <v-toolbar-title class="google-font mr-3">Event Agenda </v-toolbar-title>
                                     <v-spacer></v-spacer>
-                                    <AddNewAgenda :data.sync="eventData.agenda"/>
+                                    <AddNewAgenda :data.sync="updatedeventData.agenda"/>
                                 </v-toolbar>
                             </v-col>
 
-                            <v-col cols="12" v-if="eventData.agenda.length<=0" class="">
+                            <v-col cols="12" v-if="updatedeventData.agenda.length<=0" class="">
                                 <v-img :src="require('@/assets/img/svg/DataNotFound.svg')" :height="150" contain></v-img>
                                 <p class="google-font my-0 py-0 mb-2 text-center">No Agenda found</p>
                             </v-col>
 
-                            <v-col cols="12">
+                            <v-col cols="12" v-else>
                                 <v-row >
-                                    <v-col md="12" class="my-1 py-0" v-if="eventData.agenda">
+                                    <v-col md="12" class="my-1 py-0">
                                         <v-data-table
-                                            v-for="(item,idx) in eventData.agenda" :key="idx"
+                                            v-for="(item,idx) in updatedeventData.agenda" :key="idx"
                                             :headers="headers"
                                              mobile-breakpoint="0"
-                                            :items.sync="eventData.agenda"
+                                            :items.sync="updatedeventData.agenda"
                                             :items-per-page="5"
                                             class="elevation-0 lightModeCard"
                                         >
@@ -235,7 +235,6 @@
                                                <v-btn fab x-small color="indigo" class="mx-1" outlined dark>
                                                   <v-icon @click="deleteData(idx)">mdi-delete</v-icon>
                                                 </v-btn>
-                                               <!-- <RemoveAgenda :data.sync = "item"/> -->
                                             </template>
                                         </v-data-table>
                                     </v-col>
@@ -251,18 +250,6 @@
         </v-card-text>
 
         <v-divider></v-divider>
-
-        <!-- <v-card-actions class="indigo py-5 elevation-5">
-          <div class="flex-grow-1"></div>
-          <v-btn color="white" text @click="dialog = false">Close</v-btn>
-          <v-btn
-            color="white"
-            depressed
-            :disabled="!valid"
-            :loading="loading"
-            @click="SaveEvent"
-          >Save</v-btn>
-        </v-card-actions> -->
       </v-card>
     </v-dialog>
   </div>
@@ -279,11 +266,12 @@ export default {
     EditAgenda,
     // RemoveAgenda
   },
-  props: [],
+  props: {
+    eventInfo: {}
+  },
   data() {
     return {
       menu:false,
-      imageUpload: [],
       headers:[
           {
             text: 'Start Time',
@@ -297,10 +285,7 @@ export default {
           { text: 'Description', value: 'des' },
           { text: 'Actions', sortable: false, value: 'actions' },
       ],
-      imagePre: "",
-      imageUploading: false,
       valid: true,
-      dialogImageUload: false,
       idRules: [
         v => !!v || "Field Value is required",
         v => (v && v.length <= 30) || "Name must be less than 30 characters"
@@ -318,45 +303,46 @@ export default {
       loading: false,
       items: [true, false],
 
-      eventData:{
-        id:'',
-        active: Boolean,
-        visible: Boolean,
-        name:'',
-        image:'',
-        date:'',
-        des:'',
+      updatedeventData:{
+        id: this.eventInfo.id,
+        active: this.eventInfo.active,
+        visible: this.eventInfo.visible,
+        name:this.eventInfo.name,
+        image: this.eventInfo.image,
+        date: this.eventInfo.date,
+        des: this.eventInfo.des,
         venue:{
-            name:'',
-            googlemapsurl:''
+            name: this.eventInfo.venue.name,
+            googlemapsurl: this.eventInfo.venue.googlemapsurl
         },
         links:{
-            meetup:'',
-            facebook:'',
-            registration:'',
-            feedback:'',
-            callforspeaker:''
+            meetup: this.eventInfo.links.meetup,
+            facebook: this.eventInfo.links.facebook,
+            registration: this.eventInfo.links.registration,
+            feedback: this.eventInfo.links.feedback,
+            callforspeaker: this.eventInfo.links.callforspeaker
         },
         time:{
-            starttime:'',
-            endtime:''
+            starttime: this.eventInfo.time.starttime,
+            endtime: this.eventInfo.time.endtime
         },
-        hashtags:[],
-        speakers:[],
-        partners:[],
-        agenda:[]
+        hashtags: this.eventInfo.hashtags,
+        speakers: this.eventInfo.speakers,
+        partners: this.eventInfo.partners,
+        agenda: this.eventInfo.agenda
       },
       speakersData:[],
       partnersData:[]
     };
   },
   mounted(){
+    console.log(this.eventInfo)
     this.ShowSpeakers()
     this.ShowPartners()
   },
   methods: {
     deleteData(index) {
-      this.eventData.agenda.splice(index, 1);
+      this.updatedeventData.agenda.splice(index, 1);
     },
     ShowSpeakers(){
         firebase.firestore
@@ -385,10 +371,10 @@ export default {
         });
     },
     remove(item) {
-      this.eventData.hashtags.splice(
-        this.eventData.hashtags.indexOf(item),1
+      this.updatedeventData.hashtags.splice(
+        this.updatedeventData.hashtags.indexOf(item),1
       );
-      this.eventData.hashtags = [...this.eventData.hashtags];
+      this.updatedeventData.hashtags = [...this.updatedeventData.hashtags];
     },
     SaveEvent() {
       console.log('Save BTN Called')
@@ -396,17 +382,45 @@ export default {
         this.loading = true;
         firebase.firestore
           .collection("events")
-          .doc(this.eventData.id)
-          .set(this.eventData)
+          .doc(this.eventInfo.id)
+          .update(
+              {
+                active: this.updatedeventData.active,
+                visible: this.updatedeventData.visible,
+                name:this.updatedeventData.name,
+                image: this.updatedeventData.image,
+                date: this.updatedeventData.date,
+                des: this.updatedeventData.des,
+                venue:{
+                    name: this.updatedeventData.venue.name,
+                    googlemapsurl: this.updatedeventData.venue.googlemapsurl
+                },
+                links:{
+                    meetup: this.updatedeventData.links.meetup,
+                    facebook: this.updatedeventData.links.facebook,
+                    registration: this.updatedeventData.links.registration,
+                    feedback: this.updatedeventData.links.feedback,
+                    callforspeaker: this.updatedeventData.links.callforspeaker
+                },
+                time:{
+                    starttime: this.updatedeventData.time.starttime,
+                    endtime: this.updatedeventData.time.endtime
+                },
+                hashtags: this.updatedeventData.hashtags,
+                speakers: this.updatedeventData.speakers,
+                partners: this.updatedeventData.partners,
+                agenda: this.updatedeventData.agenda
+            }
+          )
           .then(res => {
             this.loading = false;
             this.dialog = false;
-            this.$emit("showSuccess", "Event Added Success");
+            this.$emit("editedSuccess", "Event Edit Success");
           })
           .catch(e => {
             this.loading = false;
             console.log(e);
-            this.$emit("showSuccess", "Failed to Add Event");
+            this.$emit("showSuccess", "Failed to Edit Event");
           });
       }
     }

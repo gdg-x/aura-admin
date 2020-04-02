@@ -26,16 +26,8 @@
     </v-row>
 
     <v-row>
-      <v-col md="4" class="">
+      <v-col md="5" class="">
         <CustomEvents />
-        <!-- <v-container>
-          <v-row>
-            <v-col class="lightModeCard pa-5">
-              <h1>Custom Events Page</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et perspiciatis iure qui esse natus molestiae officiis ipsa nemo. Vero distinctio ipsum ducimus sint at ea sunt fugiat mollitia? Aliquid, deserunt.</p>
-            </v-col>
-          </v-row>
-        </v-container> -->
       </v-col>
       <v-col md="">
         <MeetupEvents/>
