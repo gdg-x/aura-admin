@@ -16,6 +16,7 @@ self.addEventListener('message', (e) => {
   // workbox.core.clientsClaim();
   workbox.core.setCacheNameDetails({prefix: "aura-admin"});
   
+  
   // The precaching code provided by Workbox.
   self.__precacheManifest = [].concat(self.__precacheManifest || []);
   workbox.precaching.suppressWarnings();
