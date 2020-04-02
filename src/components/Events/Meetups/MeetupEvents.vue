@@ -58,13 +58,12 @@
                     <template v-slot:item.name="{ item }">
                         {{item.name | summary(12) }}
                     </template>
-                    <template v-slot:item.venue.name="{ item }">
-                        {{item.venue.name | summary(20) }}
-                    </template>
+
                     <template v-slot:item.status="{ item }">
                         <v-chip small v-if="item.status == 'past'" dark color="red">Past</v-chip>
                         <v-chip v-else small dark color="green">Upcoming</v-chip>
                     </template>
+
                     <template v-slot:item.link="{ item }">
                         <a :href="item.link" target="_blank">See More</a>
                     </template>
@@ -75,10 +74,8 @@
 </template>
 
 <script>
-let configData = {
-    'MeetupURLName':'GDG-Jalandhar'
-}
-let MeetupURL ='https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+configData.MeetupURLName+'/events?desc=true&photo-host=public&sign=true&page=1000&status=past'
+import firebase from "@/config/firebase";
+
 export default {
     name:'MeetupEvents',
     data:()=>({
@@ -93,30 +90,52 @@ export default {
           },
           { text: 'Date', value: 'local_date' },
           { text: 'Status', value: 'status' },
-          { text: 'Venue', value: 'venue.name' },
-          { text: 'Manual Attendees', value: 'manual_attendance_count' },
+          { text: 'RSVP', value: 'yes_rsvp_count' },
           { text: 'See More', value: 'link' },
         ],
-        MeetupData:[]
+        MeetupData:[],
+        MeetupURLID:{},
     }),
     mounted(){
-        this.getAllMeetupEvents();
+        this.getConfig()
+        // this.getAllMeetupEvents();
     },
     methods:{
+        getConfig(){
+            firebase.firestore
+            .collection("config")
+            .doc('keysandsecurity')
+            .get()
+            .then(doc => {
+            if (doc.data() == undefined) {
+                console.log('Not Found')
+            } else if (doc.data()) {
+                this.MeetupURLID = doc.data().meetup
+                this.getAllMeetupEvents(this.MeetupURLID)
+            } else {
+                console.log('Not Found')
+            }
+            })
+            .catch(e => {
+            console.log("Message" + e);
+            });
+        },
         openCloseSearch(){
             this.isSearch = !this.isSearch
             this.search = "";
         },
-        getAllMeetupEvents(){
+        getAllMeetupEvents(path){
             this.isLoading = true
-            fetch(MeetupURL).then(res=>res.json()).then(data=>{
+            fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+path+'/events?desc=true&photo-host=public&sign=true&page=1000&status=past').then(res=>res.json()).then(data=>{
                 this.MeetupData = data
+                // console.log(this.MeetupData)
                 this.isLoading = false
             }).catch(e=>{
                 this.isLoading = false;
                 console.log('Error ', e)
             })
         }
+
     },
     filters:{
         summary: (val,num)=>{

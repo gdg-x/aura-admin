@@ -136,15 +136,13 @@ export default {
                 snapshot.forEach(doc => {
                     this.customEventData.push(doc.data());
                     this.isLoading = false
-                    // console.log('S1', this.customEventData)
                 });
             
             })
             .catch(err => {
                 this.isLoading = false;
                 console.log("Error getting documents", err);
-            });
-            
+            });    
         },
         showSnakeBar(e) {
             this.snakeBarMessage = e;

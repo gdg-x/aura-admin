@@ -35,7 +35,13 @@
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Events</p>
-                <p class="google-font my-0" style="font-size:280%">145</p>
+                <v-progress-circular
+                  indeterminate
+                  v-if="eventLoader"
+                  class="my-4"
+                  color="primary"
+                ></v-progress-circular>
+                <p v-else class="google-font my-0" style="font-size:280%">{{customEventData.length}}</p>
                 <p class="google-font my-0" v-on:click="goToRoute('/events')" style="font-size:80%;cursor: pointer;user-select: none;">View All Events</p>
               </v-col>
             </v-row>
@@ -135,7 +141,9 @@ export default {
     speakersData:[],
     speakersLoader:true,
     partnersData:[],
-    partnersLoader:true
+    partnersLoader:true,
+    customEventData:[],
+    eventLoader:true
   }),
   mounted(){
     if(firebase.auth.currentUser){
@@ -143,6 +151,7 @@ export default {
       this.GetAllTeam()
       this.GetAllSpeakers()
       this.GetAllPartners()
+      this.GetAllCustomEvents()
     }else{
         this.$router.replace('login')
     }
@@ -206,7 +215,23 @@ export default {
         console.log("Error getting documents", err);
         this.partnersLoader = false
       });
-    }
+    },
+    GetAllCustomEvents(){
+      this.eventLoader = true
+      firebase.firestore
+      .collection("events")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.customEventData.push(doc.data());
+        });
+        this.eventLoader = false
+      })
+      .catch(err => {
+          this.eventLoader = false
+          console.log("Error getting documents", err);
+      });    
+    },
   }
 }
 </script>

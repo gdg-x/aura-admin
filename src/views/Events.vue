@@ -9,7 +9,7 @@
     <v-row class="">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">Events</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">Events | {{communityName}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
           <AddFeatureEvent @showSuccess="showSnakeBar" />
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
 import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
 import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
@@ -52,7 +53,6 @@ export default {
     UpcomingMeetupEvents,
     CustomEvents,
     Snakebar,
-    // AddNewCustomEvent,
     AddFeatureEvent
   },
   data:()=>({
@@ -60,11 +60,31 @@ export default {
     snakeBarMessage: "",
     isSnakeBarVisible: false,
     snakeBarColor: "green",
-    snakeBarTimeOut: 5000
+    snakeBarTimeOut: 5000,
+    communityName:''
   }),
   mounted(){
+    this.getConfig()
   },
   methods:{
+    getConfig(){
+        firebase.firestore
+        .collection("config")
+        .doc('general')
+        .get()
+        .then(doc => {
+        if (doc.data() == undefined) {
+            console.log('Not Found')
+        } else if (doc.data()) {
+            this.communityName = doc.data().name
+        } else {
+            console.log('Not Found')
+        }
+        })
+        .catch(e => {
+          console.log("Message" + e);
+        });
+    },
     showSnakeBar(e) {
       this.snakeBarMessage = e;
       this.isSnakeBarVisible = true;
