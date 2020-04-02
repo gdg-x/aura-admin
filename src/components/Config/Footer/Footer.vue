@@ -155,7 +155,7 @@ export default {
       this.getData()
     },
     deleteData(index,child) {
-      this.linksData.links[child].splice(index, 1);
+      this.linksData[child].splice(index, 1);
     },
     saveData(){
         this.isAdding = true;
