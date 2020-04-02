@@ -58,12 +58,18 @@
                     :headers="headers"
                     :loading="isLoading"
                     :items="customEventData"
-                    :items-per-page="10"
+                    :items-per-page="5"
                     style="border:1px solid #e0e0e0;border-radius:5px;"
                 >
+                    <template v-slot:item.venue.name="{ item }">
+                        {{item.venue.name | summary(20) }}
+                    </template>
+                    <template v-slot:item.name="{ item }">
+                        {{item.name | summary(12) }}
+                    </template>
                     <template v-slot:item.active="{ item }">
-                        <v-chip x-small v-if="item.Active == false" dark color="red">Inactive</v-chip>
-                        <v-chip v-else x-small dark color="green">Active</v-chip>
+                        <v-chip small v-if="item.active == false" dark color="red">Inactive</v-chip>
+                        <v-chip v-else small dark color="green">Active</v-chip>
                     </template>
                     <template v-slot:item.view="{ item }">
                         <!-- <p @click="goToEventDetails(item.id)">See More</p> -->
@@ -149,6 +155,15 @@ export default {
             this.isSearch = !this.isSearch
             this.search = "";
         },
+    },
+    filters:{
+        summary: (val,num)=>{
+          if(val.length > num){
+            return val.substring(0,num)+"..."
+          }else{
+            return val
+          }
+        }
     }
 }
 </script>

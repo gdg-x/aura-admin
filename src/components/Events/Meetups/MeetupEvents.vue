@@ -52,9 +52,15 @@
                     :headers="headers"
                     :items="MeetupData"
                     :loading="isLoading"
-                    :items-per-page="10"
+                    :items-per-page="5"
                     style="border:1px solid #e0e0e0;border-radius:5px;"
-                >
+                >   
+                    <template v-slot:item.name="{ item }">
+                        {{item.name | summary(12) }}
+                    </template>
+                    <template v-slot:item.venue.name="{ item }">
+                        {{item.venue.name | summary(20) }}
+                    </template>
                     <template v-slot:item.status="{ item }">
                         <v-chip small v-if="item.status == 'past'" dark color="red">Past</v-chip>
                         <v-chip v-else small dark color="green">Upcoming</v-chip>
@@ -88,7 +94,6 @@ export default {
           { text: 'Date', value: 'local_date' },
           { text: 'Status', value: 'status' },
           { text: 'Venue', value: 'venue.name' },
-          { text: 'Meetup RSVP', value: 'yes_rsvp_count' },
           { text: 'Manual Attendees', value: 'manual_attendance_count' },
           { text: 'See More', value: 'link' },
         ],
@@ -111,6 +116,15 @@ export default {
                 this.isLoading = false;
                 console.log('Error ', e)
             })
+        }
+    },
+    filters:{
+        summary: (val,num)=>{
+          if(val.length > num){
+            return val.substring(0,num)+"..."
+          }else{
+            return val
+          }
         }
     }
 }
