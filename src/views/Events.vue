@@ -30,7 +30,7 @@
       <v-col md="5" class="">
         <CustomEvents />
       </v-col>
-      <v-col md="">
+      <v-col md="7">
         <MeetupEvents/>
       </v-col>
     </v-row>
