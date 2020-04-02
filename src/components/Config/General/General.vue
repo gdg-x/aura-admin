@@ -9,7 +9,7 @@
     <v-row class="ma-0 pa-0" v-else>
       <v-col md="12" class="my-0 py-0 mt-5">
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-            <v-toolbar-title class="google-font mr-3">Mange Community Data </v-toolbar-title>
+            <v-toolbar-title class="google-font mr-3">Manage Community Data </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn
               depressed
@@ -19,7 +19,7 @@
               dark
             >Save General Settings</v-btn>
         </v-toolbar>
-        <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settins will not be saved until and unless, if you will click the save button</p>
+        <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settings will not be saved until and unless, if you will click the save button</p>
       </v-col>
       <v-col md="4" cols="12">
         <v-row>
