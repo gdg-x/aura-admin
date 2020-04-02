@@ -135,7 +135,7 @@
                                     <v-col>
                                         <h4 class="google-font">Speakers</h4>
                                         <v-container class="pa-0">
-                                            <v-row>
+                                            <v-row v-if="eventInfo.speakers.length>0">
                                                 <v-col class="ma-0" md="4" sm="6" v-for="(item,i) in eventInfo.speakers" :key="i">
                                                     <div v-for="(itemp,j) in speakersInfo" :key="j">
                                                         <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
@@ -149,12 +149,17 @@
                                                     </div>
                                                 </v-col>
                                             </v-row>
+                                            <v-row v-else>
+                                              <v-col md="4" class="" >
+                                                <p class="google-font">Speakers Not Found</p>
+                                              </v-col>
+                                            </v-row>
                                         </v-container>
                                     </v-col>
                                     <v-col>
                                         <h4 class="google-font">Partners</h4>
                                         <v-container class="pa-0">
-                                            <v-row>
+                                            <v-row v-if="eventInfo.partners.length>0">
                                                 <v-col class="ma-0" md="3" v-for="(item,i) in eventInfo.partners" :key="i">
                                                     <div v-for="(itemp,j) in partnersInfo" :key="j">
                                                         <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
@@ -167,6 +172,11 @@
                                                         </div>
                                                     </div>
                                                 </v-col>
+                                            </v-row>
+                                            <v-row v-else>
+                                              <v-col md="4" class="" >
+                                                <p class="google-font">Partners Not Found</p>
+                                              </v-col>
                                             </v-row>
                                         </v-container>
                                     </v-col>
