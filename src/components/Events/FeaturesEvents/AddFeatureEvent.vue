@@ -13,34 +13,36 @@
         >Add Feature Events</v-card-title>
         <v-card-text class="px-5">
           <v-container fluid>
-            <v-row class="pa-0">
-              <v-col cols="12" class="pa-1 ma-0">
-                <p class="google-font">You can add Feature Event up to 4</p>
-                <v-autocomplete
-                  v-model="selectedEvents"
-                  :items="eventsData"
-                  outlined
-                  :loading="loadingSpeaker"
-                  chips
-                  :rules="event"
-                  item-text="name"
-                  item-value="id"
-                  small-chips
-                  label="Select Features Event"
-                  multiple
-                >
-                  <template v-slot:selection="{ item, index }">
-                    <v-chip small v-if="index === 0">
-                      <span>{{ item.name }}</span>
-                    </v-chip>
-                    <span
-                      v-if="index === 1"
-                      class="grey--text caption"
-                    >(+{{ eventsData.length - 1 }} others)</span>
-                  </template>
-                </v-autocomplete>
-              </v-col>
-            </v-row>
+            <v-form ref="form" v-model="valid" lazy-validation>
+              <v-row class="pa-0">
+                <v-col cols="12" class="pa-1 ma-0">
+                  <p class="google-font">You can add Feature Event up to 4</p>
+                  <v-autocomplete
+                    v-model="selectedEvents"
+                    :items="eventsData"
+                    outlined
+                    :loading="loading"
+                    chips
+                    :rules="event"
+                    item-text="name"
+                    item-value="id"
+                    small-chips
+                    label="Select Features Event"
+                    multiple
+                  >
+                    <template v-slot:selection="{ item, index }">
+                      <v-chip small v-if="index === 0">
+                        <span>{{ item.name }}</span>
+                      </v-chip>
+                      <span
+                        v-if="index === 1"
+                        class="grey--text caption"
+                      >(+{{ selectedEvents.length - 1 }} others)</span>
+                    </template>
+                  </v-autocomplete>
+                </v-col>
+              </v-row>
+            </v-form>
           </v-container>
         </v-card-text>
 
@@ -49,7 +51,13 @@
         <v-card-actions class="grey lighten-4">
           <div class="flex-grow-1"></div>
           <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
-          <v-btn color="indigo" dark @click="addFeatureEvents" depressed :loading="loading">Add</v-btn>
+          <v-btn
+            color="indigo"
+            dark
+            @click="addFeatureEvents"
+            depressed
+            :loading="loading"
+          >Add</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -66,53 +74,79 @@ export default {
     loadingSpeaker: true,
     name: "",
     des: "",
-    event: [
-        v => (v.length<=4) || "Can not exceed 4"
-      ],
+    valid: false,
+    event: [v => v.length <= 4 || "Can not exceed 4"],
     selectedEvents: [],
     eventsData: [],
     isAdding: false
   }),
   mounted() {
     this.ShowEvents();
+    this.loadFeatureEvents();
   },
   methods: {
     ShowEvents() {
-      this.loadingSpeaker = true;
+      this.loading = true;
       firebase.firestore
         .collection("events")
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            this.loadingSpeaker = false;
+            this.loading = false;
             this.eventsData.push(doc.data());
           });
         })
         .catch(err => {
-          this.loadingSpeaker = false;
+          this.loading = false;
+          console.log("Error getting documents", err);
+        });
+    },
+    loadFeatureEvents() {
+      this.loading = true;
+      firebase.firestore
+        .collection("featureevents")
+        .doc("data")
+        .get()
+        .then(snapshot => {
+          // console.log(snapshot);
+          // console.log(snapshot.data())
+          //  this.selectedEvents = snapshot.data();
+          //  console.log(snapshot.doc())
+          this.selectedEvents = snapshot.data().eventid;
+
+          // snapshot.forEach(doc => {
+          //   this.selectedEvents.push(doc);
+          // });
+          this.loading = false;
+          this.loading = false;
+        })
+        .catch(err => {
+          this.loading = false;
           console.log("Error getting documents", err);
         });
     },
     addFeatureEvents() {
-      this.loading = true;
-      var UpdatedEventData = {
-        eventid: this.selectedEvents
-      };
-      // console.log(UpdatedPartnerData)
-      firebase.firestore
-        .collection("featureevents")
-        .doc("data")
-        .set(UpdatedEventData)
-        .then(() => {
-          this.dialog = false;
-          this.$emit("show", "Feature Events Data Added Success");
-          this.loading = false;
-        })
-        .catch(e => {
-          this.$emit("show", e);
-          this.loading = false;
-          console.log(e);
-        });
+      if (this.$refs.form.validate()) {
+        this.loading = true;
+        var UpdatedEventData = {
+          eventid: this.selectedEvents
+        };
+        // console.log(UpdatedPartnerData)
+        firebase.firestore
+          .collection("featureevents")
+          .doc("data")
+          .set(UpdatedEventData)
+          .then(() => {
+            this.dialog = false;
+            this.$emit("show", "Feature Events Data Added Success");
+            this.loading = false;
+          })
+          .catch(e => {
+            this.$emit("show", e);
+            this.loading = false;
+            console.log(e);
+          });
+      }
     }
   }
 };
