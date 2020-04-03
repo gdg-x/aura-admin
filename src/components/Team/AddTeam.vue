@@ -32,11 +32,11 @@
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="active" :rules="idRules" label="Active Status*" outlined></v-select>
+                      <v-select :items="items" v-model="active" label="Active Status*" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="visible" :rules="idRules" label="Visiblity Status*" outlined></v-select>
+                      <v-select :items="items" v-model="visible" label="Visiblity Status*" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">

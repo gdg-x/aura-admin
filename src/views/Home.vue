@@ -31,7 +31,7 @@
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-assistant</v-icon>
+                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-assistant</v-icon>
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Events</p>
@@ -55,7 +55,7 @@
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-nature-people</v-icon>
+                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-nature-people</v-icon>
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Team</p>
@@ -79,7 +79,7 @@
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-account-multiple</v-icon>
+                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-account-multiple</v-icon>
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Speakers</p>
@@ -103,7 +103,7 @@
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:500%">mdi-kodi</v-icon>
+                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-kodi</v-icon>
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Partners</p>
@@ -174,8 +174,8 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.teamData.push(doc.data());
-          this.teamLoader = false
         });
+        this.teamLoader = false
       })
       .catch(err => {
         console.log("Error getting documents", err);
@@ -191,8 +191,8 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.speakersData.push(doc.data());
-          this.speakersLoader = false
         });
+        this.speakersLoader = false
       })
       .catch(err => {
         console.log("Error getting documents", err);
@@ -208,8 +208,8 @@ export default {
       .then(snapshot => {
         snapshot.forEach(doc => {
           this.partnersData.push(doc.data());
-          this.partnersLoader = false
         });
+        this.partnersLoader = false
       })
       .catch(err => {
         console.log("Error getting documents", err);
