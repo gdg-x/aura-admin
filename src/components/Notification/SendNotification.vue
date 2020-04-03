@@ -27,7 +27,6 @@ export default {
   props:['dataA'],
   methods:{
     send() {
-      console.log(this.dataA);
       firebase.firestore
         .collection("pushNotifications")
         .doc(this.dataA.id)
@@ -80,7 +79,7 @@ export default {
               //     })
               //     .catch(err => alert(err));
               // });
-              console.log(docs);
+              // console.log(docs);
               this.$emit("addedSuccess", "Push Notifications Sent Success");
               this.dialog = false;
             });

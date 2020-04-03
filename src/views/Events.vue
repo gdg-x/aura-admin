@@ -12,7 +12,7 @@
           <v-toolbar-title class="google-font mr-3">Events | {{communityName}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
-          <AddFeatureEvent @showSuccess="showSnakeBar" />
+          <!-- <AddFeatureEvent @showSuccess="showSnakeBar" /> -->
           <!-- <AddNewCustomEvent @show="showSnakeBar" class="ml-2"/> -->
           
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
@@ -23,6 +23,12 @@
     <v-row>
       <v-col>
         <UpcomingMeetupEvents/>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <FeatureEvents/>
       </v-col>
     </v-row>
 
@@ -44,8 +50,10 @@ import Snakebar from "@/components/Common/Snakebar";
 import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
 import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
 import CustomEvents from '@/components/Events/CustomEvents/CustomEvents'
+
 // import AddNewCustomEvent from '@/components/Events/CustomEvents/AddCustomEvent'
-import AddFeatureEvent from '@/components/Events/FeaturesEvents/AddFeatureEvent'
+// import AddFeatureEvent from '@/components/Events/FeaturesEvents/AddFeatureEvent'
+import FeatureEvents from '@/components/Events/FeaturesEvents/FeatureEvents'
 export default {
   name: 'Events',
   components:{
@@ -53,7 +61,8 @@ export default {
     UpcomingMeetupEvents,
     CustomEvents,
     Snakebar,
-    AddFeatureEvent
+    // AddFeatureEvent,
+    FeatureEvents
   },
   data:()=>({
     userEmail:'',
@@ -68,22 +77,22 @@ export default {
   },
   methods:{
     getConfig(){
-        firebase.firestore
-        .collection("config")
-        .doc('general')
-        .get()
-        .then(doc => {
-        if (doc.data() == undefined) {
-            console.log('Not Found')
-        } else if (doc.data()) {
-            this.communityName = doc.data().name
-        } else {
-            console.log('Not Found')
-        }
-        })
-        .catch(e => {
-          console.log("Message" + e);
-        });
+      firebase.firestore
+      .collection("config")
+      .doc('general')
+      .get()
+      .then(doc => {
+      if (doc.data() == undefined) {
+          console.log('Not Found')
+      } else if (doc.data()) {
+          this.communityName = doc.data().name
+      } else {
+          console.log('Not Found')
+      }
+      })
+      .catch(e => {
+        console.log("Message" + e);
+      });
     },
     showSnakeBar(e) {
       this.snakeBarMessage = e;

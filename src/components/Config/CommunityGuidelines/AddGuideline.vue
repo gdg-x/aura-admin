@@ -59,7 +59,6 @@ export default {
     }),
     methods:{
       addGuid(){
-      console.log(this.data);
         this.data.push({
           name:this.name,
           des:this.des

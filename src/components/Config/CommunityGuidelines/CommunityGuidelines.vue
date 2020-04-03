@@ -102,8 +102,6 @@ export default {
   },
   methods: {
     deleteguideline(index) {
-      console.log(index);
-      console.log(this.communityGuidelines.communityGuidelines[index]);
       this.communityGuidelines.communityGuidelines.splice(index, 1);
     },
     setData() {
@@ -129,17 +127,12 @@ export default {
         .doc("communityguidelines")
         .get()
         .then(doc => {
-          console.log(doc);
           if (!doc.exists) {
             this.isLoading = false;
             return;
           }
           doc = doc.data();
-          // console.log(doc);
-          // console.log(Object.keys(doc).length);
           if (Object.keys(doc).length > 0) {
-            console.log("yes");
-            console.log(doc.communityGuidelines);
             this.communityGuidelines = doc;
           }
           this.isLoading = false;

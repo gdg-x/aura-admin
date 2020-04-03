@@ -181,7 +181,6 @@ export default {
         .doc("footer")
         .get()
         .then(doc => {
-          console.log(doc);
           if (!doc.exists) {
             this.isLoading = false;
             return;

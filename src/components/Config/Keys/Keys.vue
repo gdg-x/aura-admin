@@ -68,9 +68,9 @@ export default {
             this.isAdding = false;
             })
             .catch(e => {
-            this.$emit("show", e);
-            this.isAdding = false;
-            console.log(e);
+              this.$emit("show", e);
+              this.isAdding = false;
+              console.log(e);
             });
     },
       getData() {
@@ -80,14 +80,11 @@ export default {
         .doc("keysandsecurity")
         .get()
         .then(doc => {
-          console.log(doc);
           if (!doc.exists) {
             this.isLoading = false;
             return;
           }
           doc = doc.data();
-          console.log(doc);
-          console.log(Object.keys(doc).length);
           if (Object.keys(doc).length > 0) {
             this.key = doc;
           }

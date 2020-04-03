@@ -37,7 +37,6 @@ export default {
   }),
   methods: {
     deleteItem(id) {
-      console.log(id);
       this.loading = true;
       firebase.firestore
         .collection("team")

@@ -117,7 +117,7 @@ export default {
             }
             })
             .catch(e => {
-            console.log("Message" + e);
+                console.log("Message" + e);
             });
         },
         openCloseSearch(){
@@ -128,7 +128,6 @@ export default {
             this.isLoading = true
             fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+path+'/events?desc=true&photo-host=public&sign=true&page=1000&status=past').then(res=>res.json()).then(data=>{
                 this.MeetupData = data
-                // console.log(this.MeetupData)
                 this.isLoading = false
             }).catch(e=>{
                 this.isLoading = false;

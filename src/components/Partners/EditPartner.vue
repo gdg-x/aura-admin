@@ -205,8 +205,6 @@ export default {
     UpdateData() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        console.log(this.updatedData);
-        console.log(this.partnerData.id);
 
         firebase.firestore
           .collection("partners")

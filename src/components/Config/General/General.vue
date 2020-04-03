@@ -257,31 +257,13 @@ export default {
         .doc("general")
         .get()
         .then(doc => {
-          console.log(doc);
           if (!doc.exists) {
             this.isLoading = false;
             return;
           }
           doc = doc.data();
-          console.log(doc);
-          console.log(Object.keys(doc).length);
           if (Object.keys(doc).length > 0) {
             this.communityinfo = doc;
-            // this.communityinfo.name = doc.name;
-            // this.communityinfo.email = doc.email;
-            // this.communityinfo.website = doc.website;
-            // this.communityinfo.meetupLink = doc.meetupLink;
-            // this.communityinfo.shortDescription = doc.shortDescription;
-            // this.communityinfo.longDescription = doc.longDescription;
-            // this.communityinfo.socialLinks.medium = doc.socialLinks.medium;
-            // this.communityinfo.socialLinks.facebook = doc.socialLinks.facebook;
-            // this.communityinfo.socialLinks.linkedin = doc.socialLinks.linkedin;
-            // this.communityinfo.socialLinks.twitter = doc.socialLinks.twitter;
-            // this.communityinfo.socialLinks.github = doc.socialLinks.github;
-            // this.communityinfo.socialLinks.instagram = doc.socialLinks.instagram;
-            // this.communityinfo.blogs.medium = doc.blogs.medium;
-            // this.communityinfo.blogs.devto = doc.blogs.devto;
-            // this.communityinfo.hashtags = doc.hashtags;
           }
           this.isLoading = false;
         })

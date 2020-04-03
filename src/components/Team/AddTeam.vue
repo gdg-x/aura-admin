@@ -253,7 +253,6 @@ export default {
     };
   },
   mounted(){
-    console.log('Add Team component created')
   },
   methods: {
     onFileChange() {
@@ -266,11 +265,9 @@ export default {
     uploadImage() {
       this.imageUploading = true;
       var fileName = `${this.userId}.${this.imageUpload.name.split(".")[1]}`;
-      console.log(fileName);
       var refLink = firebase.storage().ref("team/" + fileName);
       refLink.put(this.imageUpload).then(file => {
         refLink.getDownloadURL().then(a => {
-          console.log(a);
           this.imageURL = a;
           this.imageUploading = false;
           this.uploadImage = "Uploaded";

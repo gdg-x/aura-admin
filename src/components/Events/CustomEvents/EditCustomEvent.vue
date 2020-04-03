@@ -335,7 +335,6 @@ export default {
     };
   },
   mounted(){
-    console.log(this.eventInfo)
     this.ShowSpeakers()
     this.ShowPartners()
   },
@@ -376,7 +375,7 @@ export default {
       this.updatedeventData.hashtags = [...this.updatedeventData.hashtags];
     },
     SaveEvent() {
-      console.log('Save BTN Called')
+      // console.log('Save BTN Called')
       // if (this.$refs.form.validate()) {
         this.loading = true;
         firebase.firestore

@@ -59,8 +59,7 @@ export default {
     }),
     methods:{
       addGuid(){
-      console.log(this.data);
-      this.dialog = false;
+        this.dialog = false;
       }
     }
 };

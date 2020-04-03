@@ -112,7 +112,7 @@ export default {
           .collection("pushNotifications")
           .add(data)
           .then(res => {
-            console.log(res);
+            // console.log(res);
             this.isAdding = false;
             this.$emit("addedSuccess", "Push Notification Added Success");
             this.dialog = false;

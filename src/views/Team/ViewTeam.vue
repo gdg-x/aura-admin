@@ -206,7 +206,6 @@ export default {
         .doc(this.$route.params.id)
         .get()
         .then(doc => {
-          console.log(doc.data());
           if (doc.data() == undefined) {
             this.showLoader = false;
             this.userNotFound = true;

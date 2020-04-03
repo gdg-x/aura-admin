@@ -250,18 +250,6 @@
         </v-card-text>
 
         <v-divider></v-divider>
-
-        <!-- <v-card-actions class="indigo py-5 elevation-5">
-          <div class="flex-grow-1"></div>
-          <v-btn color="white" text @click="dialog = false">Close</v-btn>
-          <v-btn
-            color="white"
-            depressed
-            :disabled="!valid"
-            :loading="loading"
-            @click="SaveEvent"
-          >Save</v-btn>
-        </v-card-actions> -->
       </v-card>
     </v-dialog>
   </div>
@@ -306,7 +294,7 @@ export default {
       ],
       nameRules: [
         v => !!v || "Name is required",
-        v => (v && v.length <= 50) || "Name must be less than 50 characters"
+        v => (v && v.length <= 70) || "Name must be less than 50 characters"
       ],
       emailRules: [
         v => !!v || "E-mail is required",
@@ -316,7 +304,6 @@ export default {
       dialog: false,
       loading: false,
       items: [true, false],
-
       eventData:{
         id:'',
         active: Boolean,
@@ -390,7 +377,7 @@ export default {
       this.eventData.hashtags = [...this.eventData.hashtags];
     },
     SaveEvent() {
-      console.log('Save BTN Called')
+      // console.log('Save BTN Called')
       // if (this.$refs.form.validate()) {
         this.loading = true;
         firebase.firestore
@@ -404,7 +391,6 @@ export default {
           })
           .catch(e => {
             this.loading = false;
-            console.log(e);
             this.$emit("showSuccess", "Failed to Add Event");
           });
       }

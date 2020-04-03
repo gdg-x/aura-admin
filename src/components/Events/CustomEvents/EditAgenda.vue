@@ -84,15 +84,6 @@ export default {
     }),
     methods:{
       addGuid(){
-        // console.log(this.data);
-        // this.data.push({
-        //     starttime:this.starttime,
-        //     endtime:this.endtime,
-        //     title:this.title,
-        //     des:this.des
-        // });
-        // this.name="";
-        // this.des="";
         this.dialog = false;
       }
     }
