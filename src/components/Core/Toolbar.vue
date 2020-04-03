@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app fixed clipped-left class="white black--text">
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
-        <v-toolbar-title class="google-font">Aura Admin 2.0</v-toolbar-title>
+        <v-toolbar-title class="google-font">{{ generalConfig.name }} - Aura Admin 2.0</v-toolbar-title>
         <v-spacer></v-spacer>
         <offline @detected-condition="handleConnectivityChange"></offline>
 
@@ -23,6 +23,7 @@
   import firebase from '@/config/firebase'
   import {
     mapGetters,
+    mapState,
     mapMutations
   } from 'vuex'
   export default {
@@ -34,10 +35,11 @@
         isOffline: false
     }),
     computed:{
+        ...mapState(['generalConfig']),
         ...mapGetters(['links'])
     },
     methods: {
-        ...mapMutations(['toggleDrawer']),
+        ...mapMutations(['toggleDrawer','setGeneral','setKeysAndSecutity']),
         onClick (e, item) {
             e.stopPropagation()
             if (item.to || !item.href) return
@@ -45,6 +47,10 @@
         },
         logout(){
             firebase.auth.signOut().then(()=>{
+                localStorage.removeItem('generalconfig');
+                localStorage.removeItem('keysandsecurity');
+                this.setGeneral({});
+                this.setKeysAndSecutity({});
                 this.$router.replace('/login')
             })
         },

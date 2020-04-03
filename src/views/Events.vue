@@ -9,7 +9,7 @@
     <v-row class="">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">Events | {{communityName}}</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">Events | {{generalConfig.name}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
           <!-- <AddFeatureEvent @showSuccess="showSnakeBar" /> -->
@@ -22,7 +22,7 @@
 
     <v-row>
       <v-col>
-        <UpcomingMeetupEvents/>
+        <UpcomingMeetupEvents :meetupkey="keysandsecurity.meetup"/>
       </v-col>
     </v-row>
 
@@ -37,7 +37,7 @@
         <CustomEvents />
       </v-col>
       <v-col md="7">
-        <MeetupEvents/>
+        <MeetupEvents :meetupkey="keysandsecurity.meetup"/>
       </v-col>
     </v-row>
   </v-container>
@@ -46,6 +46,8 @@
 
 <script>
 import firebase from "@/config/firebase";
+import { mapState } from 'vuex';
+
 import Snakebar from "@/components/Common/Snakebar";
 import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
 import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
@@ -72,8 +74,11 @@ export default {
     snakeBarTimeOut: 5000,
     communityName:''
   }),
+  computed:{
+      ...mapState(['generalConfig',"keysandsecurity"]),
+  },
   mounted(){
-    this.getConfig()
+    // this.getConfig()
   },
   methods:{
     getConfig(){

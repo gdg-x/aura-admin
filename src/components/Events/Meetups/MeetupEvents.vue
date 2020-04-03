@@ -74,10 +74,9 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
 export default {
     name:'MeetupEvents',
+    props:['meetupkey'],
     data:()=>({
         search:'',
         isSearch:false,
@@ -97,36 +96,17 @@ export default {
         MeetupURLID:{},
     }),
     mounted(){
-        this.getConfig()
-        // this.getAllMeetupEvents();
+        // this.getConfig()
+        this.getAllMeetupEvents();
     },
     methods:{
-        getConfig(){
-            firebase.firestore
-            .collection("config")
-            .doc('keysandsecurity')
-            .get()
-            .then(doc => {
-            if (doc.data() == undefined) {
-                console.log('Not Found')
-            } else if (doc.data()) {
-                this.MeetupURLID = doc.data().meetup
-                this.getAllMeetupEvents(this.MeetupURLID)
-            } else {
-                console.log('Not Found')
-            }
-            })
-            .catch(e => {
-                console.log("Message" + e);
-            });
-        },
         openCloseSearch(){
             this.isSearch = !this.isSearch
             this.search = "";
         },
         getAllMeetupEvents(path){
             this.isLoading = true
-            fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+path+'/events?desc=true&photo-host=public&sign=true&page=1000&status=past').then(res=>res.json()).then(data=>{
+            fetch('https://cors-anywhere.herokuapp.com/https://api.meetup.com/'+this.meetupkey+'/events?desc=true&photo-host=public&sign=true&page=1000&status=past').then(res=>res.json()).then(data=>{
                 this.MeetupData = data
                 this.isLoading = false
             }).catch(e=>{

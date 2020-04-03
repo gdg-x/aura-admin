@@ -6,7 +6,7 @@
         </v-list-item-avatar>
         <v-list-item-content>
             <v-list-item-title class="google-font">Community Lead</v-list-item-title>
-            <v-list-item-subtitle>{{ communtiemail }}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{ generalConfig.email }}</v-list-item-subtitle>
         </v-list-item-content>
         </v-list-item >
         <v-divider></v-divider>
@@ -57,6 +57,7 @@
 <script>
     import {
         mapGetters,
+        mapState,
         mapMutations
     } from 'vuex';
     import firebase from '@/config/firebase'
@@ -66,6 +67,7 @@
             communtiemail:""
         }),
         computed:{
+            ...mapState(['generalConfig']),
             ...mapGetters(['links']),
             drawer: {
                 get () {

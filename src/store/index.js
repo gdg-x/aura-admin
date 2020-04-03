@@ -8,6 +8,8 @@ export default new Vuex.Store({
     drawer: true,
     isLoggedin: false,
     role: "demo",
+    generalConfig:{},
+    keysandsecurity:{},
     items: [{
         text: 'Home',
         to: '/home',
@@ -55,6 +57,8 @@ export default new Vuex.Store({
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer),
     roleSet: (state, payload) => (state.role = payload),
+    setGeneral:(state, payload)=>(state.generalConfig = payload),
+    setKeysAndSecutity:(state, payload)=>(state.keysandsecurity= payload),
   },
   actions: {},
   modules: {}
