@@ -37,7 +37,7 @@
             </v-col>
             
         </v-row>
-        <v-row class="my-0 pa-0" v-else >
+        <v-row class="my-0 pa-0" v-else-if="featureEvendsID.length==0 && !showNetworkError" >
             <v-col class="my-0 text-center" md="3" lg="3" sm="6" cols="12">
                 <div class="lightModeCard pa-3" style="border-left:8px solid #5AB55E">
                     <img style="width:20%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
@@ -101,9 +101,10 @@ export default {
             .doc("data")
             .get()
             .then(snapshot => {
-            if (!snapshot.exists) {
-                return;
-            }
+                if (!snapshot.exists) {
+                    this.loader = false
+                    return;
+                }
                 this.featureEvendsID = snapshot.data().eventid;
                 this.GetAllCustomEvents()
             })
