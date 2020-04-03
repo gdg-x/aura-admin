@@ -8,19 +8,21 @@
     </v-row>
 
     <v-row class="ma-0 pa-0" v-else>
-      <v-col md="12" >
+      <v-col md="12">
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-            <v-toolbar-title class="google-font mr-3">Manage Keys & Securities </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn
-              depressed
-              color="indigo"
-              :loading="isAdding"
-              @click="setData"
-              dark
-            >Save Keys & Security</v-btn>
+          <v-toolbar-title class="google-font mr-3">Manage Keys & Securities</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            depressed
+            color="indigo"
+            :loading="isAdding"
+            @click="setData"
+            dark
+          >Save Keys & Security</v-btn>
         </v-toolbar>
-        <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Settings will not be saved until and unless, if you will click the save button</p>
+        <p class="mb-0 mt-3 google-font" style="color:red">
+          <b>!Important</b> Settings will not be saved until and unless, if you will click the save button
+        </p>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
         <v-text-field class="my-0 py-0" label="Mail Gun API Key" v-model="key.mail_champ" outlined></v-text-field>
@@ -41,39 +43,47 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase';
+import firebase from "@/config/firebase";
+import { mapMutations } from "vuex";
+
 export default {
   name: "KeysandSecurity",
   data: () => ({
     isLoading: false,
-    isAdding:false,
-    key:{
-        mail_champ:"",
-        mail_gun:"",
-        meetup:""
+    isAdding: false,
+    key: {
+      mail_champ: "",
+      mail_gun: "",
+      meetup: ""
     }
   }),
-  created(){
-      this.getData();
+  created() {
+    this.getData();
   },
-  methods:{
-      setData() {
-        this.isAdding = true;
-        firebase.firestore
-            .collection("config")
-            .doc("keysandsecurity")
-            .set(this.key)
-            .then(() => {
-            this.$emit("show", "Keys & Security Updated");
-            this.isAdding = false;
-            })
-            .catch(e => {
-              this.$emit("show", e);
-              this.isAdding = false;
-              console.log(e);
-            });
+  methods: {
+    ...mapMutations(['setKeysAndSecutity']),
+    setData() {
+      this.isAdding = true;
+      firebase.firestore
+        .collection("config")
+        .doc("keysandsecurity")
+        .set(this.key)
+        .then(() => {
+          localStorage.setItem(
+            "keysandsecurity",
+            JSON.stringify(this.key)
+          );
+          this.setKeysAndSecutity(this.key);
+          this.$emit("show", "Keys & Security Updated");
+          this.isAdding = false;
+        })
+        .catch(e => {
+          this.$emit("show", e);
+          this.isAdding = false;
+          console.log(e);
+        });
     },
-      getData() {
+    getData() {
       this.isLoading = true;
       firebase.firestore
         .collection("config")
@@ -94,7 +104,7 @@ export default {
           console.log(e);
           this.isLoading = false;
         });
-  }
+    }
   }
 };
 </script>

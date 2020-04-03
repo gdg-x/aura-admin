@@ -194,6 +194,7 @@
 </template>
 <script>
 import firebase from "@/config/firebase";
+import { mapMutations } from 'vuex'
 
 export default {
   name: "Config",
@@ -227,6 +228,7 @@ export default {
     this.getData();
   },
   methods: {
+    ...mapMutations(['setGeneral']),
     remove(item) {
       this.communityinfo.hashtags.splice(
         this.communityinfo.hashtags.indexOf(item),
@@ -241,6 +243,8 @@ export default {
         .doc("general")
         .set(this.communityinfo)
         .then(() => {
+          localStorage.setItem('generalconfig',JSON.stringify(this.communityinfo))
+          this.setGeneral(this.communityinfo)
           this.$emit("show", "Community Data Updated Success");
           this.isAdding = false;
         })

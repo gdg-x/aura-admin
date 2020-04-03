@@ -64,7 +64,6 @@
     export default {
         name:"Drawer",
         data:()=>({
-            communtiemail:""
         }),
         computed:{
             ...mapState(['generalConfig']),
@@ -78,14 +77,8 @@
                 }
             }
         },
-        mounted(){
-            this.getCurrentUser();  
-        },
         methods:{
             ...mapMutations(['setDrawer']),
-            getCurrentUser(){
-                this.communtiemail = firebase.auth.currentUser.email;
-            },
             onClick (e, item) {
             e.stopPropagation()
                 if (item.to === '/') {
