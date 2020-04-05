@@ -135,9 +135,8 @@ export default {
             .then(snapshot => {
                 snapshot.forEach(doc => {
                     this.customEventData.push(doc.data());
-                    this.isLoading = false
                 });
-            
+                this.isLoading = false
             })
             .catch(err => {
                 this.isLoading = false;

@@ -219,9 +219,9 @@
                                 <p class="google-font my-0 py-0 mb-2 text-center">No Agenda found</p>
                             </v-col>
 
-                            <v-col cols="12">
+                            <v-col cols="12" v-else>
                                 <v-row >
-                                    <v-col md="12" class="my-1 py-0" v-if="eventData.agenda">
+                                    <v-col md="12" class="my-1 py-0" >
                                         <v-data-table
                                             :headers="headers"
                                              mobile-breakpoint="0"

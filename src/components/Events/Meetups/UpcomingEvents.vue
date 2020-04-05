@@ -19,7 +19,7 @@
         </div>
       </v-col>
     </v-row>
-    <v-row class="my-0 pa-0" v-else-if="UpcomingMeetupData.length">
+    <v-row class="my-0 pa-0" v-else-if="UpcomingMeetupData.length>0">
       <v-col
         class="my-0"
         md="3"
@@ -32,7 +32,7 @@
         <UpcomingEventCard :data="{data:item}" />
       </v-col>
     </v-row>
-    <v-row class="my-0 pa-0" v-else>
+    <v-row class="my-0 pa-0" v-else-if="UpcomingMeetupData.length ==0 && !showNetworkError">
       <v-col class="my-0 text-center" md="3" lg="3" sm="3" cols="12">
         <div class="lightModeCard pa-3" style="border-left:8px solid #4E5FBB">
           <img
