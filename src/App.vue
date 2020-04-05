@@ -67,15 +67,16 @@ export default {
   },
   mounted() {
     if (firebase.auth.currentUser) {
-      var getGeneralConfigData = localStorage.getItem("generalconfig");
-      var getKeysAndSecurity = localStorage.getItem("keysandsecurity");
-      // console.log(JSON.parse(getGeneralConfigData));
-      if (getGeneralConfigData && getKeysAndSecurity) {
-        console.log("Data Found in LocalStorage");
-        console.log(this.generalConfig);
-        if(Object.keys(this.generalConfig)<=0 && Object.keys(this.keysandsecurity)<=0){
-          this.setGeneral(JSON.parse(getGeneralConfigData));
-          this.setKeysAndSecutity(JSON.parse(getKeysAndSecurity))
+      var getGeneralConfigData = JSON.parse(localStorage.getItem("generalconfig"));
+      var getKeysAndSecurity =JSON.parse(localStorage.getItem("keysandsecurity"));
+      if (getGeneralConfigData && getKeysAndSecurity && Object.keys(getGeneralConfigData).length>2 && Object.keys(getKeysAndSecurity).length>2) {
+        console.log("Found in localstorage");
+        if(Object.keys(this.generalConfig).length<=0 && Object.keys(this.keysandsecurity).length<=0){
+          console.log("not found in vuex")
+          this.setGeneral(getGeneralConfigData);
+          this.setKeysAndSecutity(getKeysAndSecurity);
+        }else{
+          console.log("data froung in vuex")
         }
       } else {
         this.getDataFromServer();
@@ -106,16 +107,18 @@ export default {
         .get()
         .then(snapshot => {
           console.log(snapshot);
-          var gene = snapshot.docs[3].data();
-          var keysa = snapshot.docs[4].data();
+          var gene,keysa;
+          snapshot.forEach((doc)=>{
+            if(doc.id=="general"){
+              gene = doc.data();
+            }else if(doc.id == "keysandsecurity"){
+              keysa = doc.data();
+            }
+          })
           localStorage.setItem('generalconfig', JSON.stringify(gene));
           localStorage.setItem('keysandsecurity', JSON.stringify(keysa));
           this.setGeneral(gene);
-          this.setKeysAndSecutity(keysa)
-          // snapshot.forEach(doc => {
-          //   this.speakersData.push(doc.data());
-          //   // this.speakersData = [];
-          // });
+          this.setKeysAndSecutity(keysa);
           this.isLoading = false;
         })
         .catch(err => {
