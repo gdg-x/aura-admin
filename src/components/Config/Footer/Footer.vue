@@ -27,12 +27,12 @@
         </v-row>
         <v-row class="my-0 py-0">
           <v-col md="12" v-if="linksData" class="my-0 py-0">
-              
               <v-row class="my-0 py-0">
                   <v-col md="3" cols="12" class="">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                         <p>About</p>
-                        <v-row v-for="(item,i) in (linksData.About)" :key="i">
+                        <NotFound v-if="linksData.About.length<=0" text="No Links Found"/>
+                        <v-row v-else v-for="(item,i) in (linksData.About)" :key="i">
                             <v-col class="my-0 py-1">
                                 <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                     <v-toolbar-title class="google-font mr-3">{{item.linkname}} </v-toolbar-title>
@@ -49,7 +49,8 @@
                   <v-col md="3" cols="12" class="">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Resources</p>
-                      <v-row v-for="(item,i) in (linksData.Resources)" :key="i">
+                      <NotFound v-if="linksData.Resources.length<=0" text="No Links Found"/>
+                      <v-row v-else v-for="(item,i) in (linksData.Resources)" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -66,7 +67,8 @@
                   <v-col md="3" cols="12">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Developer Cosnsole</p>
-                      <v-row v-for="(item,i) in (linksData['Developer Console'])" :key="i">
+                      <NotFound v-if="linksData['Developer Console'].length<=0" text="No Links Found"/>
+                      <v-row v-else v-for="(item,i) in (linksData['Developer Console'])" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -83,7 +85,8 @@
                   <v-col md="3" cols="12">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                       <p>Footer End Session Link</p>
-                      <v-row v-for="(item,i) in (linksData['Footer End Session Link'])" :key="i">
+                      <NotFound v-if="linksData['Footer End Session Link'].length<=0" text="No Link Found"/>
+                      <v-row v-else v-for="(item,i) in (linksData['Footer End Session Link'])" :key="i">
                         <v-col class="my-0 py-1">
                             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                                 <v-toolbar-title class="google-font mr-3">{{item.linkname?item.linkname:'Not Found'}} </v-toolbar-title>
@@ -121,13 +124,15 @@
 <script>
 import firebase from "@/config/firebase";
 import Snakebar from "@/components/Common/Snakebar";
+import NotFound from "@/components/Common/NotFound";
 import FooterLink from "@/components/Config/Footer/AddFooterLink"
 import UpdateFooterLink from "@/components/Config/Footer/EditFooterLink"
 export default {
   components:{
     FooterLink,
     Snakebar,
-    UpdateFooterLink
+    UpdateFooterLink,
+    NotFound
   },
   name: "Config",
   data: () => ({
