@@ -225,31 +225,42 @@
                       <h4 class="google-font">Team</h4>
                       <v-container class="pa-0">
                         <v-row v-if="eventInfo.team.length>0">
-                          <v-col cols="12">
-                            <span class="font-weight-bold google-font">Core Team: </span>
-                              <span v-for="doc in coreTeam" :key="doc.id">{{doc.name}}, </span>
+                          <v-col cols="12" class="ma-0 py-1">
+                            <span class="font-weight-bold google-font">Core Team:</span>
+                            <span v-for="doc in coreTeam" :key="doc.id">
+                              <v-chip
+                                outlined
+                                :href="'/team/'+doc.id"
+                                target="_blank"
+                                small
+                                class="mx-1"
+                              >{{doc.name}}</v-chip>
+                            </span>
                           </v-col>
-                          <v-col cols="12">
-                            <span class="font-weight-bold google-font">Organizing Team: </span>
-                              <span v-for="doc in orgTeam" :key="doc.id">{{doc.name}}, </span>
+                          <v-col cols="12" class="ma-0 py-1">
+                            <span class="font-weight-bold google-font">Organizing Team:</span>
+                            <span v-for="doc in orgTeam" :key="doc.id">
+                              <v-chip
+                                outlined
+                                :href="'/team/'+doc.id"
+                                target="_blank"
+                                small
+                                class="mx-1"
+                              >{{doc.name}}</v-chip>
+                            </span>
                           </v-col>
-                          <v-col cols="12">
-                            <span class="font-weight-bold google-font">Volunteers: </span>
-                              <span v-for="doc in vol" :key="doc.id">{{doc.name}}, </span>
-                            
+                          <v-col cols="12" class="ma-0 py-1">
+                            <span class="font-weight-bold google-font">Volunteers:</span>
+                            <span v-for="doc in vol" :key="doc.id">
+                              <v-chip
+                                outlined
+                                :href="'/team/'+doc.id"
+                                target="_blank"
+                                small
+                                class="mx-1"
+                              >{{doc.name}}</v-chip>
+                            </span>
                           </v-col>
-                          <!-- <v-col
-                            class="ma-0 pa-1"
-                            md="12"
-                            v-for="(item,i) in eventInfo.team"
-                            :key="i"
-                          >
-                            <span
-                              v-for="(itemp,j) in teamInfo"
-                              :key="j"
-                              class="google-font mt-3"
-                            >{{itemp.name}} ({{itemp.role }}), </span>
-                          </v-col> -->
                         </v-row>
                         <v-row v-else>
                           <v-col md="4" class>
@@ -343,9 +354,9 @@ export default {
     eventInfo: {},
     partnersInfo: [],
     // teamInfo: [],
-    coreTeam:[],
-    orgTeam:[],
-    vol:[],
+    coreTeam: [],
+    orgTeam: [],
+    vol: [],
     tempData: [],
     speakersInfo: [],
     headers: [
@@ -407,7 +418,7 @@ export default {
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-              this.speakersInfo.push(doc.data());
+            this.speakersInfo.push(doc.data());
           });
         })
         .catch(err => {
@@ -422,13 +433,10 @@ export default {
         .then(snapshot => {
           snapshot.forEach(doc => {
             doc = doc.data();
-            if(this.eventInfo.team.indexOf(doc.id) !== -1){
-              if(doc.role=="Core Team")
-                this.coreTeam.push(doc);
-              else if(doc.role=="Organizing Team")
-                this.orgTeam.push(doc);
-              else 
-                this.vol.push(doc);
+            if (this.eventInfo.team.indexOf(doc.id) !== -1) {
+              if (doc.role == "Core Team") this.coreTeam.push(doc);
+              else if (doc.role == "Organizing Team") this.orgTeam.push(doc);
+              else this.vol.push(doc);
             }
             // this.teamInfo.push(doc.data());
           });
