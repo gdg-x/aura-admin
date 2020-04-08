@@ -1,5 +1,5 @@
 <template>
-  <v-container class="" style="max-width:1600px">
+  <v-container class style="max-width:1600px">
     <Snakebar
       :message="snakeBarMessage"
       :isShow.sync="isSnakeBarVisible"
@@ -7,7 +7,7 @@
       :timeout="snakeBarTimeOut"
     />
 
-    <v-row class=" my-0 py-0">
+    <v-row class="my-0 py-0">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
           <v-toolbar-title class="google-font mr-3">Speakers</v-toolbar-title>
@@ -42,14 +42,30 @@
             ></v-text-field>
           </v-slide-x-reverse-transition>
 
-          <v-btn fab x-small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
+          <v-btn
+            fab
+            x-small
+            color="indigo"
+            @click="openCloseSearch"
+            class="mr-2 hidden-md-and-up"
+            outlined
+            dark
+          >
             <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
             <v-icon dark v-else>mdi-close</v-icon>
           </v-btn>
           <!-- Mobile -->
           &nbsp;
           <!-- Toggle Menu for View -->
-          <v-btn-toggle v-if="speakersData.length" borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
+          <v-btn-toggle
+            v-if="speakersData.length"
+            borderless
+            background-color="white"
+            color="indigo"
+            dense
+            v-model="dataView"
+            class="hidden-sm-and-down"
+          >
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn v-on="on">
@@ -74,20 +90,13 @@
       </v-col>
     </v-row>
 
-    <v-row class="px-2 ">
-      <v-col cols="12 ">
+    <v-row class="px-2">
+      <v-col cols="12">
         <v-container fluid class="pa-0">
           <v-row justify="center" align="center" v-if="isLoading">
             <v-col col="12" md="2" cols="6" v-for="n in 6" :key="n" class="text-center">
-              <v-sheet
-                :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
-                class=""
-              >
-                <v-skeleton-loader
-                  class="mx-auto"
-                  max-width="300"
-                  type="card"
-                ></v-skeleton-loader>
+              <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class>
+                <v-skeleton-loader class="mx-auto" max-width="300" type="card"></v-skeleton-loader>
               </v-sheet>
               <!-- <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular> -->
             </v-col>
@@ -124,12 +133,21 @@
                         class="text-center elevation-0"
                       >
                         <v-card-text style="height:100%">
-                          <v-avatar size="100">
-                            <img
-                              :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
-                              alt
-                            />
-                          </v-avatar>
+                          <v-badge
+                            :color="item.visible?'green':'red'"
+                            dot
+                            avatar
+                            overlap
+                            offset-y="16"
+                            offset-x="25"
+                          >
+                            <v-avatar size="100">
+                              <img
+                                :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
+                                alt
+                              />
+                            </v-avatar>
+                          </v-badge>
                           <p
                             class="mt-3 mb-0 google-font black--text"
                             style="font-size:120%"
@@ -160,11 +178,10 @@
                       class="elevation-0 ma-0 pa-0"
                     >
                       <template v-slot:item.active="{ item }">
-                        <v-chip small v-if="item.active == true" color="success">Active</v-chip>
-                        <v-chip v-else small dark color="red">Inctive</v-chip>
+                        <v-chip x-small v-if="item.active == true" color="success">Active</v-chip>
+                        <v-chip v-else x-small dark color="red">Inctive</v-chip>
                       </template>
                       <template v-slot:item.actions="{ item }">
-
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on" @click="gotoSpeakerDetails(item.id)">
@@ -177,7 +194,6 @@
                     </v-data-table>
                   </v-col>
                 </v-row>
-                
               </div>
               <!-- Table View -->
             </div>
@@ -186,13 +202,20 @@
             <div v-else>
               <v-row justify="center" align="center">
                 <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                  <v-container
+                    fluid
+                    class
+                    style="border:1px solid #e0e0e0;border-radius:5px;background:white"
+                  >
                     <v-row justify="center" align="center" class="pa-3">
                       <v-col md="4" class="text-center">
-                        <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
+                        <img
+                          style="width:50%;text-align:center"
+                          :src="require('@/assets/img/svg/DataNotFound.svg')"
+                        />
                         <h1 class="google-font">Speakers Data Not Found</h1>
                         <p class="google-font">Kindly add Speaker</p>
-                        <br>
+                        <br />
                         <AddSpeaker @showSuccess="showSnakeBar" />
                       </v-col>
                     </v-row>
@@ -201,7 +224,6 @@
               </v-row>
             </div>
             <!-- No Data Found -->
-            
           </div>
         </v-container>
       </v-col>
@@ -216,14 +238,14 @@ import AddSpeaker from "@/components/Speakers/AddSpeaker";
 
 export default {
   name: "TeamView",
-  inject: ['theme'],
+  inject: ["theme"],
   components: {
     Snakebar,
     AddSpeaker
   },
   data: () => ({
-    dataView:0,
-    isSearch:false,
+    dataView: 0,
+    isSearch: false,
     search: "",
     snakeBarMessage: "",
     isSnakeBarVisible: false,
@@ -234,29 +256,28 @@ export default {
     speakersData: [],
     headers: [
       {
-        text: 'Name',
-        align: 'start',
-        value: 'name',
+        text: "Name",
+        align: "start",
+        value: "name"
       },
-      { text: 'Designation', value: 'designation' },
-      { text: 'Company', value: 'company.name' },
-      { text: 'Status', value: 'active' },
-      { text: 'Actions', value: 'actions', sortable: false, },
-    ],
+      { text: "Designation", value: "designation" },
+      { text: "Company", value: "company.name" },
+      { text: "Status", value: "active" },
+      { text: "Actions", value: "actions", sortable: false }
+    ]
   }),
   computed: {},
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar("Speaker Removed Sucessfully");
-    }else
-      this.showData();
+    } else this.showData();
   },
   methods: {
     changeSnakebar(vale) {
       this.isSnakeBarVisible = vale;
     },
-    openCloseSearch(){
-      this.isSearch = !this.isSearch
+    openCloseSearch() {
+      this.isSearch = !this.isSearch;
       this.search = "";
     },
     showSnakeBar(text) {
