@@ -289,6 +289,7 @@ export default {
       this.isLoading = true;
       firebase.firestore
         .collection("team")
+        .orderBy("role", "asc")
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
