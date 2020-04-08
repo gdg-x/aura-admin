@@ -126,12 +126,20 @@
                         class="text-center elevation-0"
                       >
                         <v-card-text style="height:100%">
+                          <v-badge
+                            :color="item.visible?'green':'red'"
+                            dot
+                            overlap
+                            offset-y="16"
+                            offset-x="25"
+                          >
                           <v-avatar size="100">
                             <img
                               :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
                               alt
                             />
                           </v-avatar>
+                          </v-badge>
                           <p
                             class="mt-3 mb-0 google-font black--text"
                             style="font-size:120%"
@@ -140,7 +148,7 @@
                             class="mt-0 mb-0 google-font caption"
                             style="font-size:60%"
                           >{{item.designation}}</p>
-                          <v-chip class="ma-1" x-small>{{item.role}}</v-chip>
+                          <v-chip class="ma-1" dark :color="item.active?'green':'red'" x-small>{{item.role}}</v-chip>
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -163,8 +171,12 @@
                       class="elevation-0 ma-0 pa-0"
                     >
                       <template v-slot:item.active="{ item }">
-                        <v-chip small v-if="item.active == true" color="success">Active</v-chip>
-                        <v-chip v-else small dark color="red">Inctive</v-chip>
+                        <v-chip x-small v-if="item.active == true" color="success">Active</v-chip>
+                        <v-chip v-else x-small dark color="red">Inctive</v-chip>
+                      </template>
+                      <template v-slot:item.visible="{ item }">
+                        <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
+                        <v-chip v-else x-small dark color="red">Not Visible</v-chip>
                       </template>
                       <template v-slot:item.actions="{ item }">
 
@@ -246,6 +258,7 @@ export default {
       { text: 'Role', value: 'role' },
       { text: 'Designation', value: 'designation' },
       { text: 'Status', value: 'active' },
+      { text: 'Visible', value: 'visible' },
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
@@ -291,6 +304,15 @@ export default {
   }
 };
 </script>
+<style>
+.v-badge--dot .v-badge__badge {
+    border-radius: 6px;
+    height: 12px;
+    min-width: 0;
+    padding: 0;
+    width: 12px;
+}
+</style>
 
 
 // TODO: TO UPDATE SNAKEBAR a
