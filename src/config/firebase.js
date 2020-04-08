@@ -16,10 +16,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+var fie = firebase.firestore();
+firebase.firestore().enablePersistence().then(()=>{fie = firebase.firestore()});
 export default{
   notificationSupported:firebase.messaging.isSupported(),
   messaging: (firebase.messaging.isSupported())?firebase.messaging():null,
-  firestore: firebase.firestore(),
+  firestore:fie,
   auth:firebase.auth(),
   storage:firebase.storage(),
 };
