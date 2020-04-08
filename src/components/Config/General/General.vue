@@ -53,6 +53,12 @@
                 v-model="communityinfo.meetupLink"
                 outlined
               ></v-text-field>
+              <v-text-field
+                class="my-0 py-0"
+                label="Learn More Link"
+                v-model="communityinfo.learnMoreLink"
+                outlined
+              ></v-text-field>
             </div>
             <div
               class="pa-4 mt-5"
@@ -61,13 +67,13 @@
               <p class="google-font my-0 py-0 mb-2">Blogs</p>
               <v-text-field
                 class="my-0 py-0"
-                label="Medium Blog"
+                label="Medium Blog Username"
                 v-model="communityinfo.blogs.medium"
                 outlined
               ></v-text-field>
               <v-text-field
                 class="my-0 py-0"
-                label="Dev.to Blog"
+                label="Dev.to Blog Username"
                 v-model="communityinfo.blogs.devto"
                 outlined
               ></v-text-field>
@@ -207,6 +213,7 @@ export default {
       email:"",
       website: "",
       meetupLink: "",
+      learnMoreLink:"",
       shortDescription: "",
       longDescription: "",
       hashtags: [],
