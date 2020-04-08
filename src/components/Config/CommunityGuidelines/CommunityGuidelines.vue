@@ -40,8 +40,8 @@
             :key="idx"
           >
             <v-list-item-content>
-              <v-list-item-title>{{item.name}}</v-list-item-title>
-              <v-list-item-subtitle>{{item.des}}</v-list-item-subtitle>
+              <v-list-item-title>{{item.name | summary(20)}}</v-list-item-title>
+              <v-list-item-subtitle>{{item.des | summary(20) }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
               <v-row>
@@ -141,7 +141,16 @@ export default {
           console.log(e);
           this.isLoading = false;
         });
+    },
+  },
+  filters:{
+        summary: (val,num)=>{
+          if(val.length > num){
+            return val.substring(0,num)+"..."
+          }else{
+            return val
+          }
+        }
     }
-  }
 };
 </script>
