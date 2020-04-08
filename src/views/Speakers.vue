@@ -10,7 +10,7 @@
     <v-row class="my-0 py-0">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">Speakers</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">Speakers: {{ speakersData.length }}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!-- Desktop -->
           <v-text-field
@@ -308,7 +308,12 @@ export default {
   }
 };
 </script>
-
-
-// TODO: TO UPDATE SNAKEBAR a
-// https://stackoverflow.com/questions/39868963/vue-2-mutating-props-vue-warn 
+<style>
+.v-badge--dot .v-badge__badge {
+    border-radius: 6px;
+    height: 12px;
+    min-width: 0;
+    padding: 0;
+    width: 12px;
+}
+</style>
