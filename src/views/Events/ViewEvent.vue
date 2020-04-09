@@ -380,7 +380,15 @@ export default {
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
+      this.speakersInfo=[];
+      this.vol=[];
+      this.orgTeam=[];
+      this.coreTeam=[];
+      this.partnersInfo=[];
       this.getEventData();
+      this.getSpeakersData();
+      this.getPartnersData();
+      this.getTeam();
     },
     goToEvents() {
       this.$router.replace("/events");
