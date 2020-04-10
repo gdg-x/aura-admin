@@ -123,16 +123,12 @@
 </template>
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import NotFound from "@/components/Common/NotFound";
-import FooterLink from "@/components/Config/Footer/AddFooterLink"
-import UpdateFooterLink from "@/components/Config/Footer/EditFooterLink"
 export default {
   components:{
-    FooterLink,
-    Snakebar,
-    UpdateFooterLink,
-    NotFound
+    FooterLink:()=>import('@/components/Config/Footer/AddFooterLink'),
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    UpdateFooterLink:()=>import('@/components/Config/Footer/EditFooterLink'),
+    NotFound:()=>import('@/components/Common/NotFound')
   },
   name: "Config",
   data: () => ({

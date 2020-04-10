@@ -79,14 +79,11 @@
 <script>
 import firebase from "@/config/firebase";
 
-import AddGuideline from "@/components/Config/CommunityGuidelines/AddGuideline";
-import EditGuideline from "@/components/Config/CommunityGuidelines/EditGuideline";
-
 export default {
   name: "Config",
   components: {
-    AddGuideline,
-    EditGuideline
+    AddGuideline:()=>import('@/components/Config/CommunityGuidelines/AddGuideline'),
+    EditGuideline:()=>import('@/components/Config/CommunityGuidelines/EditGuideline')
   },
   data: () => ({
     tab: null,

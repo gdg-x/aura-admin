@@ -59,14 +59,12 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import AddFeatureEvent from '@/components/Events/FeaturesEvents/AddFeatureEvent'
 
 export default {
     name:'MeetupEvents',
     components:{
-        AddFeatureEvent,
-        Snakebar
+        AddFeatureEvent:()=>import('@/components/Events/FeaturesEvents/AddFeatureEvent'),
+        Snakebar:()=>import('@/components/Common/Snakebar')
     },
     data:()=>({
         search:'',

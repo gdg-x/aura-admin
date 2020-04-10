@@ -436,14 +436,10 @@
 
 <script>
 import firebase from "@/config/firebase";
-import AddNewAgenda from "@/components/Events/CustomEvents/AddNewAgenda";
-import EditAgenda from "@/components/Events/CustomEvents/EditAgenda";
-// import RemoveAgenda from "@/components/Events/CustomEvents/RemoveAgenda"
 export default {
   components: {
-    AddNewAgenda,
-    EditAgenda
-    // RemoveAgenda
+    AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
+    EditAgenda:()=>import('@/components/Events/CustomEvents/EditAgenda')
   },
   props: [],
   data() {

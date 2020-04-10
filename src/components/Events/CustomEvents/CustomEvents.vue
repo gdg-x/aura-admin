@@ -90,12 +90,10 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import AddNewCustomEvent from '@/components/Events/CustomEvents/AddCustomEvent'
 export default {
     components:{
-        AddNewCustomEvent,
-        Snakebar
+        AddNewCustomEvent:()=>import('@/components/Events/CustomEvents/AddCustomEvent'),
+        Snakebar:()=>import('@/components/Common/Snakebar')
     },
     name:'MeetupEvents',
     data:()=>({

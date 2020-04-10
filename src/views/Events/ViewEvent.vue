@@ -333,16 +333,13 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import DeleteEvent from "@/components/Events/subcomponents/DeleteEvent";
-import EditEvent from "@/components/Events/CustomEvents/EditCustomEvent";
 
 export default {
   name: "ViewTeam",
   components: {
-    Snakebar,
-    DeleteEvent,
-    EditEvent
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    DeleteEvent:()=>import('@/components/Events/subcomponents/DeleteEvent'),
+    EditEvent:()=>import('@/components/Events/CustomEvents/EditCustomEvent')
   },
   data: () => ({
     snakeBarMessage: "",

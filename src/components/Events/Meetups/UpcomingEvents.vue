@@ -59,12 +59,10 @@
 </template>
 
 <script>
-import UpcomingEventCard from "@/components/Events/Meetups/UpcomingEventCard";
-
 export default {
   name: "MeetupEvents",
   components: {
-    UpcomingEventCard
+    UpcomingEventCard:()=>import('@/components/Events/Meetups/UpcomingEventCard')
   },
   props:['meetupkey'],
   data: () => ({
