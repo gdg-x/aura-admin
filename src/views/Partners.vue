@@ -225,15 +225,13 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import AddTeam from "@/components/Partners/AddPartner";
 
 export default {
   name: "TeamView",
   inject: ['theme'],
   components: {
-    Snakebar,
-    AddTeam
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    AddTeam:()=>import('@/components/Partners/AddPartner')
   },
   data: () => ({
     dataView:0,

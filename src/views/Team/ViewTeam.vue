@@ -166,16 +166,13 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import DeleteTeam from "@/components/Team/DeleteTeam";
-import EditTeam from "@/components/Team/EditTeam";
 
 export default {
   name: "ViewTeam",
   components: {
-    Snakebar,
-    DeleteTeam,
-    EditTeam
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    DeleteTeam:()=>import('@/components/Team/DeleteTeam'),
+    EditTeam:()=>import('@/components/Team/EditTeam')
   },
   data: () => ({
     snakeBarMessage: "",

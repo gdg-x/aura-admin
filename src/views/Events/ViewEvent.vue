@@ -408,7 +408,7 @@ export default {
           } else if (doc.data()) {
             this.showLoader = false;
             this.eventInfo = doc.data();
-            console.log(this.eventInfo);
+            // console.log(this.eventInfo);
           } else {
             this.showLoader = false;
             this.userNotFound = true;
@@ -448,7 +448,7 @@ export default {
             }
             // this.teamInfo.push(doc.data());
           });
-          console.log(this.teamInfo);
+          // console.log(this.teamInfo);
         })
         .catch(err => {
           console.log("Error getting documents", err);

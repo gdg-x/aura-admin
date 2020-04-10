@@ -233,15 +233,12 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import AddSpeaker from "@/components/Speakers/AddSpeaker";
-
 export default {
   name: "TeamView",
   inject: ["theme"],
   components: {
-    Snakebar,
-    AddSpeaker
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    AddSpeaker:()=>import('@/components/Speakers/AddSpeaker')
   },
   data: () => ({
     dataView: 0,

@@ -117,25 +117,79 @@
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
-                      <v-text-field
+                      <v-dialog
+                        ref="dialog"
+                        v-model="modal2"
+                        :return-value.sync="eventData.time.starttime"
+                        persistent
+                        width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="eventData.time.starttime"
+                            label="Start Time"
+                            readonly
+                            outlined
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-time-picker
+                          v-if="modal2"
+                          v-model="eventData.time.starttime"
+                          full-width
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="$refs.dialog.save(eventData.time.starttime)">OK</v-btn>
+                        </v-time-picker>
+                      </v-dialog>
+                      
+                      <!-- <v-text-field
                         v-model="eventData.time.starttime"
                         class="ma-0"
                         :rules="idRules"
                         label="Event Start Time*"
                         type="time"
                         outlined
-                      ></v-text-field>
+                      ></v-text-field> -->
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
-                      <v-text-field
+                      <v-dialog
+                        ref="dialog1"
+                        v-model="modal1"
+                        :return-value.sync="eventData.time.endtime"
+                        persistent
+                        width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="eventData.time.endtime"
+                            label="End Time"
+                            readonly
+                            outlined
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-time-picker
+                          v-if="modal1"
+                          v-model="eventData.time.endtime"
+                          full-width
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="$refs.dialog1.save(eventData.time.endtime)">OK</v-btn>
+                        </v-time-picker>
+                      </v-dialog>
+
+                      <!-- <v-text-field
                         v-model="eventData.time.endtime"
                         class="ma-0"
                         :rules="idRules"
                         label="Event End Time*"
                         type="time"
                         outlined
-                      ></v-text-field>
+                      ></v-text-field> -->
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="ma-0">
                       <v-text-field
@@ -395,7 +449,8 @@ export default {
   data() {
     return {
       menu: false,
-      imageUpload: [],
+      modal2:false,
+      modal1:false,
       headers: [
         {
           text: "Start Time",
@@ -410,9 +465,7 @@ export default {
         { text: "Actions", sortable: false, value: "actions" }
       ],
       imagePre: "",
-      imageUploading: false,
       valid: true,
-      dialogImageUload: false,
       idRules: [
         v => !!v || "Field Value is required",
         v => (v && v.length <= 30) || "Name must be less than 30 characters"

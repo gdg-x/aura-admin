@@ -62,23 +62,15 @@
 <script>
 import firebase from "@/config/firebase";
 
-// Importing components
-import Snakebar from "@/components/Common/Snakebar";  // Global Snakebar Compoment
-import AddNotification from "@/components/Notification/AddNotification";  // Add new Notification component
-import ViewNotification from "@/components/Notification/ViewNotification";
-import SendNotification from "@/components/Notification/SendNotification";
-import EditNotification from '@/components/Notification/EditNotification';
-import DeleteNotification from '@/components/Notification/DeleteNotification'
-
 export default {
   name: "Notifications",
   components: {
-    Snakebar,
-    AddNotification,
-    ViewNotification,
-    SendNotification,
-    EditNotification,
-    DeleteNotification
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    AddNotification:()=>import('@/components/Notification/AddNotification'),
+    ViewNotification:()=>import('@/components/Notification/ViewNotification'),
+    SendNotification:()=>import('@/components/Notification/SendNotification'),
+    EditNotification:()=>import('@/components/Notification/EditNotification'),
+    DeleteNotification:()=>import('@/components/Notification/DeleteNotification')
   },
   data: () => ({
     isSearch: false,

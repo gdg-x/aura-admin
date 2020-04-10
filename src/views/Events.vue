@@ -48,23 +48,14 @@
 import firebase from "@/config/firebase";
 import { mapState } from 'vuex';
 
-import Snakebar from "@/components/Common/Snakebar";
-import MeetupEvents from '@/components/Events/Meetups/MeetupEvents'
-import UpcomingMeetupEvents from '@/components/Events/Meetups/UpcomingEvents'
-import CustomEvents from '@/components/Events/CustomEvents/CustomEvents'
-
-// import AddNewCustomEvent from '@/components/Events/CustomEvents/AddCustomEvent'
-// import AddFeatureEvent from '@/components/Events/FeaturesEvents/AddFeatureEvent'
-import FeatureEvents from '@/components/Events/FeaturesEvents/FeatureEvents'
 export default {
   name: 'Events',
   components:{
-    MeetupEvents,
-    UpcomingMeetupEvents,
-    CustomEvents,
-    Snakebar,
-    // AddFeatureEvent,
-    FeatureEvents
+    MeetupEvents:()=>import('@/components/Events/Meetups/MeetupEvents'),
+    UpcomingMeetupEvents:()=>import('@/components/Events/Meetups/UpcomingEvents'),
+    CustomEvents:()=>import('@/components/Events/CustomEvents/CustomEvents'),
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    FeatureEvents:()=>import('@/components/Events/FeaturesEvents/FeatureEvents')
   },
   data:()=>({
     userEmail:'',

@@ -165,16 +165,13 @@
 
 <script>
 import firebase from "@/config/firebase";
-import Snakebar from "@/components/Common/Snakebar";
-import DeleteSpeaker from "@/components/Speakers/DeleteSpeaker";
-import EditSpeaker from "@/components/Speakers/EditSpeaker";
 
 export default {
   name: "ViewTeam",
   components: {
-    Snakebar,
-    DeleteSpeaker,
-    EditSpeaker
+    Snakebar:()=>import('@/components/Common/Snakebar'),
+    DeleteSpeaker:()=>import('@/components/Speakers/DeleteSpeaker'),
+    EditSpeaker:()=>import('@/components/Speakers/EditSpeaker')
   },
   data: () => ({
     snakeBarMessage: "",
