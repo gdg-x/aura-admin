@@ -28,7 +28,7 @@
               <v-text-field v-model="editDialogData.regLink" label="Reg Link" type="url" outlined></v-text-field>
             </v-col>
             <v-col cols="12" md="6" class="pa-1 ma-0">
-              <v-text-field v-model="editDialogData.learnMore" label="Event ID" type="text" outlined></v-text-field>
+              <v-text-field v-model="editDialogData.learnMore" label="Learn More" type="text" outlined></v-text-field>
             </v-col>
           </v-row>
         </v-container>

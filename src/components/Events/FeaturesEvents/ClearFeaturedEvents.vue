@@ -3,8 +3,8 @@
       <template v-slot:activator="{ }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn class="ml-3" fab x-small color="indigo" outlined dark v-on="on" @click.stop="dialog = true">
-              <v-icon dark>mdi-delete</v-icon>
+            <v-btn class="ml-3" fab x-small color="#5AB55E" outlined dark v-on="on" @click.stop="dialog = true">
+              <v-icon dark>mdi-delete-outline</v-icon>
             </v-btn>
           </template>
           <span>Clear All Featured Events</span>

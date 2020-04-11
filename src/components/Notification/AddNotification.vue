@@ -39,7 +39,7 @@
                 <v-text-field v-model="dialogData.regLink" label="Reg Link" type="text" outlined></v-text-field>
               </v-col>
               <v-col cols="12" md="6" class="pa-1 ma-0">
-                <v-text-field v-model="dialogData.learnMore"  label="Event ID" type="text" outlined></v-text-field>
+                <v-text-field v-model="dialogData.learnMore"  label="Learn More" type="text" outlined></v-text-field>
               </v-col>
             </v-row>
             </v-form>
