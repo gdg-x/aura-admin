@@ -8,48 +8,48 @@
 
     <v-card v-if="dialog">
       <v-card-title class="google-font heading">Are you sure?</v-card-title>
-      <v-card-text
-        class="google-font"
-      >Would you like to remove <span class="font-weight-bold black--text google-font">{{ data.title }} </span> Notificaion form the Notifications?</v-card-text>
+      <v-card-text class="google-font">
+        Would you like to remove
+        <span class="font-weight-bold black--text google-font">{{ data.title }}</span> Notificaion form the Notifications?
+      </v-card-text>
       <v-card-actions>
         <div class="flex-grow-1"></div>
 
         <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
 
-        <v-btn
-          color="red darken-1"
-          text
-          :loading="loading"
-          @click="deleteItem(data.id)"
-        >Agree</v-btn>
+        <v-btn color="red darken-1" text :loading="loading" @click="deleteItem(data.id)">Agree</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import PushNotificationServicers from '@/services/NotificationServices'
+import PushNotificationServicers from "@/services/NotificationServices";
 export default {
   name: "DeleteNotification",
-  props:['data'],
-  data:()=>({
-      loading:false,
-      dialog:false
+  props: ["data"],
+  data: () => ({
+    loading: false,
+    dialog: false
   }),
-  methods:{
-      deleteItem(id) {
+  methods: {
+    deleteItem(id) {
       this.loading = true;
-      PushNotificationServicers.removeNotification(id).then(res=>{
-        if(res.success==true){
-          this.loading = false
-          this.dialog = false
-          this.$emit("addedSuccess", this.data.title+' '+res.msg);
-        } 
-      }).catch(e=>{
-        console.log(e)
-        this.isLoading = false
-        this.$emit("addedSuccess", e.msg)
-      })
+      PushNotificationServicers.removeNotification(id)
+        .then(res => {
+          if (res.success == true) {
+            this.$emit("addedSuccess", this.data.title + " " + res.msg);
+          } else {
+            this.$emit("errorRecived", "Something went wrong");
+          }
+          this.loading = false;
+          this.dialog = false;
+        })
+        .catch(e => {
+          console.log(e);
+          this.$emit("errorRecived", e);
+          this.isLoading = false;
+        });
     }
   }
 };

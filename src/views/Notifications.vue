@@ -49,9 +49,9 @@
             <template v-slot:item.action="{ item }">
               <!-- view Selected Notification -->
               <ViewNotification :dialogData="item" />
-              <EditNotification @addedSuccess="addedd" :editDialogData="item" />
-              <DeleteNotification @addedSuccess="addedd" :data="item" />
-              <SendNotification @addedSuccess="addedd" :dataA="item" />
+              <EditNotification @addedSuccess="addedd" @errorRecived="errors" :editDialogData="item" />
+              <DeleteNotification @addedSuccess="addedd" @errorRecived="errors" :data="item" />
+              <SendNotification @addedSuccess="addedd" @errorRecived="errors" :dataA="item" />
             </template>
           </v-data-table>
         </v-col>
@@ -84,7 +84,7 @@ export default {
     headers: [
       { text: "Title", align: "left", value: "title" },
       { text: "Body", value: "body" },
-      { text: "EventID", value: "eventID" },
+      { text: "Learn More", value: "learnMore" },
       { text: "Sent times", value: "noTimeSend" },
       { text: "Actions", value: "action", sortable: false }
     ]
@@ -100,6 +100,10 @@ export default {
         this.isSnakeBarVisible = true;
         this.loadData();
       }
+    },
+    errors(e){
+      this.snakeBarMessage = e;
+      this.isSnakeBarVisible = true;
     },
     // Get Data from firestore
     loadData() {

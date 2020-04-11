@@ -21,7 +21,7 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6" class="pa-1 ma-0">
-                <v-text-field v-model="dialogData.image" :rules="rules.imageLinkRule" label="Image Link" type="url" outlined></v-text-field>
+                <v-text-field v-model="dialogData.image" label="Image Link" type="url" outlined></v-text-field>
               </v-col>
               <v-col cols="12" md="6" class="pa-1 ma-0 order-2 order-md-1">
                 <v-textarea
@@ -36,10 +36,10 @@
                 <v-img :src="(dialogData.image.length > 10)?dialogData.image:''"></v-img>
               </v-col>
               <v-col cols="12" md="6" class="pa-1 ma-0">
-                <v-text-field v-model="dialogData.regLink" :rules="rules.regLinkRule" label="Reg Link" type="text" outlined></v-text-field>
+                <v-text-field v-model="dialogData.regLink" label="Reg Link" type="text" outlined></v-text-field>
               </v-col>
               <v-col cols="12" md="6" class="pa-1 ma-0">
-                <v-text-field v-model="dialogData.eventID" :rules="rules.eventidRule" label="Event ID" type="text" outlined></v-text-field>
+                <v-text-field v-model="dialogData.learnMore"  label="Event ID" type="text" outlined></v-text-field>
               </v-col>
             </v-row>
             </v-form>
@@ -75,22 +75,13 @@ export default {
         v => !!v || "Body is required",
         v => (v && v.length <= 150) || "Name must be less than 150 characters"
       ],
-      eventidRule: [
-        v => !!v || "EventId is required",
-      ],
-      regLinkRule: [
-        v => !!v || "Reg. Link is required",
-      ],
-      imageLinkRule: [
-        v => !!v || "Image Link is required",
-      ],
     },
     dialogData: {
       title: "",
       body: "",
       image: "",
       regLink: "",
-      eventID: ""
+      learnMore: ""
     }
   }),
   methods: {
@@ -102,7 +93,7 @@ export default {
           body: this.dialogData.body,
           image: this.dialogData.image,
           regLink: this.dialogData.regLink,
-          eventID: this.dialogData.eventID,
+          learnMore: this.dialogData.learnMore,
           noTimeSend: 0,
           createdOn: new Date(),
           sentTime: ""
@@ -115,6 +106,7 @@ export default {
           }
         }).catch(e=>{
           console.log(e.msg)
+          this.$emit("errorRecived", e);
         })
       }
     }

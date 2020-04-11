@@ -28,7 +28,7 @@
               <v-text-field v-model="editDialogData.regLink" label="Reg Link" type="url" outlined></v-text-field>
             </v-col>
             <v-col cols="12" md="6" class="pa-1 ma-0">
-              <v-text-field v-model="editDialogData.eventID" label="Event ID" type="text" outlined></v-text-field>
+              <v-text-field v-model="editDialogData.learnMore" label="Event ID" type="text" outlined></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -67,7 +67,7 @@ export default {
         title: this.editDialogData.title,
         image: this.editDialogData.image,
         regLink: this.editDialogData.regLink,
-        eventID: this.editDialogData.eventID
+        learnMore: this.editDialogData.learnMore
       }
       PushNotificationServicers.editPushNotification(id,data).then(res=>{
         if(res.success==true){
@@ -78,6 +78,7 @@ export default {
       }).catch(e=>{
         this.isAdding = false
         console.log(e.msg)
+        this.$emit("errorRecived", e);
       })
     }
   }

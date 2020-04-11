@@ -51,7 +51,7 @@ export default {
                     title: this.dataA.title,
                     body: {
                       body: this.dataA.body,
-                      eventID: this.dataA.eventID,
+                      learnMore: this.dataA.learnMore,
                       regLink: this.dataA.regLink
                     },
                     tag: "newEvent",
@@ -81,10 +81,15 @@ export default {
                         });
                     }
                   })
-                  .catch(err => alert(err));
+                  .catch(err => {
+                    this.$emit("errorRecived", err);
+                  });
               });
               console.log(docs);
               this.$emit("addedSuccess", "Push Notifications Sent Success");
+              this.dialog = false;
+            }).catch(e=>{
+              this.$emit("errorRecived", e);
               this.dialog = false;
             });
         });

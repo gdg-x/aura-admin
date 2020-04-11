@@ -29,8 +29,8 @@
               {{ getDate(dialogData.sentTime) }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">EventID:</span>
-              {{ dialogData.eventID }}
+              <span style="font-weight:500" class="black--text">Learn More:</span>
+              {{ dialogData.learnMore }}
             </p>
             <p class="google-font">
               <span style="font-weight:500" class="black--text">RegLink:</span>
