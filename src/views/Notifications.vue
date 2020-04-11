@@ -89,6 +89,9 @@ export default {
       { text: "Actions", value: "action", sortable: false }
     ]
   }),
+  mounted(){
+    this.loadData();
+  },
   methods: {
     // Show snakebar
     addedd(e) {
@@ -109,6 +112,8 @@ export default {
         }
       }).catch(e=>{
         this.isLoading = false;
+        this.snakeBarMessage = e;
+        this.isSnakeBarVisible = true;
         console.log(e)
       })
     }

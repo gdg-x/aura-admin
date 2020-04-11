@@ -25,11 +25,17 @@
         </p>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field class="my-0 py-0" label="Mail Gun API Key" v-model="key.mail_champ" outlined></v-text-field>
+        <v-text-field class="my-0 py-0" label="Cloud Messaging  Server Key" v-model="key.server_key" outlined></v-text-field>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field class="my-0 py-0" label="Mail Champ API Key" v-model="key.mail_gun" outlined></v-text-field>
+        <v-text-field class="my-0 py-0" label="Cloud Messaging Web Push Certificates" v-model="key.web_push_certificate" outlined></v-text-field>
       </v-col>
+      <!-- <v-col cols="12" md="6" class="mb-0 pb-0">
+        <v-text-field class="my-0 py-0" label="Mail Gun API Key" :hidden="true" v-model="key.mail_champ" outlined></v-text-field>
+      </v-col>
+      <v-col cols="12" md="6" class="mb-0 pb-0">
+        <v-text-field class="my-0 py-0" label="Mail Champ API Key" :hidden="true" v-model="key.mail_gun" outlined></v-text-field>
+      </v-col> -->
       <v-col cols="12" md="6" class="mb-0 pb-0">
         <v-text-field
           class="my-0 py-0"
@@ -54,6 +60,8 @@ export default {
     key: {
       mail_champ: "",
       mail_gun: "",
+      server_key:"",
+      web_push_certificate:"",
       meetup: ""
     }
   }),

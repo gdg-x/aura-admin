@@ -18,6 +18,7 @@
 
 <script>
 import firebase from '@/config/firebase';
+import { mapState } from 'vuex'
 
 export default {
   name: "SendNotifications",
@@ -25,6 +26,9 @@ export default {
     dialog: false
   }),
   props:['dataA'],
+  computed:{
+    ...mapState(['keysandsecurity'])
+  },
   methods:{
     send() {
       firebase.firestore
@@ -58,7 +62,7 @@ export default {
                   method: "POST",
                   headers: new Headers({
                     Authorization:
-                      "key=AAAAYazdEoQ:APA91bGvYKFUiDDI5NVjoR8fQI_ui6lJUayCQV1Bb7EermAa_s3sSd7gVJTTwZCAIUqLRLgXzX_DYaPdjEImBwLx5trNlU97MYoNZin4XTfKQILMMPGr_m2tiSzmJaATB0gIk1y1wiUT",
+                      "key="+this.keysandsecurity.server_key,
                     "Content-Type": "application/json"
                   })
                 };
