@@ -224,8 +224,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import PartnersServices from "@/services/PartnersServices"
 export default {
   name: "TeamView",
   inject: ['theme'],
@@ -279,21 +278,16 @@ export default {
       this.$router.push("/partners/" + id);
     },
     showData() {
-      this.partnersData = [];
-      this.isLoading = true;
-      firebase.firestore
-        .collection("partners")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.partnersData.push(doc.data());
-            // this.partnersData = []
-          });
-          this.isLoading = false;
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.partnersData = []
+      this.isLoading = true
+      PartnersServices.getAllPartners().then(res=>{
+        if(res.success==true){
+          this.partnersData= res.data
+          this.isLoading = false
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     }
   }
 };

@@ -136,8 +136,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import PartnersServices from "@/services/PartnersServices"
 export default {
   name: "ViewTeam",
   components: {
@@ -169,27 +168,22 @@ export default {
     getPartnerData() {
       this.showLoader = true;
       this.userNotFound = false;
-      firebase.firestore
-        .collection("partners")
-        .doc(this.$route.params.id)
-        .get()
-        .then(doc => {
-          if (doc.data() == undefined) {
-            this.showLoader = false;
-            this.userNotFound = true;
-          } else if (doc.data()) {
-            this.showLoader = false;
-            this.partnerInfo = doc.data();
-          } else {
-            this.showLoader = false;
-            this.userNotFound = true;
-          }
-        })
-        .catch(e => {
-          console.log("Message" + e);
-          this.showLoader = false;
-          this.userNotFound = true;
-        });
+      PartnersServices.getPartnerDetails(this.$route.params.id).then(res=>{
+        if(res.isFound==false){
+          this.showLoader = false
+          this.userNotFound = true
+        }else if(res.isFound == true){
+          this.showLoader = false
+          this.partnerInfo = res.data
+        }else{
+          this.showLoader = false
+          this.userNotFound = true
+        }
+      }).catch(e=>{
+        console.log("Message" + e)
+        this.showLoader = false
+        this.userNotFound = true
+      })
     }
   }
 };

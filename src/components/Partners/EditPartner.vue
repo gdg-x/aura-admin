@@ -160,8 +160,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import PartnersServices from "@/services/PartnersServices"
 export default {
   props: {
     partnerData: {}
@@ -204,35 +203,32 @@ export default {
   methods: {
     UpdateData() {
       if (this.$refs.form.validate()) {
-        this.loading = true;
-
-        firebase.firestore
-          .collection("partners")
-          .doc(this.partnerData.id)
-          .update({
-            active: this.updatedData.active,
-            visible: this.updatedData.visible,
-            name: this.updatedData.name,
-            des: this.updatedData.des,
-            image: this.updatedData.image,
-            id: this.updatedData.id,
-            socialLinks: {
-              facebook: this.updatedData.socialLinks.facebook,
-              github: this.updatedData.socialLinks.github,
-              linkedin: this.updatedData.socialLinks.linkedin,
-              twitter: this.updatedData.socialLinks.twitter,
-              web: this.updatedData.socialLinks.web
-            }
-          })
-          .then(() => {
-            this.loading = false;
-            this.dialog = false;
-            this.$emit("editedSuccess", this.partnerData.name+" Edited Success");
-          })
-          .catch(e => {
-            console.log(e);
-            this.loading = false;
-          });
+        this.loading = true
+        let data = {
+          active: this.updatedData.active,
+          visible: this.updatedData.visible,
+          name: this.updatedData.name,
+          des: this.updatedData.des,
+          image: this.updatedData.image,
+          id: this.updatedData.id,
+          socialLinks: {
+            facebook: this.updatedData.socialLinks.facebook,
+            github: this.updatedData.socialLinks.github,
+            linkedin: this.updatedData.socialLinks.linkedin,
+            twitter: this.updatedData.socialLinks.twitter,
+            web: this.updatedData.socialLinks.web
+          }
+        }
+        PartnersServices.editPartner(this.partnerData.id, data).then(res=>{
+          if(res.success==true){
+            this.loading = false
+            this.dialog = false
+            this.$emit("editedSuccess", res.msg)
+          }
+        }).catch(e=>{
+          console.log(e.msg)
+          this.loading = false
+        })
       }
     }
   }

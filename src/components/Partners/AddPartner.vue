@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import PartnersServices from "@/services/PartnersServices"
 export default {
   props: [],
   data() {
@@ -161,21 +161,17 @@ export default {
             twitter: this.twitter,
             web: this.web
           }
-        };
-        firebase.firestore
-          .collection("partners")
-          .doc(Data.id)
-          .set(Data)
-          .then(res => {
-            this.loading = false;
-            this.dialog = false;
-            this.$emit("showSuccess", "Partner Added Success");
-          })
-          .catch(e => {
-            this.loading = false;
-            console.log(e);
-            this.$emit("showSuccess", "Failed to Add Partner");
-          });
+        }
+        PartnersServices.addPartner(Data.id, Data).then(res=>{
+          if(res.success== true){
+            this.loading = false
+            this.dialog = false
+            this.$emit("showSuccess", res.msg)
+          }
+        }).catch(e=>{
+          this.loading = false
+          this.$emit("showSuccess", e.msg);
+        })
       }
     }
   }

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import PartnersServices from "@/services/PartnersServices"
 export default {
   props: {
     PartnerInfo: {}
@@ -37,24 +37,20 @@ export default {
   }),
   methods: {
     deleteItem(id) {
-      this.loading = true;
-      firebase.firestore
-        .collection("partners")
-        .doc(this.PartnerInfo.id)
-        .delete()
-        .then(() => {
-          this.loading = false;
-          this.dialog = false;
-        //   this.$emit("RemoveSuceess");
+      this.loading = true
+      PartnersServices.removePartner(this.PartnerInfo.id).then(res=>{
+        if(res.success==true){
+          this.loading = false
+          this.dialog = false
           this.$router.push({
             path: "/partners",
-            query: { msg: "removesuccess" }
-          });
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoading = false;
-        });
+            query: { msg: res.msg }
+          })
+        }
+      }).catch(e=>{
+        console.log(e.msg)
+        this.isLoading = false
+      })
     }
   }
 };
