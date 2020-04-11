@@ -113,18 +113,6 @@ export default {
       })
     }
   },
-
-  // Starting of App Page
-  created() {
-    // Check Current user
-    if (firebase.auth.currentUser) {
-      // If Found, load data 
-      this.loadData();
-    } else {
-      // Not found, redirect to Login Screen
-      this.$router.replace("login");
-    }
-  }
 };
 </script>
 
