@@ -164,8 +164,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import SpeakerServices from '@/services/SpeakersServices'
 export default {
   name: "ViewTeam",
   components: {
@@ -197,28 +196,23 @@ export default {
     getSpeakerData() {
       this.showLoader = true;
       this.userNotFound = false;
-      firebase.firestore
-        .collection("Speakers")
-        .doc(this.$route.params.id)
-        .get()
-        .then(doc => {
-        //   console.log(doc.data());
-          if (doc.data() == undefined) {
-            this.showLoader = false;
-            this.userNotFound = true;
-          } else if (doc.data()) {
-            this.showLoader = false;
-            this.speakerInfo = doc.data();
-          } else {
-            this.showLoader = false;
-            this.userNotFound = true;
-          }
-        })
-        .catch(e => {
-          console.log("Message" + e);
-          this.showLoader = false;
-          this.userNotFound = true;
-        });
+
+      SpeakerServices.getSpeakerDetails(this.$route.params.id).then(res=>{
+        if(res.isFound == false){
+          this.showLoader = false
+          this.userNotFound = true
+        }else if(res.isFound == true){
+          this.showLoader = false
+          this.speakerInfo = res.data
+        }else{
+          this.showLoader = false
+          this.userNotFound = true
+        }
+      }).catch(e=>{
+        console.log("Message" + e)
+        this.showLoader = false
+        this.userNotFound = true
+      })
     }
   }
 };

@@ -180,7 +180,7 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase';
+import SpeakerServices from '@/services/SpeakersServices'
 export default {
   props: [],
   data() {
@@ -223,30 +223,9 @@ export default {
     };
   },
   methods: {
-    onFileChange() {
-      let reader = new FileReader();
-      reader.readAsDataURL(this.imageUpload);
-      reader.onload = () => {
-        this.imagePre = reader.result;
-      };
-    },
-    uploadImage() {
-      this.imageUploading = true;
-      var fileName = `${this.userId}.${this.imageUpload.name.split(".")[1]}`;
-      
-      var refLink = firebase.storage().ref("team/" + fileName);
-      refLink.put(this.imageUpload).then(file => {
-        refLink.getDownloadURL().then(a => {
-          this.imageURL = a;
-          this.imageUploading = false;
-          this.uploadImage = "Uploaded";
-        });
-      });
-      this.dialogImageUload = false;
-    },
     SaveSpeaker() {
       if (this.$refs.form.validate()) {
-        this.loading = true;
+        this.loading = true
         var Data = {
             visible: this.visible,
             id: this.userId,
@@ -270,21 +249,17 @@ export default {
                 twitter: this.twitter,
                 web: this.website
             }
-        };
-        firebase
-          .firestore
-          .collection("Speakers")
-          .doc(Data.id)
-          .set(Data)
-          .then(res => {
+        }
+        SpeakerServices.addSpeaker(Data.id, Data).then(res=>{
+          if(res.success==true){
             this.loading = false;
             this.dialog = false;
-            this.$emit("showSuccess","Speaker Added Success");
-          })
-          .catch(e => {
+            this.$emit("showSuccess", res.msg);
+          }
+        }).catch(e=>{
             this.loading = false;
-            this.$emit("showSuccess","Failed to Add Speaker");
-          });
+            this.$emit("showSuccess",e.msg);
+        })
       }
     }
   }

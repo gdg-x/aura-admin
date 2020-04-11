@@ -133,21 +133,12 @@
                         class="text-center elevation-0"
                       >
                         <v-card-text style="height:100%">
-                          <v-badge
-                            :color="item.visible?'green':'red'"
-                            dot
-                            avatar
-                            overlap
-                            offset-y="16"
-                            offset-x="25"
-                          >
                             <v-avatar size="100">
                               <img
                                 :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"
                                 alt
                               />
                             </v-avatar>
-                          </v-badge>
                           <p
                             class="mt-3 mb-0 google-font black--text"
                             style="font-size:120%"
@@ -156,6 +147,8 @@
                             class="mt-0 mb-0 google-font caption"
                             style="font-size:60%"
                           >{{item.designation}}</p>
+                          <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
+                          <v-chip v-else x-small dark color="red">Not Visible</v-chip>
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -177,9 +170,9 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
-                      <template v-slot:item.active="{ item }">
-                        <v-chip x-small v-if="item.active == true" color="success">Active</v-chip>
-                        <v-chip v-else x-small dark color="red">Inctive</v-chip>
+                      <template v-slot:item.visible="{ item }">
+                        <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
+                        <v-chip v-else x-small dark color="red">Not Visible</v-chip>
                       </template>
                       <template v-slot:item.actions="{ item }">
                         <v-tooltip bottom>
@@ -232,7 +225,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import SpeakerServices from '@/services/SpeakersServices'
 export default {
   name: "TeamView",
   inject: ["theme"],
@@ -259,7 +252,7 @@ export default {
       },
       { text: "Designation", value: "designation" },
       { text: "Company", value: "company.name" },
-      { text: "Status", value: "active" },
+      { text: "Visible", value: "visible" },
       { text: "Actions", value: "actions", sortable: false }
     ]
   }),
@@ -288,19 +281,14 @@ export default {
     showData() {
       this.speakersData = [];
       this.isLoading = true;
-      firebase.firestore
-        .collection("Speakers")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.speakersData.push(doc.data());
-            // this.speakersData = [];
-          });
+      SpeakerServices.getAllSpeakers().then(res=>{
+        if(res.success == true){
+          this.speakersData = res.data
           this.isLoading = false;
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     }
   }
 };

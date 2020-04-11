@@ -241,8 +241,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import SpeakerServices from '@/services/SpeakersServices'
 export default {
   props: {
     speakerData: {}
@@ -295,43 +294,40 @@ export default {
   methods: {
     UpdateData() {
       if (this.$refs.form.validate()) {
+        let data ={
+          visible: this.updatedData.visible,
+          name: this.updatedData.name,
+          designation: this.updatedData.designation,
+          mbnumber: this.updatedData.mbnumber,
+          email: this.updatedData.email,
+          image: this.updatedData.image,
+          bio: this.updatedData.bio,
+          city: this.updatedData.city,
+          country: this.updatedData.country,
+          company: {
+            name: this.updatedData.company.name,
+            url: this.updatedData.company.url
+          },
+          socialLinks: {
+            facebook: this.updatedData.socialLinks.facebook,
+            github: this.updatedData.socialLinks.github,
+            linkedin: this.updatedData.socialLinks.linkedin,
+            medium: this.updatedData.socialLinks.medium,
+            twitter: this.updatedData.socialLinks.twitter,
+            web: this.updatedData.socialLinks.web
+          }
+        }
         this.loading = true;
-
-        firebase.firestore
-          .collection("Speakers")
-          .doc(this.speakerData.id)
-          .update({
-            visible: this.updatedData.visible,
-            name: this.updatedData.name,
-            designation: this.updatedData.designation,
-            mbnumber: this.updatedData.mbnumber,
-            email: this.updatedData.email,
-            image: this.updatedData.image,
-            bio: this.updatedData.bio,
-            city: this.updatedData.city,
-            country: this.updatedData.country,
-            company: {
-              name: this.updatedData.company.name,
-              url: this.updatedData.company.url
-            },
-            socialLinks: {
-              facebook: this.updatedData.socialLinks.facebook,
-              github: this.updatedData.socialLinks.github,
-              linkedin: this.updatedData.socialLinks.linkedin,
-              medium: this.updatedData.socialLinks.medium,
-              twitter: this.updatedData.socialLinks.twitter,
-              web: this.updatedData.socialLinks.web
-            }
-          })
-          .then(() => {
+        SpeakerServices.editSpeaker(this.speakerData.id,data).then(res=>{
+          if(res.success==true){
             this.loading = false;
             this.dialog = false;
-            this.$emit("editedSuccess", this.speakerData.name+" Edited Success");
-          })
-          .catch(e => {
-            console.log(e);
-            this.loading = false;
-          });
+            this.$emit("editedSuccess", res.msg);
+          }
+        }).catch(e=>{
+          console.log(e.msg);
+          this.loading = false;
+        })
       }
     }
   }

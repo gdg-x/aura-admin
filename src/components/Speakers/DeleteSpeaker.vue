@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import SpeakerServices from '@/services/SpeakersServices'
 export default {
   props: {
     SpeakerInfo: {}
@@ -38,22 +38,19 @@ export default {
   methods: {
     deleteItem(id) {
       this.loading = true;
-      firebase.firestore
-        .collection("Speakers")
-        .doc(this.SpeakerInfo.id)
-        .delete()
-        .then(() => {
+      SpeakerServices.removeSpeaker(this.SpeakerInfo.id).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
           this.$router.push({
             path: "/speakers",
-            query: { msg: "removesuccess" }
+            query: { msg: res.msg }
           });
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoading = false;
-        });
+        }
+      }).catch(e=>{
+        console.log(e.msg);
+        this.isLoading = false;
+      })
     }
   }
 };
