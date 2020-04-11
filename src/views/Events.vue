@@ -33,10 +33,10 @@
     </v-row>
 
     <v-row>
-      <v-col :md="keysandsecurity.meetup.length >3?'5':'12'" class="">
+      <v-col cols="12" sm="12" :md="keysandsecurity.meetup.length >3?'5':'12'" class="">
         <CustomEvents />
       </v-col>
-      <v-col md="7">
+      <v-col cols="12" sm="12" md="7">
         <MeetupEvents v-if="keysandsecurity.meetup.length >3" :meetupkey="keysandsecurity.meetup"/>
       </v-col>
     </v-row>

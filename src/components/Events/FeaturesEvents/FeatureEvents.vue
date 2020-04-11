@@ -11,6 +11,7 @@
                 <v-toolbar-title class="google-font mr-3">Features Events</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <AddFeatureEvent @show="showSnakeBar" />
+                <ClearFeaturedEvents @show="showSnakeBar" />
             </v-toolbar>
         </v-row>
         <v-row class="my-0 pa-0" v-if="loader">
@@ -64,7 +65,8 @@ export default {
     name:'MeetupEvents',
     components:{
         AddFeatureEvent:()=>import('@/components/Events/FeaturesEvents/AddFeatureEvent'),
-        Snakebar:()=>import('@/components/Common/Snakebar')
+        Snakebar:()=>import('@/components/Common/Snakebar'),
+        ClearFeaturedEvents:()=>import('@/components/Events/FeaturesEvents/ClearFeaturedEvents')
     },
     data:()=>({
         search:'',
