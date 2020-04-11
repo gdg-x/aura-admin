@@ -201,7 +201,8 @@
                         <v-row v-if="eventInfo.partners.length>0">
                           <v-col
                             class="ma-0"
-                            md="3"
+                            md="4"
+                            sm="6"
                             v-for="(item,i) in eventInfo.partners"
                             :key="i"
                           >
@@ -333,7 +334,7 @@
 
 <script>
 import firebase from "@/config/firebase";
-
+import PartnersServices from "@/services/PartnersServices"
 export default {
   name: "ViewTeam",
   components: {
@@ -443,26 +444,20 @@ export default {
               else if (doc.role == "Organizing Team") this.orgTeam.push(doc);
               else this.vol.push(doc);
             }
-            // this.teamInfo.push(doc.data());
           });
-          // console.log(this.teamInfo);
         })
         .catch(err => {
           console.log("Error getting documents", err);
         });
     },
     getPartnersData() {
-      firebase.firestore
-        .collection("partners")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.partnersInfo.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      PartnersServices.getAllPartners().then(res=>{
+        if(res.success==true){
+          this.partnersInfo = res.data
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     }
   }
 };
