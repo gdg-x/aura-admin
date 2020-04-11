@@ -131,7 +131,16 @@ const routes = [
       requiresAuth: true,
       title: "About"
     }
-  }
+  },
+  {
+      path: '*',
+      name: 'redirect',
+      redirect: { path: '/' },
+      meta:{
+        title:`Redirect `,
+        color:"#0277bd",
+      }
+    },
 ];
 
 const router = new VueRouter({
