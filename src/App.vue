@@ -43,7 +43,7 @@ export default {
     snackBtnText: "",
     snackWithBtnText: "",
     snackWithButtons: false,
-    timeout: 6000,
+    timeout: 25000,
     isLoading:false,
   }),
   computed:{
