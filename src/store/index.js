@@ -8,8 +8,13 @@ export default new Vuex.Store({
     drawer: true,
     isLoggedin: false,
     role: "demo",
-    generalConfig:{},
-    keysandsecurity:{},
+    generalConfig:{
+      email:'',
+      name:''
+    },
+    keysandsecurity:{
+      meetup:''
+    },
     items: [{
         text: 'Home',
         to: '/home',

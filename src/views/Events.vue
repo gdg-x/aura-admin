@@ -9,7 +9,7 @@
     <v-row class="">
       <v-col>
         <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">Events | {{generalConfig.name}}</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">Events | {{generalConfig.name || 'Aura' }}</v-toolbar-title>
           <v-spacer></v-spacer>
           <!-- <v-btn depressed color="indigo" class="mx-1" dark>Create a New Event</v-btn> -->
           <!-- <AddFeatureEvent @showSuccess="showSnakeBar" /> -->

@@ -1,7 +1,7 @@
 <template>
     <v-app-bar app fixed clipped-left class="white black--text">
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
-        <v-toolbar-title class="google-font ml-n5">{{ generalConfig.name }} - Aura Admin 3.0</v-toolbar-title>
+        <v-toolbar-title class="google-font ml-n5">{{ generalConfig.name || 'Community Name' }} - Aura Admin 3.0</v-toolbar-title>
         <v-spacer></v-spacer>
         <offline @detected-condition="handleConnectivityChange"></offline>
 
