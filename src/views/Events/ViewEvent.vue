@@ -167,14 +167,14 @@
                   </v-row>
 
                   <v-row>
-                    <v-col>
+                    <v-col cols="12" sm="12" md="6">
                       <h4 class="google-font">Speakers</h4>
                       <v-container class="pa-0">
                         <v-row v-if="eventInfo.speakers.length>0">
                           <v-col
                             class="ma-0"
                             md="4"
-                            sm="6"
+                            sm="4"
                             v-for="(item,i) in eventInfo.speakers"
                             :key="i"
                           >
@@ -195,11 +195,28 @@
                         </v-row>
                       </v-container>
                     </v-col>
-                    <v-col>
+                    <v-col cols="12" md="6">
                       <h4 class="google-font">Partners</h4>
                       <v-container class="pa-0">
                         <v-row v-if="eventInfo.partners.length>0">
                           <v-col
+                            class="ma-0"
+                            md="4"
+                            sm="6"
+                            
+                          >
+                            <ul v-for="(item,i) in eventInfo.partners"
+                            :key="i">
+                                <div v-for="(itemp,j) in partnersInfo" :key="j">
+                                  <div v-if="item == itemp.id">
+                                    <li class="google-font">{{itemp.name}}</li>
+                                  </div>
+                                </div>
+                            </ul>
+                            
+                          </v-col>
+
+                          <!-- <v-col
                             class="ma-0"
                             md="4"
                             sm="6"
@@ -211,7 +228,7 @@
                                 <p class="google-font mt-3">{{itemp.name}}</p>
                               </div>
                             </div>
-                          </v-col>
+                          </v-col> -->
                         </v-row>
                         <v-row v-else>
                           <v-col md="4" class>
@@ -221,6 +238,7 @@
                       </v-container>
                     </v-col>
                   </v-row>
+                  
                   <v-row>
                     <v-col>
                       <h4 class="google-font">Team</h4>
@@ -271,6 +289,7 @@
                       </v-container>
                     </v-col>
                   </v-row>
+
                   <v-row>
                     <v-col>
                       <h4 class="google-font">Agenda</h4>
