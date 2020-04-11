@@ -46,7 +46,7 @@
             <v-col cols="12" sm="5" md="3" xl="2" class="pa-0 text-center" style="border:1px solid #e0e0e0;background:white;border-radius:5px;">
                 <div class="pa-0">
                     <v-img
-                        :src="(partnerInfo.image.length>0)?partnerInfo.image:require('@/assets/img/default_avatar.jpg')"
+                        :src="(partnerInfo.image.length>0)?partnerInfo.image:require('@/assets/img/dontremove/noimage.jpg')"
                         :aspect-ratio="16/6.5"
                         class="grey lighten-4"
                     ></v-img>

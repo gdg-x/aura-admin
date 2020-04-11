@@ -6,7 +6,7 @@
         color="indigo"
         class="hidden-md-and-up"
     >
-        <v-btn to="/">
+        <v-btn to="/home">
             <span>Home</span>
             <v-icon>mdi-home</v-icon>
         </v-btn>

@@ -77,8 +77,8 @@
     <v-row class="px-2">
       <v-col cols="12 ">
         <v-container fluid class="pa-0">
-          <v-row justify="center" align="center" v-if="isLoading">
-            <v-col col="12" md="2" cols="6" v-for="n in 6" :key="n" class="text-center">
+          <v-row v-if="isLoading">
+            <v-col col="12" sm="3" md="2" cols="6" v-for="n in 6" :key="n">
               <v-sheet
                 :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
                 class=""
@@ -89,7 +89,6 @@
                   type="card"
                 ></v-skeleton-loader>
               </v-sheet>
-              <!-- <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular> -->
             </v-col>
           </v-row>
           <div v-else>
@@ -124,7 +123,7 @@
                       style="border:1px solid #e0e0e0;border-radius:5px;background:white;cursor: pointer;user-select: none;">
                         <v-row class="">
                           <v-col class="grey lighten-4 pa-0" >
-                            <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
+                            <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/dontremove/noimage.jpg')"></v-img>
                           </v-col>
                         </v-row>
                         <v-row class="">
@@ -132,7 +131,7 @@
                             <p
                               class="mb-0 google-font black--text"
                               style="font-size:110%"
-                            >{{item.name}}</p>
+                            >{{item.name | summary(15)}}</p>
                             <v-chip
                                 class="mr-1"
                                 v-if="item.visible"
@@ -289,6 +288,15 @@ export default {
         console.log("Error getting documents", e);
       })
     }
+  },
+  filters:{
+    summary: (val,num)=>{
+      if(val.length > num){
+        return val.substring(0,num)+".."
+      }else{
+        return val
+      }
+    },
   }
 };
 </script>

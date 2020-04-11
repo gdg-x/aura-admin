@@ -93,12 +93,11 @@
     <v-row class="px-2">
       <v-col cols="12">
         <v-container fluid class="pa-0">
-          <v-row justify="center" align="center" v-if="isLoading">
-            <v-col col="12" md="2" cols="6" v-for="n in 6" :key="n" class="text-center">
+          <v-row v-if="isLoading">
+            <v-col col="12" md="2" sm="3" cols="6" v-for="n in 6" :key="n" >
               <v-sheet :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`" class>
                 <v-skeleton-loader class="mx-auto" max-width="300" type="card"></v-skeleton-loader>
               </v-sheet>
-              <!-- <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular> -->
             </v-col>
           </v-row>
           <div v-else>

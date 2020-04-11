@@ -78,8 +78,8 @@
     <v-row class="px-2">
       <v-col cols="12 ">
         <v-container fluid class="pa-0">
-          <v-row justify="center" align="center" v-if="isLoading">
-            <v-col col="12" md="2" cols="6" v-for="n in 6" :key="n" class="text-center">
+          <v-row v-if="isLoading">
+            <v-col col="12" sm="3" md="2" cols="6" v-for="n in 6" :key="n">
               <v-sheet
                 :color="`grey ${theme.isDark ? 'darken-2' : 'lighten-4'}`"
                 class=""
@@ -90,7 +90,6 @@
                   type="card"
                 ></v-skeleton-loader>
               </v-sheet>
-              <!-- <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular> -->
             </v-col>
           </v-row>
           <div v-else >
@@ -127,7 +126,7 @@
                       >
                         <v-card-text style="height:100%">
                           <v-badge
-                            :color="item.visible?'green':'red'"
+                            :color="item.active?'green':'red'"
                             dot
                             overlap
                             offset-y="16"
@@ -148,7 +147,7 @@
                             class="mt-0 mb-0 google-font caption"
                             style="font-size:60%"
                           >{{item.designation}}</p>
-                          <v-chip class="ma-1" dark :color="item.active?'green':'red'" x-small>{{item.role}}</v-chip>
+                          <v-chip class="ma-1" dark :color="item.visible?'green':'red'" x-small>{{item.role}}</v-chip>
                         </v-card-text>
                       </v-card>
                     </v-col>

@@ -130,7 +130,7 @@
           <v-col class="pa-3" md="9">
             <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
               <v-img
-                :src="(eventInfo.image.length>0)?eventInfo.image:'https://www.itl.cat/pngfile/big/212-2125399_blue-white-material-design-4k-white-material-background.jpg'"
+                :src="(eventInfo.image.length>0)?eventInfo.image:require('@/assets/img/dontremove/eventbanner.jpg')"
                 width="100%"
                 cover
                 style="border-top-left-radius:5px;"
