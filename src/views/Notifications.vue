@@ -61,7 +61,7 @@
 
 <script>
 import firebase from "@/config/firebase";
-
+import PushNotificationServicers from '@/services/NotificationServices'
 export default {
   name: "Notifications",
   components: {
@@ -102,17 +102,15 @@ export default {
     loadData() {
       this.pushData = [];
       this.isLoading = true;
-      firebase.firestore
-        .collection("pushNotifications")
-        .get()
-        .then(res => {
-          res.forEach(doc => {
-            let data = doc.data();
-            data.id = doc.id;
-            this.pushData.push(data);
-          });
-          this.isLoading = false;
-        });
+      PushNotificationServicers.getAllPushNotifications().then(res=>{
+        if(res.success==true){
+          this.pushData = res.data
+          this.isLoading = false
+        }
+      }).catch(e=>{
+        this.isLoading = false;
+        console.log(e)
+      })
     }
   },
 

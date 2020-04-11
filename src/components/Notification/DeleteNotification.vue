@@ -28,8 +28,7 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase';
-
+import PushNotificationServicers from '@/services/NotificationServices'
 export default {
   name: "DeleteNotification",
   props:['data'],
@@ -40,20 +39,17 @@ export default {
   methods:{
       deleteItem(id) {
       this.loading = true;
-      firebase.firestore
-        .collection("pushNotifications")
-        .doc(id)
-        .delete()
-        .then(() => {
-          this.loading = false;
-          this.dialog = false;
-          this.$emit("addedSuccess", this.data.title+" Notification Deleted");
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoading = false;
-          this.$emit("addedSuccess", e);
-        });
+      PushNotificationServicers.removeNotification(id).then(res=>{
+        if(res.success==true){
+          this.loading = false
+          this.dialog = false
+          this.$emit("addedSuccess", this.data.title+' '+res.msg);
+        } 
+      }).catch(e=>{
+        console.log(e)
+        this.isLoading = false
+        this.$emit("addedSuccess", e.msg)
+      })
     }
   }
 };

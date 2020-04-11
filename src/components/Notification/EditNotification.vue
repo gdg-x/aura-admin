@@ -51,8 +51,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import PushNotificationServicers from '@/services/NotificationServices'
 export default {
   name: "EditNotifications",
   props: ["editDialogData"],
@@ -63,21 +62,23 @@ export default {
   methods: {
     updateNotification(id) {
       this.isAdding = true;
-      firebase.firestore
-        .collection("pushNotifications")
-        .doc(id)
-        .update({
-          body: this.editDialogData.body,
-          title: this.editDialogData.title,
-          image: this.editDialogData.image,
-          regLink: this.editDialogData.regLink,
-          eventID: this.editDialogData.eventID
-        })
-        .then(() => {
-          this.isAdding = false;
-          this.dialog = false;
-          this.$emit("addedSuccess", "Notification updated");
-        });
+      let data = {
+        body: this.editDialogData.body,
+        title: this.editDialogData.title,
+        image: this.editDialogData.image,
+        regLink: this.editDialogData.regLink,
+        eventID: this.editDialogData.eventID
+      }
+      PushNotificationServicers.editPushNotification(id,data).then(res=>{
+        if(res.success==true){
+          this.isAdding = false
+          this.dialog = false
+          this.$emit("addedSuccess", res.msg)
+        }
+      }).catch(e=>{
+        this.isAdding = false
+        console.log(e.msg)
+      })
     }
   }
 };

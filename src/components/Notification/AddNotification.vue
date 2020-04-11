@@ -59,8 +59,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import PushNotificationServicers from '@/services/NotificationServices'
 export default {
   name: "addNotification",
   data: () => ({
@@ -107,16 +106,16 @@ export default {
           noTimeSend: 0,
           createdOn: new Date(),
           sentTime: ""
-        };
-        firebase.firestore
-          .collection("pushNotifications")
-          .add(data)
-          .then(res => {
-            // console.log(res);
-            this.isAdding = false;
-            this.$emit("addedSuccess", "Push Notification Added Success");
-            this.dialog = false;
-          });
+        }
+        PushNotificationServicers.addPushNotification(data).then(res=>{
+          if(res.success== true){
+            this.isAdding = false
+            this.$emit("addedSuccess", res.msg)
+            this.dialog = false
+          }
+        }).catch(e=>{
+          console.log(e.msg)
+        })
       }
     }
   }
