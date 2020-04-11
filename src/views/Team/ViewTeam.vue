@@ -98,7 +98,10 @@
               <p class="mb-0">
                 <b>Bio</b>
               </p>
-              <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.bio.length?teamInfo.bio:'No Data Found'}}</p>
+              <p
+                class="mt-1 mb-0 google-font mt-0"
+                style="font-size:110%"
+              >{{teamInfo.bio.length?teamInfo.bio:'No Data Found'}}</p>
 
               <p class="mb-0 mt-3">
                 <b>Email</b>
@@ -108,7 +111,10 @@
               <p class="mb-0 mt-3">
                 <b>Mobile</b>
               </p>
-              <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{teamInfo.mbnumber.length?teamInfo.mbnumber:'No Data Found'}}</p>
+              <p
+                class="mt-0 mb-0 google-font mt-0"
+                style="font-size:110%"
+              >{{teamInfo.mbnumber.length?teamInfo.mbnumber:'No Data Found'}}</p>
 
               <p class="mb-0 mt-3">
                 <b>User ID</b>
@@ -124,10 +130,14 @@
                   v-for="(slink,i) in teamInfo.socialLinks"
                   :key="i"
                   class="mr-1"
-                > 
-                  <a v-if="slink" :href="slink" target="_blank" style="text-decoration:none;">
-                    <v-chip small ripple style="text-transform: uppercase;">{{i}}</v-chip>
-                  </a>
+                >
+                  <v-chip
+                    small
+                    v-if="slink"
+                    :href="slink"
+                    target="_blank"
+                    style="text-transform: uppercase;"
+                  >{{i}}</v-chip>
                 </span>
               </p>
             </v-col>
@@ -138,13 +148,22 @@
 
     <v-row justify="center" align="center" v-else>
       <v-col cols="12" md="12">
-        <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+        <v-container
+          fluid
+          class
+          style="border:1px solid #e0e0e0;border-radius:5px;background:white"
+        >
           <v-row justify="center" align="center" class="pa-3">
             <v-col md="4" class="text-center">
-              <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
+              <img
+                style="width:50%;text-align:center"
+                :src="require('@/assets/img/svg/DataNotFound.svg')"
+              />
               <h1 class="google-font">User Not Found</h1>
-              <p class="google-font">The requested URL /{{this.$route.params.id}} was not found on this server. That’s all we know.</p>
-              <br>
+              <p
+                class="google-font"
+              >The requested URL /{{this.$route.params.id}} was not found on this server. That’s all we know.</p>
+              <br />
               <v-btn
                 color="indigo"
                 dark
@@ -166,13 +185,13 @@
 
 <script>
 import firebase from "@/config/firebase";
-import TeamServices from '@/services/TeamServices'
+import TeamServices from "@/services/TeamServices";
 export default {
   name: "ViewTeam",
   components: {
-    Snakebar:()=>import('@/components/Common/Snakebar'),
-    DeleteTeam:()=>import('@/components/Team/DeleteTeam'),
-    EditTeam:()=>import('@/components/Team/EditTeam')
+    Snakebar: () => import("@/components/Common/Snakebar"),
+    DeleteTeam: () => import("@/components/Team/DeleteTeam"),
+    EditTeam: () => import("@/components/Team/EditTeam")
   },
   data: () => ({
     snakeBarMessage: "",
@@ -198,34 +217,36 @@ export default {
     getTeamData() {
       this.showLoader = true;
       this.userNotFound = false;
-      TeamServices.getTeamMemberDetails(this.$route.params.id).then(res=>{
-        if(res.isFound == false){
+      TeamServices.getTeamMemberDetails(this.$route.params.id)
+        .then(res => {
+          if (res.isFound == false) {
+            this.showLoader = false;
+            this.userNotFound = true;
+          } else if (res.isFound == true) {
+            this.showLoader = false;
+            this.teamInfo = res.data;
+          } else {
+            this.showLoader = false;
+            this.userNotFound = true;
+          }
+        })
+        .catch(e => {
+          console.log("Message" + e);
           this.showLoader = false;
           this.userNotFound = true;
-        }else if(res.isFound == true){
-          this.showLoader = false;
-          this.teamInfo = res.data;
-        }else{
-          this.showLoader = false;
-          this.userNotFound = true;
-        }
-      }).catch(e=>{
-        console.log("Message" + e);
-        this.showLoader = false;
-        this.userNotFound = true;
-      })
+        });
     }
   }
 };
 </script>
 
 <style scoped>
-.team-details{
-  border:1px solid #e0e0e0;
-  border-radius:5px;
+.team-details {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-left:0px;
-  background:white;
+  border-left: 0px;
+  background: white;
 }
 </style>
