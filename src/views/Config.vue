@@ -7,7 +7,7 @@
       :timeout="snakeBarTimeOut"
     />
     <h3 class="google-font mb-0">Config</h3>
-    <p class="google-font mb-5">Lorem ipsum dolor sit amet consectetur</p>
+    <p class="google-font mb-5">Manage Your Community Info</p>
     <v-tabs v-model="tab" show-arrows background-color="grey lighten-3">
       <v-tab key="item1">General</v-tab>
       <v-tab key="item2">Community Guidelines</v-tab>

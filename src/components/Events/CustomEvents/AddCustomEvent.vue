@@ -36,15 +36,13 @@
                     :src="require('@/assets/img/svg/dataentry.svg')"
                   />
                   <h3 class="google-font">New Custom Event</h3>
-                  <p class="google-font mb-0" style="color:red">*indicates required field</p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi dolore facilis maiores sed doloribus ratione omnis modi saepe impedit laboriosam officia eligendi vel optio nulla voluptas, sapiente, fugiat eos ullam.
+                  <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                  <p>Event ID should be Unique</p>
                 </v-col>
                 <v-col md="8" lg="9" cols="12" sm="8">
                   <v-row>
                     <v-col class="ma-0" md="12" cols="12">
                       <h4 class="google-font mb-0">Event Status</h4>
-                      <p
-                        class="google-font mb-0"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil dignissimos atque delectus eum itaque unde necessitatibus excepturi provident debitis similique ullam blanditiis reiciendis ea perferendis in? Iusto, facilis.</p>
                     </v-col>
                     <v-col md="3" cols="6" class="ma-0">
                       <v-select
@@ -79,9 +77,6 @@
                   <v-row>
                     <v-col class="ma-0" md="12" cols="12">
                       <h4 class="google-font mb-0">Event Info</h4>
-                      <p
-                        class="google-font mb-0"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil</p>
                     </v-col>
 
                     <v-col md="5" xs="3" cols="12" class="ma-0">
@@ -253,9 +248,6 @@
                   <v-row>
                     <v-col class="ma-0" md="12" cols="12">
                       <h4 class="google-font mb-0">Speaker, Partners & Team Info</h4>
-                      <p
-                        class="google-font mb-0"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil</p>
                     </v-col>
                     <v-col md="6" xs="6" lg="4" cols="12" class="ma-0">
                       <v-autocomplete
@@ -327,9 +319,6 @@
                   <v-row>
                     <v-col class="ma-0" md="12" cols="12">
                       <h4 class="google-font mb-0">Event Links Info</h4>
-                      <p
-                        class="google-font mb-0"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil</p>
                     </v-col>
                     <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
                       <v-text-field
@@ -376,9 +365,6 @@
                   <v-row class>
                     <v-col class="ma-0" md="12" cols="12" style>
                       <h4 class="google-font mb-0">Event Agenda Info</h4>
-                      <p
-                        class="google-font mb-0"
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, non nihil</p>
                     </v-col>
                     <v-col class="ma-0" md="12" cols="12">
                       <v-toolbar

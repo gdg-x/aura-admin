@@ -22,7 +22,7 @@
                 <v-btn dark :loading="isAdding" @click="saveData" class="indigo mx-2" depressed>Save Links</v-btn>
                 <FooterLink @show="showSnakeBar" :data="this.linksData" />
             </v-toolbar>
-            <p class="mb-0 mt-3 google-font" style="color:red"><b>!Important</b> Links will not be saved until and unless, if you will click the save button</p>
+            <p class="mb-0 mt-3 google-font" style="color:red"><b>Important! </b> Links will not be saved until and unless, if you will click the save button</p>
           </v-col>
         </v-row>
         <v-row class="my-0 py-0">

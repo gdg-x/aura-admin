@@ -21,7 +21,7 @@
           >Save Keys & Security</v-btn>
         </v-toolbar>
         <p class="mb-0 mt-3 google-font" style="color:red">
-          <b>!Important</b> Settings will not be saved until and unless, if you will click the save button
+          <b>Important! </b> Settings will not be saved until and unless, if you will click the save button
         </p>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">

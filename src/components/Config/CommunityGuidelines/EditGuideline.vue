@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="500">
       <template v-slot:activator="{ on }">
-        <v-btn fab elevation="0" x-small text v-on="on">
+        <v-btn icon elevation="0" class="mx-1" v-on="on">
           <v-icon>mdi-lead-pencil</v-icon>
         </v-btn>
       </template>

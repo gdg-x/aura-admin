@@ -48,7 +48,7 @@
                 </v-list-item>
             </v-list> -->
             <div class="pl-2">
-                <p class="subtitle-2 google-font">Version: 0.1.1 - AURA</p>
+                <p class="subtitle-2 google-font">Version: 3.1.1 - AURA</p>
             </div>
         </template>
     </v-navigation-drawer>
