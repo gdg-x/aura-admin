@@ -22,7 +22,7 @@
 
     <v-row>
       <v-col>
-        <UpcomingMeetupEvents :meetupkey="keysandsecurity.meetup"/>
+        <UpcomingMeetupEvents v-if="keysandsecurity.meetup.length >3" :meetupkey="keysandsecurity.meetup"/>
       </v-col>
     </v-row>
 
@@ -33,11 +33,11 @@
     </v-row>
 
     <v-row>
-      <v-col md="5" class="">
+      <v-col :md="keysandsecurity.meetup.length >3?'5':'12'" class="">
         <CustomEvents />
       </v-col>
       <v-col md="7">
-        <MeetupEvents :meetupkey="keysandsecurity.meetup"/>
+        <MeetupEvents v-if="keysandsecurity.meetup.length >3" :meetupkey="keysandsecurity.meetup"/>
       </v-col>
     </v-row>
   </v-container>
