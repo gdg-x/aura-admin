@@ -55,7 +55,7 @@
               </p>
               <p class="google-font my-0">
                 <b>Vanue:</b>
-                <a :href="eventInfo.venue.googlemapslink">{{eventInfo.venue.name}}</a>
+                <a :href="eventInfo.venue.googlemapsurl">{{eventInfo.venue.name}}</a>
               </p>
 
               <br />
