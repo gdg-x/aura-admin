@@ -126,7 +126,7 @@
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="meetup" label="Meetup" outlined></v-text-field>
+                      <v-text-field class="ma-0" v-model="medium" label="Medium" outlined></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
@@ -198,7 +198,7 @@ export default {
       github: "",
       linkedin: "",
       email: "",
-      meetup: "",
+      medium: "",
       twitter: "",
       password: "",
       web: "",
@@ -229,7 +229,7 @@ export default {
             facebook: this.facebook,
             github: this.github,
             linkedin: this.linkedin,
-            meetup: this.meetup,
+            medium: this.medium,
             twitter: this.twitter,
             web: this.web
           }

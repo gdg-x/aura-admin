@@ -163,8 +163,8 @@
                   <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
-                      v-model="updatedData.socialLinks.meetup"
-                      label="Meetup"
+                      v-model="updatedData.socialLinks.medium"
+                      label="Medium"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -252,7 +252,7 @@ export default {
           facebook: this.teamData.socialLinks.facebook,
           github: this.teamData.socialLinks.github,
           linkedin: this.teamData.socialLinks.linkedin,
-          meetup: this.teamData.socialLinks.meetup,
+          medium: this.teamData.socialLinks.medium,
           twitter: this.teamData.socialLinks.twitter,
           web: this.teamData.socialLinks.web
         }
@@ -278,7 +278,7 @@ export default {
             facebook: this.updatedData.socialLinks.facebook,
             github: this.updatedData.socialLinks.github,
             linkedin: this.updatedData.socialLinks.linkedin,
-            meetup: this.updatedData.socialLinks.meetup,
+            medium: this.updatedData.socialLinks.medium,
             twitter: this.updatedData.socialLinks.twitter,
             web: this.updatedData.socialLinks.web
           }
