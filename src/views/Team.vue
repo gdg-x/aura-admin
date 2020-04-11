@@ -227,8 +227,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import TeamServices from '@/services/TeamServices'
 export default {
   name: "TeamView",
   inject: ['theme'],
@@ -285,20 +284,13 @@ export default {
     showData() {
       this.teamData = [];
       this.isLoading = true;
-      firebase.firestore
-        .collection("team")
-        .orderBy("role", "asc")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.teamData.push(doc.data());
-            // this.teamData = [];
-          });
-          this.isLoading = false;
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      TeamServices.getAllTeam().then(res=>{
+        this.teamData = res.data
+        this.isLoading = false
+      }).catch(e=>{
+        this.isLoading = false
+        console.log("Error getting documents", e)
+      })
     }
   }
 };

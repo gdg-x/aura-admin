@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import TeamServices from '@/services/TeamServices'
 export default {
   props: {
     TeamInfo: {}
@@ -38,23 +38,19 @@ export default {
   methods: {
     deleteItem(id) {
       this.loading = true;
-      firebase.firestore
-        .collection("team")
-        .doc(this.TeamInfo.id)
-        .delete()
-        .then(() => {
+      TeamServices.removeTeamMember(this.TeamInfo.id).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
-        //   this.$emit("RemoveSuceess");
           this.$router.push({
             path: "/team",
-            query: { msg: "removesuccess" }
+            query: { msg: res.msg }
           });
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoading = false;
-        });
+        }
+      }).catch(e=>{
+        console.log(e);
+        this.isLoading = false;
+      })
     }
   }
 };

@@ -213,8 +213,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
-
+import TeamServices from '@/services/TeamServices'
 export default {
   props: {
     teamData: {}
@@ -264,39 +263,36 @@ export default {
     UpdateData() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-
-        firebase.firestore
-          .collection("team")
-          .doc(this.teamData.id)
-          .update({
-            active: this.updatedData.active,
-            visible: this.updatedData.visible,
-            name: this.updatedData.name,
-            designation: this.updatedData.designation,
-            mbnumber: this.updatedData.mbnumber,
-            email: this.updatedData.email,
-            image: this.updatedData.image,
-            bio: this.updatedData.bio,
-            id: this.updatedData.id,
-            role: this.updatedData.role,
-            socialLinks: {
-              facebook: this.updatedData.socialLinks.facebook,
-              github: this.updatedData.socialLinks.github,
-              linkedin: this.updatedData.socialLinks.linkedin,
-              meetup: this.updatedData.socialLinks.meetup,
-              twitter: this.updatedData.socialLinks.twitter,
-              web: this.updatedData.socialLinks.web
-            }
-          })
-          .then(() => {
+        let data = {
+          active: this.updatedData.active,
+          visible: this.updatedData.visible,
+          name: this.updatedData.name,
+          designation: this.updatedData.designation,
+          mbnumber: this.updatedData.mbnumber,
+          email: this.updatedData.email,
+          image: this.updatedData.image,
+          bio: this.updatedData.bio,
+          id: this.updatedData.id,
+          role: this.updatedData.role,
+          socialLinks: {
+            facebook: this.updatedData.socialLinks.facebook,
+            github: this.updatedData.socialLinks.github,
+            linkedin: this.updatedData.socialLinks.linkedin,
+            meetup: this.updatedData.socialLinks.meetup,
+            twitter: this.updatedData.socialLinks.twitter,
+            web: this.updatedData.socialLinks.web
+          }
+        }
+        TeamServices.editTeamMember(this.teamData.id, data).then(res=>{
+          if(res.success==true){
             this.loading = false;
             this.dialog = false;
-            this.$emit("editedSuccess", this.teamData.name+" Edited Success");
-          })
-          .catch(e => {
-            console.log(e);
-            this.loading = false;
-          });
+            this.$emit("editedSuccess", res.msg);
+          }
+        }).catch(e=>{
+          console.log(e.msg);
+          this.loading = false;
+        })
       }
     }
   }

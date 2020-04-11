@@ -166,7 +166,7 @@
 
 <script>
 import firebase from "@/config/firebase";
-
+import TeamServices from '@/services/TeamServices'
 export default {
   name: "ViewTeam",
   components: {
@@ -198,27 +198,22 @@ export default {
     getTeamData() {
       this.showLoader = true;
       this.userNotFound = false;
-      firebase.firestore
-        .collection("team")
-        .doc(this.$route.params.id)
-        .get()
-        .then(doc => {
-          if (doc.data() == undefined) {
-            this.showLoader = false;
-            this.userNotFound = true;
-          } else if (doc.data()) {
-            this.showLoader = false;
-            this.teamInfo = doc.data();
-          } else {
-            this.showLoader = false;
-            this.userNotFound = true;
-          }
-        })
-        .catch(e => {
-          console.log("Message" + e);
+      TeamServices.getTeamMemberDetails(this.$route.params.id).then(res=>{
+        if(res.isFound == false){
           this.showLoader = false;
           this.userNotFound = true;
-        });
+        }else if(res.isFound == true){
+          this.showLoader = false;
+          this.teamInfo = res.data;
+        }else{
+          this.showLoader = false;
+          this.userNotFound = true;
+        }
+      }).catch(e=>{
+        console.log("Message" + e);
+        this.showLoader = false;
+        this.userNotFound = true;
+      })
     }
   }
 };
