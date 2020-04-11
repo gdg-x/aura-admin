@@ -55,6 +55,12 @@
               ></v-text-field>
               <v-text-field
                 class="my-0 py-0"
+                label="Become A Member Link"
+                v-model="communityinfo.becomemember"
+                outlined
+              ></v-text-field>
+              <v-text-field
+                class="my-0 py-0"
                 label="Learn More Link"
                 v-model="communityinfo.learnMoreLink"
                 outlined
@@ -71,12 +77,12 @@
                 v-model="communityinfo.blogs.medium"
                 outlined
               ></v-text-field>
-              <v-text-field
+              <!-- <v-text-field
                 class="my-0 py-0"
                 label="Dev.to Blog Username"
                 v-model="communityinfo.blogs.devto"
                 outlined
-              ></v-text-field>
+              ></v-text-field> -->
             </div>
           </v-col>
         </v-row>
@@ -213,6 +219,7 @@ export default {
       email:"",
       website: "",
       meetupLink: "",
+      becomemember:"",
       learnMoreLink:"",
       shortDescription: "",
       longDescription: "",
