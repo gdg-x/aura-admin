@@ -22,6 +22,9 @@
                 <!-- Row 1 -->
                 <v-row class="pa-3">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
+                    <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                  </v-col>                  
+                  <v-col md="12" cols="12" class="pa-1 ma-0">
                     <p style="font-size:120%" class="my-0">Partner Status</p>
                   </v-col>
 
@@ -67,7 +70,7 @@
                         v-model="updatedData.name"
                         :rules="nameRules"
                         class="ma-0"
-                        label="Name"
+                        label="Name *"
                         outlined
                         ></v-text-field>
                     </v-col>

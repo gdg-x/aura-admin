@@ -17,15 +17,18 @@
                  <!-- Speaker Status -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
+                      <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                    </v-col>
+                    <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0 mb-2">Speaker Status</p>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
-                      <v-select :items="items" v-model="visible" label="Visiblity Status" outlined></v-select>
+                      <v-select :items="items" v-model="visible" label="Visiblity Status*" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="userId" class="ma-0" label="ID" type="text" outlined></v-text-field>
+                      <v-text-field v-model="userId" class="ma-0" label="ID*" type="text" outlined></v-text-field>
                     </v-col>
                   </v-row>
                   <!-- Speaker Status -->
@@ -41,7 +44,7 @@
                         v-model="name"
                         :rules="nameRules"
                         class="ma-0"
-                        label="Full Name"
+                        label="Full Name*"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -51,7 +54,7 @@
                         v-model="designation"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Desigination"
+                        label="Desigination *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -65,7 +68,7 @@
                         v-model="companyName"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Company Name"
+                        label="Company Name *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -74,7 +77,7 @@
                         v-model="companyURL"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Company URL"
+                        label="Company URL *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -84,7 +87,7 @@
                         v-model="city"
                         class="ma-0"
                         :rules="nameRules"
-                        label="City"
+                        label="City *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -94,7 +97,7 @@
                         v-model="country"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Country"
+                        label="Country *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -119,7 +122,7 @@
                         class="ma-0"
                         v-model="email"
                         :rules="emailRules"
-                        label="Email Id"
+                        label="Email Id *"
                         outlined
                       ></v-text-field>
                     </v-col>

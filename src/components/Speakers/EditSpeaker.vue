@@ -23,6 +23,9 @@
                 <!-- {{speakerData}} -->
                 <!-- Row 1 -->
                 <v-row class="pa-3  py-0 my-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0">
+                    <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                  </v-col>
                   <v-col md="12" cols="12" class="pa-1 py-0 ma-0 mb-2">
                     <p style="font-size:120%" class="my-0">Speaker Status</p>
                   </v-col>
@@ -61,7 +64,7 @@
                       v-model="updatedData.name"
                       :rules="nameRules"
                       class="ma-0"
-                      label="Name"
+                      label="Name *"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -71,7 +74,7 @@
                       v-model="updatedData.designation"
                       class="ma-0"
                       :rules="nameRules"
-                      label="Desigination"
+                      label="Desigination *"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -89,7 +92,7 @@
                         v-model="updatedData.company.name"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Company Name"
+                        label="Company Name *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -107,7 +110,7 @@
                         v-model="updatedData.city"
                         class="ma-0"
                         :rules="nameRules"
-                        label="City"
+                        label="City *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -117,7 +120,7 @@
                         v-model="updatedData.country"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Country"
+                        label="Country *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -148,7 +151,7 @@
                       class="ma-0"
                       v-model="updatedData.email"
                       :rules="emailRules"
-                      label="Email Id"
+                      label="Email Id *"
                       outlined
                     ></v-text-field>
                   </v-col>

@@ -40,11 +40,11 @@
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="id" class="ma-0" :rules="idRules" label="ID*" type="text" outlined></v-text-field>
+                      <v-text-field v-model="id" class="ma-0" :rules="idRules" label="ID *" type="text" outlined></v-text-field>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="teamRole" v-model="role" :rules="idRules" label="Role*" outlined></v-select>
+                      <v-select :items="teamRole" v-model="role" :rules="idRules" label="Role *" outlined></v-select>
                     </v-col>
                   </v-row>
                   <v-row class="pa-3 py-0">
@@ -57,7 +57,7 @@
                         v-model="name"
                         :rules="nameRules"
                         class="ma-0"
-                        label="Name*"
+                        label="Name *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -67,7 +67,7 @@
                         v-model="designation"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Desigination*"
+                        label="Desigination *"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -94,11 +94,11 @@
                         class="ma-0"
                         v-model="email"
                         :rules="emailRules"
-                        label="Email Id*"
+                        label="Email Id *"
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                    <!-- <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
                         v-model="password"
@@ -106,7 +106,7 @@
                         type="password"
                         outlined
                       ></v-text-field>
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                   <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">

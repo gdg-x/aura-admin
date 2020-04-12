@@ -181,7 +181,7 @@
                             <div v-for="(itemp,j) in speakersInfo" :key="j">
                               <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
                                 <v-avatar size="80">
-                                  <img :src="itemp.image" :lazy-src="itemp.image" />
+                                  <img :src="(itemp.image.length>0)?itemp.image:require('@/assets/img/default_avatar.jpg')" :lazy-src="(itemp.image.length>0)?itemp.image:require('@/assets/img/default_avatar.jpg')" />
                                 </v-avatar>
                                 <p class="google-font mt-3">{{itemp.name}}</p>
                               </div>
@@ -215,20 +215,6 @@
                             </ul>
                             
                           </v-col>
-
-                          <!-- <v-col
-                            class="ma-0"
-                            md="4"
-                            sm="6"
-                            v-for="(item,i) in eventInfo.partners"
-                            :key="i"
-                          >
-                            <div v-for="(itemp,j) in partnersInfo" :key="j">
-                              <div v-if="item == itemp.id" class="lightModeCard pa-3 text-center">
-                                <p class="google-font mt-3">{{itemp.name}}</p>
-                              </div>
-                            </div>
-                          </v-col> -->
                         </v-row>
                         <v-row v-else>
                           <v-col md="4" class>

@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="#5AB55E" dark v-on="on">Add Feature Event</v-btn>
+        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData">Add Feature Event</v-btn>
       </template>
       <v-card v-if="dialog" class>
         <v-card-title
@@ -81,10 +81,13 @@ export default {
     isAdding: false
   }),
   mounted() {
-    this.ShowEvents();
-    this.loadFeatureEvents();
+    
   },
   methods: {
+    getData(){
+      this.ShowEvents();
+      this.loadFeatureEvents();
+    },
     ShowEvents() {
       this.loading = true;
       firebase.firestore
@@ -92,9 +95,9 @@ export default {
         .get()
         .then(snapshot => {
           snapshot.forEach(doc => {
-            this.loading = false;
             this.eventsData.push(doc.data());
           });
+          this.loading = false;
         })
         .catch(err => {
           this.loading = false;

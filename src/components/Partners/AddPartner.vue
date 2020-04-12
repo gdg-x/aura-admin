@@ -23,19 +23,22 @@
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-row class="pa-3">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
+                      <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                    </v-col>
+                    <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0">Partner Status</p>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="active" label="Active Status" outlined></v-select>
+                      <v-select :items="items" v-model="active" label="Active Status *" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-select :items="items" v-model="visible" label="Visiblity Status" outlined></v-select>
+                      <v-select :items="items" v-model="visible" label="Visiblity Status *" outlined></v-select>
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                      <v-text-field v-model="id" class="ma-0" label="ID" type="text" outlined></v-text-field>
+                      <v-text-field v-model="id" class="ma-0" label="ID *" type="text" outlined></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row class="pa-3">
@@ -48,7 +51,7 @@
                         v-model="name"
                         :rules="nameRules"
                         class="ma-0"
-                        label="Name"
+                        label="Name *"
                         outlined
                       ></v-text-field>
                     </v-col>
