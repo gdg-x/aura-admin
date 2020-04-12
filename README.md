@@ -1,4 +1,5 @@
 # Aura Admin
+
 Version: 3.1.1
 <br>
 Demo: [Click Here](https://auradmin.web.app/)
@@ -95,5 +96,5 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 
 ## Contributors
 <b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) <br>
-<b>Developer:</b> [Bharat Agarwal](https://github.com/bharatagsrwal)
+<b>Developer:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
 
