@@ -1,5 +1,5 @@
 # Aura Admin
-
+<img src="https://github.com/GDG-Jalandhar/WebsiteData/blob/master/promotion%20images/Aura%20Admin.png?raw=true" width="100%">
 Version: 3.1.1
 <br>
 Demo: [Click Here](https://auradmin.web.app/)
