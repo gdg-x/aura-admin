@@ -101,7 +101,16 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 
 ## Contributors
 <b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) <br>
-<b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
+<b>Developers:</b> [Bharat Agarwal](https://github.com/bharatagsrwal) 
+
+### View Website Built with Projects
+
+| Community Name | Web App Link |
+| --- | --- |
+| GDG Jalandhar | [View Now](https://gdgjalandhar.com) |
 
 ## Facing Any Problem or need any Help?
 Write us in [issues](https://github.com/issues) section. Our team will try solve your issue within 10-12 hours.<br>
+
+Project is published under the [MIT license](/LICENSE.md).  
+Feel free to clone and modify repo as you want, but don't forget to add reference to authors :)
