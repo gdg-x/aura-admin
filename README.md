@@ -102,7 +102,7 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 
 ## Contributors
 <b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) <br>
-<b>Developers:</b> [Bharat Agarwal](https://github.com/bharatagsrwal) 
+<b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) & [Bharat Agarwal](https://github.com/bharatagsrwal) 
 
 ### View Website Built with Projects
 
