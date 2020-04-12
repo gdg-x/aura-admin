@@ -4,7 +4,7 @@ Version: 3.1.1
 <br>
 Demo: [Click Here](https://auradmin.web.app/)
 
-### Show some :heart: and star the repo to support the project
+### Show some :heart: and :star: the repo to support the project
 
 ## Overview
 
@@ -90,17 +90,18 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 - Use the search feature to check for an existing issue
 - Include as much information as possible and provide any relevant resources (Eg. screenshots)
 - For bug reports ensure you have a reproducible test case
-  - A pull request with a breaking test would be super preferable here but isn't required
+ - A pull request with a breaking test would be super preferable here but isn't required
 
 ### Submitting a Pull Request
 
 - Squash commits
 - Lint your code with eslint (config provided)
 - Include relevant test updates/additions
+- Pull requests _must_ be made against `develop` branch. Any other branch (unless specified by the maintainers) will get rejected.
 
 ## Contributors
 <b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) <br>
 <b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
 
 ## Facing Any Problem or need any Help?
-Write me in [issues](https://github.com/issues) section. Our team will try solve your issue within 10-12 hours.<br>
+Write us in [issues](https://github.com/issues) section. Our team will try solve your issue within 10-12 hours.<br>
