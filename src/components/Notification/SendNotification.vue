@@ -1,12 +1,10 @@
 <template>
   <v-dialog v-model="dialog" hide-overlay persistent width="300">
-    <template v-slot:activator="{ on }">
-      <!-- send icon -->
-      <v-btn icon v-on="on" @click="send" class="mr-2">
-        <v-icon>mdi-send</v-icon>
-      </v-btn>
-      <!-- <v-icon small class="mr-2" v-on="on" @click="send">mdi-send</v-icon> -->
-    </template>
+        <template v-slot:activator="{ on }">
+          <v-btn fab x-small icon color="indigo" class="mx-1" outlined v-on="on" @click="send" >
+            <v-icon>mdi-send</v-icon>
+          </v-btn>
+        </template>
     <v-card color="primary" dark v-if="dialog">
       <v-card-text class="py-5">
         Sending Notifications
@@ -70,7 +68,7 @@ export default {
                 fetch("https://fcm.googleapis.com/fcm/send", options)
                   .then(res => res.json())
                   .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.failure == 1) {
                       firebase.firestore
                         .collection("apiEnd")
@@ -85,7 +83,7 @@ export default {
                     this.$emit("errorRecived", err);
                   });
               });
-              console.log(docs);
+              // console.log(docs);
               this.$emit("addedSuccess", "Push Notifications Sent Success");
               this.dialog = false;
             }).catch(e=>{

@@ -1,10 +1,16 @@
 <template>
   <v-dialog v-model="dialog" width="800" scrollable>
-    <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on" class="mr-2">
-        <v-icon>mdi-lead-pencil</v-icon>
-      </v-btn>
-      <!-- <v-icon small class="mr-2" v-on="on">mdi-lead-pencil</v-icon> -->
+
+    <template v-slot:activator="{ }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn fab x-small icon outlined color="indigo" v-on="on" class="mx-1" @click.stop="dialog = true">
+            <v-icon>mdi-lead-pencil</v-icon>
+          </v-btn>
+        </template>
+        <span>Edit Details</span>
+      </v-tooltip>
+
     </template>
     <v-card v-if="dialog">
       <v-card-title class="headline google-font" primary-title>Edit Notification</v-card-title>

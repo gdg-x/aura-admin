@@ -1,9 +1,14 @@
 <template>
   <v-dialog v-model="dialog" max-width="500">
-    <template v-slot:activator="{ on }">
-      <v-btn icon v-on="on" class="mr-2">
-        <v-icon>mdi-delete</v-icon>
-      </v-btn>
+    <template v-slot:activator="{  }">
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn fab x-small icon color="indigo" class="mx-1" outlined v-on="on" @click.stop="dialog = true">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+        </template>
+        <span>Remove</span>
+      </v-tooltip>
     </template>
 
     <v-card v-if="dialog">
