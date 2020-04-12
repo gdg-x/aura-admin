@@ -103,4 +103,4 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 <b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
 
 ## Facing Any Problem or need any Help?
-Write me in [issues](https://github.com/issues) section. I will try solve your issue within 10-12 hours.<br>
+Write me in [issues](https://github.com/issues) section. Our team will try solve your issue within 10-12 hours.<br>
