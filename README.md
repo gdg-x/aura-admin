@@ -65,6 +65,9 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 1. Save the Config
 1. For Sending Push Notification from Aura Admin, Goto Notification and then click on Add Notification and then click on Send Push Notification Button in Table
 
+### Documentation
+1. [Full documentation](https://docs.google.com/document/d/1WhpMxCE-H47em73F-8pcNGETye5Qun8cY3Jdg7jx6DE/edit?usp=sharing).
+
 
 ## Technology Stack
 
