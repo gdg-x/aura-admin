@@ -39,7 +39,7 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 1. Now click on the node
 1. Copy the code 
     ```js
-        apiKey: "Axxxxxxxxxxxxxxxxxxx",
+    apiKey: "Axxxxxxxxxxxxxxxxxxx",
     authDomain: "xxxxxx.firebaseapp.com",
     databaseURL: "https://xxxxxxxx.firebaseio.com",
     projectId: "xxxxxxxxx",
