@@ -26,11 +26,12 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 
 ## Getting Started
 
-1. [Fork repository](https://github.com/Vrijraj/aura/fork) and clone it locally
+1. [Fork this repository](https://github.com/gdg-x/aura-admin/fork) & [Aura Main](https://github.com/Vrijraj/aura/fork) (Important) and clone both repo locally
 1. Setup Environment
     - Install [Node.js (v8.9.4 or above)](https://nodejs.org/en/download/)
     - Install vue cli: `npm install -g @vue/cli`
 1. Install project dependencies: `npm install` 
+1. If you already have setup [Aura Main](https://github.com/Vrijraj/aura/fork) then use same Firebase Project
 1. Create [Firebase account](https://console.firebase.google.com) and Create a new Project 
 1. Go to Firebase Project Dashboard
 1. Go to Cloud Firestore Database and Enable the database in test mode
