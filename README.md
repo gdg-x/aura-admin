@@ -21,6 +21,7 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 | **SEO optimized** | index all content and get to the top in search results |
 | **Easy in management** | Store all the data in Cloud Firestore |
 | **Trigger Push Notification** | Trigger Push Notification to Aura Main |
+| **Usability** | Any Tech Communities can use |
 
 
 ## Getting Started
@@ -99,5 +100,5 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 
 ## Contributors
 <b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) <br>
-<b>Developer:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
+<b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) &  [Bharat Agarwal](https://github.com/bharatagsrwal) 
 
