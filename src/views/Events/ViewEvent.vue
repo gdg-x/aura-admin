@@ -29,6 +29,7 @@
             @RemoveSuceess="showSnakeBar"
             v-if="!showLoader && !userNotFound"
           />
+          <PublicUrl :EventInfo="eventInfo" v-if="!showLoader && !userNotFound" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -340,12 +341,14 @@
 <script>
 import firebase from "@/config/firebase";
 import PartnersServices from "@/services/PartnersServices"
+
 export default {
   name: "ViewTeam",
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     DeleteEvent:()=>import('@/components/Events/subcomponents/DeleteEvent'),
-    EditEvent:()=>import('@/components/Events/CustomEvents/EditCustomEvent')
+    EditEvent:()=>import('@/components/Events/CustomEvents/EditCustomEvent'),
+    PublicUrl:()=>import('@/components/Events/subcomponents/PublicUrl')
   },
   data: () => ({
     snakeBarMessage: "",
