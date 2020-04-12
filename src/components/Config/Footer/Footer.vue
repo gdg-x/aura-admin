@@ -31,7 +31,7 @@
                   <v-col md="3" cols="12" class="">
                       <div class="px-2 py-5" style="border:1px solid #e0e0e0;border-radius:5px;background:#fafafa">
                         <p>About</p>
-                        <NotFound v-if="linksData.About.length && linksData.About.length<=0" text="No Links Found"/>
+                        <NotFound v-if="linksData.About && linksData.About.length<=0" text="No Links Found"/>
                         <v-row v-else v-for="(item,i) in (linksData.About)" :key="i">
                             <v-col class="my-0 py-1">
                                 <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
@@ -106,17 +106,7 @@
           </v-col>
         </v-row>
 
-        <v-row>
-            <v-col md="10">
-                
-            </v-col>
-        </v-row>
-      </v-col>
-      <v-col md="5" cols="12">
-      
-      </v-col>
-
-      <v-col>
+       
       </v-col>
     </v-row>
   </v-container>
@@ -175,7 +165,12 @@ export default {
         });
     },
     getData() {
-      this.linksData = {}
+      this.linksData = {
+        "About":[],
+        "Resources":[],
+        "Developer Console":[],
+        "Footer End Session Link":[]
+      }
       this.isLoading = true;
       firebase.firestore
         .collection("config")
@@ -183,6 +178,7 @@ export default {
         .get()
         .then(doc => {
           if (!doc.exists) {
+            
             this.isLoading = false;
             return;
           }
