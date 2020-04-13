@@ -18,6 +18,8 @@
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                      <p style="color:red">ID should be unique, Once you assigned an ID to event, it can't be changed</p>
+
                     </v-col>
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0 mb-2">Speaker Status</p>

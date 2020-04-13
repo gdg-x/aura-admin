@@ -38,6 +38,7 @@
                   <h3 class="google-font">New Custom Event</h3>
                   <p class="google-font mb-0" style="color:red">*indicates required field</p>
                   <p>Event ID should be Unique</p>
+                  <p style="color:red">Once you assigned an ID to event, it can't be changed</p>
                 </v-col>
                 <v-col md="8" lg="9" cols="12" sm="8">
                   <v-row>

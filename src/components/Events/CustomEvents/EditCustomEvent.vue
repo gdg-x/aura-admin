@@ -36,7 +36,8 @@
                     :src="require('@/assets/img/svg/dataentry.svg')"
                   />
                   <h3 class="google-font">Edit {{eventInfo.name}}</h3>
-                  <p class="google-font mb-0" style="color:red">*indicates required field</p>Lorem ipsum, <p>Event ID should be Unique</p>
+                  <p class="google-font mb-0" style="color:red">*indicates required field</p> 
+                  <p>Event ID should be Unique</p>
                 </v-col>
                 <v-col md="8" lg="9" cols="12" sm="8">
                   <v-row>
