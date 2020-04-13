@@ -38,7 +38,7 @@ export default new Vuex.Store({
       {
         text: 'Partners',
         to: '/partners',
-        icon: 'mdi-kodi',
+        icon: 'mdi-toaster-oven',
       },
       {
         text: 'Notification',

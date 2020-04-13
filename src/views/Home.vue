@@ -103,7 +103,7 @@
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
-                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-kodi</v-icon>
+                <v-icon class="my-auto" color="primary" style="font-size:400%">mdi-toaster-oven</v-icon>
               </v-col>
               <v-col md="6" lg="8" class="pa-5">
                 <p class="google-font my-0">Partners</p>
