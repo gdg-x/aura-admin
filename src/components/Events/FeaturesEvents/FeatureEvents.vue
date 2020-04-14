@@ -22,18 +22,14 @@
             </v-col>
         </v-row>
         <v-row class="my-0 pa-0" v-else-if="featureEvendsID.length>0">
-            <v-col class="my-0" md="3" lg="3" sm="3" cols="6" v-for="(item,i) in featureEvendsID" :key="i">
-                <div v-for="(itemp, k) in eventsData" :key="k" class="pa-0 ma-0">
-                    <div v-if="itemp.id == item" class="pa-0 ma-0">
-                        <div 
-                            style="cursor: pointer;border-left:8px solid #5AB55E"
-                            class="pa-2 ma-0 lightModeCard"
-                            @click="goToEventDetails(itemp.id)">
-                            <p class="google-font ma-0 mt-0" style="font-size:120%;" >{{itemp.name | summary(8) }}</p>
-                            <p class="google-font mt-0 mb-0" style="font-size:90%;">{{itemp.date}}</p>
-                            <p class="google-font mt-0 mb-0" style="font-size:90%;">{{itemp.venue.name | summary(15) }}</p>
-                        </div>
-                    </div>
+            <v-col class="my-0" md="3" lg="3" sm="3" cols="6" v-for="(item,i) in featureEvendsData" :key="i">
+                <div 
+                    style="cursor: pointer;border-left:8px solid #5AB55E"
+                    class="pa-2 ma-0 lightModeCard"
+                    @click="goToEventDetails(item.id)">
+                    <p class="google-font ma-0 mt-0" style="font-size:120%;" >{{item.name | summary(8) }}</p>
+                    <p class="google-font mt-0 mb-0" style="font-size:90%;">{{item.date}}</p>
+                    <p class="google-font mt-0 mb-0" style="font-size:90%;">{{item.venue.name | summary(15) }}</p>
                 </div>
             </v-col>
             
@@ -78,7 +74,8 @@ export default {
         showNetworkError:false,
         featureEvendsID:[],
         featureEvends:[],
-        eventsData:[]
+        eventsData:[],
+        featureEvendsData:[]
 
     }),
     mounted(){
@@ -123,6 +120,7 @@ export default {
             this.showNetworkError = false
             this.loader = true
             this.eventsData = []
+            this.featureEvendsData = []
             firebase.firestore
             .collection("events")
             .get()
@@ -131,6 +129,14 @@ export default {
                     this.eventsData.push(doc.data());
                 });
                 this.loader = false
+
+                this.featureEvendsID.map(res=>{
+                    this.eventsData.map(obj=>{
+                        if(obj.id == res){
+                            this.featureEvendsData.push(obj)
+                        }
+                    })
+                })
             })
             .catch(err => {
                 this.loader = false
