@@ -15,9 +15,9 @@
               <v-text-field class="ma-0 pa-0" label="Password" type="password" v-model="password" outlined></v-text-field>
               <v-btn v-on:click="login" class="primary" style="height:38px;width:150px" :loading="loading" depressed>Login</v-btn>
               <br><br><br><br>
-              <a href="" class="mr-3">Privacy & Policy</a>
-              <a href="" class="mr-3">Support</a>
-              <a href="" class="mr-3" >About</a>
+              <a href="https://github.com/gdg-x/aura-admin/blob/master/CODE_OF_CONDUCT.md" target="_blank" class="mr-3">Privacy & Policy</a>
+              <a href="https://github.com/gdg-x/aura-admin" target="_blank" class="mr-3">Support</a>
+              <a href="https://github.com/gdg-x/aura-admin" target="_blank" class="mr-3" >About</a>
             </v-col>
             <v-col md="7" lg="7" sm="6" class="grey lighten-4 pa-0"> 
               <v-img style="float:right" :src="require('@/assets/img/svg/login.svg')" width="70vh"></v-img>
@@ -33,7 +33,7 @@
       <v-container fluid class="ma-0 pa-0" style="height:100vh">
         <v-row class="ma-0 pa-0 py-5 blue">
           <v-col class="ma-0 py-auto text-center">
-            <span style="border:1px solid #e0e0e0;border-radius:5px;font-size:80%;color:white;width:300px" class="pa-2 google-font primary">This Portal in Development Mode</span>
+            <!-- <span style="border:1px solid #e0e0e0;border-radius:5px;font-size:80%;color:white;width:300px" class="pa-2 google-font primary">This Portal in Development Mode</span> -->
 
             <v-img :src="require('@/assets/img/home.svg')"></v-img>
             <h2 class="google-font mb-3 white--text">Aura Admin</h2>
