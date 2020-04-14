@@ -94,6 +94,23 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 1. You’ll be provided with a ready domain with your project ID. It should look like - `<project-id>.web.app or <project-id>.firebaseapp.com`
 1. Copy the sub-domain name of the URL provided. In this case, it will be the project ID. However, to be precise, you have to copy the part before .web.aap or .firebaseapp.com. This is your Site ID
 1. Update `Firebase.json` file, set the site key to Site ID
+    ```js
+        {
+            "hosting": {
+                "site":"Your_Firebase_Hosting_id",
+                "public": "dist",
+                "rewrites": [ {
+                    "source": "**",
+                    "destination": "/index.html"
+                } ],
+                "ignore": [
+                    "firebase.json",
+                    "**/.*",
+                    "**/node_modules/**"
+                ]
+            }
+        }
+    ```
 1. In your terminal at the root directory of the project,  build and deploy using the following command     
     - `firebase deploy`
 1. If the project is successfully deployed, you should be able to visit your domain as found, and see the Aura Admin Dashboard. In future, we’ll refer to this website as your Aura Admin Dashboard.
