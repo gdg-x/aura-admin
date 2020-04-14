@@ -5,6 +5,7 @@ Version: 3.1.1
 [Click Here](https://auradmin.web.app/)
 
 ### Show some :heart: and :star: the repo to support the project
+### If you are using Aura, Kindly [fill this form](https://forms.gle/SNpajdAnqbSac2AV9) for Aura Web App Directory
 
 ## Overview
 
