@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData">Add Feature Event</v-btn>
+        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData">Add/Update Feature Event</v-btn>
       </template>
       <v-card v-if="dialog" class>
         <v-card-title
