@@ -31,24 +31,9 @@
             </v-list-item>
         </v-list>
         <template v-slot:append>
-            <!-- <v-list dense>
-                <v-list-item
-                    to="about"
-                    class="google-font my-0 py-0"
-                    color="primary"
-                >
-                    <v-list-item-icon>
-                        <v-icon>mdi-information-outline</v-icon>
-                    </v-list-item-icon>
-
-                    <v-list-item-content>
-                        <v-list-item-title>About</v-list-item-title>
-                    </v-list-item-content>
-                    
-                </v-list-item>
-            </v-list> -->
             <div class="pl-2">
-                <p class="subtitle-2 google-font">Version: 3.1.1 - AURA</p>
+                <p class="subtitle-2 google-font mb-1">Version: 3.1.1 - AURA</p>
+                <p class="subtitle-2 google-font mt-1">Based on Project <a href="https://github.com/gdg-x/aura-admin/" target="_blank" style="text-decoration:none">Aura Admin</a></p>
             </div>
         </template>
     </v-navigation-drawer>
