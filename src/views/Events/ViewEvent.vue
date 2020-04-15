@@ -47,15 +47,15 @@
             <div class="pa-3" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
               <p class="google-font" style="font-size:180%">{{eventInfo.name}}</p>
               <p class="google-font my-0">
-                <b>Time:</b>
+                <b>Time: </b>
                 {{eventInfo.time.starttime}} - {{eventInfo.time.endtime}}
               </p>
               <p class="google-font my-0">
-                <b>Date:</b>
+                <b>Date: </b>
                 {{eventInfo.date}}
               </p>
               <p class="google-font my-0">
-                <b>Vanue:</b>
+                <b>Venue: </b>
                 <a :href="eventInfo.venue.googlemapsurl">{{eventInfo.venue.name}}</a>
               </p>
 
