@@ -361,6 +361,14 @@
                         outlined
                       ></v-text-field>
                     </v-col>
+                    <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                      <v-text-field
+                        v-model="eventData.links.youtube"
+                        class="ma-0"
+                        label="Youtube Live URL"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
                   </v-row>
 
                   <v-row class>
@@ -482,7 +490,8 @@ export default {
           facebook: "",
           registration: "",
           feedback: "",
-          callforspeaker: ""
+          callforspeaker: "",
+          youtube:""
         },
         time: {
           starttime: "",
