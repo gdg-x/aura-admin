@@ -370,6 +370,14 @@
                         outlined
                       ></v-text-field>
                     </v-col>
+                    <v-col md="4" xs="4" lg="4" cols="12" class="ma-0">
+                      <v-text-field
+                        v-model="updatedeventData.links.youtube"
+                        class="ma-0"
+                        label="Youtube Live URL"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
                   </v-row>
 
                   <v-row class>
@@ -492,7 +500,8 @@ export default {
           facebook: this.eventInfo.links.facebook,
           registration: this.eventInfo.links.registration,
           feedback: this.eventInfo.links.feedback,
-          callforspeaker: this.eventInfo.links.callforspeaker
+          callforspeaker: this.eventInfo.links.callforspeaker,
+          youtube:this.eventInfo.links.youtube
         },
         time: {
           starttime: this.eventInfo.time.starttime,
@@ -588,7 +597,8 @@ export default {
             facebook: this.updatedeventData.links.facebook,
             registration: this.updatedeventData.links.registration,
             feedback: this.updatedeventData.links.feedback,
-            callforspeaker: this.updatedeventData.links.callforspeaker
+            callforspeaker: this.updatedeventData.links.callforspeaker,
+            youtube:this.updatedeventData.links.youtube
           },
           time: {
             starttime: this.updatedeventData.time.starttime,

@@ -125,6 +125,16 @@
                   label
                   small
                 >Registration</v-btn>
+                <v-btn
+                  color="red"
+                  dark
+                  target="_blank"
+                  v-if="eventInfo.links.youtube"
+                  :href="eventInfo.links.youtube"
+                  class="ma-1"
+                  label
+                  small
+                >Youtube Live</v-btn>
               </div>
             </div>
           </v-col>
