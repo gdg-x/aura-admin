@@ -438,6 +438,10 @@
 </template>
 
 <script>
+import TeamServices from '@/services/TeamServices'
+import PartnersServices from "@/services/PartnersServices"
+import SpeakerServices from '@/services/SpeakersServices'
+
 import firebase from "@/config/firebase";
 export default {
   components: {
@@ -528,44 +532,32 @@ export default {
       this.updatedeventData.agenda.splice(index, 1);
     },
     ShowSpeakers() {
-      firebase.firestore
-        .collection("Speakers")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.speakersData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.speakersData = []
+      SpeakerServices.getAllSpeakers().then(res=>{
+        if(res.success == true){
+          this.speakersData = res.data
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     },
     ShowPartners() {
-      firebase.firestore
-        .collection("partners")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.partnersData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.partnersData = []
+      PartnersServices.getAllPartners().then(res=>{
+        if(res.success==true){
+          this.partnersData= res.data
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     },
     ShowTeam() {
-      firebase.firestore
-        .collection("team")
-        .orderBy("role", "asc")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.teamData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.teamData=[]
+      TeamServices.getAllTeam().then(res=>{
+        this.teamData = res.data
+      }).catch(e=>{
+        console.log("Error getting documents", e)
+      })
     },
     remove(item) {
       this.updatedeventData.hashtags.splice(
