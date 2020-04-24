@@ -349,8 +349,10 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import CustomEventServices from '@/services/CustomEventServices'
 import PartnersServices from "@/services/PartnersServices"
+
+import firebase from "@/config/firebase";
 
 export default {
   name: "ViewTeam",
@@ -412,19 +414,14 @@ export default {
     getEventData() {
       this.showLoader = true;
       this.userNotFound = false;
-      firebase.firestore
-        .collection("events")
-        .doc(this.$route.params.id)
-        .get()
-        .then(doc => {
-          // console.log(doc.data());
-          if (doc.data() == undefined) {
+      CustomEventServices.getCustomEventDetails(this.$route.params.id)
+      .then(res => {
+          if (res.isFound == false) {
             this.showLoader = false;
             this.userNotFound = true;
-          } else if (doc.data()) {
+          } else if (res.isFound == true) {
             this.showLoader = false;
-            this.eventInfo = doc.data();
-            // console.log(this.eventInfo);
+            this.eventInfo = res.data;
           } else {
             this.showLoader = false;
             this.userNotFound = true;
@@ -451,22 +448,22 @@ export default {
     },
     getTeam() {
       firebase.firestore
-        .collection("team")
-        .orderBy("role", "asc")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            doc = doc.data();
-            if (this.eventInfo.team.indexOf(doc.id) !== -1) {
-              if (doc.role == "Core Team") this.coreTeam.push(doc);
-              else if (doc.role == "Organizing Team") this.orgTeam.push(doc);
-              else this.vol.push(doc);
-            }
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
+      .collection("team")
+      .orderBy("role", "asc")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          doc = doc.data();
+          if (this.eventInfo.team.indexOf(doc.id) !== -1) {
+            if (doc.role == "Core Team") this.coreTeam.push(doc);
+            else if (doc.role == "Organizing Team") this.orgTeam.push(doc);
+            else this.vol.push(doc);
+          }
         });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+      });
     },
     getPartnersData() {
       PartnersServices.getAllPartners().then(res=>{

@@ -430,7 +430,10 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import TeamServices from '@/services/TeamServices'
+import PartnersServices from "@/services/PartnersServices"
+import SpeakerServices from '@/services/SpeakersServices'
+import CustomEventServices from '@/services/CustomEventServices'
 export default {
   components: {
     AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
@@ -459,11 +462,11 @@ export default {
       valid: true,
       idRules: [
         v => !!v || "Field Value is required",
-        v => (v && v.length <= 30) || "Name must be less than 30 characters"
+        v => (v && v.length <= 100) || "Name must be less than 100 characters"
       ],
       nameRules: [
         v => !!v || "Name is required",
-        v => (v && v.length <= 70) || "Name must be less than 50 characters"
+        v => (v && v.length <= 100) || "Name must be less than 50 characters"
       ],
       emailRules: [
         v => !!v || "E-mail is required",
@@ -518,66 +521,50 @@ export default {
       this.eventData.agenda.splice(index, 1);
     },
     ShowSpeakers() {
-      firebase.firestore
-        .collection("Speakers")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.speakersData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.speakersData = []
+      SpeakerServices.getAllSpeakers().then(res=>{
+        if(res.success == true){
+          this.speakersData = res.data
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     },
     ShowPartners() {
-      firebase.firestore
-        .collection("partners")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.partnersData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.partnersData = []
+      PartnersServices.getAllPartners().then(res=>{
+        if(res.success==true){
+          this.partnersData= res.data
+        }
+      }).catch(e=>{
+        console.log("Error getting documents", e);
+      })
     },
     ShowTeam() {
-      firebase.firestore
-        .collection("team")
-        .orderBy("role", "asc")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.teamData.push(doc.data());
-          });
-        })
-        .catch(err => {
-          console.log("Error getting documents", err);
-        });
+      this.teamData=[]
+      TeamServices.getAllTeam().then(res=>{
+        this.teamData = res.data
+      }).catch(e=>{
+        console.log("Error getting documents", e)
+      })
     },
     remove(item) {
       this.eventData.hashtags.splice(this.eventData.hashtags.indexOf(item), 1);
       this.eventData.hashtags = [...this.eventData.hashtags];
     },
     SaveEvent() {
-      // console.log('Save BTN Called')
-      // if (this.$refs.form.validate()) {
       this.loading = true;
-      firebase.firestore
-        .collection("events")
-        .doc(this.eventData.id)
-        .set(this.eventData)
-        .then(res => {
+      CustomEventServices.addCustomEvent(this.eventData.id,this.eventData).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
-          this.$emit("showSuccess", "Event Added Success");
-        })
-        .catch(e => {
-          this.loading = false;
-          this.$emit("showSuccess", "Failed to Add Event");
-        });
+          this.$emit("showSuccess", res.msg);
+        }
+      }).catch(e=>{
+        this.loading = false;
+        console.log(e);
+        this.$emit("showSuccess", e.msg);
+      })
     }
   }
   // }

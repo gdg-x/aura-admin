@@ -46,6 +46,12 @@
             :loading="isLoading"
             loading-text="Loading... Please wait"
           >
+            <template v-slot:item.body="{ item }">
+              {{item.body | summary(35) }}
+            </template> 
+            <template v-slot:item.title="{ item }">
+              {{item.title | summary(25) }}
+            </template> 
             <template v-slot:item.action="{ item }">
               <!-- view Selected Notification -->
               <ViewNotification :dialogData="item" />
@@ -93,7 +99,6 @@ export default {
     this.loadData();
   },
   methods: {
-    // Show snakebar
     addedd(e) {
       if (e.length > 0) {
         this.snakeBarMessage = e;
@@ -105,7 +110,6 @@ export default {
       this.snakeBarMessage = e;
       this.isSnakeBarVisible = true;
     },
-    // Get Data from firestore
     loadData() {
       this.pushData = [];
       this.isLoading = true;
@@ -122,6 +126,15 @@ export default {
       })
     }
   },
+  filters:{
+    summary: (val,num)=>{
+      if(val.length > num){
+        return val.substring(0,num)+".."
+      }else{
+        return val
+      }
+    },
+  }
 };
 </script>
 

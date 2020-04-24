@@ -25,7 +25,7 @@
         </p>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field class="my-0 py-0" label="Cloud Messaging  Server Key" v-model="key.server_key" outlined></v-text-field>
+        <v-text-field class="my-0 py-0" label="Cloud Messaging Server Key" v-model="key.server_key" outlined></v-text-field>
       </v-col>
       <v-col cols="12" md="6" class="mb-0 pb-0">
         <v-text-field class="my-0 py-0" label="Cloud Messaging Web Push Certificates" v-model="key.web_push_certificate" outlined></v-text-field>
