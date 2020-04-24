@@ -117,7 +117,7 @@
                 <v-col>
                   <p class="googl-font" style="font-size:130%"><b>{{mailData.title}}</b></p>
                   <p class="google-font">{{mailData.msg}}</p>
-                  <v-btn color="primary" depressed>{{mailData.urlname}}}</v-btn>
+                  <v-btn color="primary" :href="mailData.url" target="_blank" depressed>{{mailData.urlname}}</v-btn>
 
                   <p class="google-font mt-5 mb-0" style="font-size:110%">Become a member: <a :href="generalConfig.becomemember" target="_blank">{{generalConfig.becomemember}}</a> </p>
                   <p class="google-font mt-0 mb-5" style="font-size:110%">To more about our community: <a :href="generalConfig.learnMoreLink" target="_blank">{{generalConfig.learnMoreLink}}</a></p>
