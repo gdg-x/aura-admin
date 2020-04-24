@@ -48,12 +48,8 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-
-            <v-btn icon v-on="on" @click="gotoEmailDetails(12)">
-                <v-icon>mdi-eye</v-icon>
-            </v-btn>
-         
-          <!-- <AddTeam class="ml-2" @showSuccess="showSnakeBar" /> -->
+            
+          <addEmail class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -63,7 +59,7 @@
         <v-container fluid class="pa-0">
           <div >
             <!-- Check the Condition Where we have a Data or not -->
-            <div v-if="emailsData.length">
+            <div>
               <!-- Table View -->
               <div class="pa-0 ma-0">
                 <v-row>
@@ -78,14 +74,14 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
-                    <template>
+                      <template v-slot:item.actions="{ item }">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on" @click="gotoEmailDetails(item.id)">
                               <v-icon>mdi-eye</v-icon>
                             </v-btn>
                           </template>
-                          <span>{{item.name}} Details</span>
+                          <span>{{item.subject}} Details</span>
                         </v-tooltip>
                         
                       </template>
@@ -96,27 +92,7 @@
               </div>
               <!-- Table View -->
             </div>
-            <!-- Check the Condition Where we have a Data or not -->
 
-            <!-- Not Data Found -->
-            <div v-else>
-              <v-row justify="center" align="center">
-                <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
-                    <v-row justify="center" align="center" class="pa-3">
-                      <v-col md="4" class="text-center">
-                        <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
-                        <h1 class="google-font">Emails Data Not Found</h1>
-                        <p class="google-font">Kindly add New Email</p>
-                        <br>
-                        <!-- <AddTeam class="ml-2" @showSuccess="showSnakeBar" /> -->
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-col>
-              </v-row>
-            </div>
-            <!-- Not Data Found -->
           
           </div>
         </v-container>
@@ -126,11 +102,13 @@
 </template>
 
 <script>
+import EmailServices from '@/services/mailService'
 export default {
   name: "EmailView",
   inject: ['theme'],
   components: {
-    Snakebar:()=>import('@/components/Common/Snakebar')
+    addEmail:()=> import('@/components/Email/AddEmail'),
+    Snakebar:()=> import('@/components/Common/Snakebar')
   },
   data: () => ({
     dataView:0,
@@ -147,7 +125,12 @@ export default {
       {
         text: 'Teamplate',
         align: 'start',
-        value: 'name',
+        value: 'emailTypeName',
+      },
+      {
+        text: 'Subject',
+        align: 'start',
+        value: 'subject',
       },
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
@@ -175,7 +158,16 @@ export default {
       this.$router.push("/emails/" + id);
     },
     showData() {
-      
+      this.emailsData = [];
+      this.isLoading = true;
+      EmailServices.getAllMails().then(res=>{
+        this.emailsData = res.data
+        console.log(this.emailsData)
+        this.isLoading = false
+      }).catch(e=>{
+        this.isLoading = false
+        console.log("Error getting documents", e)
+      })
     }
   }
 };
