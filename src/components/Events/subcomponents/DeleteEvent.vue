@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import CustomEventServices from '@/services/CustomEventServices'
 export default {
   props: {
     EventInfo: {}
@@ -37,25 +37,37 @@ export default {
   }),
   methods: {
     deleteItem(id) {
-      // console.log(id);
       this.loading = true;
-      firebase.firestore
-        .collection("events")
-        .doc(this.EventInfo.id)
-        .delete()
-        .then(() => {
+      CustomEventServices.removeCustomEvent(this.EventInfo.id).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
-        //   this.$emit("RemoveSuceess");
           this.$router.push({
             path: "/events",
-            query: { msg: "removesuccess" }
+            query: { msg: res.msg }
           });
-        })
-        .catch(e => {
-          console.log(e);
-          this.isLoading = false;
-        });
+        }
+      }).catch(e=>{
+        this.isLoading = false;
+      })
+
+      // firebase.firestore
+      //   .collection("events")
+      //   .doc(this.EventInfo.id)
+      //   .delete()
+      //   .then(() => {
+      //     this.loading = false;
+      //     this.dialog = false;
+      //   //   this.$emit("RemoveSuceess");
+      //     this.$router.push({
+      //       path: "/events",
+      //       query: { msg: "removesuccess" }
+      //     });
+      //   })
+      //   .catch(e => {
+      //     console.log(e);
+      //     this.isLoading = false;
+      //   });
     }
   }
 };

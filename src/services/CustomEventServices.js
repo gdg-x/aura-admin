@@ -1,54 +1,51 @@
 import firebase from '@/config/firebase'
 
 let customEventServices = {
-    // Get All the Team Members Details
+    // Get All the Custom Events Details
     getAllCustomEvents:()=>{
-        let team = []
+        let events = []
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("team")
-            .orderBy("role", "asc")
+            .collection("events")
             .get()
             .then(snapshot => {
                 snapshot.forEach(doc => {
-                    team.push(doc.data());
+                    events.push(doc.data());
                 })
                 resolve({
                     success:true,
-                    data:team
+                    data:events
                 })
             })
             .catch(err => {
                 reject(err)
-                // console.log("Error getting documents", err);
             });
         })
     },
 
-    // Get Team Member Details whose id = id
-    getTeamMemberDetails:(id)=>{
-        let teamData = {}
+    // Get Custom Event Details whose id = id
+    getCustomEventDetails:(id)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("team")
+            .collection("events")
             .doc(id)
             .get()
             .then(doc => {
                 if (doc.data() == undefined) {
                     resolve({
-                    isFound:false,
-                    data:{}
+                        isFound:false,
+                        data:{}
                     })
                 } else if (doc.data()) {
                     resolve({
-                    isFound:true,
-                    data: doc.data()
+                        isFound:true,
+                        data: doc.data()
                     })
                 } else {
-                resolve({
-                    isFound:false,
-                    data:{}
-                })
+                    resolve({
+                        isFound:false,
+                        data:{}
+                    })
                 }
             })
             .catch(e => {
@@ -57,55 +54,55 @@ let customEventServices = {
         })
     },
 
-    // Add Team Member whose document id is id and Data is data
-    addTeamMember:(id,data)=>{
+    // Add Custom Event whose document id is id and Data is data
+    addCustomEvent:(id,data)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("team")
+            .collection("events")
             .doc(id)
             .set(data)
             .then(res => {
                 resolve({
                     success:true,
-                    msg:'Team Member Addedd Successfully'
+                    msg:'Custom Event Addedd Successfully'
                 })
             })
             .catch(e => {
                 reject({
                     success:false,
-                    msg:'Failed to Add Team Member: '+ e
+                    msg:'Failed to Custom Event: '+ e
                 })
             });
         })
     },
 
-    // Remove Team Member whose id is id
-    removeTeamMember:(id)=>{
+    // Remove Custom Event whose id is id
+    removeCustomEvent:(id)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("team")
+            .collection("events")
             .doc(id)
             .delete()
             .then(() => {
                 resolve({
                     success:true,
-                    msg:'Team Member Removed Successfully'
+                    msg:'Custom Event Removed Successfully'
                 })
             })
             .catch(e => {
                 reject({
                     success:false,
-                    msg:'Error in Removing Team Member: '+e
+                    msg:'Error in Removing Custom Event: '+e
                 })
             });
         })
     },
 
-    // Edit Team member whose id is id and data is data
-    editTeamMember:(id, data)=>{
+    // Edit Custom Event whose id is id and data is data
+    editCustomEvent:(id, data)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("team")
+            .collection("events")
             .doc(id)
             .update(data)
             .then(() => {
@@ -117,7 +114,7 @@ let customEventServices = {
             .catch(e => {
                 reject({
                     success: false,
-                    msg: 'Error in updating Team Member '+ e
+                    msg: 'Error in updating Custom Event '+ e
                 })
             });
         })

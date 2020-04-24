@@ -433,8 +433,7 @@
 import TeamServices from '@/services/TeamServices'
 import PartnersServices from "@/services/PartnersServices"
 import SpeakerServices from '@/services/SpeakersServices'
-
-import firebase from "@/config/firebase";
+import CustomEventServices from '@/services/CustomEventServices'
 export default {
   components: {
     AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
@@ -555,19 +554,17 @@ export default {
     },
     SaveEvent() {
       this.loading = true;
-      firebase.firestore
-        .collection("events")
-        .doc(this.eventData.id)
-        .set(this.eventData)
-        .then(res => {
+      CustomEventServices.addCustomEvent(this.eventData.id,this.eventData).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
-          this.$emit("showSuccess", "Event Added Success");
-        })
-        .catch(e => {
-          this.loading = false;
-          this.$emit("showSuccess", "Failed to Add Event");
-        });
+          this.$emit("showSuccess", res.msg);
+        }
+      }).catch(e=>{
+        this.loading = false;
+        console.log(e);
+        this.$emit("showSuccess", e.msg);
+      })
     }
   }
   // }

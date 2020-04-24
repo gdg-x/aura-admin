@@ -93,11 +93,10 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
+import CustomEventServices from '@/services/CustomEventServices'
 export default {
   components: {
-    AddNewCustomEvent: () =>
-      import("@/components/Events/CustomEvents/AddCustomEvent"),
+    AddNewCustomEvent: () => import("@/components/Events/CustomEvents/AddCustomEvent"),
     Snakebar: () => import("@/components/Common/Snakebar")
   },
   name: "MeetupEvents",
@@ -123,7 +122,10 @@ export default {
     customEventData: []
   }),
   mounted() {
-    this.showCustomEvents();
+    if (this.$route.query.msg) {
+      this.showSnakeBar(this.$route.query.msg);
+    }else
+      this.showCustomEvents();
   },
   methods: {
     goToEventDetails(id) {
@@ -132,19 +134,15 @@ export default {
     showCustomEvents() {
       this.isLoading = true;
       this.customEventData = [];
-      firebase.firestore
-        .collection("events")
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
-            this.customEventData.push(doc.data());
-          });
+      CustomEventServices.getAllCustomEvents().then(res=>{
+        if(res.success==true){
+          this.customEventData= res.data
           this.isLoading = false;
-        })
-        .catch(err => {
-          this.isLoading = false;
-          console.log("Error getting documents", err);
-        });
+        }
+      }).catch(e=>{
+        this.isLoading = false;
+        console.log("Error getting documents", e);
+      })
     },
     showSnakeBar(e) {
       this.snakeBarMessage = e;

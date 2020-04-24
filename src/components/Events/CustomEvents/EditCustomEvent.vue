@@ -441,8 +441,7 @@
 import TeamServices from '@/services/TeamServices'
 import PartnersServices from "@/services/PartnersServices"
 import SpeakerServices from '@/services/SpeakersServices'
-
-import firebase from "@/config/firebase";
+import CustomEventServices from '@/services/CustomEventServices'
 export default {
   components: {
     AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
@@ -567,13 +566,8 @@ export default {
       this.updatedeventData.hashtags = [...this.updatedeventData.hashtags];
     },
     SaveEvent() {
-      // console.log('Save BTN Called')
-      // if (this.$refs.form.validate()) {
       this.loading = true;
-      firebase.firestore
-        .collection("events")
-        .doc(this.eventInfo.id)
-        .update({
+      let datatoupdate = {
           active: this.updatedeventData.active,
           visible: this.updatedeventData.visible,
           name: this.updatedeventData.name,
@@ -601,17 +595,18 @@ export default {
           partners: this.updatedeventData.partners,
           team: this.updatedeventData.team,
           agenda: this.updatedeventData.agenda
-        })
-        .then(res => {
+        }
+      CustomEventServices.editCustomEvent(this.eventInfo.id,datatoupdate).then(res=>{
+        if(res.success==true){
           this.loading = false;
           this.dialog = false;
-          this.$emit("editedSuccess", "Event Edit Success");
-        })
-        .catch(e => {
-          this.loading = false;
-          console.log(e);
-          this.$emit("showSuccess", "Failed to Edit Event");
-        });
+          this.$emit("editedSuccess", res.msg);
+        }
+      }).catch(e=>{
+        console.log(e.msg);
+        this.loading = false;
+        this.$emit("editedSuccess", e.msg);
+      })
     }
   }
   // }
