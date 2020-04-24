@@ -124,6 +124,24 @@ const routes = [
     }
   },
   {
+    path: '/emails',
+    name: "Email",
+    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Email'),
+    meta: {
+      requiresAuth: true,
+      title: "Email"
+    }
+  },
+  {
+    path: '/emails/:id',
+    name: "EmailView",
+    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Email/ViewEmail'),
+    meta: {
+      requiresAuth: true,
+      title: "Email"
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue'),

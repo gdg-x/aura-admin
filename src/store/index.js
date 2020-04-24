@@ -41,6 +41,11 @@ export default new Vuex.Store({
         icon: 'mdi-toaster-oven',
       },
       {
+        text: 'Email',
+        to: '/emails',
+        icon: 'mdi-email-outline',
+      },
+      {
         text: 'Notification',
         to: '/notification',
         icon: 'mdi-bell',
