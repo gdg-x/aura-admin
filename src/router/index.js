@@ -126,10 +126,19 @@ const routes = [
   {
     path: '/emails',
     name: "Email",
-    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Email'),
+    component: () => import( /* webpackChunkName: "email" */ '@/views/Email'),
     meta: {
       requiresAuth: true,
       title: "Email"
+    }
+  },
+  {
+    path: '/roles',
+    name: "UserManagement",
+    component: () => import( /* webpackChunkName: "roles" */ '@/views/Users'),
+    meta: {
+      requiresAuth: true,
+      title: "User Management"
     }
   },
   {

@@ -46,6 +46,11 @@ export default new Vuex.Store({
         icon: 'mdi-email-outline',
       },
       {
+        text: 'User Manangment',
+        to: '/roles',
+        icon: 'mdi-account-group',
+      },
+      {
         text: 'Notification',
         to: '/notification',
         icon: 'mdi-bell',

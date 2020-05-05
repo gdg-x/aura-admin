@@ -99,7 +99,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <!-- <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                    <v-col v-if="role == 'Core Team' || role == 'Organizing Team'" md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
                         v-model="password"
@@ -107,7 +107,7 @@
                         type="password"
                         outlined
                       ></v-text-field>
-                    </v-col> -->
+                    </v-col>
                   </v-row>
                   <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
@@ -164,6 +164,7 @@
 </template>
 
 <script>
+import firebase from '@/config/firebase'
 import TeamServices from '@/services/TeamServices'
 export default {
   props: [],
@@ -210,6 +211,13 @@ export default {
     };
   },
   mounted(){
+    let appp = firebase.functions.httpsCallable('team-addMessage')
+    // let datatoadd = JSON.stringify()
+    appp({text: 'messageText'}).then(res=>{
+      console.log(res)
+    }).catch(e=>{
+      console.log("error "+ e)
+    })
   },
   methods: {
     SaveEvent() {
@@ -223,6 +231,7 @@ export default {
           mbnumber: this.mbnumber,
           email: this.email,
           image: this.imageURL,
+          password:this.password,
           bio: this.bio,
           id: this.id,
           role: this.role,

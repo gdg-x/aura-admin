@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/storage';
 import 'firebase/firestore';
 import 'firebase/messaging';
+import 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCOl0qzkhCDmyWeeIT8AZe4xyJJlIfU5gE",
@@ -22,4 +23,5 @@ export default{
   firestore:firebase.firestore(),
   auth:firebase.auth(),
   storage:firebase.storage(),
+  functions: firebase.functions()
 };

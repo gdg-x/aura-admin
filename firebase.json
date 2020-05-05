@@ -1,15 +1,17 @@
 {
   "hosting": {
-    "site":"auradmin",
+    "site": "auradmin",
     "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [ {
+    "rewrites": [
+      {
         "source": "**",
         "destination": "/index.html"
-    } ]
+      }
+    ]
   }
 }
