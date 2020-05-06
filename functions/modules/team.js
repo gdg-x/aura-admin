@@ -17,17 +17,13 @@ exports.addMessage = functions.https.onCall((data) => {
 });
 
 exports.disabledAuth = functions.https.onCall((uid)=>{
-    console.log(uid)
     return admin.auth().updateUser(uid,{
         disabled: true
     }).then( async (userRecord)=>{
-        console.log('User Disabled')
-        console.log(userRecord.toJSON())
         try {
             let updateUser = await admin.firestore().collection('users').doc(uid).update({
                 disabled: true
             })
-            console.log('User record updated')
             return {
                 success: true,
                 msg: `${userRecord.toJSON().email} is Disabled`
@@ -51,29 +47,30 @@ exports.disabledAuth = functions.https.onCall((uid)=>{
 exports.enabledAuth = functions.https.onCall((uid)=>{
     return admin.auth().updateUser(uid,{
         disabled: false
-    }).then(userRecord=>{
-        return admin.firestore().collection('users').doc(uid).update({
-            disabled: false
-        }).then(res=>{
-            console.log('User record updated')
+    }).then(async (userRecord)=>{
+        try {
+            let updateUser = await admin.firestore().collection('users').doc(uid).update({
+                disabled: false
+            })
             return {
                 success: true,
                 msg: `${userRecord.toJSON().email} is Enabled`
             }
-        }).catch(e=>{
+        }catch(e){
             return {
                 success: false,
+                cc:'Error while updating user collections',
                 msg: e
             }
-        })
+        }
     }).catch(e=>{
         return {
             success: false,
+            cc:'Error while disabling user auth',
             msg: e
         }
     })
 })
-
 
 exports.removeAuth = functions.https.onCall((data)=>{
     console.log(data)

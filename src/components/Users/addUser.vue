@@ -131,7 +131,7 @@ export default {
         this.loading = true;
         TeamServices.getAllTeam().then(res=>{
             this.teamData = res.data
-            console.log(this.teamData)
+            // console.log(this.teamData)
             this.loading = false
         }).catch(e=>{
             this.loading = false
@@ -140,10 +140,8 @@ export default {
     },
     addUser() {
         this.loading = true
-        console.log(this.selectedUser)
-        console.log(this.userRole)
         let userData = this.teamData.filter(team=>team.id == this.selectedUser)
-        console.log(userData[0])
+        // console.log(userData[0])
         userData[0]['userType'] = this.userRole
         let appp = firebase.functions.httpsCallable('team-createAuthUser')
         appp(userData[0]).then(res1=>{

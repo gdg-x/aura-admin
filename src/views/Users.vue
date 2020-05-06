@@ -64,8 +64,8 @@
               <div class="pa-0 ma-0">
                 <v-row>
                   <v-col class="pa-1">
-                    <p>Users Data</p>
-                    {{usersData}}
+                    <!-- <p>Users Data</p> -->
+                    <!-- {{usersData}} -->
                     <v-data-table
                       :mobile-breakpoint="0"
                       style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
@@ -76,7 +76,10 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
-                      
+                      <template v-slot:item.disabled="{ item }">
+                        <v-chip small dark v-if="item.disabled" class="red">Disabled</v-chip>
+                        <v-chip small dark v-else class="green">Enabled</v-chip>
+                      </template>
                       <template v-slot:item.actions="{ item }">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
@@ -84,35 +87,36 @@
                               <v-icon>mdi-eye</v-icon>
                             </v-btn>
                           </template>
-                          <span>Details</span>
+                          <span>{{item.name}} Details</span>
                         </v-tooltip>
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" @click="disableUser(item.uid)">
+                            <v-btn v-if="!item.disabled"  icon v-on="on" @click="disableUser(item.uid)">
                               <v-icon>mdi-account-minus</v-icon>
                             </v-btn>
                           </template>
-                          <span>Disable</span>
+                          <span>Disable {{item.name}}</span>
                         </v-tooltip>
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" @click="enableUser(item.uid)">
+                            <v-btn v-if="item.disabled" icon v-on="on" @click="enableUser(item.uid)">
                               <v-icon>mdi-account-check</v-icon>
                             </v-btn>
                           </template>
-                          <span>Enable</span>
+                          <span>Enable {{item.name}}</span>
                         </v-tooltip>
                         
-                        <v-tooltip bottom>
+                        <DeleteUser @RemovedSuccess="showSnakeBar" :data="item"/>
+                        <!-- <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on" @click="removeUser(item.uid)">
                               <v-icon>mdi-delete</v-icon>
                             </v-btn>
                           </template>
                           <span>Remove</span>
-                        </v-tooltip>
+                        </v-tooltip> -->
 
 
                       </template>
@@ -129,6 +133,29 @@
         </v-container>
       </v-col>
     </v-row>
+
+    <!-- Dialog -->
+    <v-dialog
+      v-model="showDialog"
+      hide-overlay
+      persistent
+      width="300"
+    >
+      <v-card
+        color="primary"
+        dark
+      >
+        <v-card-text class="py-5">
+          Please stand by
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+    <!-- Dialog -->
   </v-container>
 </template>
 
@@ -139,7 +166,8 @@ export default {
   inject: ['theme'],
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
-    AddUser:()=>import('@/components/Users/addUser')
+    AddUser:()=>import('@/components/Users/addUser'),
+    DeleteUser:()=>import('@/components/Users/DeleteUser')
   },
   data: () => ({
     dataView:0,
@@ -153,16 +181,19 @@ export default {
     showDialog: false,
     usersData: [],
     headers: [
-      { text: 'User ID', value: 'id' },
+      { text: 'User Name', value: 'name' },
       { text: 'Email', value: 'email' },
+      { text: 'Role', value: 'role' },
       { text: 'User Type', value: 'userType' },
+      { text: 'User Status', value: 'disabled' },
       { text: 'UID', value: 'uid' },
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
   mounted() {
-    if (this.$route.query.msg) {
-      this.showSnakeBar("Team Removed Sucessfully");
+    if(this.$route.query.msg) {
+      console.log('c1')
+      this.showSnakeBar("User Removed Sucessfully");
     }else
       this.showData();
   },
@@ -179,9 +210,6 @@ export default {
       this.isSnakeBarVisible = true;
       this.showData();
     },
-    gotoTeamDetails(id) {
-      this.$router.push("/team/" + id);
-    },
     showData() {
       this.usersData = [];
       this.isLoading = true;
@@ -194,44 +222,37 @@ export default {
       })
     },
     removeUser(uid){
-      console.log('Calling remove')
-      console.log(uid)
+      this.showDialog = true
       UsersServices.removeUser(uid).then(res=>{
-        console.log(res)
-        this.showData()
+        this.showDialog = false
+        this.showSnakeBar('User Removed')
       }).catch(e=>{
+        this.showDialog = false
         console.log(e)
       })
     },
     disableUser(uid){
-      console.log('Calling disible')
-      console.log(uid)
+      this.showDialog = true
       UsersServices.disableUser(uid).then(res=>{
-        console.log(res)
-        this.showData()
+        // console.log(res)
+        this.showDialog = false
+        this.showSnakeBar(res.msg)
       }).catch(e=>{
+        this.showDialog = false
         console.log(e)
       })
     },
     enableUser(uid){
-      console.log('Calling enable')
-      console.log(uid)
+      this.showDialog = true
       UsersServices.enableUser(uid).then(res=>{
-        console.log(res)
-        this.showData()
+        // console.log(res)
+        this.showDialog = false
+        this.showSnakeBar(res.msg)
       }).catch(e=>{
+        this.showDialog = false
         console.log(e)
       })
     }
   }
 };
 </script>
-<style>
-.v-badge--dot .v-badge__badge {
-    border-radius: 6px;
-    height: 12px;
-    min-width: 0;
-    padding: 0;
-    width: 12px;
-}
-</style>
