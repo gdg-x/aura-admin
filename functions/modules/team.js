@@ -16,6 +16,64 @@ exports.addMessage = functions.https.onCall((data) => {
     return data.text+ ' Vrijraj Singh'
 });
 
+exports.disabledAuth = functions.https.onCall((uid)=>{
+    console.log(uid)
+    return admin.auth().updateUser(uid,{
+        disabled: true
+    }).then( async (userRecord)=>{
+        console.log('User Disabled')
+        console.log(userRecord.toJSON())
+        try {
+            let updateUser = await admin.firestore().collection('users').doc(uid).update({
+                disabled: true
+            })
+            console.log('User record updated')
+            return {
+                success: true,
+                msg: `${userRecord.toJSON().email} is Disabled`
+            }
+        }catch(e){
+            return {
+                success: false,
+                cc:'Error while updating user collections',
+                msg: e
+            }
+        }
+    }).catch(e=>{
+        return {
+            success: false,
+            cc:'Error while disabling user auth',
+            msg: e
+        }
+    })
+})
+
+exports.enabledAuth = functions.https.onCall((uid)=>{
+    return admin.auth().updateUser(uid,{
+        disabled: false
+    }).then(userRecord=>{
+        return admin.firestore().collection('users').doc(uid).update({
+            disabled: false
+        }).then(res=>{
+            console.log('User record updated')
+            return {
+                success: true,
+                msg: `${userRecord.toJSON().email} is Enabled`
+            }
+        }).catch(e=>{
+            return {
+                success: false,
+                msg: e
+            }
+        })
+    }).catch(e=>{
+        return {
+            success: false,
+            msg: e
+        }
+    })
+})
+
 
 exports.removeAuth = functions.https.onCall((data)=>{
     console.log(data)
@@ -58,32 +116,40 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
     console.log(data)
     const email = data.email 
     const password = generateP()
-    const name = data.name 
-    const image = data.image
-    const role = data.role 
+    const name = data.name
     const userType = data.userType
     return admin.auth().createUser({
         email: email,
-        password: password,
-        displayName: name,
-        photoURL: image
+        password: password
     })
     .then((userRecord)=> {
         console.log('Successfully created new user:', userRecord.uid);
         return admin.firestore().collection('users').doc(userRecord.uid).set({
             uid:userRecord.uid,
             userType: userType,
-            id:data.id 
+            id:data.id,
+            disabled: false 
         }).then(async ()=>{
             console.log('User Created with uid: '+ userRecord.uid)
             let maildata = await sendWelcomeEmail(email, name, password);
-            return {
-                success: true,
-                emailstatus: maildata,
-                msg: 'Successfully created new user:', 
-                uid: userRecord.uid,
-                docid: data.id
-            }
+            return admin.firestore().collection('team').doc(data.id).update({
+                uid:userRecord.uid
+            }).then(()=>{
+                return {
+                    success: true,
+                    emailstatus: maildata,
+                    msg: 'Successfully created new user', 
+                    uid: userRecord.uid,
+                    docid: data.id
+                }
+            }).catch(e=>{
+                return {
+                    success: false,
+                    emailstatus: maildata,
+                    msg: 'Problem while updating team data',
+                    error:e
+                }
+            })
         }).catch(e=>{
             return {
                 success: false,
@@ -202,13 +268,11 @@ function generateP() {
     var pass = ''; 
     var str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +  
             'abcdefghijklmnopqrstuvwxyz0123456789@#$'; 
-      
     for (i = 1; i <= 8; i++) { 
         var char = Math.floor(Math.random() 
                     * str.length + 1); 
 
         pass += str.charAt(char) 
     } 
-      
     return pass; 
 } 

@@ -37,6 +37,40 @@ let usersServices = {
                 })
             })
         })
+    },
+    enableUser:(uid)=>{
+        return new Promise((resolve,reject)=>{
+            let appp = firebase.functions.httpsCallable('team-enabledAuth')
+            appp({uid:uid}).then(res=>{
+                resolve({
+                    success: true,
+                    msg: res
+                })
+            }).catch(e=>{
+                console.log(e)
+                reject({
+                    success: false,
+                    msg: e
+                })
+            })
+        })
+    },
+    disableUser:(uid)=>{
+        return new Promise((resolve,reject)=>{
+            let appp = firebase.functions.httpsCallable('team-disabledAuth')
+            appp(uid).then(res=>{
+                resolve({
+                    success: true,
+                    msg: res
+                })
+            }).catch(e=>{
+                console.log(e)
+                reject({
+                    success: false,
+                    msg: e
+                })
+            })
+        })
     }
 }
 export default usersServices

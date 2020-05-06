@@ -86,6 +86,25 @@
                           </template>
                           <span>Details</span>
                         </v-tooltip>
+
+                        <v-tooltip bottom>
+                          <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on" @click="disableUser(item.uid)">
+                              <v-icon>mdi-account-minus</v-icon>
+                            </v-btn>
+                          </template>
+                          <span>Disable</span>
+                        </v-tooltip>
+
+                        <v-tooltip bottom>
+                          <template v-slot:activator="{ on }">
+                            <v-btn icon v-on="on" @click="enableUser(item.uid)">
+                              <v-icon>mdi-account-check</v-icon>
+                            </v-btn>
+                          </template>
+                          <span>Enable</span>
+                        </v-tooltip>
+                        
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
                             <v-btn icon v-on="on" @click="removeUser(item.uid)">
@@ -94,6 +113,8 @@
                           </template>
                           <span>Remove</span>
                         </v-tooltip>
+
+
                       </template>
                     </v-data-table>
                   </v-col>
@@ -176,6 +197,26 @@ export default {
       console.log('Calling remove')
       console.log(uid)
       UsersServices.removeUser(uid).then(res=>{
+        console.log(res)
+        this.showData()
+      }).catch(e=>{
+        console.log(e)
+      })
+    },
+    disableUser(uid){
+      console.log('Calling disible')
+      console.log(uid)
+      UsersServices.disableUser(uid).then(res=>{
+        console.log(res)
+        this.showData()
+      }).catch(e=>{
+        console.log(e)
+      })
+    },
+    enableUser(uid){
+      console.log('Calling enable')
+      console.log(uid)
+      UsersServices.enableUser(uid).then(res=>{
         console.log(res)
         this.showData()
       }).catch(e=>{
