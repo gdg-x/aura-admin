@@ -74,32 +74,16 @@ export default {
   },
   mounted() {
     if (firebase.auth.currentUser) {
-      var getGeneralConfigData = JSON.parse(
-        localStorage.getItem("generalconfig")
-      );
-      var getKeysAndSecurity = JSON.parse(
-        localStorage.getItem("keysandsecurity")
-      );
-      if (
-        getGeneralConfigData &&
-        getKeysAndSecurity &&
-        Object.keys(getGeneralConfigData).length > 2 &&
-        Object.keys(getKeysAndSecurity).length > 2
-      ) {
-        // console.log("Found in localstorage");
+      
         if (
           Object.keys(this.generalConfig).length <= 2 &&
           Object.keys(this.keysandsecurity).length <= 2
         ) {
           // console.log("not found in vuex")
-          this.setGeneral(getGeneralConfigData);
-          this.setKeysAndSecutity(getKeysAndSecurity);
+          this.getDataFromServer();
         } else {
           console.log("data froung in vuex");
         }
-      } else {
-        this.getDataFromServer();
-      }
     }
   },
   methods: {
@@ -118,7 +102,6 @@ export default {
       this.registration.waiting.postMessage("skipWaiting");
     },
     getDataFromServer() {
-      // console.log("calling server");
       this.speakersData = [];
       this.isLoading = true;
       firebase.firestore
@@ -128,17 +111,11 @@ export default {
           if (snapshot.empty){this.isLoading = false; return}
           snapshot.forEach(doc => {
             if (doc.id == "general") {
-              doc = doc.data();
-              localStorage.setItem("generalconfig", JSON.stringify(doc));
-              this.setGeneral(doc);
+              this.setGeneral(doc.data());
             } else if (doc.id == "keysandsecurity") {
-              doc = doc.data();
-              localStorage.setItem("keysandsecurity", JSON.stringify(doc));
-              this.setKeysAndSecutity(doc);
+              this.setKeysAndSecutity(doc.data());
             }
           });
-          //
-
           this.isLoading = false;
         })
         .catch(err => {

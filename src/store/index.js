@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     drawer: true,
     isLoggedin: false,
-    role: "demo",
+    role: "",
     generalConfig:{
       email:'',
       name:''

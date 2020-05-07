@@ -124,6 +124,7 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
             uid:userRecord.uid,
             userType: userType,
             id:data.id,
+            firstTime:true,
             disabled: false 
         }).then(async ()=>{
             console.log('User Created with uid: '+ userRecord.uid)
@@ -163,38 +164,6 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
     });
 })
 
-exports.createAuth = functions.https.onCall((data)=>{
-    console.log(data)
-    const email = data.email 
-    const password = data.password 
-    const name = data.name 
-    const image = data.image
-    const role = data.role 
-
-    if((role == 'Core Team') || (role == 'Organizing Team') ){
-        admin.auth().createUser({
-            email: email,
-            password: password,
-            displayName: name,
-            photoURL: image,
-            role: role
-        })
-        .then((userRecord)=> {
-            console.log('Successfully created new user:', userRecord.uid);
-            admin()
-            sendWelcomeEmail(email, name).then(res=>{
-                return 'User created with UID ' + userRecord.uid
-            }).catch(e=>{
-                return e
-            })
-        })
-        .catch((error)=> {
-            console.log('Error creating new user:', error);
-            return error
-        });
-    }
-})
-
 async function sendWelcomeEmail(email, displayName, pass) {
     const mailOptions = {
         from: `${APP_NAME} <noreply@firebase.com>`,
@@ -206,6 +175,7 @@ async function sendWelcomeEmail(email, displayName, pass) {
         <p>Welcome to ${APP_NAME}. I hope you will enjoy our service.</p>
         <p>This email contains important account access information for your ${email} account.</p>
         <p>This is your temporary password: <b>${pass}</b></p>
+        <p>Kindly Login into Admin panel or Contact Admin</p>
         <br>
         <p>If you have any questions, please contact contact@gdgjalandhar.com</p>
         <br>
