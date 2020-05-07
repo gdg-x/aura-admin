@@ -49,7 +49,7 @@
           <!-- Mobile -->
           &nbsp;
 
-          <AddUser class="ml-2" @showSuccess="showSnakeBar" />
+          <AddUser class="ml-2" @showSuccess="showSnakeBar" @failed="showFailedSnakeBar"/>
         </v-toolbar>
       </v-col>
     </v-row>
@@ -119,7 +119,7 @@
                           </template>
                           <span>Enable {{item.name}}</span>
                         </v-tooltip>
-                        <EditUser @RemovedSuccess="showSnakeBar" :data="item"/>
+                        <EditUser @EditSuccess="showSnakeBar" :data="item"/>
                         <DeleteUser @RemovedSuccess="showSnakeBar" :data="item"/>
                         <!-- <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
@@ -216,6 +216,10 @@ export default {
     openCloseSearch(){
       this.isSearch = !this.isSearch
       this.search = "";
+    },
+    showFailedSnakeBar(text) {
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
     },
     showSnakeBar(text) {
       this.snakeBarMessage = text;

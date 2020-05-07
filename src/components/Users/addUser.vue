@@ -63,7 +63,10 @@
                 <v-container fluid>
                     <v-row class="pa-0">
                         <v-col cols="12" class="pa-1 ma-0">
-                        {{output}}
+                        <p :class="[!output.data.success?'red--text':'green--text']" class="google-font heading my-0">{{ output.data.msg }}</p>
+                          <p v-if="output.data.emailstatus" :class="[!output.data.emailstatus.success?'red--text':'green--text']" class="google-font heading my-0 mt-1">
+                            {{ output.data.emailstatus.msg }}
+                          </p>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -73,7 +76,7 @@
 
                 <v-card-actions class="grey lighten-4">
                 <div class="flex-grow-1"></div>
-                <v-btn color="indigo" text @click="emailDialog = false">Close</v-btn>
+                <v-btn color="indigo" text @click="close()">Close</v-btn>
                 </v-card-actions>
             </v-card>
             </v-dialog>
@@ -136,6 +139,14 @@ export default {
             this.loading = false
             console.log("Error getting documents", e)
         })
+    },
+    close(){
+      this.dialog = false;
+      this.emailDialog=false;
+      this.output.data.success?
+        this.$emit('showSuccess', "Added Success")
+      : this.$emit('failed', this.output.data.msg)
+
     },
     addUser() {
         this.loading = true

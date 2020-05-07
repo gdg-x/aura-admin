@@ -78,7 +78,7 @@ export default {
           if (res.success) {
             this.loading = false;
             this.dialog = false;
-            this.$emit("RemovedSuccess", res.msg);
+            this.$emit("EditSuccess", res.msg);
           }
         })
         .catch(e => {
