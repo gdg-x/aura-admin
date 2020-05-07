@@ -25,6 +25,24 @@ let usersServices = {
             })
         })
     },
+    updateUser:(docid, userType)=>{
+        return new Promise((resolve, reject)=>{
+            firebase.firestore.collection('users').doc(docid).update({
+                userType: userType
+            }).then(()=>{
+                // console.log(docs)
+                resolve({
+                    success: true,
+                    msg:"User role updated"
+                })
+            }).catch(e=>{
+                reject({
+                    success:false,
+                    msg: e
+                })
+            })
+        })
+    },
 
     getAllUsers:()=>{
         let users=[]
@@ -93,7 +111,8 @@ let usersServices = {
                 console.log(e)
                 reject(e)
             })
-        })
+        });
     }
-}
-export default usersServices
+    
+};
+export default usersServices;

@@ -119,7 +119,7 @@
                           </template>
                           <span>Enable {{item.name}}</span>
                         </v-tooltip>
-                        
+                        <EditUser @RemovedSuccess="showSnakeBar" :data="item"/>
                         <DeleteUser @RemovedSuccess="showSnakeBar" :data="item"/>
                         <!-- <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
@@ -179,7 +179,8 @@ export default {
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     AddUser:()=>import('@/components/Users/addUser'),
-    DeleteUser:()=>import('@/components/Users/DeleteUser')
+    DeleteUser:()=>import('@/components/Users/DeleteUser'),
+    EditUser:()=>import('@/components/Users/editUser'),
   },
   data: () => ({
     dataView:0,
