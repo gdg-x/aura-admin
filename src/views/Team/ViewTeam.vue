@@ -21,13 +21,13 @@
           <v-spacer></v-spacer>
           <EditTeam
             :teamData="teamInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeleteTeam
             :TeamInfo="teamInfo"
-            @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            @RemoveSuceess="showSnakeBar"            
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
           />
         </v-toolbar>
       </v-col>
@@ -186,12 +186,16 @@
 <script>
 import firebase from "@/config/firebase";
 import TeamServices from "@/services/TeamServices";
+import {mapState} from "vuex"
 export default {
   name: "ViewTeam",
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),
     EditTeam: () => import("@/components/Team/EditTeam")
+  },
+  computed:{
+    ...mapState(['role'])
   },
   data: () => ({
     snakeBarMessage: "",

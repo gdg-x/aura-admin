@@ -19,15 +19,15 @@
             <span style="font-size:120%">Events</span>
           </v-btn>
           <v-spacer></v-spacer>
-          <EditEvent
+          <EditEvent 
             :eventInfo="eventInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeleteEvent
             :EventInfo="eventInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
           />
           <PublicUrl :EventInfo="eventInfo" v-if="!showLoader && !userNotFound" />
         </v-toolbar>
@@ -351,6 +351,7 @@
 <script>
 import CustomEventServices from '@/services/CustomEventServices'
 import PartnersServices from "@/services/PartnersServices"
+import { mapState } from 'vuex'
 
 import firebase from "@/config/firebase";
 
@@ -388,6 +389,9 @@ export default {
       { text: "Description", value: "des" }
     ]
   }),
+  computed:{
+    ...mapState(['role'])
+  },
   mounted() {
     this.getEventData();
     this.getSpeakersData();

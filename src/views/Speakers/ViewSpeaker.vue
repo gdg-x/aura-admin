@@ -21,13 +21,13 @@
           <v-spacer></v-spacer>
           <EditSpeaker
             :speakerData="speakerInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeleteSpeaker
             :SpeakerInfo="speakerInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
           />
         </v-toolbar>
       </v-col>
@@ -165,6 +165,7 @@
 
 <script>
 import SpeakerServices from '@/services/SpeakersServices'
+import {mapState} from 'vuex'
 export default {
   name: "ViewTeam",
   components: {
@@ -172,6 +173,9 @@ export default {
     DeleteSpeaker:()=>import('@/components/Speakers/DeleteSpeaker'),
     EditSpeaker:()=>import('@/components/Speakers/EditSpeaker')
   },
+  computed:{
+    ...mapState(['role'])
+    },
   data: () => ({
     snakeBarMessage: "",
     isSnakeBarVisible: false,

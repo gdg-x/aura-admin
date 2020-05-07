@@ -15,7 +15,7 @@
         <v-container class="mb-5 py-5">
           <v-row class="mb-5">
             <v-col md="9" class="my-0 py-0">
-              <h1 class="google-font mb-0" style="color:#3F51B5">Welcome {{userDetails.name.split(" ")[0] || ""}}!</h1>
+              <h1 class="google-font mb-0" style="color:#3F51B5">Welcome {{userDetails.name && userDetails.name.split(" ")[0] || ""}}!</h1>
               <p class="google-font mb-0">Manage your community</p>
             </v-col>
             <v-col md="3" style="margin-top:-185px" class="d-none d-sm-none d-md-block">

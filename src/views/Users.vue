@@ -173,6 +173,7 @@
 
 <script>
 import UsersServices from '@/services/UsersServices'
+import { mapState } from 'vuex'
 export default {
   name: "TeamView",
   inject: ['theme'],
@@ -202,6 +203,13 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
+  computed:{...mapState(['role'])},
+  beforeMount(){
+    if(!this.$route.meta.access[this.role]){
+      alert("Not Auth")
+      this.$router.replace('/home');
+    }
+  },
   mounted() {
     if(this.$route.query.msg) {
       console.log('c1')

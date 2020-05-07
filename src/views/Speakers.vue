@@ -85,7 +85,8 @@
             </v-tooltip>
           </v-btn-toggle>
           <!-- Toggle Menu for View -->
-          <AddSpeaker class="ml-2" @showSuccess="showSnakeBar" />
+            
+          <AddSpeaker v-if="role=='Super Admin' || role=='Admin'" class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -225,6 +226,7 @@
 
 <script>
 import SpeakerServices from '@/services/SpeakersServices'
+import { mapState } from 'vuex'
 export default {
   name: "TeamView",
   inject: ["theme"],
@@ -232,6 +234,7 @@ export default {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     AddSpeaker:()=>import('@/components/Speakers/AddSpeaker')
   },
+  computed:{...mapState(['role'])},
   data: () => ({
     dataView: 0,
     isSearch: false,
@@ -255,7 +258,6 @@ export default {
       { text: "Actions", value: "actions", sortable: false }
     ]
   }),
-  computed: {},
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar("Speaker Removed Sucessfully");

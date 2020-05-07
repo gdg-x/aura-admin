@@ -68,6 +68,7 @@
 <script>
 import firebase from "@/config/firebase";
 import PushNotificationServicers from '@/services/NotificationServices'
+import { mapState } from 'vuex'
 export default {
   name: "Notifications",
   components: {
@@ -95,6 +96,13 @@ export default {
       { text: "Actions", value: "action", sortable: false }
     ]
   }),
+  computed:{...mapState(['role'])},
+  beforeMount(){
+    if(!this.$route.meta.access[this.role]){
+      alert("Not Auth")
+      this.$router.replace('/home');
+    }
+  },
   mounted(){
     this.loadData();
   },

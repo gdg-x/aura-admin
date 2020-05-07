@@ -66,10 +66,7 @@ export default {
     communityName:''
   }),
   computed:{
-      ...mapState(['generalConfig',"keysandsecurity"]),
-  },
-  mounted(){
-    // this.getConfig()
+      ...mapState(['generalConfig',"keysandsecurity",'role']),
   },
   methods:{
     getConfig(){

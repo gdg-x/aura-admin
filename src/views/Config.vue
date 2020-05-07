@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import {mapState}  from 'vuex'
 export default {
   name: "Config",
   components: {
@@ -54,6 +55,13 @@ export default {
     Footer:()=>import('@/components/Config/Footer/Footer'),
     KeysAndSecurity:()=>import('@/components/Config/Keys/Keys')
   },
+  computed:{...mapState(['role'])},
+  beforeMount(){
+    if(!this.$route.meta.access[this.role]){
+      alert("Not Auth")
+      this.$router.replace('/home');
+    }
+  },
   data: () => ({
     tab: null,
     snakeBarMessage: "",
@@ -61,7 +69,6 @@ export default {
     snakeBarColor: "green",
     snakeBarTimeOut: 5000
   }),
-  mounted() {},
   methods: {
     showSnakeBar(e) {
       this.snakeBarMessage = e;

@@ -70,7 +70,7 @@
             </v-tooltip>
           </v-btn-toggle>
           <!-- Toggle Menu for View -->
-          <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
+          <AddTeam v-if="role=='Super Admin' || role=='Admin'" class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -227,12 +227,16 @@
 
 <script>
 import TeamServices from '@/services/TeamServices'
+import {mapState} from 'vuex'
 export default {
   name: "TeamView",
   inject: ['theme'],
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     AddTeam:()=>import('@/components/Team/AddTeam')
+  },
+  computed:{
+    ...mapState(['role'])
   },
   data: () => ({
     dataView:0,

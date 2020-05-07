@@ -12,7 +12,7 @@
         <v-divider></v-divider>
         <v-list dense>
             <v-list-item
-                v-for="(link, i) in links"
+                v-for="(link, i) in links.filter(li=>li.access[role])"
                 :key="i"
                 :to="link.to"
                 :href="link.href"
@@ -51,7 +51,7 @@
         data:()=>({
         }),
         computed:{
-            ...mapState(['userDetails']),
+            ...mapState(['userDetails','role']),
             ...mapGetters(['links']),
             drawer: {
                 get () {

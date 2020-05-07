@@ -123,6 +123,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: "EmailView",
   inject: ['theme'],
@@ -149,6 +150,13 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
+  computed:{...mapState(['role'])},
+  beforeMount(){
+    if(!this.$route.meta.access[this.role]){
+      alert("Not Auth")
+      this.$router.replace('/home');
+    }
+  },
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar("Email Removed Sucessfully");
