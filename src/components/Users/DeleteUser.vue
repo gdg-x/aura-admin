@@ -19,7 +19,7 @@
 
         <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
 
-        <v-btn color="red darken-1" text :loading="loading" @click="removeUser(data.uid)">Agree</v-btn>
+        <v-btn color="red darken-1" text :loading="loading" @click="removeUser(data)">Agree</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -34,10 +34,10 @@ export default {
     loading: false
   }),
   methods: {
-    removeUser(uid){
-        console.log(uid)
+    removeUser(data){
+        console.log(data)
       this.loading = true
-      UsersServices.removeUser(uid).then(res=>{
+      UsersServices.removeUser(data.uid, data.name).then(res=>{
         console.log(res)
         this.loading = false
         // this.showSnakeBar('User Removed')

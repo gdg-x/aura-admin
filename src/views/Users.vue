@@ -76,6 +76,18 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
+                      <template v-slot:item.name="{ item }">
+                        <v-list-item>
+                          <v-list-item-avatar>
+                            <v-img :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
+                          </v-list-item-avatar>
+
+                          <v-list-item-content>
+                            <v-list-item-title class="google-font" v-html="item.name"></v-list-item-title>
+                            <v-list-item-subtitle class="google-font" v-html="item.email"></v-list-item-subtitle>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
                       <template v-slot:item.disabled="{ item }">
                         <v-chip small dark v-if="item.disabled" class="red">Disabled</v-chip>
                         <v-chip small dark v-else class="green">Enabled</v-chip>
@@ -83,7 +95,7 @@
                       <template v-slot:item.actions="{ item }">
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
-                            <v-btn icon v-on="on" @click="gotoTeamDetails(item.id)">
+                            <v-btn fab x-small icon outlined color="indigo" class="mr-1" v-on="on" @click="gotoTeamDetails(item.id)">
                               <v-icon>mdi-eye</v-icon>
                             </v-btn>
                           </template>
@@ -92,8 +104,8 @@
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
-                            <v-btn v-if="!item.disabled"  icon v-on="on" @click="disableUser(item.uid)">
-                              <v-icon>mdi-account-minus</v-icon>
+                            <v-btn fab x-small icon v-if="!item.disabled" outlined color="indigo" v-on="on" @click="disableUser(item.uid)">
+                              <v-icon>mdi-account-remove</v-icon>
                             </v-btn>
                           </template>
                           <span>Disable {{item.name}}</span>
@@ -101,7 +113,7 @@
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
-                            <v-btn v-if="item.disabled" icon v-on="on" @click="enableUser(item.uid)">
+                            <v-btn fab x-small v-if="item.disabled" color="indigo" outlined v-on="on" @click="enableUser(item.uid)">
                               <v-icon>mdi-account-check</v-icon>
                             </v-btn>
                           </template>
@@ -181,12 +193,11 @@ export default {
     showDialog: false,
     usersData: [],
     headers: [
-      { text: 'User Name', value: 'name' },
-      { text: 'Email', value: 'email' },
-      { text: 'Role', value: 'role' },
-      { text: 'User Type', value: 'userType' },
-      { text: 'User Status', value: 'disabled' },
-      { text: 'UID', value: 'uid' },
+      { text: 'User Name', value: 'name', width:'20%' },
+      // { text: 'Email', value: 'email' },
+      { text: 'Role', value: 'role', },
+      { text: 'User Type', value: 'userType', },
+      { text: 'User Status', value: 'disabled', },
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
@@ -221,15 +232,8 @@ export default {
         console.log("Error getting documents", e)
       })
     },
-    removeUser(uid){
-      this.showDialog = true
-      UsersServices.removeUser(uid).then(res=>{
-        this.showDialog = false
-        this.showSnakeBar('User Removed')
-      }).catch(e=>{
-        this.showDialog = false
-        console.log(e)
-      })
+    gotoTeamDetails(id) {
+      this.$router.push("/team/" + id);
     },
     disableUser(uid){
       this.showDialog = true

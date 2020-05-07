@@ -75,14 +75,13 @@ exports.enabledAuth = functions.https.onCall((uid)=>{
 exports.removeAuth = functions.https.onCall((data)=>{
     console.log(data)
     const uid = data.uid
+    const name = data.name
     let email =''
-    let name = ''
 
     admin.auth().getUser(uid)
     .then(function(userRecord) {
         console.log('Successfully fetched user data:', userRecord.toJSON());
         email = userRecord.toJSON().email
-        name = userRecord.toJSON().displayName
     })
     .catch(function(error) {
         console.log('Error fetching user data:', error);

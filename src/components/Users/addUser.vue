@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData">Add User</v-btn>
+        <v-btn depressed color="indigo" dark v-on="on" @click="getData">Add User</v-btn>
       </template>
       <v-card v-if="dialog" class>
         <v-card-title
@@ -73,7 +73,7 @@
 
                 <v-card-actions class="grey lighten-4">
                 <div class="flex-grow-1"></div>
-                <v-btn color="#5AB55E" text @click="emailDialog = false">Close</v-btn>
+                <v-btn color="indigo" text @click="emailDialog = false">Close</v-btn>
                 </v-card-actions>
             </v-card>
             </v-dialog>
@@ -85,9 +85,9 @@
 
         <v-card-actions class="grey lighten-4">
           <div class="flex-grow-1"></div>
-          <v-btn color="#5AB55E" text @click="dialog = false">Close</v-btn>
+          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="#5AB55E"
+            color="indigo"
             dark
             @click="addUser"
             depressed
@@ -104,7 +104,6 @@ import firebase from '@/config/firebase'
 import TeamServices from '@/services/TeamServices'
 export default {
   components: {
-    //   successDialog:()=>import('@/components/Users/successDialog')
   },
   data: () => ({
     dialog: false,
@@ -124,14 +123,14 @@ export default {
   methods: {
     getData(){
       this.ShowTeam();
-    //   this.loadFeatureEvents();
     },
     ShowTeam() {
         this.teamData = [];
         this.loading = true;
         TeamServices.getAllTeam().then(res=>{
-            this.teamData = res.data
-            // console.log(this.teamData)
+            if(res.success){
+              this.teamData = res.data
+            }
             this.loading = false
         }).catch(e=>{
             this.loading = false
@@ -141,7 +140,6 @@ export default {
     addUser() {
         this.loading = true
         let userData = this.teamData.filter(team=>team.id == this.selectedUser)
-        // console.log(userData[0])
         userData[0]['userType'] = this.userRole
         let appp = firebase.functions.httpsCallable('team-createAuthUser')
         appp(userData[0]).then(res1=>{
