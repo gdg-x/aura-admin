@@ -2,7 +2,6 @@ import firebase from '@/config/firebase'
 
 let usersServices = {
     getCurrentUserDetails:()=>{
-        console.log('cccc')
         let uid = ''
         return new Promise((resolve, reject)=>{
             uid = firebase.auth.currentUser.uid
@@ -16,6 +15,27 @@ let usersServices = {
                         uid: uid
                     })
                 })
+            }).catch(e=>{
+                reject({
+                    success:false,
+                    msg: e
+                })
+                console.log(e)
+            })
+        })
+    },
+
+    getUserRole:()=>{
+        let uid = ''
+        return new Promise((resolve, reject)=>{
+            uid = firebase.auth.currentUser.uid
+
+            firebase.firestore.collection('users').doc(uid).get().then(docs=>{
+                // console.log(docs)
+                    resolve({
+                        success: true,
+                        data:docs.data(),
+                    })
             }).catch(e=>{
                 reject({
                     success:false,
@@ -100,17 +120,17 @@ let usersServices = {
                 console.log(e)
                 reject(e)
             })
-        })
+        });
     },
     disableUser:(uid)=>{
         return new Promise((resolve,reject)=>{
-            let appp = firebase.functions.httpsCallable('team-disabledAuth')
+            let appp = firebase.functions.httpsCallable('team-disabledAuth');
             appp(uid).then(res=>{
-                resolve(res.data)
+                resolve(res.data);
             }).catch(e=>{
-                console.log(e)
-                reject(e)
-            })
+                console.log(e);
+                reject(e);
+            });
         });
     }
     

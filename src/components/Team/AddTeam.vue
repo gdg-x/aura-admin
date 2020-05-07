@@ -210,15 +210,6 @@ export default {
       role: null
     };
   },
-  mounted(){
-    let appp = firebase.functions.httpsCallable('team-addMessage')
-    // let datatoadd = JSON.stringify()
-    appp({text: 'messageText'}).then(res=>{
-      console.log(res)
-    }).catch(e=>{
-      console.log("error "+ e)
-    })
-  },
   methods: {
     SaveEvent() {
       if (this.$refs.form.validate()) {

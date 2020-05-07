@@ -2,11 +2,11 @@
     <v-navigation-drawer app clipped v-model="drawer" width="280px">
         <v-list-item two-line>
         <v-list-item-avatar>
-            <img :src="require('@/assets/img/default_avatar.jpg')" />
+            <img :src="(userDetails.image && userDetails.image.length>0)?userDetails.image:require('@/assets/img/default_avatar.jpg')" />
         </v-list-item-avatar>
         <v-list-item-content>
-            <v-list-item-title class="google-font">Community Lead</v-list-item-title>
-            <v-list-item-subtitle>{{ generalConfig.email || "Community-Email"}}</v-list-item-subtitle>
+            <v-list-item-title class="google-font">{{userDetails.name || "User-Name"}}</v-list-item-title>
+            <v-list-item-subtitle>{{ userDetails.email || "User-Email"}}</v-list-item-subtitle>
         </v-list-item-content>
         </v-list-item >
         <v-divider></v-divider>
@@ -51,7 +51,7 @@
         data:()=>({
         }),
         computed:{
-            ...mapState(['generalConfig']),
+            ...mapState(['userDetails']),
             ...mapGetters(['links']),
             drawer: {
                 get () {

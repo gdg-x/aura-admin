@@ -8,6 +8,7 @@ export default new Vuex.Store({
     drawer: true,
     isLoggedin: false,
     role: "",
+    userDetails:{},
     generalConfig:{
       email:'',
       name:''
@@ -78,6 +79,7 @@ export default new Vuex.Store({
     toggleDrawer: state => (state.drawer = !state.drawer),
     roleSet: (state, payload) => (state.role = payload),
     setGeneral:(state, payload)=>(state.generalConfig = payload),
+    userDetailsSet:(state, payload)=>(state.userDetails = payload),
     setKeysAndSecutity:(state, payload)=>(state.keysandsecurity= payload),
   },
   actions: {},

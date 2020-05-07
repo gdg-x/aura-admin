@@ -41,6 +41,9 @@
 <script>
 import firebase from "@/config/firebase";
 import { mapState, mapMutations } from "vuex";
+import UserService from '@/services/UsersServices'
+import TeamService from '@/services/TeamServices'
+
 
 export default {
   name: "App",
@@ -60,7 +63,7 @@ export default {
     isLoading: false
   }),
   computed: {
-    ...mapState(["generalConfig", "keysandsecurity"])
+    ...mapState(["generalConfig", "keysandsecurity","role"])
   },
   created() {
     // Listen for swUpdated event and display refresh snackbar as required.
@@ -72,22 +75,18 @@ export default {
       window.location.reload();
     });
   },
-  mounted() {
+  async mounted() {
     if (firebase.auth.currentUser) {
-      
-        if (
-          Object.keys(this.generalConfig).length <= 2 &&
-          Object.keys(this.keysandsecurity).length <= 2
-        ) {
-          // console.log("not found in vuex")
-          this.getDataFromServer();
-        } else {
-          console.log("data froung in vuex");
-        }
+      if (this.role.length<=0)
+        await this.getData();
+
+        (Object.keys(this.generalConfig).length <= 2 && Object.keys(this.keysandsecurity).length <= 2)?
+        await this.getDataFromServer():
+        console.log("data froung in vuex");
     }
   },
   methods: {
-    ...mapMutations(["setGeneral", "setKeysAndSecutity"]),
+    ...mapMutations(["setGeneral", "setKeysAndSecutity","roleSet", "userDetailsSet"]),
     showRefreshUI(e) {
       this.registration = e.detail;
       this.snackBtnText = "Refresh";
@@ -100,6 +99,25 @@ export default {
         return;
       }
       this.registration.waiting.postMessage("skipWaiting");
+    },
+    getData(){
+      this.isLoading = true;
+      UserService.getUserRole().then(async (res)=>{
+        console.log(res);
+        if(res.success){
+          this.roleSet(res.data.userType);
+          await TeamService.getTeamMemberDetails(res.data.id).then(res=>{
+            console.log(res)
+            if(res.isFound){
+              this.userDetailsSet(res.data)
+            }
+            this.isLoading = false;
+          }).catch(e=>{
+            console.log(e)
+          })
+          this.isLoading = false;
+        }
+      })
     },
     getDataFromServer() {
       this.speakersData = [];
