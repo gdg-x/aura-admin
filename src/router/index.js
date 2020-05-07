@@ -142,6 +142,15 @@ const routes = [
     }
   },
   {
+    path: '/profile',
+    name: "profile",
+    component: () => import( /* webpackChunkName: "roles" */ '@/views/Profile/Profile'),
+    meta: {
+      requiresAuth: true,
+      title: "Profile Settings"
+    }
+  },
+  {
     path: '/emails/:id',
     name: "EmailView",
     component: () => import( /* webpackChunkName: "notifications" */ '@/views/Email/ViewEmail'),

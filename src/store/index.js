@@ -59,6 +59,11 @@ export default new Vuex.Store({
         text: 'Config',
         to: '/config',
         icon: 'mdi-widgets',
+      },
+      {
+        text: 'Profile',
+        to: '/profile',
+        icon: 'mdi-widgets',
       }
       
     ]

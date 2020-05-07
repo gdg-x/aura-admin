@@ -1,6 +1,31 @@
 import firebase from '@/config/firebase'
 
 let usersServices = {
+    getCurrentUserDetails:()=>{
+        console.log('cccc')
+        let uid = ''
+        return new Promise((resolve, reject)=>{
+            uid = firebase.auth.currentUser.uid
+
+            firebase.firestore.collection('team').where("uid", "==", uid).get().then(docs=>{
+                // console.log(docs)
+                docs.forEach(doc=>{
+                    resolve({
+                        success: true,
+                        data:doc.data(),
+                        uid: uid
+                    })
+                })
+            }).catch(e=>{
+                reject({
+                    success:false,
+                    msg: e
+                })
+                console.log(e)
+            })
+        })
+    },
+
     getAllUsers:()=>{
         let users=[]
         let teams=[]
