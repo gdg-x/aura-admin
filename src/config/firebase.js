@@ -22,6 +22,7 @@ export default{
   messaging: (firebase.messaging.isSupported())?firebase.messaging():null,
   firestore:firebase.firestore(),
   auth:firebase.auth(),
+  authw:firebase.auth,
   storage:firebase.storage(),
   functions: firebase.functions()
 };
