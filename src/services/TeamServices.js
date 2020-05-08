@@ -1,6 +1,28 @@
 import firebase from '@/config/firebase'
 
 let teamServices = {
+
+    getEventsByTeamMember:(id)=>{
+        let events=[]
+        return new Promise((resolve, reject)=>{
+            firebase.firestore.collection('events').where('team',"array-contains",id).get().then(docs=>{
+                docs.forEach(doc=>{
+                  events.push(doc.data())
+                })
+                resolve({
+                    success: true,
+                    data:events
+                })
+              }).catch(e=>{
+                // console.log(e)
+                reject({
+                    success: false,
+                    msg: e
+                })
+            })
+        })
+    },
+
     // Get All the Team Members Details
     getAllTeam:()=>{
         let team = []

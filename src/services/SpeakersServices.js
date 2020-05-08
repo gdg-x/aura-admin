@@ -1,6 +1,26 @@
 import firebase from '@/config/firebase'
 
 let speakersServices = {
+    getEventsBySpeaker:(id)=>{
+        let events=[]
+        return new Promise((resolve, reject)=>{
+            firebase.firestore.collection('events').where('speakers',"array-contains",id).get().then(docs=>{
+                docs.forEach(doc=>{
+                  events.push(doc.data())
+                })
+                resolve({
+                    success: true,
+                    data:events
+                })
+              }).catch(e=>{
+                reject({
+                    success: false,
+                    msg: e
+                })
+            })
+        })
+    },
+
     // Get All the Speakers Details
     getAllSpeakers:()=>{
         let speakers = []

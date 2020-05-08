@@ -140,6 +140,33 @@
                   >{{i}}</v-chip>
                 </span>
               </p>
+              
+              <div v-if="events.length>0">
+                <p class="mb-2 mt-3">
+                  <b>Events:</b>
+                </p>
+                <!-- :search="search" -->
+                <v-data-table
+                  :mobile-breakpoint="0"
+                  style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                  :loading="isLoading"
+                  :headers="headers"
+                  :items="events"
+                  :items-per-page="5"
+                  class="elevation-0 ma-0 pa-0"
+                >
+                <template v-slot:item.view="{ item }">
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <v-btn icon v-on="on" @click="goToEventDetails(item.id)">
+                        <v-icon>mdi-eye</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>{{item.name}} Details</span>
+                  </v-tooltip>
+                </template>
+                </v-data-table>
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -204,12 +231,24 @@ export default {
     snakeBarTimeOut: 5000,
     showLoader: true,
     userNotFound: true,
-    teamInfo: {}
+    isLoading: false,
+    teamInfo: {},
+    events:[],
+    headers: [
+      { text: 'Event', value: 'name' },
+      { text: 'Date', value: 'date', },
+      { text: 'Venue', value: 'venue.name', },
+      { text: 'See More', value: 'view', sortable: false, },
+    ],
   }),
   mounted() {
     this.getTeamData();
+    this.getEventsDataHostedByMember()
   },
   methods: {
+    goToEventDetails(id) {
+      this.$router.push("/events/" + id);
+    },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
@@ -217,6 +256,18 @@ export default {
     },
     goToTeam() {
       this.$router.replace("/team");
+    },
+    getEventsDataHostedByMember(){
+      this.isLoading = true
+      TeamServices.getEventsByTeamMember(this.$route.params.id).then(res=>{
+        if(res.success){
+          this.events = res.data
+          this.isLoading = false
+        }
+      }).catch(e=>{
+        console.log(e)
+        this.isLoading = false
+      })
     },
     getTeamData() {
       this.showLoader = true;
