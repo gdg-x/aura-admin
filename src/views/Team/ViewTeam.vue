@@ -141,32 +141,7 @@
                 </span>
               </p>
               
-              <div v-if="events.length>0">
-                <p class="mb-2 mt-3">
-                  <b>Events:</b>
-                </p>
-                <!-- :search="search" -->
-                <v-data-table
-                  :mobile-breakpoint="0"
-                  style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
-                  :loading="isLoading"
-                  :headers="headers"
-                  :items="events"
-                  :items-per-page="5"
-                  class="elevation-0 ma-0 pa-0"
-                >
-                <template v-slot:item.view="{ item }">
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                      <v-btn icon v-on="on" @click="goToEventDetails(item.id)">
-                        <v-icon>mdi-eye</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>{{item.name}} Details</span>
-                  </v-tooltip>
-                </template>
-                </v-data-table>
-              </div>
+              <EventByUserTable v-if="events.length>0" :events.sync="events" :isLoading.sync="isLoading"/>
             </v-col>
           </v-row>
         </v-container>
@@ -219,7 +194,8 @@ export default {
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),
-    EditTeam: () => import("@/components/Team/EditTeam")
+    EditTeam: () => import("@/components/Team/EditTeam"),
+    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable')
   },
   computed:{
     ...mapState(['role'])
@@ -234,21 +210,12 @@ export default {
     isLoading: false,
     teamInfo: {},
     events:[],
-    headers: [
-      { text: 'Event', value: 'name' },
-      { text: 'Date', value: 'date', },
-      { text: 'Venue', value: 'venue.name', },
-      { text: 'See More', value: 'view', sortable: false, },
-    ],
   }),
   mounted() {
     this.getTeamData();
     this.getEventsDataHostedByMember()
   },
   methods: {
-    goToEventDetails(id) {
-      this.$router.push("/events/" + id);
-    },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;

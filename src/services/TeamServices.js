@@ -14,7 +14,6 @@ let teamServices = {
                     data:events
                 })
               }).catch(e=>{
-                // console.log(e)
                 reject({
                     success: false,
                     msg: e
