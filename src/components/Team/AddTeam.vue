@@ -99,7 +99,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <v-col v-if="role == 'Core Team' || role == 'Organizing Team'" md="4" xs="4" cols="12" class="pa-1 ma-0">
+                    <!-- <v-col v-if="role == 'Core Team' || role == 'Organizing Team'" md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
                         v-model="password"
@@ -107,7 +107,7 @@
                         type="password"
                         outlined
                       ></v-text-field>
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                   <v-row class="pa-3 py-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">

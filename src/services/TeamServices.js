@@ -64,26 +64,10 @@ let teamServices = {
             .collection("team")
             .doc(id)
             .set(data)
-            .then(res => {
-                let appp = firebase.functions.httpsCallable('team-createAuth')
-                let datatoadd = {
-                    email:data.email,
-                    password: data.password,
-                    image:data.image,
-                    role:data.role,
-                    name:data.name
-                }
-                appp(datatoadd).then(res1=>{
-                    console.log(res1)
-                    resolve({
-                        success:true,
-                        msg:'Team Member Addedd Successfully & User Created' + res1
-                    })
-                }).catch(e=>{
-                    reject({
-                        success:false,
-                        msg:'Failed to Add Team Member: '+ e
-                    })
+            .then(() => {
+                resolve({
+                    success:true,
+                    msg:'Team Member Addedd Successfully & User Created' 
                 })
             })
             .catch(e => {
