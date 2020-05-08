@@ -103,11 +103,11 @@ export default {
     getData(){
       this.isLoading = true;
       UserService.getUserRole().then(async (res)=>{
-        console.log(res);
+        // console.log(res);
         if(res.success){
           this.roleSet(res.data.userType);
           await TeamService.getTeamMemberDetails(res.data.id).then(res=>{
-            console.log(res)
+            // console.log(res)
             if(res.isFound){
               this.userDetailsSet(res.data)
             }

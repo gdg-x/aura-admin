@@ -71,7 +71,7 @@ let usersServices = {
             user.reauthenticateWithCredential(cred).then(() => {
                 var user = firebase.auth.currentUser;
                 user.updatePassword(newPassword).then(() => {
-                    console.log("Password updated!");
+                    // console.log("Password updated!");
                     resolve({
                         success: true,
                         msg: "Password updated!"
@@ -96,7 +96,7 @@ let usersServices = {
         let users = []
         let teams = []
         let finaldata = []
-        console.log('calling')
+        // console.log('calling')
         return new Promise((resolve, reject) => {
             firebase.firestore
                 .collection("users")

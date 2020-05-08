@@ -170,6 +170,18 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
+                      <template v-slot:item.name="{ item }">
+                        <v-list-item>
+                          <v-list-item-avatar>
+                            <v-img :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
+                          </v-list-item-avatar>
+
+                          <v-list-item-content>
+                            <v-list-item-title class="google-font" v-html="item.name"></v-list-item-title>
+                            <v-list-item-subtitle class="google-font" v-html="item.email"></v-list-item-subtitle>
+                          </v-list-item-content>
+                        </v-list-item>
+                      </template>
                       <template v-slot:item.visible="{ item }">
                         <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
                         <v-chip v-else x-small dark color="red">Not Visible</v-chip>
@@ -250,7 +262,8 @@ export default {
       {
         text: "Name",
         align: "start",
-        value: "name"
+        value: "name",
+         width:'25%'
       },
       { text: "Designation", value: "designation" },
       { text: "Company", value: "company.name" },

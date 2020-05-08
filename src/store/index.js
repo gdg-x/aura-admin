@@ -109,7 +109,7 @@ export default new Vuex.Store({
       {
         text: 'Profile',
         to: '/profile',
-        icon: 'mdi-widgets',
+        icon: 'mdi-account-circle',
         access: {
           "Super Admin": true,
           "Admin": true,

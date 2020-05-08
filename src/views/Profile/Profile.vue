@@ -101,7 +101,7 @@
                 :type="p0 ? 'text' : 'password'"
                 @click:append="p0 = !p0"
                 label="Current Password"
-                class="mt-2"
+                class="mt-5"
                 v-model="currentPassword"
                 outlined
               ></v-text-field>
@@ -168,7 +168,7 @@ export default {
             this.userData = res.data;
           }
           this.isLoading = false;
-          console.log(res);
+          // console.log(res);
         })
         .catch(e => {
           console.log(e);
