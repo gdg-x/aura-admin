@@ -159,6 +159,45 @@ let teamServices = {
                 })
             });
         })
+    },
+    addFirstTime:(info)=>{
+        return new Promise((resolve, reject)=>{
+            let uid = firebase.auth.currentUser.uid;
+            info.uid = uid;
+            teamServices.addTeamMember(info.id, info).then((res)=>{
+                if(res.success==true){
+                    let data={
+                        disabled:false,
+                        id:info.id,
+                        uid:uid,
+                        userType:"Super Admin",
+                    }
+                    firebase.firestore.collection('users').doc(uid).set(data)
+                    .then(() =>{
+                        resolve({
+                            success:true,
+                        })
+                    }).catch(e=>{
+                        
+                        reject({
+                            success:false,
+                            msg:e
+                        })
+                    })
+                  }else{
+                    reject({
+                        success:false,
+                        msg:"Something went wrong"
+                    })
+                  }
+            }).catch(e=>{
+                reject({
+                    success:false,
+                    msg:e
+                })
+            })
+        })
+
     }
 }
 

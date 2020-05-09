@@ -171,7 +171,8 @@ export default {
           // console.log(res);
         })
         .catch(e => {
-          console.log(e);
+          // console.log(e);
+          this.showOnlySnakeBar(e)
           this.isLoading = false;
         });
     },
@@ -188,11 +189,11 @@ export default {
       this.isUpdating = true;
       if(this.confPassword === this.password){
         UsersServices.updateUserPassword(this.currentPassword, this.password).then(res=>{
-          console.log(res)
+          // console.log(res)
           this.showOnlySnakeBar(res.msg)
           this.isUpdating = false
         }).catch(e=>{
-          console.log(e);
+          // console.log(e);
         this.showOnlySnakeBar(e.msg.message);
           this.isUpdating = false
         })

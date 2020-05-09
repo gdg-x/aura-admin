@@ -20,11 +20,13 @@
     <AuraAdminToolbar v-if="$route.meta.requiresAuth" />
     <AuraAdminDrawer v-if="$route.meta.requiresAuth" />
     <AuraAdminBottomNav v-if="$route.meta.requiresAuth" />
+    <AddTeamFirst v-if="addFirstTime" :dialog.sync="addFirstTime"/>
     <v-content class="fill-height" v-if="isLoading">
       <v-container class="fill-height">
         <v-row justify="center" align="center" class>
           <v-col cols="12" md="12" class="text-center">
             <v-progress-circular
+            
               :width="5"
               :size="50"
               color="indigo"
@@ -43,6 +45,7 @@ import firebase from "@/config/firebase";
 import { mapState, mapMutations } from "vuex";
 import UserService from '@/services/UsersServices'
 import TeamService from '@/services/TeamServices'
+// import AddTeamFirst from '@/components/Team/AddTeam'
 
 
 export default {
@@ -51,7 +54,8 @@ export default {
     AuraAdminToolbar: () => import("@/components/Core/Toolbar"),
     AuraAdminDrawer: () => import("@/components/Core/Drawer"),
     AuraAdminBottomNav: () => import("@/components/Core/BottomNav"),
-    AuraAdminView: () => import("@/components/Core/Views")
+    AuraAdminView: () => import("@/components/Core/Views"),
+    AddTeamFirst: () => import("@/components/Common/AddFirstTime")
   },
   data: () => ({
     refreshing: false,
@@ -60,6 +64,7 @@ export default {
     snackWithBtnText: "",
     snackWithButtons: false,
     timeout: 25000,
+    addFirstTime:false,
     isLoading: false
   }),
   computed: {
@@ -105,6 +110,11 @@ export default {
       UserService.getUserRole().then(async (res)=>{
         // console.log(res);
         if(res.success){
+          if(!res.exists){
+            this.addFirstTime=true;
+            this.isLoading = false;
+            return;
+          }
           this.roleSet(res.data.userType);
           await TeamService.getTeamMemberDetails(res.data.id).then(res=>{
             // console.log(res)

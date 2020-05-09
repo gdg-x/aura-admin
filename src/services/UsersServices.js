@@ -35,6 +35,7 @@ let usersServices = {
                 resolve({
                     success: true,
                     data: docs.data(),
+                    exists: docs.exists
                 })
             }).catch(e => {
                 reject({
