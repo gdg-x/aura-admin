@@ -87,7 +87,7 @@ export default new Vuex.Store({
         }
       },
       {
-        text: 'Notification',
+        text: 'Push Notifications',
         to: '/notification',
         icon: 'mdi-bell',
         access: {

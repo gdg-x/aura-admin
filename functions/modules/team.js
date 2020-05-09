@@ -124,7 +124,6 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
             uid:userRecord.uid,
             userType: userType,
             id:data.id,
-            firstTime:true,
             disabled: false 
         }).then(async ()=>{
             console.log('User Created with uid: '+ userRecord.uid)
