@@ -212,7 +212,6 @@ export default {
   },
   mounted() {
     if(this.$route.query.msg) {
-      console.log('c1')
       this.showSnakeBar("User Removed Sucessfully");
     }else
       this.showData();

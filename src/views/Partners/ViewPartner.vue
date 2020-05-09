@@ -27,7 +27,7 @@
           <DeletePartner
             :PartnerInfo="partnerInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
         </v-toolbar>
       </v-col>

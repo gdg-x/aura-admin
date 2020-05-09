@@ -59,7 +59,7 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin' || role==='Admin')">
+                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
                     <v-select :items="teamRole" 
                        v-model="updatedData.role" label="Role" outlined></v-select>
                   </v-col>

@@ -154,7 +154,7 @@ export default {
         userData[0]['userType'] = this.userRole
         let appp = firebase.functions.httpsCallable('team-createAuthUser')
         appp(userData[0]).then(res1=>{
-            console.log(res1)
+            // console.log(res1)
             this.output = res1
             this.emailDialog = true
             this.loading = false
@@ -164,27 +164,6 @@ export default {
             this.emailDialog = true
             this.loading = false
         })
-    //   if (this.$refs.form.validate()) {
-    //     this.loading = true;
-    //     var UpdatedEventData = {
-    //       eventid: this.selectedEvents
-    //     };
-    //     // console.log(UpdatedPartnerData)
-    //     firebase.firestore
-    //       .collection("featureevents")
-    //       .doc("data")
-    //       .set(UpdatedEventData)
-    //       .then(() => {
-    //         this.dialog = false;
-    //         this.$emit("show", "Feature Events Data Added Success");
-    //         this.loading = false;
-    //       })
-    //       .catch(e => {
-    //         this.$emit("show", e);
-    //         this.loading = false;
-    //         console.log(e);
-    //       });
-    //   }
     }
   }
 };

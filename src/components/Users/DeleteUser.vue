@@ -48,23 +48,6 @@ export default {
         console.log(e)
       })
     },
-    // deleteItem(id) {
-    //   this.loading = true;
-    //   UsersServices.
-    //   TeamServices.removeTeamMember(this.data.id).then(res=>{
-    //     if(res.success==true){
-    //       this.loading = false;
-    //       this.dialog = false;
-    //       this.$router.push({
-    //         path: "/team",
-    //         query: { msg: res.msg }
-    //       });
-    //     }
-    //   }).catch(e=>{
-    //     console.log(e);
-    //     this.isLoading = false;
-    //   })
-    // }
   }
 };
 </script>

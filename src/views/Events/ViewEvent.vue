@@ -27,7 +27,7 @@
           <DeleteEvent
             :EventInfo="eventInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
           <PublicUrl :EventInfo="eventInfo" v-if="!showLoader && !userNotFound" />
         </v-toolbar>

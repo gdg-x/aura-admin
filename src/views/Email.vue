@@ -170,7 +170,7 @@ export default {
       this.isLoading = true;
       EmailServices.getAllMails().then(res=>{
         this.emailsData = res.data
-        console.log(this.emailsData)
+        // console.log(this.emailsData)
         this.isLoading = false
       }).catch(e=>{
         this.isLoading = false
