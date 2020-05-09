@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
     <v-toolbar-title class="google-font ml-n5">
       {{ generalConfig.name || "Community Name" }} - Aura Admin
-      3.0
+      3.1
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <offline @detected-condition="handleConnectivityChange"></offline>
@@ -40,7 +40,7 @@
         </v-tooltip>
       </template>
 
-      <v-card style="">
+      <v-card elevation="0">
         <v-container fluid>
           <v-row class justify="center" align="center">
             <v-col cols="12" class="ma-0 pb-0 text-center">
@@ -53,20 +53,20 @@
             <v-col cols="12" class="text-center ma-0 pa-0">
               <v-list>
                 <v-list-item-content>
-                  <v-list-item-title>{{userDetails.name || "User-Name"}}</v-list-item-title>
-                  <v-list-item-subtitle class="">{{ userDetails.email || "User-Email"}}</v-list-item-subtitle>
+                  <v-list-item-title class="google-font">{{userDetails.name || "User-Name"}}</v-list-item-title>
+                  <v-list-item-subtitle class="google-font">{{ userDetails.email || "User-Email"}}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list>
             </v-col>
             <v-col cols="12" class="text-center ma-0 pa-0">
-              <v-btn small to="/profile" rounded color="#3c4043" outlined>Manage Your Profile</v-btn>
+              <v-btn small to="/profile" class="google-font text-none" rounded color="#3c4043" outlined>Manage Your Profile</v-btn>
             </v-col>
             <v-col cols="12" class=" px-0">
         <v-divider></v-divider>
 
             </v-col>
             <v-col cols="12" class="px-0 text-center">
-              <v-btn @click="logout" outlined color="#3c4043">SignOut From AURA</v-btn>
+              <v-btn @click="logout" class="google-font grey--text darken-3 text-none" outlined color="grey"><v-icon left>mdi-logout-variant</v-icon> Signout from AURA</v-btn>
 
             </v-col>
           </v-row>
