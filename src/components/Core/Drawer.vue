@@ -10,7 +10,7 @@
         </v-list-item-content>
         </v-list-item >
         <v-divider></v-divider>
-        <v-list dense>
+        <v-list dense shaped>
             <v-list-item
                 v-for="(link, i) in links.filter(li=>li.access[role])"
                 :key="i"
