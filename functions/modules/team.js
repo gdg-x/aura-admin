@@ -76,6 +76,8 @@ exports.removeAuth = functions.https.onCall((data)=>{
     console.log(data)
     const uid = data.uid
     const name = data.name
+    const communityEmail = data.communityEmail
+    const communityName = data.communityName
     let email =''
 
     admin.auth().getUser(uid)
@@ -91,7 +93,7 @@ exports.removeAuth = functions.https.onCall((data)=>{
     .then(()=>{
         console.log('Successfully deleted user');
         return admin.firestore().collection('users').doc(uid).delete().then(async ()=>{
-            let maildata = await sendGoodbyeEmail(email, name);
+            let maildata = await sendGoodbyeEmail(email, name, communityName, communityEmail);
             return {
                 success: true,
                 mailstatus: maildata,
@@ -114,6 +116,8 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
     const password = generateP()
     const name = data.name
     const userType = data.userType
+    const communityEmail = data.communityEmail
+    const communityName = data.communityName
     return admin.auth().createUser({
         email: email,
         password: password
@@ -127,7 +131,7 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
             disabled: false 
         }).then(async ()=>{
             console.log('User Created with uid: '+ userRecord.uid)
-            let maildata = await sendWelcomeEmail(email, name, password);
+            let maildata = await sendWelcomeEmail(email, name, password, communityEmail, communityName);
             return admin.firestore().collection('team').doc(data.id).update({
                 uid:userRecord.uid
             }).then(()=>{
@@ -163,23 +167,23 @@ exports.createAuthUser = functions.https.onCall(async(data)=>{
     });
 })
 
-async function sendWelcomeEmail(email, displayName, pass) {
+async function sendWelcomeEmail(email, displayName, pass, communityEmail, communityName) {
     const mailOptions = {
-        from: `${APP_NAME} <noreply@firebase.com>`,
+        from: `${communityName} <${communityEmail}>`,
         to: email,
     };
-    mailOptions.subject = `Welcome to ${APP_NAME}!`;
+    mailOptions.subject = `Welcome to ${communityName}!`;
     mailOptions.html = `
         <p>Hey ${displayName || ''}!</p> 
-        <p>Welcome to ${APP_NAME}. I hope you will enjoy our service.</p>
+        <p>Welcome to ${communityName}. I hope you will enjoy our service.</p>
         <p>This email contains important account access information for your ${email} account.</p>
         <p>This is your temporary password: <b>${pass}</b></p>
         <p>Kindly Login into Admin panel or Contact Admin</p>
         <br>
-        <p>If you have any questions, please contact contact@gdgjalandhar.com</p>
+        <p>If you have any questions, please contact ${communityEmail}</p>
         <br>
         <p>Regards</p>
-        <p>Team Admin</p>
+        <p>Team ${communityName}</p>
     `;
     try{
         let data = await mailTransport.sendMail(mailOptions);
@@ -197,34 +201,34 @@ async function sendWelcomeEmail(email, displayName, pass) {
     
 }
 
-async function sendGoodbyeEmail(email, name) {
+async function sendGoodbyeEmail(email, name, communityName, communityEmail) {
     const mailOptions = {
-        from: `${APP_NAME} <noreply@firebase.com>`,
+        from: `${communityName} <${communityEmail}>`,
         to: email,
     };
-    mailOptions.subject = `Bye! to ${APP_NAME}!`;
+    mailOptions.subject = `Bye! to ${communityName}!`;
     mailOptions.html = `
         <p>Hey ${name}!</p> 
-        <p>Bye to ${APP_NAME}. I hope you have enjoyed our service.</p>
-        <p>We confirm that we have deleted your ${APP_NAME} account. </p>
+        <p>Bye to ${communityName}. I hope you have enjoyed our service.</p>
+        <p>We confirm that we have deleted your ${communityName} account. </p>
         <br>
-        <p>If you have any questions, please contact contact@gdgjalandhar.com</p>
+        <p>If you have any questions, please contact ${communityEmail}</p>
         <br>
         <p>Regards</p>
-        <p>Team Admin</p>
+        <p>Team ${communityName}</p>
     `;
     try{
         let data = await mailTransport.sendMail(mailOptions);
         return {
             success: true,
             msg: `Mail Sent to ${email}`
-        }
+        };
     }catch(e){
         console.log(e);
         return {
             success: false,
             msg: `Error ${e}`
-        }
+        };
     }
     
 }

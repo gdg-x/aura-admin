@@ -133,12 +133,14 @@ let usersServices = {
                 });
         })
     },
-    removeUser: (uid, name) => {
+    removeUser: (uid, name,communityName, communityEmail) => {
         return new Promise((resolve, reject) => {
             let appp = firebase.functions.httpsCallable('team-removeAuth')
             appp({
                 uid: uid,
-                name: name
+                name: name,
+                communityName:communityName,
+                communityEmail:communityEmail
             }).then(res => {
                 resolve(res.data)
             }).catch(e => {

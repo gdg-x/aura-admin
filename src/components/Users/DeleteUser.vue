@@ -27,17 +27,19 @@
 
 <script>
 import UsersServices from '@/services/UsersServices'
+import {mapState} from 'vuex'
 export default {
   props:['data'],
   data: () => ({
     dialog: false,
     loading: false
   }),
+  computed:{...mapState(['generalConfig'])},
   methods: {
     removeUser(data){
         console.log(data)
       this.loading = true
-      UsersServices.removeUser(data.uid, data.name).then(res=>{
+      UsersServices.removeUser(data.uid, data.name, this.generalConfig.name, this.generalConfig.email).then(res=>{
         console.log(res)
         this.loading = false
         // this.showSnakeBar('User Removed')

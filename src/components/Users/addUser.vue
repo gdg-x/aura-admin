@@ -105,6 +105,7 @@
 <script>
 import firebase from '@/config/firebase'
 import TeamServices from '@/services/TeamServices'
+import {mapState} from 'vuex'
 export default {
   components: {
   },
@@ -120,6 +121,9 @@ export default {
     output:{},
     emailDialog: false
   }),
+  computed:{
+    ...mapState(['generalConfig'])
+  },
   mounted() {
     
   },
@@ -152,6 +156,8 @@ export default {
         this.loading = true
         let userData = this.teamData.filter(team=>team.id == this.selectedUser)
         userData[0]['userType'] = this.userRole
+        userData[0]['communityEmail'] = this.generalConfig.email
+        userData[0]['communityName'] = this.generalConfig.name
         let appp = firebase.functions.httpsCallable('team-createAuthUser')
         appp(userData[0]).then(res1=>{
             // console.log(res1)
