@@ -146,7 +146,7 @@ export default {
     isSnakeBarVisible: false,
     snakeBarColor: "green",
     snakeBarTimeOut: 5000,
-    isLoading: false,
+    isLoading: true,
     isUpdating:false,
     userData: [],
     confPassword: "",

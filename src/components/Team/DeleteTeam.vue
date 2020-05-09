@@ -40,7 +40,7 @@ export default {
       this.loading = true;
       TeamServices.removeTeamMember(this.TeamInfo).then(res=>{
         if(res.success==true){
-          console.log(res)
+          // console.log(res)
           this.loading = false;
           this.dialog = false;
           this.$router.push({
@@ -49,7 +49,7 @@ export default {
           });
         }
       }).catch(e=>{
-        console.log(e);
+        // console.log(e);
         this.isLoading = false;
       })
     }

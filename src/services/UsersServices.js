@@ -20,7 +20,7 @@ let usersServices = {
                     success: false,
                     msg: e
                 })
-                console.log(e)
+                // console.log(e)
             })
         })
     },
@@ -41,7 +41,7 @@ let usersServices = {
                     success: false,
                     msg: e
                 })
-                console.log(e)
+                // console.log(e)
             })
         })
     },
@@ -77,7 +77,7 @@ let usersServices = {
                         msg: "Password updated!"
                     });
                 }).catch((e) => {
-                    console.log(e);
+                    // console.log(e);
                     reject({
                         success: false,
                         msg: e
@@ -151,7 +151,7 @@ let usersServices = {
             appp(uid).then(res => {
                 resolve(res.data)
             }).catch(e => {
-                console.log(e)
+                // console.log(e)
                 reject(e)
             })
         });
@@ -162,7 +162,7 @@ let usersServices = {
             appp(uid).then(res => {
                 resolve(res.data);
             }).catch(e => {
-                console.log(e);
+                // console.log(e);
                 reject(e);
             });
         });
