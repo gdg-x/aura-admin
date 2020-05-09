@@ -1,4 +1,5 @@
 import firebase from '@/config/firebase'
+import UserService from './UsersServices'
 
 let teamServices = {
 
@@ -101,17 +102,33 @@ let teamServices = {
     },
 
     // Remove Team Member whose id is id
-    removeTeamMember:(id)=>{
+    removeTeamMember:(teamInfo)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
             .collection("team")
-            .doc(id)
+            .doc(teamInfo.id)
             .delete()
             .then(() => {
-                resolve({
-                    success:true,
-                    msg:'Team Member Removed Successfully'
-                })
+                if(teamInfo.uid && teamInfo.uid.length>0){
+                    UserService.removeUser(teamInfo.uid, teamInfo.name).then(res=>{
+                        resolve({
+                            success:true,
+                            msg:'Team Member Removed Successfully',
+                            data:res
+                        })
+                    }).catch(e=>{
+                        reject({
+                            success:false,
+                            msg:'Error in Removing Team Member: '+e
+                        })
+                    })
+                }else{
+                    resolve({
+                        success:true,
+                        msg:'Team Member Removed Successfully',
+                        data:""
+                    })
+                }
             })
             .catch(e => {
                 reject({
