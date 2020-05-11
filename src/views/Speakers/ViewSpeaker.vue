@@ -19,6 +19,8 @@
             <span style="font-size:120%">Speakers</span>
           </v-btn>
           <v-spacer></v-spacer>
+          <ActivityLog :dialogData="speakerInfo"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"/>
           <EditSpeaker
             :speakerData="speakerInfo"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
@@ -176,7 +178,8 @@ export default {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     DeleteSpeaker:()=>import('@/components/Speakers/DeleteSpeaker'),
     EditSpeaker:()=>import('@/components/Speakers/EditSpeaker'),
-    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable')
+    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable'),
+    ActivityLog: ()=>import('@/components/Common/UserActivity')
   },
   computed:{
     ...mapState(['role'])

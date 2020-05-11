@@ -19,6 +19,7 @@
             <span style="font-size:120%">Team</span>
           </v-btn>
           <v-spacer></v-spacer>
+          <ActivityLog :dialogData="teamInfo" v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"/>
           <EditTeam
             :teamData="teamInfo"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
@@ -48,7 +49,7 @@
                 <v-card-title
                   class="grey lighten-4 google-font"
                   primary-title
-                  :style="{'background-image':'url(https://iambharat.tk/images/backImage.jpg)'}"
+                  :style="{'background-image':'url('+require('@/assets/img/dontremove/spakerhead.jpg')+')'}"
                   style="background-position:right top;padding-top:30%;"
                 ></v-card-title>
                 <v-card-text class="px-5 pb-5" style="margin-top: -70px;">
@@ -195,7 +196,8 @@ export default {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),
     EditTeam: () => import("@/components/Team/EditTeam"),
-    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable')
+    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable'),
+    ActivityLog: ()=>import('@/components/Common/UserActivity'),
   },
   computed:{
     ...mapState(['role'])
