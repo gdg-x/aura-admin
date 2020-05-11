@@ -129,17 +129,17 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
-                        <v-time-picker
-                          v-if="modal2"
-                          v-model="eventData.time.starttime"
-                          full-width
-                        >
+                        <v-time-picker v-if="modal2" v-model="eventData.time.starttime" full-width>
                           <v-spacer></v-spacer>
                           <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                          <v-btn text color="primary" @click="$refs.dialog.save(eventData.time.starttime)">OK</v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.dialog.save(eventData.time.starttime)"
+                          >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
-                      
+
                       <!-- <v-text-field
                         v-model="eventData.time.starttime"
                         class="ma-0"
@@ -147,7 +147,7 @@
                         label="Event Start Time*"
                         type="time"
                         outlined
-                      ></v-text-field> -->
+                      ></v-text-field>-->
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
@@ -167,14 +167,14 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
-                        <v-time-picker
-                          v-if="modal1"
-                          v-model="eventData.time.endtime"
-                          full-width
-                        >
+                        <v-time-picker v-if="modal1" v-model="eventData.time.endtime" full-width>
                           <v-spacer></v-spacer>
                           <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
-                          <v-btn text color="primary" @click="$refs.dialog1.save(eventData.time.endtime)">OK</v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.dialog1.save(eventData.time.endtime)"
+                          >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
 
@@ -185,7 +185,7 @@
                         label="Event End Time*"
                         type="time"
                         outlined
-                      ></v-text-field> -->
+                      ></v-text-field>-->
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="ma-0">
                       <v-text-field
@@ -430,21 +430,23 @@
 </template>
 
 <script>
-import TeamServices from '@/services/TeamServices'
-import PartnersServices from "@/services/PartnersServices"
-import SpeakerServices from '@/services/SpeakersServices'
-import CustomEventServices from '@/services/CustomEventServices'
+import { mapState } from "vuex";
+import TeamServices from "@/services/TeamServices";
+import PartnersServices from "@/services/PartnersServices";
+import SpeakerServices from "@/services/SpeakersServices";
+import CustomEventServices from "@/services/CustomEventServices";
 export default {
   components: {
-    AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
-    EditAgenda:()=>import('@/components/Events/CustomEvents/EditAgenda')
+    AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
+    EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda")
   },
   props: [],
+  computed: { ...mapState(["userDetails"]) },
   data() {
     return {
       menu: false,
-      modal2:false,
-      modal1:false,
+      modal2: false,
+      modal1: false,
       headers: [
         {
           text: "Start Time",
@@ -494,7 +496,7 @@ export default {
           registration: "",
           feedback: "",
           callforspeaker: "",
-          youtube:""
+          youtube: ""
         },
         time: {
           starttime: "",
@@ -521,32 +523,38 @@ export default {
       this.eventData.agenda.splice(index, 1);
     },
     ShowSpeakers() {
-      this.speakersData = []
-      SpeakerServices.getAllSpeakers().then(res=>{
-        if(res.success == true){
-          this.speakersData = res.data
-        }
-      }).catch(e=>{
-        console.log("Error getting documents", e);
-      })
+      this.speakersData = [];
+      SpeakerServices.getAllSpeakers()
+        .then(res => {
+          if (res.success == true) {
+            this.speakersData = res.data;
+          }
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     ShowPartners() {
-      this.partnersData = []
-      PartnersServices.getAllPartners().then(res=>{
-        if(res.success==true){
-          this.partnersData= res.data
-        }
-      }).catch(e=>{
-        console.log("Error getting documents", e);
-      })
+      this.partnersData = [];
+      PartnersServices.getAllPartners()
+        .then(res => {
+          if (res.success == true) {
+            this.partnersData = res.data;
+          }
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     ShowTeam() {
-      this.teamData=[]
-      TeamServices.getAllTeam().then(res=>{
-        this.teamData = res.data
-      }).catch(e=>{
-        console.log("Error getting documents", e)
-      })
+      this.teamData = [];
+      TeamServices.getAllTeam()
+        .then(res => {
+          this.teamData = res.data;
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     remove(item) {
       this.eventData.hashtags.splice(this.eventData.hashtags.indexOf(item), 1);
@@ -554,17 +562,29 @@ export default {
     },
     SaveEvent() {
       this.loading = true;
-      CustomEventServices.addCustomEvent(this.eventData.id,this.eventData).then(res=>{
-        if(res.success==true){
+      this.eventData.createdBy = {
+          name: this.userDetails.name,
+          id: this.userDetails.id
+        };
+        this.eventData.createdOn = new Date();
+        this.eventData.lastUpdatedOn = "";
+        this.eventData.lastUpdatedBy = {
+          name: "",
+          id: ""
+        };
+      CustomEventServices.addCustomEvent(this.eventData.id, this.eventData)
+        .then(res => {
+          if (res.success == true) {
+            this.loading = false;
+            this.dialog = false;
+            this.$emit("showSuccess", res.msg);
+          }
+        })
+        .catch(e => {
           this.loading = false;
-          this.dialog = false;
-          this.$emit("showSuccess", res.msg);
-        }
-      }).catch(e=>{
-        this.loading = false;
-        console.log(e);
-        this.$emit("showSuccess", e.msg);
-      })
+          console.log(e);
+          this.$emit("showSuccess", e.msg);
+        });
     }
   }
   // }

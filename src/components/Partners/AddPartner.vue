@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import {mapState}  from 'vuex';
 import PartnersServices from "@/services/PartnersServices"
 export default {
   props: [],
@@ -148,6 +149,9 @@ export default {
       imageURL: ""
     };
   },
+  computed:{
+    ...mapState(['userDetails'])
+  },
   methods: {
     SaveEvent() {
       if (this.$refs.form.validate()) {
@@ -159,6 +163,16 @@ export default {
           des: this.des,
           image: this.imageURL,
           id: this.id,
+          createdBy: {
+            name: this.userDetails.name,
+            id: this.userDetails.id
+          },
+          createdOn: new Date(),
+          lastUpdatedOn: "",
+          lastUpdatedBy: {
+            name: "",
+            id: ""
+          },
           socialLinks: {
             facebook: this.facebook,
             github: this.github,
