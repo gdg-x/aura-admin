@@ -8,18 +8,24 @@
         </v-btn>
       </template>
       <v-card v-if="dialog">
-        <v-card-title class="google-font" style="border-bottom:1px solid #e0e0e0;" primary-title dark>Add New Speaker</v-card-title>
+        <v-card-title
+          class="google-font"
+          style="border-bottom:1px solid #e0e0e0;"
+          primary-title
+          dark
+        >Add New Speaker</v-card-title>
         <v-card-text>
           <v-container fluid>
             <v-row class="pa-0">
               <v-col md="12" cols="12">
                 <v-form ref="form" v-model="valid" lazy-validation>
-                 <!-- Speaker Status -->
+                  <!-- Speaker Status -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p class="google-font mb-0" style="color:red">*indicates required field</p>
-                      <p style="color:red">ID should be unique, Once you assigned an ID to event, it can't be changed</p>
-
+                      <p
+                        style="color:red"
+                      >ID should be unique, Once you assigned an ID to event, it can't be changed</p>
                     </v-col>
                     <v-col md="12" cols="12" class="pa-1 ma-0">
                       <p style="font-size:120%" class="my-0 mb-2">Speaker Status</p>
@@ -185,7 +191,8 @@
 </template>
 
 <script>
-import SpeakerServices from '@/services/SpeakersServices'
+import { mapState } from "vuex";
+import SpeakerServices from "@/services/SpeakersServices";
 export default {
   props: [],
   data() {
@@ -227,44 +234,59 @@ export default {
       designation: ""
     };
   },
+  computed: {
+    ...mapState(["userDetails"])
+  },
   methods: {
     SaveSpeaker() {
       if (this.$refs.form.validate()) {
-        this.loading = true
+        this.loading = true;
         var Data = {
-            visible: this.visible,
-            id: this.userId,
-            name: this.name,
-            designation: this.designation,
-            mbnumber: this.mbnumber,
-            email: this.email,
-            image: this.imageURL,
-            bio: this.bio,
-            city: this.city,
-            country: this.country,
-            company: {
-                name: this.companyName,
-                url: this.companyURL
-            },
-            socialLinks: {
-                facebook: this.facebook,
-                github: this.github,
-                linkedin: this.linkedin,
-                medium: this.medium,
-                twitter: this.twitter,
-                web: this.website
-            }
-        }
-        SpeakerServices.addSpeaker(Data.id, Data).then(res=>{
-          if(res.success==true){
-            this.loading = false;
-            this.dialog = false;
-            this.$emit("showSuccess", res.msg);
+          visible: this.visible,
+          id: this.userId,
+          name: this.name,
+          designation: this.designation,
+          mbnumber: this.mbnumber,
+          email: this.email,
+          image: this.imageURL,
+          bio: this.bio,
+          city: this.city,
+          country: this.country,
+          company: {
+            name: this.companyName,
+            url: this.companyURL
+          },
+          createdBy: {
+            name: this.userDetails.name,
+            id: this.userDetails.id
+          },
+          createdOn: new Date(),
+          lastUpdatedOn: "",
+          lastUpdatedBy: {
+            name: "",
+            id: ""
+          },
+          socialLinks: {
+            facebook: this.facebook,
+            github: this.github,
+            linkedin: this.linkedin,
+            medium: this.medium,
+            twitter: this.twitter,
+            web: this.website
           }
-        }).catch(e=>{
+        };
+        SpeakerServices.addSpeaker(Data.id, Data)
+          .then(res => {
+            if (res.success == true) {
+              this.loading = false;
+              this.dialog = false;
+              this.$emit("showSuccess", res.msg);
+            }
+          })
+          .catch(e => {
             this.loading = false;
-            this.$emit("showSuccess",e.msg);
-        })
+            this.$emit("showSuccess", e.msg);
+          });
       }
     }
   }

@@ -3,7 +3,17 @@
     <template v-slot:activator="{  }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn fab x-small icon color="indigo" class="mx-1" outlined v-on="on" @click.stop="dialog = true" dark>
+          <v-btn
+            fab
+            x-small
+            icon
+            color="indigo"
+            class="mx-1"
+            outlined
+            v-on="on"
+            @click.stop="dialog = true"
+            dark
+          >
             <v-icon>mdi-lead-pencil</v-icon>
             <!--  -->
           </v-btn>
@@ -13,7 +23,11 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="google-font" style="border-bottom:1px solid #e0e0e0;" primary-title>Edit {{speakerData.name}} Details | Speaker</v-card-title>
+      <v-card-title
+        class="google-font"
+        style="border-bottom:1px solid #e0e0e0;"
+        primary-title
+      >Edit {{speakerData.name}} Details | Speaker</v-card-title>
 
       <v-card-text class>
         <v-container fluid class="pa-0">
@@ -22,7 +36,7 @@
               <v-form ref="form" v-model="valid" lazy-validation>
                 <!-- {{speakerData}} -->
                 <!-- Row 1 -->
-                <v-row class="pa-3  py-0 my-0">
+                <v-row class="pa-3 py-0 my-0">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
                     <p class="google-font mb-0" style="color:red">*indicates required field</p>
                   </v-col>
@@ -49,7 +63,6 @@
                       outlined
                     ></v-text-field>
                   </v-col>
-
                 </v-row>
                 <!-- Row 1 -->
 
@@ -87,43 +100,43 @@
                       outlined
                     ></v-text-field>
                   </v-col>
-                   <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field
-                        v-model="updatedData.company.name"
-                        class="ma-0"
-                        :rules="nameRules"
-                        label="Company Name *"
-                        outlined
-                      ></v-text-field>
-                    </v-col>
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 mr-2">
-                      <v-text-field
-                        v-model="updatedData.company.url"
-                        class="ma-0"
-                        label="Company URL"
-                        outlined
-                      ></v-text-field>
-                    </v-col>
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.company.name"
+                      class="ma-0"
+                      :rules="nameRules"
+                      label="Company Name *"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 mr-2">
+                    <v-text-field
+                      v-model="updatedData.company.url"
+                      class="ma-0"
+                      label="Company URL"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
 
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field
-                        v-model="updatedData.city"
-                        class="ma-0"
-                        :rules="nameRules"
-                        label="City *"
-                        outlined
-                      ></v-text-field>
-                    </v-col>
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.city"
+                      class="ma-0"
+                      :rules="nameRules"
+                      label="City *"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
 
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field
-                        v-model="updatedData.country"
-                        class="ma-0"
-                        :rules="nameRules"
-                        label="Country *"
-                        outlined
-                      ></v-text-field>
-                    </v-col>
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                    <v-text-field
+                      v-model="updatedData.country"
+                      class="ma-0"
+                      :rules="nameRules"
+                      label="Country *"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
 
                   <v-col md="12" xs="12" cols="12" class="pa-1 py-0 ma-0">
                     <v-textarea outlined name="input-7-4" v-model="updatedData.bio" label="Bio"></v-textarea>
@@ -244,7 +257,9 @@
 </template>
 
 <script>
-import SpeakerServices from '@/services/SpeakersServices'
+import { mapState } from "vuex";
+import SpeakerServices from "@/services/SpeakersServices";
+
 export default {
   props: {
     speakerData: {}
@@ -294,10 +309,11 @@ export default {
       }
     };
   },
+  computed: { ...mapState(["userDetails"]) },
   methods: {
     UpdateData() {
       if (this.$refs.form.validate()) {
-        let data ={
+        let data = {
           visible: this.updatedData.visible,
           name: this.updatedData.name,
           designation: this.updatedData.designation,
@@ -311,6 +327,11 @@ export default {
             name: this.updatedData.company.name,
             url: this.updatedData.company.url
           },
+          lastUpdatedOn: new Date(),
+          lastUpdatedBy: {
+            name: this.userDetails.name,
+            id: this.userDetails.id
+          },
           socialLinks: {
             facebook: this.updatedData.socialLinks.facebook,
             github: this.updatedData.socialLinks.github,
@@ -319,18 +340,20 @@ export default {
             twitter: this.updatedData.socialLinks.twitter,
             web: this.updatedData.socialLinks.web
           }
-        }
+        };
         this.loading = true;
-        SpeakerServices.editSpeaker(this.speakerData.id,data).then(res=>{
-          if(res.success==true){
+        SpeakerServices.editSpeaker(this.speakerData.id, data)
+          .then(res => {
+            if (res.success == true) {
+              this.loading = false;
+              this.dialog = false;
+              this.$emit("editedSuccess", res.msg);
+            }
+          })
+          .catch(e => {
+            console.log(e.msg);
             this.loading = false;
-            this.dialog = false;
-            this.$emit("editedSuccess", res.msg);
-          }
-        }).catch(e=>{
-          console.log(e.msg);
-          this.loading = false;
-        })
+          });
       }
     }
   }

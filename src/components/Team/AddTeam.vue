@@ -164,6 +164,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import firebase from '@/config/firebase'
 import TeamServices from '@/services/TeamServices'
 export default {
@@ -210,6 +211,9 @@ export default {
       role: null
     };
   },
+  computed:{
+    ...mapState(['userDetails'])
+  },
   methods: {
     SaveEvent() {
       if (this.$refs.form.validate()) {
@@ -226,6 +230,16 @@ export default {
           bio: this.bio,
           id: this.id,
           role: this.role,
+          createdBy:{
+            name:this.userDetails.name,
+            id:this.userDetails.id
+          },
+          createdOn: new Date(),
+          lastUpdatedOn:"",
+          lastUpdatedBy:{
+            name:"",
+            id:""
+          },
           socialLinks: {
             facebook: this.facebook,
             github: this.github,

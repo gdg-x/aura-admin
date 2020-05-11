@@ -36,7 +36,7 @@
                     :src="require('@/assets/img/svg/dataentry.svg')"
                   />
                   <h3 class="google-font">Edit {{eventInfo.name}}</h3>
-                  <p class="google-font mb-0" style="color:red">*indicates required field</p> 
+                  <p class="google-font mb-0" style="color:red">*indicates required field</p>
                   <p>Event ID should be Unique</p>
                 </v-col>
                 <v-col md="8" lg="9" cols="12" sm="8">
@@ -145,7 +145,11 @@
                         >
                           <v-spacer></v-spacer>
                           <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                          <v-btn text color="primary" @click="$refs.dialog.save(updatedeventData.time.starttime)">OK</v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.dialog.save(updatedeventData.time.starttime)"
+                          >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
 
@@ -156,7 +160,7 @@
                         label="Event Start Time*"
                         type="time"
                         outlined
-                      ></v-text-field> -->
+                      ></v-text-field>-->
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
@@ -183,10 +187,14 @@
                         >
                           <v-spacer></v-spacer>
                           <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
-                          <v-btn text color="primary" @click="$refs.dialog1.save(updatedeventData.time.endtime)">OK</v-btn>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.dialog1.save(updatedeventData.time.endtime)"
+                          >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
-                      
+
                       <!-- <v-text-field
                         v-model="updatedeventData.time.endtime"
                         class="ma-0"
@@ -194,7 +202,7 @@
                         label="Event End Time*"
                         type="time"
                         outlined
-                      ></v-text-field> -->
+                      ></v-text-field>-->
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="ma-0">
                       <v-text-field
@@ -438,14 +446,18 @@
 </template>
 
 <script>
-import TeamServices from '@/services/TeamServices'
-import PartnersServices from "@/services/PartnersServices"
-import SpeakerServices from '@/services/SpeakersServices'
-import CustomEventServices from '@/services/CustomEventServices'
+import { mapState } from "vuex";
+import TeamServices from "@/services/TeamServices";
+import PartnersServices from "@/services/PartnersServices";
+import SpeakerServices from "@/services/SpeakersServices";
+import CustomEventServices from "@/services/CustomEventServices";
 export default {
   components: {
-    AddNewAgenda:()=>import('@/components/Events/CustomEvents/AddNewAgenda'),
-    EditAgenda:()=>import('@/components/Events/CustomEvents/EditAgenda')
+    AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
+    EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda")
+  },
+  computed: {
+    ...mapState(["userDetails"])
   },
   props: {
     eventInfo: {}
@@ -453,8 +465,8 @@ export default {
   data() {
     return {
       menu: false,
-      modal2:false,
-      modal1:false,
+      modal2: false,
+      modal1: false,
       headers: [
         {
           text: "Start Time",
@@ -504,7 +516,7 @@ export default {
           registration: this.eventInfo.links.registration,
           feedback: this.eventInfo.links.feedback,
           callforspeaker: this.eventInfo.links.callforspeaker,
-          youtube:this.eventInfo.links.youtube
+          youtube: this.eventInfo.links.youtube
         },
         time: {
           starttime: this.eventInfo.time.starttime,
@@ -531,32 +543,38 @@ export default {
       this.updatedeventData.agenda.splice(index, 1);
     },
     ShowSpeakers() {
-      this.speakersData = []
-      SpeakerServices.getAllSpeakers().then(res=>{
-        if(res.success == true){
-          this.speakersData = res.data
-        }
-      }).catch(e=>{
-        console.log("Error getting documents", e);
-      })
+      this.speakersData = [];
+      SpeakerServices.getAllSpeakers()
+        .then(res => {
+          if (res.success == true) {
+            this.speakersData = res.data;
+          }
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     ShowPartners() {
-      this.partnersData = []
-      PartnersServices.getAllPartners().then(res=>{
-        if(res.success==true){
-          this.partnersData= res.data
-        }
-      }).catch(e=>{
-        console.log("Error getting documents", e);
-      })
+      this.partnersData = [];
+      PartnersServices.getAllPartners()
+        .then(res => {
+          if (res.success == true) {
+            this.partnersData = res.data;
+          }
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     ShowTeam() {
-      this.teamData=[]
-      TeamServices.getAllTeam().then(res=>{
-        this.teamData = res.data
-      }).catch(e=>{
-        console.log("Error getting documents", e)
-      })
+      this.teamData = [];
+      TeamServices.getAllTeam()
+        .then(res => {
+          this.teamData = res.data;
+        })
+        .catch(e => {
+          console.log("Error getting documents", e);
+        });
     },
     remove(item) {
       this.updatedeventData.hashtags.splice(
@@ -568,45 +586,52 @@ export default {
     SaveEvent() {
       this.loading = true;
       let datatoupdate = {
-          active: this.updatedeventData.active,
-          visible: this.updatedeventData.visible,
-          name: this.updatedeventData.name,
-          image: this.updatedeventData.image,
-          date: this.updatedeventData.date,
-          des: this.updatedeventData.des,
-          venue: {
-            name: this.updatedeventData.venue.name,
-            googlemapsurl: this.updatedeventData.venue.googlemapsurl
-          },
-          links: {
-            meetup: this.updatedeventData.links.meetup,
-            facebook: this.updatedeventData.links.facebook,
-            registration: this.updatedeventData.links.registration,
-            feedback: this.updatedeventData.links.feedback,
-            callforspeaker: this.updatedeventData.links.callforspeaker,
-            youtube:this.updatedeventData.links.youtube
-          },
-          time: {
-            starttime: this.updatedeventData.time.starttime,
-            endtime: this.updatedeventData.time.endtime
-          },
-          hashtags: this.updatedeventData.hashtags,
-          speakers: this.updatedeventData.speakers,
-          partners: this.updatedeventData.partners,
-          team: this.updatedeventData.team,
-          agenda: this.updatedeventData.agenda
-        }
-      CustomEventServices.editCustomEvent(this.eventInfo.id,datatoupdate).then(res=>{
-        if(res.success==true){
+        active: this.updatedeventData.active,
+        visible: this.updatedeventData.visible,
+        name: this.updatedeventData.name,
+        image: this.updatedeventData.image,
+        date: this.updatedeventData.date,
+        des: this.updatedeventData.des,
+        venue: {
+          name: this.updatedeventData.venue.name,
+          googlemapsurl: this.updatedeventData.venue.googlemapsurl
+        },
+        lastUpdatedOn: new Date(),
+        lastUpdatedBy: {
+          name: this.userDetails.name,
+          id: this.userDetails.id
+        },
+        links: {
+          meetup: this.updatedeventData.links.meetup,
+          facebook: this.updatedeventData.links.facebook,
+          registration: this.updatedeventData.links.registration,
+          feedback: this.updatedeventData.links.feedback,
+          callforspeaker: this.updatedeventData.links.callforspeaker,
+          youtube: this.updatedeventData.links.youtube
+        },
+        time: {
+          starttime: this.updatedeventData.time.starttime,
+          endtime: this.updatedeventData.time.endtime
+        },
+        hashtags: this.updatedeventData.hashtags,
+        speakers: this.updatedeventData.speakers,
+        partners: this.updatedeventData.partners,
+        team: this.updatedeventData.team,
+        agenda: this.updatedeventData.agenda
+      };
+      CustomEventServices.editCustomEvent(this.eventInfo.id, datatoupdate)
+        .then(res => {
+          if (res.success == true) {
+            this.loading = false;
+            this.dialog = false;
+            this.$emit("editedSuccess", res.msg);
+          }
+        })
+        .catch(e => {
+          console.log(e.msg);
           this.loading = false;
-          this.dialog = false;
-          this.$emit("editedSuccess", res.msg);
-        }
-      }).catch(e=>{
-        console.log(e.msg);
-        this.loading = false;
-        this.$emit("editedSuccess", e.msg);
-      })
+          this.$emit("editedSuccess", e.msg);
+        });
     }
   }
   // }
