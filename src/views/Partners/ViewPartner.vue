@@ -19,6 +19,7 @@
             <span style="font-size:120%">Partner</span>
           </v-btn>
           <v-spacer></v-spacer>
+          <ActivityLog :dialogData="partnerInfo" v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"/>
           <EditPartner
             :partnerData="partnerInfo"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
@@ -143,7 +144,8 @@ export default {
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     DeletePartner:()=>import('@/components/Partners/DeletePartner'),
-    EditPartner:()=>import('@/components/Partners/EditPartner')
+    EditPartner:()=>import('@/components/Partners/EditPartner'),
+    ActivityLog: ()=>import('@/components/Common/UserActivity')
   },
   data: () => ({
     snakeBarMessage: "",
