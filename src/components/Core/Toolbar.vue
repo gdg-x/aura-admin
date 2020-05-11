@@ -12,7 +12,7 @@
     <v-toolbar-title
       v-if="isOffline"
       style="border:1px solid red;border-radius:6px;color:red;font-size:90%"
-      class="google-font px-2"
+      class="google-font px-2 mx-1"
     >Offline</v-toolbar-title>
 
     <v-menu

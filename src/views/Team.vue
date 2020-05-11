@@ -70,7 +70,7 @@
             </v-tooltip>
           </v-btn-toggle>
           <!-- Toggle Menu for View -->
-          <AddTeam v-if="role=='Super Admin' || role=='Admin'" class="ml-2" @showSuccess="showSnakeBar" />
+          <AddTeam v-if="role=='Super Admin'" class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>

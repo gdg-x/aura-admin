@@ -121,7 +121,7 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col v-if="(role==='Super Admin' || role==='Admin')" md="8" xs="8" cols="12" class="pa-1 ma-0">
+                  <v-col v-if="(role==='Super Admin')" md="8" xs="8" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.email"

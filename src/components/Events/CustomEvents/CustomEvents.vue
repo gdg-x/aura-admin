@@ -56,7 +56,7 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-          <AddNewCustomEvent v-if="role=='Super Admin' || role=='Admin'" @showSuccess="showSnakeBar" class="ml-2" />
+          <AddNewCustomEvent v-if="(role=='Super Admin' || role=='Admin')" @showSuccess="showSnakeBar" class="ml-2" />
         </v-toolbar>
 
         <!-- {{MeetupData}}   -->

@@ -86,7 +86,7 @@
           </v-btn-toggle>
           <!-- Toggle Menu for View -->
             
-          <AddSpeaker v-if="role=='Super Admin' || role=='Admin'" class="ml-2" @showSuccess="showSnakeBar" />
+          <AddSpeaker v-if="(role=='Super Admin' || role=='Admin')" class="ml-2" @showSuccess="showSnakeBar" />
         </v-toolbar>
       </v-col>
     </v-row>
