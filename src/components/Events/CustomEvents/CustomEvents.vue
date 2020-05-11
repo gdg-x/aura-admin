@@ -56,7 +56,7 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-          <AddNewCustomEvent @showSuccess="showSnakeBar" class="ml-2" />
+          <AddNewCustomEvent v-if="(role=='Super Admin' || role=='Admin')" @showSuccess="showSnakeBar" class="ml-2" />
         </v-toolbar>
 
         <!-- {{MeetupData}}   -->
@@ -94,6 +94,7 @@
 
 <script>
 import CustomEventServices from '@/services/CustomEventServices'
+import {mapState} from 'vuex'
 export default {
   components: {
     AddNewCustomEvent: () => import("@/components/Events/CustomEvents/AddCustomEvent"),
@@ -121,6 +122,9 @@ export default {
     snakeBarTimeOut: 5000,
     customEventData: []
   }),
+  computed:{
+    ...mapState(['role'])
+  },
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar(this.$route.query.msg);

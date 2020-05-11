@@ -24,29 +24,31 @@
                   <v-col md="12" cols="12" class="pa-1 ma-0">
                     <p class="google-font mb-0" style="color:red">*indicates required field</p>
                   </v-col>
-                  <v-col md="12" cols="12" class="pa-1 ma-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin' || role==='Admin')">
                     <p style="font-size:120%" class="my-0">Team Member Status</p>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
                     <v-select
                       :items="items"
                       v-model="updatedData.active"
                       label="Active Status"
                       outlined
+                      
                     ></v-select>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
                     <v-select
                       :items="items"
                       v-model="updatedData.visible"
                       label="Visiblity Status"
+                      
                       outlined
                     ></v-select>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin' || role==='Admin')">
                     <v-text-field
                       v-model="updatedData.id"
                       class="ma-0"
@@ -57,8 +59,9 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0">
-                    <v-select :items="teamRole" v-model="updatedData.role" label="Role" outlined></v-select>
+                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
+                    <v-select :items="teamRole" 
+                       v-model="updatedData.role" label="Role" outlined></v-select>
                   </v-col>
                 </v-row>
                 <!-- Row 1 -->
@@ -118,7 +121,7 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="8" xs="8" cols="12" class="pa-1 ma-0">
+                  <v-col v-if="(role==='Super Admin')" md="8" xs="8" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.email"
@@ -217,6 +220,7 @@
 
 <script>
 import TeamServices from '@/services/TeamServices'
+import { mapState } from 'vuex'
 export default {
   props: {
     teamData: {}
@@ -262,6 +266,7 @@ export default {
       }
     };
   },
+  computed:{...mapState(['role'])},
   methods: {
     UpdateData() {
       if (this.$refs.form.validate()) {

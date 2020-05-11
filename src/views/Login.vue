@@ -72,26 +72,13 @@ export default {
     }
   },
   methods: {
-      ...mapMutations(['roleSet']),
     login() {
         var self = this;
       self.loading = true;
       firebase.auth
         .signInWithEmailAndPassword(self.email, self.password)
-        .then(user => {
-          firebase.firestore
-            .collection("users")
-            .doc(user.user.uid)
-            .get()
-            .then(doc => {
-              self.roleSet(doc.role);
-              self.$router.replace("/home");
-              self.loading = false;
-            })
-            .catch(e => {
-              console.log(e+" SOmething went wrong");
-              self.loading = false;
-            });
+        .then((user) => {
+          
         })
         .catch(e => {
           self.loading = false;

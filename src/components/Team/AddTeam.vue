@@ -99,7 +99,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <!-- <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                    <!-- <v-col v-if="role == 'Core Team' || role == 'Organizing Team'" md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
                         v-model="password"
@@ -164,6 +164,7 @@
 </template>
 
 <script>
+import firebase from '@/config/firebase'
 import TeamServices from '@/services/TeamServices'
 export default {
   props: [],
@@ -209,8 +210,6 @@ export default {
       role: null
     };
   },
-  mounted(){
-  },
   methods: {
     SaveEvent() {
       if (this.$refs.form.validate()) {
@@ -223,6 +222,7 @@ export default {
           mbnumber: this.mbnumber,
           email: this.email,
           image: this.imageURL,
+          password:this.password,
           bio: this.bio,
           id: this.id,
           role: this.role,

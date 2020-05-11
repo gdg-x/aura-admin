@@ -21,13 +21,13 @@
           <v-spacer></v-spacer>
           <EditSpeaker
             :speakerData="speakerInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeleteSpeaker
             :SpeakerInfo="speakerInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
         </v-toolbar>
       </v-col>
@@ -130,6 +130,9 @@
                   </a>
                 </span>
               </p>
+
+              <EventByUserTable v-if="events.length>0" :events.sync="events" :isLoading.sync="isLoading"/>
+
             </v-col>
           </v-row>
         </v-container>
@@ -155,6 +158,7 @@
                 <v-icon left style="font-size:150%">mdi-arrow-left-thick</v-icon>
                 <span style="font-size:120%">Back to Speakers</span>
               </v-btn>
+
             </v-col>
           </v-row>
         </v-container>
@@ -165,13 +169,18 @@
 
 <script>
 import SpeakerServices from '@/services/SpeakersServices'
+import {mapState} from 'vuex'
 export default {
   name: "ViewTeam",
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     DeleteSpeaker:()=>import('@/components/Speakers/DeleteSpeaker'),
-    EditSpeaker:()=>import('@/components/Speakers/EditSpeaker')
+    EditSpeaker:()=>import('@/components/Speakers/EditSpeaker'),
+    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable')
   },
+  computed:{
+    ...mapState(['role'])
+    },
   data: () => ({
     snakeBarMessage: "",
     isSnakeBarVisible: false,
@@ -179,12 +188,26 @@ export default {
     snakeBarTimeOut: 5000,
     showLoader: true,
     userNotFound: true,
-    speakerInfo: {}
+    speakerInfo: {},
+    events:[],
+    isLoading: false,
   }),
   mounted() {
     this.getSpeakerData();
+    this.getEventsDataBySpeaker()
   },
   methods: {
+    getEventsDataBySpeaker(){
+      SpeakerServices.getEventsBySpeaker(this.$route.params.id).then(res=>{
+        if(res.success){
+          this.events = res.data
+          this.isLoading = false
+        }
+      }).catch(e=>{
+        console.log(e)
+        this.isLoading = false
+      })
+    },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;

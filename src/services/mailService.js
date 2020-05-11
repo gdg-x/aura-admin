@@ -1,40 +1,20 @@
 import firebase from '@/config/firebase'
 
-let speakersServices = {
-    getEventsBySpeaker:(id)=>{
-        let events=[]
-        return new Promise((resolve, reject)=>{
-            firebase.firestore.collection('events').where('speakers',"array-contains",id).get().then(docs=>{
-                docs.forEach(doc=>{
-                  events.push(doc.data())
-                })
-                resolve({
-                    success: true,
-                    data:events
-                })
-              }).catch(e=>{
-                reject({
-                    success: false,
-                    msg: e
-                })
-            })
-        })
-    },
-
-    // Get All the Speakers Details
-    getAllSpeakers:()=>{
-        let speakers = []
+let mailServices = {
+    // Get All the mail Details
+    getAllMails:()=>{
+        let mails = []
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("Speakers")
+            .collection("mails")
             .get()
             .then(snapshot => {
                 snapshot.forEach(doc => {
-                    speakers.push(doc.data());
+                    mails.push(doc.data());
                 })
                 resolve({
                     success:true,
-                    data:speakers
+                    data:mails
                 })
             })
             .catch(err => {
@@ -43,11 +23,11 @@ let speakersServices = {
         })
     },
 
-    // Get Speaker Details whose id = id
-    getSpeakerDetails:(id)=>{
+    // Get mail Details whose id = id
+    getMailDetails:(id)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("Speakers")
+            .collection("mails")
             .doc(id)
             .get()
             .then(doc => {
@@ -62,10 +42,10 @@ let speakersServices = {
                         data: doc.data()
                     })
                 } else {
-                    resolve({
-                        isFound:false,
-                        data:{}
-                    })
+                resolve({
+                    isFound:false,
+                    data:{}
+                })
                 }
             })
             .catch(e => {
@@ -74,55 +54,55 @@ let speakersServices = {
         })
     },
 
-    // Add speaker whose document id is id and Data is data
-    addSpeaker:(id,data)=>{
+    // Add mail whose document id is id and Data is data
+    addMail:(id,data)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("Speakers")
+            .collection("mails")
             .doc(id)
             .set(data)
             .then(res => {
                 resolve({
                     success:true,
-                    msg:'Speakers Addedd Successfully'
+                    msg:'Mail Addedd Successfully'
                 })
             })
             .catch(e => {
                 reject({
                     success:false,
-                    msg:'Failed to Add Speaker: '+ e
+                    msg:'Failed to Add Mail: '+ e
                 })
             });
         })
     },
 
-    // Remove Speaker whose id is id
-    removeSpeaker:(id)=>{
+    // Remove mail whose id is id
+    removeMail:(id)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("Speakers")
+            .collection("mails")
             .doc(id)
             .delete()
             .then(() => {
                 resolve({
                     success:true,
-                    msg:'Speaker Removed Successfully'
+                    msg:'Mail Removed Successfully'
                 })
             })
             .catch(e => {
                 reject({
                     success:false,
-                    msg:'Error in Removing Speaker : '+e
+                    msg:'Error in Removing Mail: '+e
                 })
             });
         })
     },
 
-    // Edit Speaker whose id is id and data is data
-    editSpeaker:(id, data)=>{
+    // Edit Mail whose id is id and data is data
+    editMail:(id, data)=>{
         return new Promise((resolve,reject)=>{
             firebase.firestore
-            .collection("Speakers")
+            .collection("mails")
             .doc(id)
             .update(data)
             .then(() => {
@@ -134,11 +114,11 @@ let speakersServices = {
             .catch(e => {
                 reject({
                     success: false,
-                    msg: 'Error in updating Team Member '+ e
+                    msg: 'Error in updating Mail '+ e
                 })
             });
         })
     }
 }
 
-export default speakersServices
+export default mailServices

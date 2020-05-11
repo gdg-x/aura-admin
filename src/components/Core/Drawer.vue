@@ -2,17 +2,17 @@
     <v-navigation-drawer app clipped v-model="drawer" width="280px">
         <v-list-item two-line>
         <v-list-item-avatar>
-            <img :src="require('@/assets/img/default_avatar.jpg')" />
+            <img :src="(userDetails.image && userDetails.image.length>0)?userDetails.image:require('@/assets/img/default_avatar.jpg')" />
         </v-list-item-avatar>
         <v-list-item-content>
-            <v-list-item-title class="google-font">Community Lead</v-list-item-title>
-            <v-list-item-subtitle>{{ generalConfig.email || "Community-Email"}}</v-list-item-subtitle>
+            <v-list-item-title class="google-font">{{userDetails.name || "User-Name"}}</v-list-item-title>
+            <v-list-item-subtitle>{{ userDetails.email || "User-Email"}}</v-list-item-subtitle>
         </v-list-item-content>
         </v-list-item >
         <v-divider></v-divider>
         <v-list dense>
             <v-list-item
-                v-for="(link, i) in links"
+                v-for="(link, i) in links.filter(li=>li.access[role])"
                 :key="i"
                 :to="link.to"
                 :href="link.href"
@@ -29,11 +29,33 @@
                 </v-list-item-content>
                 
             </v-list-item>
+
+            <!-- <v-divider inset></v-divider>
+            <v-subheader inset>Support</v-subheader>
+            <v-list-item
+                v-for="(link, i) in links.filter(li=>li.access[role])"
+                :key="i"
+                :to="link.to"
+                :href="link.href"
+                @click="onClick($event, link)"
+                class="google-font my-0 py-0"
+                color="primary"
+            >
+                <v-list-item-icon>
+                <v-icon v-text="link.icon"></v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                <v-list-item-title v-text="link.text" />
+                </v-list-item-content>
+                
+            </v-list-item> -->
+
         </v-list>
         <template v-slot:append>
             <div class="pl-2">
-                <p class="subtitle-2 google-font mb-1">Version: 3.1.1 - AURA</p>
-                <p class="subtitle-2 google-font mt-1">Based on Project <a href="https://github.com/gdg-x/aura-admin/" target="_blank" style="text-decoration:none">Aura Admin</a></p>
+                <p class="google-font my-0" style="color:#616161" >Version: 3.1.1 - AURA</p>
+                <p class="google-font my-0 mb-3" style="color:#616161" >Based on Project <a href="https://github.com/gdg-x/aura-admin/" target="_blank" style="text-decoration:none">Aura Admin</a></p>
             </div>
         </template>
     </v-navigation-drawer>
@@ -51,7 +73,7 @@
         data:()=>({
         }),
         computed:{
-            ...mapState(['generalConfig']),
+            ...mapState(['userDetails','role']),
             ...mapGetters(['links']),
             drawer: {
                 get () {

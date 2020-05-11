@@ -21,13 +21,13 @@
           <v-spacer></v-spacer>
           <EditPartner
             :partnerData="partnerInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeletePartner
             :PartnerInfo="partnerInfo"
             @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
         </v-toolbar>
       </v-col>
@@ -137,6 +137,7 @@
 
 <script>
 import PartnersServices from "@/services/PartnersServices"
+import {mapState} from 'vuex'
 export default {
   name: "ViewTeam",
   components: {
@@ -156,6 +157,7 @@ export default {
   mounted() {
     this.getPartnerData();
   },
+  computed:{...mapState(['role'])},
   methods: {
     showSnakeBar(text) {
       this.snakeBarMessage = text;

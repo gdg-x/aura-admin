@@ -21,13 +21,13 @@
           <v-spacer></v-spacer>
           <EditTeam
             :teamData="teamInfo"
-            v-if="!showLoader && !userNotFound"
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
           />
           <DeleteTeam
             :TeamInfo="teamInfo"
-            @RemoveSuceess="showSnakeBar"
-            v-if="!showLoader && !userNotFound"
+            @RemoveSuceess="showSnakeBar"            
+            v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
         </v-toolbar>
       </v-col>
@@ -140,6 +140,8 @@
                   >{{i}}</v-chip>
                 </span>
               </p>
+              
+              <EventByUserTable v-if="events.length>0" :events.sync="events" :isLoading.sync="isLoading"/>
             </v-col>
           </v-row>
         </v-container>
@@ -186,12 +188,17 @@
 <script>
 import firebase from "@/config/firebase";
 import TeamServices from "@/services/TeamServices";
+import {mapState} from "vuex"
 export default {
   name: "ViewTeam",
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),
-    EditTeam: () => import("@/components/Team/EditTeam")
+    EditTeam: () => import("@/components/Team/EditTeam"),
+    EventByUserTable: ()=> import('@/components/Common/EventsByUserTable')
+  },
+  computed:{
+    ...mapState(['role'])
   },
   data: () => ({
     snakeBarMessage: "",
@@ -200,10 +207,13 @@ export default {
     snakeBarTimeOut: 5000,
     showLoader: true,
     userNotFound: true,
-    teamInfo: {}
+    isLoading: false,
+    teamInfo: {},
+    events:[],
   }),
   mounted() {
     this.getTeamData();
+    this.getEventsDataHostedByMember()
   },
   methods: {
     showSnakeBar(text) {
@@ -213,6 +223,18 @@ export default {
     },
     goToTeam() {
       this.$router.replace("/team");
+    },
+    getEventsDataHostedByMember(){
+      this.isLoading = true
+      TeamServices.getEventsByTeamMember(this.$route.params.id).then(res=>{
+        if(res.success){
+          this.events = res.data
+          this.isLoading = false
+        }
+      }).catch(e=>{
+        console.log(e)
+        this.isLoading = false
+      })
     },
     getTeamData() {
       this.showLoader = true;

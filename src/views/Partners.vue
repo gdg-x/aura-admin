@@ -206,7 +206,7 @@
                         <h1 class="google-font">Partners Data Not Found</h1>
                         <p class="google-font">Kindly add Partners</p>
                         <br>
-                        <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
+                        <AddTeam v-if="(role=='Super Admin' || role=='Admin')" class="ml-2" @showSuccess="showSnakeBar" />
                       </v-col>
                     </v-row>
                   </v-container>
@@ -224,6 +224,7 @@
 
 <script>
 import PartnersServices from "@/services/PartnersServices"
+import {mapState} from 'vuex';
 export default {
   name: "TeamView",
   inject: ['theme'],
@@ -253,7 +254,9 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false, },
     ],
   }),
-  computed: {},
+  computed: {
+    ...mapState(['role'])
+  },
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar("Partner Removed Sucessfully");
