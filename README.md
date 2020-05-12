@@ -43,11 +43,16 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
         service cloud.firestore {
             match /databases/{database}/documents {
                 match /apiEnd/{apiEndpoint}{
-    	            allow read, write : if true;
+                    allow read, create : if true;
+                  allow delete : if request.auth.uid != null;
+                  allow update : if request.auth.uid != null;
+                  allow list: if request.auth.uid != null;
                 }
                 match /{document=**} {
-                    allow read : if true;
-                    allow write : if request.auth.uid != null;
+                  allow read : if true;
+                  allow delete : if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.userType == "Super Admin";
+                  allow create : if request.auth.uid != null;
+                  allow update : if request.auth.uid != null;
                 }
             }
         }
@@ -70,6 +75,12 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 1. Click on Authentication in the left navigation.
 1. Click on Sign-in method and enable Email/Password
     - Create user with Email and Password 
+1. For Cloud Functions  
+    - `npm install` for installing dependencies 
+    - Goto src/functions and then in the terminal run this command
+        ```js
+            firebase functions:config:set someservice.email="yourmail@gmail.com" someservice.password="yourpassword"
+        ```
 1. Run locally
     `npm run serve`
 1. When you are ready to build for production, use the following command - 
@@ -124,6 +135,8 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
     ```
 1. In your terminal at the root directory of the project,  build and deploy using the following command     
     - `firebase deploy`
+1. [Google LessSecure App](https://myaccount.google.com/lesssecureapps) open this link and enable Less secure app access
+Also Allow access to your Google account from this [url](https://accounts.google.com/b/0/DisplayUnlockCaptcha)
 1. If the project is successfully deployed, you should be able to visit your domain as found, and see the Aura Admin Dashboard. In future, we’ll refer to this website as your Aura Admin Dashboard.
 
 
