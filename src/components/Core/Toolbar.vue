@@ -28,7 +28,7 @@
       <template v-slot:activator="{ on:menu }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on: tooltip }">
-            <v-avatar size="36">
+            <v-avatar size="36" style="cursor: pointer;">
               <img
                 v-on="{ ...tooltip, ...menu }"
                 :src="(userDetails.image && userDetails.image.length>0)?userDetails.image:require('@/assets/img/default_avatar.jpg')"
