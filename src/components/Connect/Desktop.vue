@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid class="my-0 py-0" style="max-height:85vh">
-    <v-row class="ma-0 pa-0 ">
+  <v-container fluid class="my-0 py-0">
+    <v-row class="ma-0 pa-0">
       <v-col cols="3" class="ma-0 pa-0 scrollable" style="border:1px solid #e0e0e0">
         <!-- {{users}} -->
         <v-list-item v-for="item in users" :key="item.id">
@@ -17,17 +17,27 @@
         </v-list-item>
       </v-col>
       <v-col cols="9" class="ma-0 pa-0">
-        <Chat />
-        <div class="py-1 mb-0" style="background-color:#e0e0e0">
-          <v-textarea
-            label="Type here..."
-            solo
-            rows="1"
-            class="my-0"
-            v-model="content"
-            v-on:keyup.enter="enterData"
-          ></v-textarea>
-        </div>
+        <v-container class="ma-0 pa-0">
+          <v-row class="ma-0 pa-0">
+            <v-col cols="12" class="ma-0 pa-0">
+              <Chat />
+            </v-col>
+            <v-col cols="12" class="ma-0 pa-0">
+              <!-- <div class="ma-0 pa-0" style="background-color:#e0e0e0"> -->
+              <v-footer absolute padless>
+                <v-textarea
+                  label="Type here..."
+                  solo
+                  rows="1"
+                  auto-grow
+                  class="my-0 rem"
+                  v-model="content"
+                ></v-textarea>
+              </v-footer>
+            </v-col>
+          </v-row>
+        </v-container>
+        <!-- </div> -->
       </v-col>
     </v-row>
   </v-container>
@@ -45,7 +55,7 @@ export default {
   data: () => ({
     users: [],
     isLoadingUsers: [],
-    content:"",
+    content: ""
   }),
   computed: { ...mapState(["userDetails"]) },
   mounted() {
@@ -59,7 +69,12 @@ export default {
           console.log(res);
           if (res.success) {
             this.users = res.data;
-            this.users = [...this.users,...this.users,...this.users,...this.users]
+            this.users = [
+              ...this.users,
+              ...this.users,
+              ...this.users,
+              ...this.users
+            ];
           }
           this.isLoadingUsers = false;
         })
@@ -68,7 +83,7 @@ export default {
         });
     },
     enterData() {
-      if (this.content) {
+      if (this.content.length > 2) {
         firebase.firestore
           .collection("connect")
           .add({

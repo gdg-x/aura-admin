@@ -1,5 +1,4 @@
 <template>
-<div color="ma-0 pa-0">
   <!-- <v-toolbar color="#e0e0e0" class="google-font">
       <v-toolbar-title>Connect</v-toolbar-title>
   </v-toolbar> -->
@@ -16,7 +15,7 @@
       </p>
       <p style="text-transform: uppercase;font-size:80%;color:#99B113" class="my-0 mt-2" v-if="index>0 && messages[index-1].name != message.name">{{message.name }}</p>
       
-      <div elevation="0" class="my-1 white py-2 content" :class="{'right-content': message.name == userDetails.id}" >
+      <div elevation="0" class="my-1 white py-2 content" >
         {{message.message}}
       </div>
 
@@ -24,7 +23,6 @@
         <v-card-text class="">{{message.message}}</v-card-text>
       </v-card> -->
     </div>
-  </div>
   </div>
 </template>
 
