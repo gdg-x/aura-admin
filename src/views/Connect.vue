@@ -1,13 +1,13 @@
 <template>
-  <v-container fluid style="max-width:1600px">
+  <v-container fluid class="ma-0 pa-0">
     <!-- <Snakebar
       :message="snakeBarMessage"
       :isShow.sync="isSnakeBarVisible"
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     /> -->
-    <v-row class="ma-0 pa-0">
-        <v-col cols="12">
+    <v-row class="my-0 py-0">
+        <v-col cols="12" class="pa-0 my-0">
             <Desktop />
         </v-col>
     </v-row>

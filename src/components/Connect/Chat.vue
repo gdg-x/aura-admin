@@ -1,17 +1,30 @@
 <template>
-  <div class="chat-container">
+<div color="ma-0 pa-0">
+  <!-- <v-toolbar color="#e0e0e0" class="google-font">
+      <v-toolbar-title>Connect</v-toolbar-title>
+  </v-toolbar> -->
+  <div class="chat-container mt-1">
+
     <div
-      class="message"
+      class="message "
       v-for="(message,index) in messages"
       :key="index"
       :class="{'text-right': message.name == userDetails.id}"
     >
-      <div v-if="index == 0">{{message.name}}</div>
-      <div v-if="index>0 && messages[index-1].name != message.name">{{message.name}}</div>
-      <v-card elevation="0" width="50%" :class="{'text-right blue': message.name == userDetails.id}">
-        <v-card-text class>{{message.message}}</v-card-text>
-      </v-card>
+      <p v-if="index == 0" class="my-0 mt-2" style="text-transform: uppercase;font-size:80%;color:#eb6eb8">
+        {{message.name }}
+      </p>
+      <p style="text-transform: uppercase;font-size:80%;color:#99B113" class="my-0 mt-2" v-if="index>0 && messages[index-1].name != message.name">{{message.name }}</p>
+      
+      <div elevation="0" class="my-1 white py-2 content" :class="{'right-content': message.name == userDetails.id}" >
+        {{message.message}}
+      </div>
+
+      <!-- <v-card elevation="0" style="width: 60%;" class="my-1" :class="{'right-content': message.name == userDetails.id}" >
+        <v-card-text class="">{{message.message}}</v-card-text>
+      </v-card> -->
     </div>
+  </div>
   </div>
 </template>
 
@@ -50,11 +63,26 @@ export default {
           });
         });
     },
-  }
+  },
+  
 };
 </script>
 
 <style scoped>
+.card{
+  background: white;
+  display: inline;
+}
+.right-content{
+  /* display: inline;
+  flex-wrap: wrap; */
+  /* background: red; */
+  /* padding-left: 10%;
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right; */
+}
 .right{
     float:right;
 }
@@ -67,6 +95,16 @@ export default {
   height: calc(100vh - 9.5rem);
   overflow-y: auto;
   padding: 10px;
+  z-index: -50;
   background-color: #f2f2f2;
 }
+
+.chat-container .content{
+    padding: 8px;
+    border-radius: 10px;
+    display:inline-block;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+    max-width: 50%;
+    word-wrap: break-word;
+    }
 </style>

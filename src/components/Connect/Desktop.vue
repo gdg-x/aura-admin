@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
-    <v-row class="ma-0 pa-0">
-      <v-col cols="3" class="ma-0 pa-0" style="border:1px solid #e0e0e0">
+  <v-container fluid class="my-0 py-0" style="max-height:85vh">
+    <v-row class="ma-0 pa-0 ">
+      <v-col cols="3" class="ma-0 pa-0 scrollable" style="border:1px solid #e0e0e0">
         <!-- {{users}} -->
         <v-list-item v-for="item in users" :key="item.id">
           <v-list-item-avatar>
@@ -18,13 +18,15 @@
       </v-col>
       <v-col cols="9" class="ma-0 pa-0">
         <Chat />
-        <div class="typer">
-          <input
-            type="text"
-            placeholder="Type here..."
-            v-on:keyup.enter="enterData"
+        <div class="py-1 mb-0" style="background-color:#e0e0e0">
+          <v-textarea
+            label="Type here..."
+            solo
+            rows="1"
+            class="my-0"
             v-model="content"
-          />
+            v-on:keyup.enter="enterData"
+          ></v-textarea>
         </div>
       </v-col>
     </v-row>
@@ -57,6 +59,7 @@ export default {
           console.log(res);
           if (res.success) {
             this.users = res.data;
+            this.users = [...this.users,...this.users,...this.users,...this.users]
           }
           this.isLoadingUsers = false;
         })
@@ -85,5 +88,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.scrollable {
+  overflow-y: auto;
+  height: 90vh;
+}
 </style>
