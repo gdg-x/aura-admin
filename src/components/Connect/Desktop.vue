@@ -9,35 +9,32 @@
               :src="item.image.length > 0? item.image: require('@/assets/img/default_avatar.jpg')"
             ></v-img>
           </v-list-item-avatar>
-
           <v-list-item-content>
             <v-list-item-title class="google-font" v-html="item.name"></v-list-item-title>
             <v-list-item-subtitle class="google-font" v-html="item.id"></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-col>
-      <v-col cols="9" class="ma-0 pa-0">
-        <v-container class="ma-0 pa-0">
-          <v-row class="ma-0 pa-0">
-            <v-col cols="12" class="ma-0 pa-0">
-              <Chat />
-            </v-col>
-            <v-col cols="12" class="ma-0 pa-0">
-              <!-- <div class="ma-0 pa-0" style="background-color:#e0e0e0"> -->
-              <v-footer absolute padless>
-                <v-textarea
-                  label="Type here..."
-                  solo
-                  rows="1"
-                  auto-grow
-                  class="my-0 rem"
-                  v-model="content"
-                ></v-textarea>
-              </v-footer>
-            </v-col>
-          </v-row>
-        </v-container>
-        <!-- </div> -->
+      <v-col cols="9" class="ma-0 pa-0 grey">
+        <Chat />
+        <v-text-field
+            label="Type here..."
+            class="mx-3 my-0 rem mt-3"
+            solo
+            v-model="content"
+            @keyup.enter="enterData"
+        ></v-text-field>
+        <!-- style="position:fixed; bottom:0;right: 0;" -->
+        <!-- <v-textarea
+          label="Type here..."
+          solo
+          rows="1"
+          auto-grow
+          class="my-0 rem"
+          style="position:fixed; bottom:0;right: 0;"
+          v-model="content"
+          @keyup.enter="enterData"
+        ></v-textarea> -->
       </v-col>
     </v-row>
   </v-container>
@@ -69,12 +66,8 @@ export default {
           console.log(res);
           if (res.success) {
             this.users = res.data;
-            this.users = [
-              ...this.users,
-              ...this.users,
-              ...this.users,
-              ...this.users
-            ];
+            this.users = this.users.filter(user=>user.disabled== false)
+            // console.log(this.users)
           }
           this.isLoadingUsers = false;
         })

@@ -6,7 +6,7 @@
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     /> -->
-    <v-row class="my-0 py-0">
+    <v-row class="my-0 py-0" style="max-height:85vh">
         <v-col cols="12" class="pa-0 my-0">
             <Desktop />
         </v-col>
