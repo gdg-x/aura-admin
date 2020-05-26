@@ -182,6 +182,7 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 | --- | --- |
 | GDG Jalandhar | [View Now](https://gdgjalandhar.com) |
 | DSC NSEC | [View Now](https://dscnsec.com) |
+| DSC VJIT | [View Now](https://dsc-vjit-admin.now.sh) |
 
 ## Facing Any Problem or need any Help?
 Write us in [issues](https://github.com/issues) section. Our team will try solve your issue within 10-12 hours.<br>
