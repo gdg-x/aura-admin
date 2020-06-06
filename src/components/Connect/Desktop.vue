@@ -8,12 +8,11 @@
       >
         <v-container
           id="scroll-target"
-          style="max-height: 93vh"
+          style="max-height: 90vh"
           class="overflow-y-auto"
         >
           <v-row
             v-scroll:#scroll-target="onScroll"
-            style="height: 1000px"
           >
             <v-col>
               <v-list-item v-for="item in users" :key="item.id">
@@ -50,6 +49,8 @@
           solo
           v-model="content"
           @keyup.enter="enterData"
+          append-icon="mdi-send"
+          @click:append="enterData"
         ></v-text-field>
         <!-- style="position:fixed; bottom:0;right: 0;" -->
         <!-- <v-textarea

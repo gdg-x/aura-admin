@@ -1,9 +1,5 @@
 <template>
-  <!-- <v-toolbar color="#e0e0e0" class="google-font">
-      <v-toolbar-title>Connect</v-toolbar-title>
-  </v-toolbar> -->
   <div class="chat-container mt-1">
-
     <div
       class="message "
       v-for="(message,index) in messages"
@@ -17,11 +13,8 @@
       
       <div elevation="0" class="my-1 white py-2 content" >
         {{message.message}}
+        <p class="ma-0"><span class="timecss">{{message.timestamp | dateFilter}}</span></p>
       </div>
-
-      <!-- <v-card elevation="0" style="width: 60%;" class="my-1" :class="{'right-content': message.name == userDetails.id}" >
-        <v-card-text class="">{{message.message}}</v-card-text>
-      </v-card> -->
     </div>
   </div>
 </template>
@@ -43,6 +36,13 @@ export default {
   mounted(){
   },
   methods: {
+    getDateTime(date){
+      if (date.toString().length > 0) {
+        return new Date(date).toString().split("(")[0];
+      } else {
+        return date;
+      }
+    },
     getData() {
       firebase.firestore
         .collection("connect")
@@ -62,6 +62,16 @@ export default {
         });
     },
   },
+  filters: {
+    dateFilter: value => {
+      const date = new Date(value);
+      return date.toLocaleString(["en-US"], {
+        month: "short",
+        day: "2-digit",
+        year: "numeric"
+      });
+    }
+  }
   
 };
 </script>
@@ -70,6 +80,11 @@ export default {
 .card{
   background: white;
   display: inline;
+}
+.timecss{
+  font-size: 70%;
+  color: grey;
+  float: right;
 }
 .right-content{
   /* display: inline;
@@ -90,7 +105,7 @@ export default {
 }
 .chat-container {
   box-sizing: border-box;
-  height: calc(100vh - 9.5rem);
+  height: calc(100vh - 10rem);
   overflow-y: auto;
   padding: 10px;
   z-index: -50;

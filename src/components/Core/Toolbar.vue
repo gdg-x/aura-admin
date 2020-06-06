@@ -17,9 +17,6 @@
       class="google-font px-2 mx-1"
     >Offline</v-toolbar-title>
 
-    <v-btn icon class="mx-3">
-      <v-icon>mdi-apps</v-icon>
-    </v-btn>
     <v-menu
       v-model="menu"
       :close-on-content-click="false"
