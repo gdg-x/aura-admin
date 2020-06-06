@@ -19,7 +19,7 @@
     <!-- v-if="$route.meta.requiresAuth" -->
     <AuraAdminToolbar v-if="$route.meta.requiresAuth" />
     <AuraAdminDrawer v-if="$route.meta.requiresAuth" />
-    <AuraAdminBottomNav v-if="$route.meta.requiresAuth" />
+    <AuraAdminBottomNav v-if="$route.meta.requiresAuth && $route.meta.bottomVisible" />
     <AddTeamFirst v-if="addFirstTime" :dialog.sync="addFirstTime"/>
     <v-content class="fill-height" v-if="isLoading">
       <v-container class="fill-height">

@@ -11,6 +11,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Home",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -25,6 +26,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Home",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -48,6 +50,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Team",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -62,6 +65,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Partners",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -76,6 +80,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Partner Details",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -90,6 +95,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Team Details",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -104,6 +110,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Speakers",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -118,6 +125,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Speakers Details",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -132,6 +140,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Config",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": false,
@@ -146,6 +155,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Events",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -160,6 +170,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Event Details",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -174,6 +185,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Notifications",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -188,6 +200,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Connect",
+      bottomVisible:false,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -202,6 +215,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Email",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -216,6 +230,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "User Management",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": false,
@@ -230,6 +245,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Profile Settings",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -244,6 +260,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Email",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,
@@ -258,6 +275,7 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "About",
+      bottomVisible:true,
       access: {
         "Super Admin": true,
         "Admin": true,

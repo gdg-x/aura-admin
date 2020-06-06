@@ -8,7 +8,7 @@
     /> -->
     <v-row class="my-0 py-0" style="">
         <v-col cols="12" class="pa-0 my-0">
-            <Desktop />
+            <Connect />
         </v-col>
     </v-row>
   </v-container>
@@ -18,7 +18,7 @@
 export default {
   name: "connect",
   components:{
-      Desktop:()=>import('@/components/Connect/Desktop')
+      Connect:()=>import('@/components/Connect/Connect')
   },
   data: () => ({
     snakeBarMessage: "",

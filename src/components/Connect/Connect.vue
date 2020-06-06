@@ -8,7 +8,7 @@
       >
         <v-container
           id="scroll-target"
-          style="max-height: 90vh"
+          style="max-height: 93vh"
           class="overflow-y-auto"
         >
         <v-row justify="center" align="center" class v-if="showLoader">

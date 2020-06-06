@@ -1,12 +1,12 @@
 <template>
-  <div class="chat-container mt-1">
+<v-container class="ma-0 pa-0">
     <v-row justify="center" align="center" class v-if="showLoader">
       <v-col cols="12" md="12" class="text-center">
         <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
       </v-col>
     </v-row>
+  <div class="chat-container mt-1" v-chat-scroll="{smooth: true, notSmoothOnInit: true}">
     <div
-    v-else
       class="message"
       v-for="(message,index) in messages"
       :key="index"
@@ -23,6 +23,7 @@
       </div>
     </div>
   </div>
+</v-container>
 </template>
 
 <script>
@@ -77,7 +78,9 @@ export default {
       return date.toLocaleString(["en-US"], {
         month: "short",
         day: "2-digit",
-        year: "numeric"
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
       });
     }
   }
