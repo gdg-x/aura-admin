@@ -1,7 +1,13 @@
 <template>
   <div class="chat-container mt-1">
+    <v-row justify="center" align="center" class v-if="showLoader">
+      <v-col cols="12" md="12" class="text-center">
+        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+      </v-col>
+    </v-row>
     <div
-      class="message "
+    v-else
+      class="message"
       v-for="(message,index) in messages"
       :key="index"
       :class="{'text-right': message.name == userDetails.id}"
@@ -27,7 +33,8 @@ export default {
   data: () => ({
     messages: [],
     name: "",
-    content: ""
+    content: "",
+    showLoader:false
   }),
   computed: { ...mapState(["userDetails"]) },
   created() {
@@ -44,6 +51,7 @@ export default {
       }
     },
     getData() {
+      this.showLoader = true;
       firebase.firestore
         .collection("connect")
         .orderBy("timestamp")
@@ -59,6 +67,7 @@ export default {
               });
             }
           });
+          this.showLoader = false;
         });
     },
   },

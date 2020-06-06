@@ -11,7 +11,13 @@
           style="max-height: 90vh"
           class="overflow-y-auto"
         >
+        <v-row justify="center" align="center" class v-if="showLoader">
+      <v-col cols="12" md="12" class="text-center">
+        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+      </v-col>
+    </v-row>
           <v-row
+          v-else
             v-scroll:#scroll-target="onScroll"
           >
             <v-col>
@@ -82,6 +88,7 @@ export default {
     isLoadingUsers: [],
     content: "",
     offsetTop: 0,
+    showLoader:false,
   }),
   computed: { ...mapState(["userDetails"]) },
   mounted() {
@@ -92,7 +99,7 @@ export default {
         this.offsetTop = e.target.scrollTop
     },
     getUsers() {
-      this.isLoadingUsers = true;
+      this.showLoader = true;
       UserService.getAllUsers()
         .then((res) => {
           console.log(res);
@@ -100,7 +107,7 @@ export default {
             this.users = res.data;
             this.users = this.users.filter((user) => user.disabled == false);
           }
-          this.isLoadingUsers = false;
+          this.showLoader = false;
         })
         .catch((e) => {
           console.log(e);
