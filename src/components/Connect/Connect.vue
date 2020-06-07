@@ -1,26 +1,25 @@
 <template>
   <v-container fluid class="my-0 py-0">
     <v-row class="ma-0 pa-0" style="">
-      <v-col
-        cols="3"
-        class="ma-0 pa-0 pb-0"
-        style="border:1px solid #e0e0e0;"
-      >
+      <v-col cols="3" md="3" class="ma-0 pa-0 pb-0" style="border:1px solid #e0e0e0;">
         <v-container
           id="scroll-target"
           style="max-height: 93vh"
           class="overflow-y-auto"
         >
-        <v-row justify="center" align="center" class v-if="showLoader">
-      <v-col cols="12" md="12" class="text-center">
-        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
-      </v-col>
-    </v-row>
-          <v-row
-          v-else
-            v-scroll:#scroll-target="onScroll"
-          >
+          <v-row justify="center" align="center" class v-if="showLoader">
+            <v-col cols="12" md="12" class="text-center">
+              <v-progress-circular
+                :width="5"
+                :size="50"
+                color="indigo"
+                indeterminate
+              ></v-progress-circular>
+            </v-col>
+          </v-row>
+          <v-row v-else v-scroll:#scroll-target="onScroll">
             <v-col>
+              <p class="google-font">Active Users</p>
               <v-list-item v-for="item in users" :key="item.id">
                 <v-list-item-avatar>
                   <v-img
@@ -88,21 +87,20 @@ export default {
     isLoadingUsers: [],
     content: "",
     offsetTop: 0,
-    showLoader:false,
+    showLoader: false,
   }),
   computed: { ...mapState(["userDetails"]) },
   mounted() {
     this.getUsers();
   },
   methods: {
-    onScroll (e) {
-        this.offsetTop = e.target.scrollTop
+    onScroll(e) {
+      this.offsetTop = e.target.scrollTop;
     },
     getUsers() {
       this.showLoader = true;
       UserService.getAllUsers()
         .then((res) => {
-          console.log(res);
           if (res.success) {
             this.users = res.data;
             this.users = this.users.filter((user) => user.disabled == false);
