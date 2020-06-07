@@ -23,6 +23,7 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 | **Easy in management** | Store all the data in Cloud Firestore |
 | **Trigger Push Notification** | Trigger Push Notification to Aura Main |
 | **User Management** | Role based Authentication for the Team |
+| **Connect** | Team Member can communicate in Group |
 | **Usability** | Any Tech Communities can use |
 
 

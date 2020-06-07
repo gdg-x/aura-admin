@@ -5,6 +5,8 @@
       {{ generalConfig.name || "Community Name" }} - Aura Admin
       3.1
     </v-toolbar-title>
+    
+
     <v-spacer></v-spacer>
     <offline @detected-condition="handleConnectivityChange"></offline>
 
@@ -73,6 +75,9 @@
         </v-container>
       </v-card>
     </v-menu>
+
+
+    
   </v-app-bar>
 </template>
 <script>
@@ -86,7 +91,9 @@ export default {
   name: "Toolbar",
   data: () => ({
     isOffline: false,
-    menu: false
+    menu: false,
+    model: 'tab-2',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   }),
   computed: {
     ...mapState(["generalConfig", "userDetails"]),
