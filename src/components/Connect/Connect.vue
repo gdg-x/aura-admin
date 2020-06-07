@@ -112,7 +112,7 @@ export default {
         });
     },
     enterData() {
-      if (this.content.length > 2) {
+      if (this.content.length > 0) {
         firebase.firestore
           .collection("connect")
           .add({
