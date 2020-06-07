@@ -19,7 +19,7 @@
           </v-row>
           <v-row v-else v-scroll:#scroll-target="onScroll">
             <v-col>
-              <p class="google-font">Active Users</p>
+              <p class="google-font">Users</p>
               <v-list-item v-for="item in users" :key="item.id">
                 <v-list-item-avatar>
                   <v-img
