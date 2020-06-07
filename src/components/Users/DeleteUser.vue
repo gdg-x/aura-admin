@@ -13,7 +13,7 @@
 
     <v-card v-if="dialog">
       <v-card-title class="google-font heading">Are you sure?</v-card-title>
-      <v-card-text class="google-font">Would you like to remove {{ data.name }} form the User Managemenet?</v-card-text>
+      <v-card-text class="google-font">Would you like to remove {{ data.name }} form the User Management?</v-card-text>
       <v-card-actions>
         <div class="flex-grow-1"></div>
 
