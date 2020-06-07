@@ -17,7 +17,7 @@
               <br><br><br><br>
               <a href="https://github.com/gdg-x/aura-admin/blob/master/CODE_OF_CONDUCT.md" target="_blank" class="mr-3">Privacy & Policy</a>
               <a href="https://github.com/gdg-x/aura-admin" target="_blank" class="mr-3">Support</a>
-              <a href="https://github.com/gdg-x/aura-admin" target="_blank" class="mr-3" >About</a>
+              <a href="/about" target="_blank" class="mr-3" >About</a>
             </v-col>
             <v-col md="7" lg="7" sm="6" class="grey lighten-4 pa-0"> 
               <v-img style="float:right" :src="require('@/assets/img/svg/login.svg')" width="70vh"></v-img>

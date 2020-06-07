@@ -273,7 +273,7 @@ const routes = [{
     name: 'About',
     component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue'),
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
       title: "About",
       bottomVisible:true,
       access: {
