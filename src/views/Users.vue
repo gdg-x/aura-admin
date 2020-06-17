@@ -228,8 +228,9 @@
                       :search="search"
                       :loading="isLoading"
                       :headers="headers"
+                      sort-by="disabled"
                       :items="usersData"
-                      :items-per-page="5"
+                      :items-per-page="10"
                       class="elevation-0 ma-0 pa-0 hidden-sm-and-down"
                     >
                       <template v-slot:item.name="{ item }">
@@ -377,7 +378,7 @@ export default {
       // { text: 'Email', value: 'email' },
       { text: "Role", value: "role" },
       { text: "User Type", value: "userType" },
-      { text: "User Status", value: "disabled" },
+      { text: "User Status", value: "disabled", sortable: true, },
       { text: "Actions", value: "actions", sortable: false },
     ],
   }),
