@@ -30,6 +30,11 @@
             @RemoveSuceess="showSnakeBar"            
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
+          <ShareTeam
+            v-if="(!showLoader && !userNotFound)"
+            :url="'/team/'+teamInfo.id"
+            :name="teamInfo.name"
+          />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -197,6 +202,7 @@ export default {
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),
     EditTeam: () => import("@/components/Team/EditTeam"),
     EventByUserTable: ()=> import('@/components/Common/EventsByUserTable'),
+    ShareTeam: ()=> import('@/components/Common/ShareUrl'),
     ActivityLog: ()=>import('@/components/Common/UserActivity'),
   },
   computed:{

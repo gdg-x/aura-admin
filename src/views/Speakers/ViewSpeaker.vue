@@ -31,6 +31,11 @@
             @RemoveSuceess="showSnakeBar"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin')"
           />
+          <ShareSpeaker
+            v-if="(!showLoader && !userNotFound)"
+            :url="'/speakers/'+speakerInfo.id"
+            :name="speakerInfo.name"
+          />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -179,6 +184,7 @@ export default {
     DeleteSpeaker:()=>import('@/components/Speakers/DeleteSpeaker'),
     EditSpeaker:()=>import('@/components/Speakers/EditSpeaker'),
     EventByUserTable: ()=> import('@/components/Common/EventsByUserTable'),
+    ShareSpeaker: ()=> import('@/components/Common/ShareUrl'),
     ActivityLog: ()=>import('@/components/Common/UserActivity')
   },
   computed:{
