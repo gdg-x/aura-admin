@@ -70,7 +70,7 @@
             </v-tooltip>
           </v-btn-toggle>
           <!-- Toggle Menu for View -->
-          <AddTeam v-if="role=='Super Admin'" class="ml-2" @showSuccess="showSnakeBar" />
+          <AddTeam v-if="role=='Super Admin'" class="ml-2" @showSuccess="showSnakeBar" @message="showMessageSnakeBar"  />
         </v-toolbar>
       </v-col>
     </v-row>
@@ -221,7 +221,7 @@
                         <h1 class="google-font">Team Members Data Not Found</h1>
                         <p class="google-font">Kindly add Team member</p>
                         <br>
-                        <AddTeam class="ml-2" @showSuccess="showSnakeBar" />
+                        <AddTeam class="ml-2"  v-if="role=='Super Admin'" @showSuccess="showSnakeBar" @message="showMessageSnakeBar"  />
                       </v-col>
                     </v-row>
                   </v-container>
@@ -288,6 +288,10 @@ export default {
     openCloseSearch(){
       this.isSearch = !this.isSearch
       this.search = "";
+    },
+    showMessageSnakeBar(text){
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
     },
     showSnakeBar(text) {
       this.snakeBarMessage = text;

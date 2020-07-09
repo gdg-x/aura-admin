@@ -68,10 +68,6 @@
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
                         v-model="companyName"
                         class="ma-0"
@@ -80,7 +76,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 mr-2">
+                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 ">
                       <v-text-field
                         v-model="companyURL"
                         class="ma-0"
@@ -108,6 +104,13 @@
                         label="Country *"
                         outlined
                       ></v-text-field>
+                    </v-col>
+                    
+                    <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
+                      <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
+                    </v-col>
+                    <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                      <UploadImage type="speaker" :userId="userId" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
                     </v-col>
 
                     <v-col md="12" xs="12" cols="12" class="pa-1 py-0 ma-0">
@@ -195,13 +198,12 @@ import { mapState } from "vuex";
 import SpeakerServices from "@/services/SpeakersServices";
 export default {
   props: [],
+  components:{
+    UploadImage: () => import("@/components/Common/ImageUpload"),
+  },
   data() {
     return {
-      imageUpload: [],
-      imagePre: "",
-      imageUploading: false,
       valid: true,
-      dialogImageUload: false,
       nameRules: [
         v => !!v || "Name is required",
         v => (v && v.length <= 50) || "Name must be less than 50 characters"
@@ -238,6 +240,12 @@ export default {
     ...mapState(["userDetails"])
   },
   methods: {
+    showMessageSnakeBar(text){
+      this.$emit("message", text);
+    },
+    imageUploadDone(text){
+      this.imageURL = text;
+    },
     SaveSpeaker() {
       if (this.$refs.form.validate()) {
         this.loading = true;
@@ -285,7 +293,7 @@ export default {
           })
           .catch(e => {
             this.loading = false;
-            this.$emit("showSuccess", e.msg);
+            this.$emit("message", e.msg);
           });
       }
     }
