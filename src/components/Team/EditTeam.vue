@@ -118,7 +118,7 @@
                       <v-text-field v-model="updatedData.image" class="ma-0" label="Image URL" outlined></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
-                      <UploadImage type="speaker" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
+                      <UploadImage type="team" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
                     </v-col>
 
                   <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
