@@ -75,8 +75,11 @@
                         ></v-text-field>
                     </v-col>
 
-                    <v-col md="8" xs="8" cols="12" class="pa-1 ma-0">
-                        <v-text-field v-model="updatedData.image" class="ma-0" label="Logo URL" outlined></v-text-field>
+                    <v-col md="5" xs="5" cols="8" class="pa-1 ma-0">
+                      <v-text-field v-model="updatedData.image" class="ma-0" label="Image URL" outlined></v-text-field>
+                    </v-col>
+                    <v-col md="3" xs="3" cols="4" class="pa-1 ma-0">
+                      <UploadImage type="partner" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
                     </v-col>
 
                     <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
@@ -169,6 +172,9 @@ export default {
   props: {
     partnerData: {}
   },
+  components:{
+    UploadImage: () => import("@/components/Common/ImageUpload"),
+  },
   data() {
     return {
       imageUpload: [],
@@ -208,6 +214,12 @@ export default {
     ...mapState(['userDetails'])
   },
   methods: {
+    showMessageSnakeBar(text){
+      this.$emit("message", text);
+    },
+    imageUploadDone(text){
+      this.updatedData.image = text;
+    },
     UpdateData() {
       if (this.$refs.form.validate()) {
         this.loading = true

@@ -24,6 +24,7 @@
             :partnerData="partnerInfo"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
+            @message="showMessageSnakeBar"
           />
           <DeletePartner
             :PartnerInfo="partnerInfo"
@@ -161,6 +162,10 @@ export default {
   },
   computed:{...mapState(['role'])},
   methods: {
+    showMessageSnakeBar(text){
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
+    },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
