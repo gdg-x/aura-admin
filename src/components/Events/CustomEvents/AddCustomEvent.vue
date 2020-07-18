@@ -139,15 +139,6 @@
                           >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
-
-                      <!-- <v-text-field
-                        v-model="eventData.time.starttime"
-                        class="ma-0"
-                        :rules="idRules"
-                        label="Event Start Time*"
-                        type="time"
-                        outlined
-                      ></v-text-field>-->
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
@@ -177,15 +168,6 @@
                           >OK</v-btn>
                         </v-time-picker>
                       </v-dialog>
-
-                      <!-- <v-text-field
-                        v-model="eventData.time.endtime"
-                        class="ma-0"
-                        :rules="idRules"
-                        label="Event End Time*"
-                        type="time"
-                        outlined
-                      ></v-text-field>-->
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="ma-0">
                       <v-text-field
@@ -203,22 +185,22 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-
-                    <!-- <v-col md="6" xs="4" cols="12" class="ma-0">
+                    <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
                       <v-text-field
                         v-model="eventData.image"
                         class="ma-0"
                         label="Image URL"
                         outlined
                       ></v-text-field>
-                    </v-col> -->
-                    <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="eventData.image" class="ma-0" label="Image URL" outlined></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
-                      <UploadImage type="events" :userId="eventData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
+                      <UploadImage
+                        type="events"
+                        :userId="eventData.id"
+                        @message="showMessageSnakeBar"
+                        @uploadedImage="imageUploadDone"
+                      />
                     </v-col>
-                    
                     <v-col md="12" xs="12" cols="12" class="ma-0">
                       <v-combobox
                         chips
@@ -445,7 +427,7 @@ export default {
   components: {
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
-    UploadImage: () => import("@/components/Common/ImageUpload"),
+    UploadImage: () => import("@/components/Common/ImageUpload")
   },
   props: [],
   computed: { ...mapState(["userDetails"]) },
@@ -520,10 +502,10 @@ export default {
     this.ShowTeam();
   },
   methods: {
-    showMessageSnakeBar(text){
+    showMessageSnakeBar(text) {
       this.$emit("message", text);
     },
-    imageUploadDone(text){
+    imageUploadDone(text) {
       this.eventData.image = text;
     },
     deleteData(index) {
@@ -570,15 +552,15 @@ export default {
     SaveEvent() {
       this.loading = true;
       this.eventData.createdBy = {
-          name: this.userDetails.name,
-          id: this.userDetails.id
-        };
-        this.eventData.createdOn = new Date();
-        this.eventData.lastUpdatedOn = "";
-        this.eventData.lastUpdatedBy = {
-          name: "",
-          id: ""
-        };
+        name: this.userDetails.name,
+        id: this.userDetails.id
+      };
+      this.eventData.createdOn = new Date();
+      this.eventData.lastUpdatedOn = "";
+      this.eventData.lastUpdatedBy = {
+        name: "",
+        id: ""
+      };
       CustomEventServices.addCustomEvent(this.eventData.id, this.eventData)
         .then(res => {
           if (res.success == true) {
@@ -590,7 +572,7 @@ export default {
         .catch(e => {
           this.loading = false;
           console.log(e);
-          this.$emit("showSuccess", e.msg);
+          this.$emit("message", e.msg);
         });
     }
   }
