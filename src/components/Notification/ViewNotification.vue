@@ -1,10 +1,18 @@
 <template>
   <v-dialog v-model="dialog" persistent width="800" scrollable>
-
     <template v-slot:activator="{ }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn fab outlined icon color="indigo" x-small v-on="on" class="mx-1" @click.stop="dialog = true">
+          <v-btn
+            fab
+            outlined
+            icon
+            color="indigo"
+            x-small
+            v-on="on"
+            class="mx-1"
+            @click.stop="dialog = true"
+          >
             <v-icon>mdi-eye</v-icon>
           </v-btn>
         </template>
@@ -43,7 +51,17 @@
             </p>
           </v-col>
           <v-col cols="12" md="5">
-            <v-img :src="dialogData.image" max-height="300" contain></v-img>
+            <v-img
+              :src="(dialogData.image.length > 10)?dialogData.image:require('@/assets/img/dontremove/noimage.jpg')"
+              max-height="300"
+              contain
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
           </v-col>
         </v-row>
       </v-card-text>

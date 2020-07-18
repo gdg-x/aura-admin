@@ -448,14 +448,8 @@ export default {
       modal2: false,
       modal1: false,
       headers: [
-        {
-          text: "Start Time",
-          value: "starttime"
-        },
-        {
-          text: "End Time",
-          value: "endtime"
-        },
+        { text: "Start Time", value: "starttime" },
+        { text: "End Time", value: "endtime" },
         { text: "Title", value: "title" },
         { text: "Description", value: "des" },
         { text: "Actions", sortable: false, value: "actions" }
