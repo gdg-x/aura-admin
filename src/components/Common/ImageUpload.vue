@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="imageDialog" v-if="userId.length>0" persistent max-width="400">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary"  depressed :loading="imageUploading" dark class="mt-2" v-on="on">OR Upload</v-btn>
+      <v-btn color="primary"  depressed :loading="imageUploading" dark class="mt-2" v-on="on">{{buttonName || "or Upload"}} </v-btn>
     </template>
     <v-card>
       <v-card-title class="google-font">Upload {{userId}}'s Image</v-card-title>
@@ -17,7 +17,6 @@
           @change="onFileChange"
           outlined
         ></v-file-input>
-        <p class="google-font mb-0" style="color:red">*Image should be square</p>
         <p class="google-font my-0" style="color:red">*Image should be in jpeg/jpg/png/webp/ico only</p>
       </v-card-text>
       <v-card-actions>
@@ -34,7 +33,7 @@ import firebase from "@/config/firebase";
 
 export default {
   name: "imageupload",
-  props: ["type", "userId"],
+  props: ["type", "userId", "buttonName"],
   data: () => ({
     imageDialog: false,
     imageUploading: false,
@@ -73,7 +72,7 @@ export default {
         .put(this.imageUpload)
         .then(file => {
           refLink.getDownloadURL().then(a => {
-            this.$emit("message", "Image Uploaded");
+            this.$emit("message", "Image Uploaded kindly Save the Data");
             this.$emit("uploadedImage", a);
             this.imageUploading = false;
             this.imageDialog = false;

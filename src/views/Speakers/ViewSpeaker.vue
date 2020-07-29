@@ -107,7 +107,7 @@
                 <b>Company</b>
               </p>
               <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.company.name}}</p>
-
+              <div v-if="(role=='Super Admin' || role=='Admin')">
               <p class="mb-0 mt-3">
                 <b>Email</b>
               </p>
@@ -117,7 +117,7 @@
                 <b>Mobile</b>
               </p>
               <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{speakerInfo.mbnumber.length?speakerInfo.mbnumber:'No Data Found'}}</p>
-
+              </div>
               <p class="mb-0 mt-3">
                 <b>User ID</b>
               </p>
