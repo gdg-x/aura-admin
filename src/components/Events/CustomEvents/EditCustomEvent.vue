@@ -229,7 +229,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>-->
-                    <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
+                    <v-col md="7" xs="7" cols="6" class="ma-0">
                       <v-text-field
                         v-model="updatedeventData.image"
                         class="ma-0"
@@ -237,7 +237,7 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                    <v-col md="4" xs="4" cols="6" class="ma-0">
                       <UploadImage
                         type="events"
                         :userId="updatedeventData.id"
