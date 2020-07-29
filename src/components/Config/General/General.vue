@@ -164,6 +164,14 @@
                   outlined
                 ></v-text-field>
               </v-col>
+              <v-col class="my-0 py-0" md="4" cols="12">
+                <v-text-field
+                  class="my-0 py-0"
+                  label="YouTube"
+                  v-model="communityinfo.socialLinks.youtube"
+                  outlined
+                ></v-text-field>
+              </v-col>
             </v-row>
           </v-col>
         </v-row>
@@ -230,7 +238,8 @@ export default {
         github: "",
         instagram: "",
         facebook: "",
-        medium: ""
+        medium: "",
+        youtube:"",
       },
       blogs: {
         medium: "",
@@ -257,7 +266,6 @@ export default {
         .doc("general")
         .set(this.communityinfo)
         .then(() => {
-          localStorage.setItem('generalconfig',JSON.stringify(this.communityinfo))
           this.setGeneral(this.communityinfo)
           this.$emit("show", "Community Data Updated Success");
           this.isAdding = false;
