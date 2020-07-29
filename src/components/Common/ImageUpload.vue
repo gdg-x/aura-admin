@@ -1,10 +1,10 @@
 <template>
-  <v-dialog v-model="imageDialog" persistent max-width="290">
+  <v-dialog v-model="imageDialog" persistent max-width="400">
     <template v-slot:activator="{ on }">
-      <v-btn color="primary" :loading="imageUploading" dark class="mt-2" v-on="on">OR Upload</v-btn>
+      <v-btn color="primary" depressed :loading="imageUploading" dark class="mt-2" v-on="on">OR Upload</v-btn>
     </template>
     <v-card>
-      <v-card-title>Upload {{userId}}'s Image</v-card-title>
+      <v-card-title class="google-font">Upload {{userId}}'s Image</v-card-title>
       <v-card-text>
         <v-img :src="imagePre" class="mb-6"></v-img>
 
@@ -12,11 +12,12 @@
           v-model="imageUpload"
           accept="image/*"
           label="Select Image"
+          prepend-icon="mdi-paperclip"
           show-size
-          prepend-icon
           @change="onFileChange"
           outlined
         ></v-file-input>
+        <p class="google-font" style="color:red">*Image should be square</p>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
