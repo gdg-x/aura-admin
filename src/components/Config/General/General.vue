@@ -93,13 +93,15 @@
           <v-col class="mb-0 pb-0 text-center" cols="7">
             <p class="google-font">Home Page Image </p>
             <v-img :src="(homeImage.length>0)?homeImage:require('@/assets/img/svg/home.svg')" style="border:1px solid #E0E0E0E0;border-radius:7px" contain height="200px"></v-img>
-            <ImageUpload  type="general" buttonName="Upload" userId="home" @message="showMessageSnakeBar" @uploadedImage="homeImageUploaded"/>
+            <ImageUpload type="general" buttonName="Upload" userId="home" @message="showMessageSnakeBar" @uploadedImage="homeImageUploaded"/>
+            <v-btn color="error" class="mt-2 ml-1" depressed @click="removeImage('home')">Remove Image</v-btn>
           </v-col>
           
           <v-col class="mb-0 pb-0 text-center" cols="5">
             <p class="google-font">Toolbar Icon Image</p>
             <v-img :src="(toolbarImage.length>0)?toolbarImage:''" style="border:1px solid #E0E0E0E0;border-radius:7px" contain height="200px"></v-img>
             <ImageUpload type="general" buttonName="Upload" userId="toolbar" @message="showMessageSnakeBar" @uploadedImage="toolbarImageUploaded"/>
+            <v-btn color="error" class="mt-2 ml-1" depressed @click="removeImage('toolbar')">Remove Image</v-btn>
           </v-col>
         </v-row>
         <v-row class="my-0 py-0">
@@ -279,6 +281,10 @@ export default {
     },
     toolbarImageUploaded(text){
       this.toolbarImage = text;
+    },
+    removeImage(text){
+      (text=="home")?this.homeImage = "":this.toolbarImage="";
+      this.showMessageSnakeBar("Image Removed, Please Save Config Data");
     },
     remove(item) {
       this.communityinfo.hashtags.splice(
