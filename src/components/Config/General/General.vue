@@ -88,6 +88,20 @@
         </v-row>
       </v-col>
       <v-col md="8" cols="12">
+        
+        <v-row class="my-0 py-0 pb-5 mb-2" style="border:1px solid #E0E0E0E0;border-radius:7px">
+          <v-col class="mb-0 pb-0 text-center" cols="7">
+            <p class="google-font">Home Page Image </p>
+            <v-img :src="(homeImage.length>0)?homeImage:require('@/assets/img/svg/home.svg')" style="border:1px solid #E0E0E0E0;border-radius:7px" contain height="200px"></v-img>
+            <ImageUpload  type="general" buttonName="Upload" userId="home" @message="showMessageSnakeBar" @uploadedImage="homeImageUploaded"/>
+          </v-col>
+          
+          <v-col class="mb-0 pb-0 text-center" cols="5">
+            <p class="google-font">Toolbar Icon Image</p>
+            <v-img :src="(toolbarImage.length>0)?toolbarImage:''" style="border:1px solid #E0E0E0E0;border-radius:7px" contain height="200px"></v-img>
+            <ImageUpload type="general" buttonName="Upload" userId="toolbar" @message="showMessageSnakeBar" @uploadedImage="toolbarImageUploaded"/>
+          </v-col>
+        </v-row>
         <v-row class="my-0 py-0">
           <v-col class="mb-0 pb-0" cols="12">
             <v-textarea
@@ -218,10 +232,15 @@ import { mapMutations } from 'vuex'
 
 export default {
   name: "Config",
+  components:{
+    ImageUpload:()=>import('@/components/Common/ImageUpload'),
+  },
   data: () => ({
     tab: null,
     isLoading: false,
     isAdding: false,
+    homeImage:"",
+    toolbarImage:"",
     communityinfo: {
       name: "",
       email:"",
@@ -252,6 +271,15 @@ export default {
   },
   methods: {
     ...mapMutations(['setGeneral']),
+    showMessageSnakeBar(text){
+      this.$emit("show", text);
+    },
+    homeImageUploaded(text){
+      this.homeImage = text;
+    },
+    toolbarImageUploaded(text){
+      this.toolbarImage = text;
+    },
     remove(item) {
       this.communityinfo.hashtags.splice(
         this.communityinfo.hashtags.indexOf(item),
@@ -260,6 +288,8 @@ export default {
       this.communityinfo.hashtags = [...this.communityinfo.hashtags];
     },
     setData() {
+      this.communityinfo.homeImage = this.homeImage;
+      this.communityinfo.toolbarImage=this.toolbarImage;
       this.isAdding = true;
       firebase.firestore
         .collection("config")
@@ -290,6 +320,8 @@ export default {
           doc = doc.data();
           if (Object.keys(doc).length > 0) {
             this.communityinfo = doc;
+            this.homeImage = doc.homeImage||"";
+            this.toolbarImage = doc.toolbarImage||"";
           }
           this.isLoading = false;
         })
