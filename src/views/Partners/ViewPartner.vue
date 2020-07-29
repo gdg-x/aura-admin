@@ -82,7 +82,11 @@
                     <b>Description</b>
                 </p>
                 <p class="mt-1 mb-0 google-font mt-0" style="font-size:110%">{{partnerInfo.des.length?partnerInfo.des:'Not Available'}}</p>
-
+                <div v-if="(role=='Super Admin' || role=='Admin')"><p class="mb-0 mt-3">
+                    <b>Partner POC Email</b>
+                </p>
+                <p class="mt-0 mb-0 google-font mt-0" style="font-size:110%">{{partnerInfo.pocemail || "Not Available"}}</p>
+                </div>
                 <p class="mb-0 mt-3">
                     <b>Partner ID</b>
                 </p>

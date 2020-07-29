@@ -57,10 +57,18 @@
                         outlined
                       ></v-text-field>
                     </v-col>
-                    <v-col md="5" xs="5" cols="8" class="pa-1 ma-0">
+                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                      <v-text-field
+                        v-model="pocEmail"
+                        class="ma-0"
+                        label="Partner POC Email"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col md="7" xs="7" cols="8" class="pa-1 ma-0">
                       <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
                     </v-col>
-                    <v-col md="3" xs="3" cols="4" class="pa-1 ma-0">
+                    <v-col md="4" xs="4" cols="4" class="pa-1 ma-0">
                       <UploadImage type="partner" :userId="id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
                     </v-col>
 
@@ -145,6 +153,7 @@ export default {
       visible: Boolean,
       id: "",
       name: "",
+      pocEmail:"",
       facebook: "",
       github: "",
       linkedin: "",
@@ -174,6 +183,7 @@ export default {
           des: this.des,
           image: this.imageURL,
           id: this.id,
+          pocemail:this.pocEmail,
           createdBy: {
             name: this.userDetails.name,
             id: this.userDetails.id
