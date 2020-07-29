@@ -92,14 +92,14 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
+                  <!-- <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                     <v-text-field
                       v-model="updatedData.image"
                       class="ma-0"
                       label="Image URL"
                       outlined
                     ></v-text-field>
-                  </v-col>
+                  </v-col> -->
                   <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                     <v-text-field
                       v-model="updatedData.company.name"
@@ -109,7 +109,7 @@
                       outlined
                     ></v-text-field>
                   </v-col>
-                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 mr-2">
+                  <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                     <v-text-field
                       v-model="updatedData.company.url"
                       class="ma-0"
@@ -137,6 +137,14 @@
                       outlined
                     ></v-text-field>
                   </v-col>
+
+                  <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
+                      <v-text-field v-model="updatedData.image" class="ma-0" label="Image URL" outlined></v-text-field>
+                    </v-col>
+                    <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                      <UploadImage type="speaker" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
+                    </v-col>
+
 
                   <v-col md="12" xs="12" cols="12" class="pa-1 py-0 ma-0">
                     <v-textarea outlined name="input-7-4" v-model="updatedData.bio" label="Bio"></v-textarea>
@@ -264,6 +272,9 @@ export default {
   props: {
     speakerData: {}
   },
+  components:{
+    UploadImage: () => import("@/components/Common/ImageUpload"),
+  },
   data() {
     return {
       imageUpload: [],
@@ -311,6 +322,12 @@ export default {
   },
   computed: { ...mapState(["userDetails"]) },
   methods: {
+    showMessageSnakeBar(text){
+      this.$emit("message", text);
+    },
+    imageUploadDone(text){
+      this.updatedData.image = text;
+    },
     UpdateData() {
       if (this.$refs.form.validate()) {
         let data = {

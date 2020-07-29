@@ -52,7 +52,7 @@ export default {
       {
         name: "Vrijraj Singh",
         photo:
-          "https://pbs.twimg.com/profile_images/1262462554879623168/MMQddEdS_400x400.jpg",
+          "https://unavatar.now.sh/twitter/VrijrajSingh",
         links: {
           github: "https://github.com/vrijraj/",
           linkedin: "https://www.linkedin.com/in/vrijraj/",
@@ -62,7 +62,7 @@ export default {
       {
         name: "Bharat Agarwal",
         photo:
-          "https://pbs.twimg.com/profile_images/1185538566778023936/WbjxDYwR_400x400.jpg",
+          "https://unavatar.now.sh/twitter/bharatagsrwal",
         links: {
           github: "https://github.com/bharatagsrwal/",
           linkedin: "https://www.linkedin.com/in/bharatagsrwal/",

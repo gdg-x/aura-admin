@@ -56,7 +56,7 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-          <AddNewCustomEvent v-if="(role=='Super Admin' || role=='Admin')" @showSuccess="showSnakeBar" class="ml-2" />
+          <AddNewCustomEvent v-if="(role=='Super Admin' || role=='Admin')" @showSuccess="showSnakeBar" @message="showMessageSnakeBar"  class="ml-2" />
         </v-toolbar>
 
         <!-- {{MeetupData}}   -->
@@ -134,6 +134,10 @@ export default {
   methods: {
     goToEventDetails(id) {
       this.$router.push("/events/" + id);
+    },
+    showMessageSnakeBar(text){
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
     },
     showCustomEvents() {
       this.isLoading = true;

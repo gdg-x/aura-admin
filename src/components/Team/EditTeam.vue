@@ -94,7 +94,7 @@
                     <p style="font-size:120%" class="my-0">Team Member Info</p>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       v-model="updatedData.name"
                       :rules="nameRules"
@@ -104,7 +104,7 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       v-model="updatedData.designation"
                       class="ma-0"
@@ -114,14 +114,13 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                    <v-text-field
-                      v-model="updatedData.image"
-                      class="ma-0"
-                      label="Image URL"
-                      outlined
-                    ></v-text-field>
-                  </v-col>
+                  <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
+                      <v-text-field v-model="updatedData.image" class="ma-0" label="Image URL" outlined></v-text-field>
+                    </v-col>
+                    <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                      <UploadImage type="team" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
+                    </v-col>
+
                   <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
                     <v-textarea outlined name="input-7-4" v-model="updatedData.bio" label="Bio"></v-textarea>
                   </v-col>
@@ -247,13 +246,12 @@ export default {
   props: {
     teamData: {}
   },
+  components:{
+    UploadImage: () => import("@/components/Common/ImageUpload"),
+  },
   data() {
     return {
-      imageUpload: [],
-      imagePre: "",
-      imageUploading: false,
       valid: true,
-      dialogImageUload: false,
       nameRules: [
         v => !!v || "Name is required",
         v => (v && v.length <= 50) || "Name must be less than 50 characters"
@@ -290,6 +288,12 @@ export default {
   },
   computed: { ...mapState(["role", "userDetails"]) },
   methods: {
+    showMessageSnakeBar(text){
+      this.$emit("message", text);
+    },
+    imageUploadDone(text){
+      this.updatedData.image = text;
+    },
     UpdateData() {
       if (this.$refs.form.validate()) {
         this.loading = true;

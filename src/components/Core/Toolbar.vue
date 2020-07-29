@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app fixed clipped-left class="white black--text">
+  <v-app-bar app fixed clipped-left class="white black--text" style="box-shadow: 0 2px 6px 0 rgba(0,0,0,.12), inset  0 -1px 0 0 #dadce0">
     <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
     <v-toolbar-title class="google-font ml-n5">
       {{ generalConfig.name || "Community Name" }} - Aura Admin

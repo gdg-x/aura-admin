@@ -221,7 +221,15 @@
                       ></v-text-field>
                     </v-col>
 
-                    <v-col md="6" xs="4" cols="12" class="ma-0">
+                    <!-- <v-col md="6" xs="4" cols="12" class="ma-0">
+                      <v-text-field
+                        v-model="updatedeventData.image"
+                        class="ma-0"
+                        label="Image URL"
+                        outlined
+                      ></v-text-field>
+                    </v-col>-->
+                    <v-col md="7" xs="7" cols="6" class="ma-0">
                       <v-text-field
                         v-model="updatedeventData.image"
                         class="ma-0"
@@ -229,8 +237,16 @@
                         outlined
                       ></v-text-field>
                     </v-col>
+                    <v-col md="4" xs="4" cols="6" class="ma-0">
+                      <UploadImage
+                        type="events"
+                        :userId="updatedeventData.id"
+                        @message="showMessageSnakeBar"
+                        @uploadedImage="imageUploadDone"
+                      />
+                    </v-col>
 
-                    <v-col md="6" xs="4" cols="12" class="ma-0">
+                    <v-col md="12" xs="12" cols="12" class="ma-0">
                       <v-combobox
                         chips
                         v-model="updatedeventData.hashtags"
@@ -454,7 +470,8 @@ import CustomEventServices from "@/services/CustomEventServices";
 export default {
   components: {
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
-    EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda")
+    EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
+    UploadImage: () => import("@/components/Common/ImageUpload")
   },
   computed: {
     ...mapState(["userDetails"])
@@ -539,6 +556,12 @@ export default {
     this.ShowTeam();
   },
   methods: {
+    showMessageSnakeBar(text) {
+      this.$emit("message", text);
+    },
+    imageUploadDone(text) {
+      this.updatedeventData.image = text;
+    },
     deleteData(index) {
       this.updatedeventData.agenda.splice(index, 1);
     },
@@ -630,7 +653,7 @@ export default {
         .catch(e => {
           console.log(e.msg);
           this.loading = false;
-          this.$emit("editedSuccess", e.msg);
+          this.$emit("message", e.msg);
         });
     }
   }

@@ -25,6 +25,7 @@
             :speakerData="speakerInfo"
             v-if="(!showLoader && !userNotFound) && (role=='Super Admin' || role=='Admin')"
             @editedSuccess="showSnakeBar"
+            @message="showMessageSnakeBar"
           />
           <DeleteSpeaker
             :SpeakerInfo="speakerInfo"
@@ -216,6 +217,10 @@ export default {
         console.log(e)
         this.isLoading = false
       })
+    },
+    showMessageSnakeBar(text){
+      this.snakeBarMessage = text;
+      this.isSnakeBarVisible = true;
     },
     showSnakeBar(text) {
       this.snakeBarMessage = text;
