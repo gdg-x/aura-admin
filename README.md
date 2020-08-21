@@ -72,6 +72,17 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
     messagingSenderId: "xxxxxxxxxxx",
     appId: "1:xxxxxxxxx:web:xxxxxxx"
     ```
+1. Go to Firebase Storage
+1. Copy the code which looks similar to the below sample and update the rule for Firebase Storage
+    ```js
+    service firebase.storage {
+      match /b/{bucket}/o {
+        match /{allPaths=**} {
+          allow read, write: if request.auth != null;
+        }
+      }
+    }
+    ```
 1. Now goto project code on your local system and inside `src/config/` update the `firebase.js` file with the code you copied from the Firebase console and Update the field `name` in [vue.config](https://github.com/gdg-x/aura-admin/blob/master/vue.config.js) in the local project root directory
 1. Click on Authentication in the left navigation.
 1. Click on Sign-in method and enable Email/Password
