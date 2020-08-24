@@ -58,6 +58,17 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
             }
         }
     ```
+1. Go to Firebase Storage
+1. Copy the code which looks similar to the below sample and update the rule for Firebase Storage
+    ```js
+    service firebase.storage {
+      match /b/{bucket}/o {
+        match /{allPaths=**} {
+          allow read, write: if request.auth != null;
+        }
+      }
+    }
+    ```
 1. In the Firebase project console dashboard. Click on create a new app
 1. Go to Firebase project Settings and then General Settings Tab
 1. Scroll down and go to your app section under Firebase SDK snippet
