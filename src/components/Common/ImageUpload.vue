@@ -17,7 +17,7 @@
           @change="onFileChange"
           outlined
         ></v-file-input>
-        <p class="google-font my-0" style="color:red">*Image should be in jpeg/jpg/png/webp/ico only</p>
+        <p class="google-font my-0" style="color:red">*Image should be in jpeg/jpg/png/webp/ico/svg only</p>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -61,8 +61,8 @@ export default {
       let ext = this.imageUpload.name.split(".").pop();
 
       // Checking if Extension us 
-      if(ext != 'jpeg' && ext != 'jpg' && ext != 'png' && ext != "webp" && ext != 'JFIF' && ext != 'ico'){
-        this.$emit("message", "Please choose image format in jpeg/jpg/png/webp/JFIF/ico");
+      if(ext != 'jpeg' && ext != 'jpg' && ext != 'png' && ext != "webp" && ext != 'JFIF' && ext != 'ico' && ext != 'svg'){
+        this.$emit("message", "Please choose image format in jpeg/jpg/png/webp/JFIF/ico/svg");
         this.imageUploading = false;
         return;
       }
