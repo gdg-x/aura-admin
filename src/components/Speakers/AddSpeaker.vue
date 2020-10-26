@@ -80,7 +80,7 @@
                       <v-text-field
                         v-model="companyURL"
                         class="ma-0"
-                        :rules="nameRules"
+                        :rules="urlRules"
                         label="Company URL *"
                         outlined
                       ></v-text-field>
@@ -211,6 +211,10 @@ export default {
       emailRules: [
         v => !!v || "E-mail is required",
         v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      urlRules: [
+        v => !!v || "URL is required",
+        v => /^(www\.|http:\/\/|https:\/\/|ftp:\/\/)\w+\.\w+/.test(v) || "URL must be valid"
       ],
       dialog: false,
       loading: false,
