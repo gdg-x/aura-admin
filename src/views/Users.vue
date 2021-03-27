@@ -1,5 +1,5 @@
 <template>
-  <v-container class="" style="max-width:1600px">
+  <v-container class="" style="max-width: 1600px">
     <Snakebar
       :message="snakeBarMessage"
       :isShow.sync="isSnakeBarVisible"
@@ -10,7 +10,7 @@
       <v-col>
         <v-toolbar
           class="elevation-0"
-          style="border:1px solid #e0e0e0;border-radius:5px;"
+          style="border: 1px solid #e0e0e0; border-radius: 5px"
         >
           <v-toolbar-title class="google-font mr-3"
             >User Management
@@ -114,7 +114,12 @@
                                       class="red"
                                       >Disabled</v-chip
                                     >
-                                    <v-chip label x-small dark v-else class="green"
+                                    <v-chip
+                                      label
+                                      x-small
+                                      dark
+                                      v-else
+                                      class="green"
                                       >Enabled</v-chip
                                     >
                                   </div>
@@ -224,7 +229,11 @@
 
                     <v-data-table
                       :mobile-breakpoint="0"
-                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      style="
+                        border: 1px solid #e0e0e0;
+                        border-radius: 5px;
+                        background: white;
+                      "
                       :search="search"
                       :loading="isLoading"
                       :headers="headers"
@@ -378,7 +387,7 @@ export default {
       // { text: 'Email', value: 'email' },
       { text: "Role", value: "role" },
       { text: "User Type", value: "userType" },
-      { text: "User Status", value: "disabled", sortable: true, },
+      { text: "User Status", value: "disabled", sortable: true },
       { text: "Actions", value: "actions", sortable: false },
     ],
   }),
@@ -433,7 +442,7 @@ export default {
         .then((res) => {
           // console.log(res)
           this.showDialog = false;
-          this.showSnakeBar(res.msg);
+          this.showSnakeBar("User Disabled");
         })
         .catch((e) => {
           this.showDialog = false;
@@ -446,7 +455,7 @@ export default {
         .then((res) => {
           // console.log(res)
           this.showDialog = false;
-          this.showSnakeBar(res.msg);
+          this.showSnakeBar("User Enabled");
         })
         .catch((e) => {
           this.showDialog = false;

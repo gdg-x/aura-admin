@@ -81,15 +81,15 @@ export default {
     async onBoardUser() {
       this.loading = true;
       try {
-        const deleteData = await teamOnboardService.deleteTempUse(
-          this.$route.params.id
-        );
-        if (!deleteData.success) throw { message: "Something went wrong" };
         const firebaseUser = await firebase.auth.createUserWithEmailAndPassword(
           this.finalUser.email,
           this.userData.password
         );
         await firebase.auth.signOut();
+        const deleteData = await teamOnboardService.deleteTempUse(
+          this.$route.params.id
+        );
+        if (!deleteData.success) throw { message: "Something went wrong" };
         const data = { uid: firebaseUser.user.uid, ...this.finalUser };
         const userAdd = await teamOnboardService.addOnBoardUserToUserManagement(
           data
