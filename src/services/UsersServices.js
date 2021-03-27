@@ -7,8 +7,11 @@ let usersServices = {
             userType: data.userType,
             id: data.id,
         }).then(res => {
-            resolve({success: true, message: "User Added Success"});
-        }).catch(e=>{
+            resolve({
+                success: true,
+                message: "User Added Success"
+            });
+        }).catch(e => {
             reject(e);
         });
     }),
