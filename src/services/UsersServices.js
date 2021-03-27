@@ -1,28 +1,39 @@
 import firebase from '@/config/firebase'
 
 let usersServices = {
+    addUser: (data) => new Promise((resolve, reject) => {
+        firebase.firestore.collection("teamOnboard").doc(data.id).set({
+            email: data.email,
+            userType: data.userType,
+            id: data.id,
+        }).then(res => {
+            resolve({success: true, message: "User Added Success"});
+        }).catch(e=>{
+            reject(e);
+        });
+    }),
+
     getCurrentUserDetails: () => {
         let uid = ''
         return new Promise((resolve, reject) => {
-            uid = firebase.auth.currentUser.uid
+            uid = firebase.auth.currentUser.uid;
 
             firebase.firestore.collection('team').where("uid", "==", uid).get().then(docs => {
-                // console.log(docs)
                 docs.forEach(doc => {
                     resolve({
                         success: true,
                         data: doc.data(),
                         uid: uid
-                    })
-                })
+                    });
+                });
             }).catch(e => {
                 reject({
                     success: false,
                     msg: e
-                })
+                });
                 // console.log(e)
-            })
-        })
+            });
+        });
     },
 
     getUserRole: () => {
@@ -133,14 +144,14 @@ let usersServices = {
                 });
         })
     },
-    removeUser: (uid, name,communityName, communityEmail) => {
+    removeUser: (uid, name, communityName, communityEmail) => {
         return new Promise((resolve, reject) => {
             let appp = firebase.functions.httpsCallable('team-removeAuth')
             appp({
                 uid: uid,
                 name: name,
-                communityName:communityName,
-                communityEmail:communityEmail
+                communityName: communityName,
+                communityEmail: communityEmail
             }).then(res => {
                 resolve(res.data)
             }).catch(e => {

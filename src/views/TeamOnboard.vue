@@ -25,10 +25,25 @@
           >Onboard</v-btn
         >
       </v-col>
-      <v-col sm="12" v-else-if="error.length > 1">
-          {{error}}
+      <v-col sm="12" v-else-if="!successDialog && error.length > 1">
+        {{ error }}
       </v-col>
     </v-row>
+
+    <v-dialog v-model="successDialog" width="500">
+      <v-card>
+        <v-card-title class="headline grey lighten-2"> Success </v-card-title>
+
+        <v-card-text> Your account is created </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="dialogOkay"> Okay </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -39,6 +54,7 @@ export default {
   name: "teamonboard",
   data: () => ({
     loading: false,
+    successDialog: false,
     isVisible: false,
     error: "",
     finalUser: {},
@@ -46,7 +62,7 @@ export default {
       password: "",
     },
   }),
-  beforeMount() {
+  mounted() {
     teamOnboardService
       .getUserById(this.$route.params.id)
       .then((result) => {
@@ -56,7 +72,7 @@ export default {
         this.isVisible = true;
       })
       .catch((e) => {
-        this.isVisible = false
+        this.isVisible = false;
         this.error = e.message;
         console.log(e);
       });
@@ -65,18 +81,35 @@ export default {
     async onBoardUser() {
       this.loading = true;
       try {
-        const deleteData = await teamOnboardService.deleteTempUse(this.$route.params.id);
+        const deleteData = await teamOnboardService.deleteTempUse(
+          this.$route.params.id
+        );
         if (!deleteData.success) throw { message: "Something went wrong" };
-        const firebaseUser = await firebase.auth.createUserWithEmailAndPassword(this.finalUser.email, this.userData.password);
+        const firebaseUser = await firebase.auth.createUserWithEmailAndPassword(
+          this.finalUser.email,
+          this.userData.password
+        );
         await firebase.auth.signOut();
         const data = { uid: firebaseUser.user.uid, ...this.finalUser };
-        const userAdd = await teamOnboardService.addOnBoardUserToUserManagement(data);
+        const userAdd = await teamOnboardService.addOnBoardUserToUserManagement(
+          data
+        );
+        const updateTeamFields = await teamOnboardService.updateTeamWithUID(
+          data.uid,
+          data.id
+        );
+        if (!updateTeamFields.success) throw updateTeamFields;
         this.loading = true;
-        this.$router.replace("/login");
+        this.successDialog = true;
       } catch (e) {
         console.log(e);
         this.loading = false;
       }
+    },
+
+    dialogOkay() {
+      this.successDialog = false;
+      this.$router.replace("/login");
     },
   },
 };

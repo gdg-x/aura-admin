@@ -39,6 +39,13 @@ let teamOnboard = {
         }).catch(e => {
             reject(e);
         });
+    }),
+    updateTeamWithUID: (uid, id) => new Promise((resolve, reject) => {
+        firebase.firestore.collection("team").doc(id).update({uid}).then(res=>{
+            resolve({success: true});
+        }).catch(e=>{
+            reject(e);
+        });
     })
 };
 

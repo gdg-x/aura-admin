@@ -52,7 +52,7 @@ export default {
       {
         name: "Vrijraj Singh",
         photo:
-          "https://unavatar.now.sh/twitter/VrijrajSingh",
+          "https://avatars.githubusercontent.com/u/10599101",
         links: {
           github: "https://github.com/vrijraj/",
           linkedin: "https://www.linkedin.com/in/vrijraj/",
@@ -62,7 +62,7 @@ export default {
       {
         name: "Bharat Agarwal",
         photo:
-          "https://unavatar.now.sh/twitter/bharatagsrwal",
+          "https://avatars.githubusercontent.com/u/43988371",
         links: {
           github: "https://github.com/bharatagsrwal/",
           linkedin: "https://www.linkedin.com/in/bharatagsrwal/",
