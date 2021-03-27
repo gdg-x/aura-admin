@@ -11,11 +11,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Home",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -26,11 +26,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Home",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -50,11 +50,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Team",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -65,11 +65,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Partners",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -80,11 +80,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Partner Details",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -95,11 +95,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Team Details",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -110,11 +110,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Speakers",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -125,11 +125,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Speakers Details",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -140,11 +140,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Config",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": false,
-        "Viewer":false
+        "Viewer": false
       }
     }
   },
@@ -155,11 +155,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Events",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -170,11 +170,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Event Details",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -185,11 +185,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Notifications",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":false
+        "Viewer": false
       }
     }
   },
@@ -200,11 +200,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Connect",
-      bottomVisible:false,
+      bottomVisible: false,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -215,11 +215,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Email",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":false
+        "Viewer": false
       }
     }
   },
@@ -230,11 +230,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "User Management",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": false,
-        "Viewer":false
+        "Viewer": false
       }
     }
   },
@@ -245,11 +245,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Profile Settings",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
       }
     }
   },
@@ -260,11 +260,11 @@ const routes = [{
     meta: {
       requiresAuth: true,
       title: "Email",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":false
+        "Viewer": false
       }
     }
   },
@@ -275,11 +275,26 @@ const routes = [{
     meta: {
       requiresAuth: false,
       title: "About",
-      bottomVisible:true,
+      bottomVisible: true,
       access: {
         "Super Admin": true,
         "Admin": true,
-        "Viewer":true
+        "Viewer": true
+      }
+    }
+  },
+  {
+    path: '/onboard/:id',
+    name: "OnBoard",
+    component: () => import( /* webpackChunkName: "roles" */ '@/views/TeamOnboard'),
+    meta: {
+      requiresAuth: false,
+      title: "Team Onboard",
+      bottomVisible: false,
+      access: {
+        "Super Admin": true,
+        "Admin": true,
+        "Viewer": true
       }
     }
   },
