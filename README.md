@@ -89,7 +89,7 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
     - Create user with Email and Password 
 1. For Cloud Functions  
     - `npm install` for installing dependencies 
-    - Goto src/functions and then in the terminal run this command
+    - Go to functions folder and then in the terminal run this command
         ```js
             firebase functions:config:set someservice.email="yourmail@gmail.com" someservice.password="yourpassword"
         ```
