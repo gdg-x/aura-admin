@@ -5,12 +5,12 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
 import firebase from './config/firebase'
-import './style.css'
-import VueChatScroll from 'vue-chat-scroll'
+import './style.css';
+import VueChatScroll from 'vue-chat-scroll';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(VueChatScroll)
+Vue.use(VueChatScroll);
 
 firebase.auth.onAuthStateChanged(()=>{
   new Vue({
@@ -18,5 +18,5 @@ firebase.auth.onAuthStateChanged(()=>{
     store,
     vuetify,
     render: h => h(App)
-  }).$mount('#app')
-})
+  }).$mount('#app');
+});

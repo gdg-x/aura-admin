@@ -130,7 +130,6 @@ export default {
         var UpdatedEventData = {
           eventid: this.selectedEvents
         };
-        // console.log(UpdatedPartnerData)
         firebase.firestore
           .collection("featureevents")
           .doc("data")

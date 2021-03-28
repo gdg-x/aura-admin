@@ -74,7 +74,6 @@ export default {
       this.loading = true;
       UserService.updateUser(this.data.uid, this.userRole)
         .then(res => {
-          // console.log(res);
           if (res.success) {
             this.loading = false;
             this.dialog = false;

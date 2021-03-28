@@ -41,10 +41,9 @@ let teamServices = {
                 })
             })
             .catch(err => {
-                reject(err)
-                // console.log("Error getting documents", err);
+                reject(err);
             });
-        })
+        });
     },
 
     // Get Team Member Details whose id = id
@@ -110,7 +109,7 @@ let teamServices = {
             .delete()
             .then(() => {
                 if(teamInfo.uid && teamInfo.uid.length>0){
-                    UserService.removeUser(teamInfo.uid, teamInfo.name).then(res=>{
+                    UserService.removeUser(teamInfo.uid).then(res=>{
                         resolve({
                             success:true,
                             msg:'Team Member Removed Successfully',
