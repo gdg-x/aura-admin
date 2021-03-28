@@ -1,10 +1,25 @@
 <template>
-  <v-dialog v-model="imageDialog" v-if="userId.length>0" persistent max-width="400">
+  <v-dialog
+    v-model="imageDialog"
+    v-if="userId && userId.length > 0"
+    persistent
+    max-width="400"
+  >
     <template v-slot:activator="{ on }">
-      <v-btn color="primary"  depressed :loading="imageUploading" dark class="mt-2" v-on="on">{{buttonName || "or Upload"}} </v-btn>
+      <v-btn
+        color="primary"
+        depressed
+        :loading="imageUploading"
+        dark
+        class="mt-2"
+        v-on="on"
+        >{{ buttonName || "or Upload" }}
+      </v-btn>
     </template>
     <v-card>
-      <v-card-title class="google-font">Upload {{userId}}'s Image</v-card-title>
+      <v-card-title class="google-font"
+        >Upload {{ userId }}'s Image</v-card-title
+      >
       <v-card-text>
         <v-img :src="imagePre" class="mb-6"></v-img>
 
@@ -17,12 +32,22 @@
           @change="onFileChange"
           outlined
         ></v-file-input>
-        <p class="google-font my-0" style="color:red">*Image should be in jpeg/jpg/png/webp/ico/svg only</p>
+        <p class="google-font my-0" style="color: red">
+          *Image should be in jpeg/jpg/png/webp/ico/svg only
+        </p>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" text @click="imageDialog = false">Discard</v-btn>
-        <v-btn color="green darken-1" text @click="uploadImage" :loading="imageUploading">Upload Image</v-btn>
+        <v-btn color="green darken-1" text @click="imageDialog = false"
+          >Discard</v-btn
+        >
+        <v-btn
+          color="green darken-1"
+          text
+          @click="uploadImage"
+          :loading="imageUploading"
+          >Upload Image</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -38,7 +63,7 @@ export default {
     imageDialog: false,
     imageUploading: false,
     imagePre: "",
-    imageUpload: []
+    imageUpload: [],
   }),
   methods: {
     onFileChange() {
@@ -60,9 +85,20 @@ export default {
       this.imageUploading = true;
       let ext = this.imageUpload.name.split(".").pop();
 
-      // Checking if Extension us 
-      if(ext != 'jpeg' && ext != 'jpg' && ext != 'png' && ext != "webp" && ext != 'JFIF' && ext != 'ico' && ext != 'svg'){
-        this.$emit("message", "Please choose image format in jpeg/jpg/png/webp/JFIF/ico/svg");
+      // Checking if Extension us
+      if (
+        ext != "jpeg" &&
+        ext != "jpg" &&
+        ext != "png" &&
+        ext != "webp" &&
+        ext != "JFIF" &&
+        ext != "ico" &&
+        ext != "svg"
+      ) {
+        this.$emit(
+          "message",
+          "Please choose image format in jpeg/jpg/png/webp/JFIF/ico/svg"
+        );
         this.imageUploading = false;
         return;
       }
@@ -70,25 +106,28 @@ export default {
       var refLink = firebase.storage.ref(url);
       refLink
         .put(this.imageUpload)
-        .then(file => {
-          refLink.getDownloadURL().then(a => {
-            this.$emit("message", "Image Uploaded kindly Save the Data");
-            this.$emit("uploadedImage", a);
-            this.imageUploading = false;
-            this.imageDialog = false;
-          }).catch(e=>{
-            this.imageUploading = false;
-            this.$emit("message", e);
-          });
+        .then((file) => {
+          refLink
+            .getDownloadURL()
+            .then((a) => {
+              this.$emit("message", "Image Uploaded kindly Save the Data");
+              this.$emit("uploadedImage", a);
+              this.imageUploading = false;
+              this.imageDialog = false;
+            })
+            .catch((e) => {
+              this.imageUploading = false;
+              this.$emit("message", e);
+            });
         })
-        .catch(e => {
+        .catch((e) => {
           this.imageUploading = false;
           this.$emit("emptyUserId", e);
         });
 
       //   console.log(url);
-    }
-  }
+    },
+  },
 };
 </script>
 
