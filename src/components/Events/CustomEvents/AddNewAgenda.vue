@@ -80,7 +80,6 @@ export default {
     }),
     methods:{
       addGuid(){
-        // console.log(this.data);
         this.data.push({
             starttime:this.starttime,
             endtime:this.endtime,

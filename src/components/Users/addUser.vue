@@ -2,15 +2,18 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="indigo" dark v-on="on" @click="getData">Add User</v-btn>
+        <v-btn depressed color="indigo" dark v-on="on" @click="getData"
+          >Add User</v-btn
+        >
       </template>
       <v-card v-if="dialog" class>
         <v-card-title
           class="google-font"
-          style="border-bottom:1px solid #e0e0e0;"
+          style="border-bottom: 1px solid #e0e0e0"
           primary-title
           dark
-        >Add User</v-card-title>
+          >Add User</v-card-title
+        >
         <v-card-text class="px-5">
           <v-container fluid>
             <v-form ref="form" v-model="valid" lazy-validation>
@@ -31,55 +34,73 @@
                       <v-chip small v-if="index === 0">
                         <span>{{ item.name }}</span>
                       </v-chip>
-                      <span
-                        v-if="index === 1"
-                        class="grey--text caption"
-                      >(+{{ selectedUser.length - 1 }} others)</span>
+                      <span v-if="index === 1" class="grey--text caption"
+                        >(+{{ selectedUser.length - 1 }} others)</span
+                      >
                     </template>
                   </v-autocomplete>
                 </v-col>
                 <v-col cols="12" class="pa-1 ma-0">
-                    <v-select
-                        :items="items"
-                        v-model="userRole"
-                        label="Role"
-                        outlined
-                    ></v-select>
+                  <v-select
+                    :items="items"
+                    v-model="userRole"
+                    label="Role"
+                    outlined
+                  ></v-select>
                 </v-col>
               </v-row>
             </v-form>
             <!-- <successDialog :data.sync="output"/> -->
 
             <div class="text-center">
-            <v-dialog v-model="emailDialog" persistent scrollable width="500">
-            <v-card v-if="emailDialog" class>
-                <v-card-title
-                class="google-font"
-                style="border-bottom:1px solid #e0e0e0;"
-                primary-title
-                dark
-                >Status</v-card-title>
-                <v-card-text class="px-5">
-                <v-container fluid>
-                    <v-row class="pa-0">
+              <v-dialog v-model="emailDialog" persistent scrollable width="500">
+                <v-card v-if="emailDialog" class>
+                  <v-card-title
+                    class="google-font"
+                    style="border-bottom: 1px solid #e0e0e0"
+                    primary-title
+                    dark
+                    >Status</v-card-title
+                  >
+                  <v-card-text class="px-5">
+                    <v-container fluid>
+                      <v-row class="pa-0">
                         <v-col cols="12" class="pa-1 ma-0">
-                        <p :class="[!output.data.success?'red--text':'green--text']" class="google-font heading my-0">{{ output.data.msg }}</p>
-                          <p v-if="output.data.emailstatus" :class="[!output.data.emailstatus.success?'red--text':'green--text']" class="google-font heading my-0 mt-1">
-                            {{ output.data.emailstatus.msg }}
+                          <span v-html="output"></span>
+                          <!-- <p
+                            :class="[
+                              !output.data.success
+                                ? 'red--text'
+                                : 'green--text',
+                            ]"
+                            class="google-font heading my-0"
+                          >
+                            {{ output.data.msg }}
                           </p>
+                          <p
+                            v-if="output.data.emailstatus"
+                            :class="[
+                              !output.data.emailstatus.success
+                                ? 'red--text'
+                                : 'green--text',
+                            ]"
+                            class="google-font heading my-0 mt-1"
+                          >
+                            {{ output.data.emailstatus.msg }}
+                          </p> -->
                         </v-col>
-                    </v-row>
-                </v-container>
-                </v-card-text>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
 
-                <v-divider></v-divider>
+                  <v-divider></v-divider>
 
-                <v-card-actions class="grey lighten-4">
-                <div class="flex-grow-1"></div>
-                <v-btn color="indigo" text @click="close()">Close</v-btn>
-                </v-card-actions>
-            </v-card>
-            </v-dialog>
+                  <v-card-actions class="grey lighten-4">
+                    <div class="flex-grow-1"></div>
+                    <v-btn color="indigo" text @click="close()">Close</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </div>
           </v-container>
         </v-card-text>
@@ -95,7 +116,8 @@
             @click="addUser"
             depressed
             :loading="loading"
-          >Add</v-btn>
+            >Add</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -103,74 +125,69 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase'
-import TeamServices from '@/services/TeamServices'
-import {mapState} from 'vuex'
+import firebase from "@/config/firebase";
+import TeamServices from "@/services/TeamServices";
+import UsersService from "@/services/UsersServices";
+import { mapState } from "vuex";
 export default {
-  components: {
-  },
+  components: {},
   data: () => ({
     dialog: false,
     loading: false,
-    items:['Super Admin','Admin','Viewer'],
-    userRole:'',
+    items: ["Super Admin", "Admin", "Viewer"],
+    userRole: "",
     valid: false,
     selectedUser: [],
     isAdding: false,
-    teamData:[],
-    output:{},
-    emailDialog: false
+    teamData: [],
+    output: {},
+    emailDialog: false,
   }),
-  computed:{
-    ...mapState(['generalConfig'])
+  computed: {
+    ...mapState(["generalConfig"]),
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
-    getData(){
+    getData() {
       this.ShowTeam();
     },
     ShowTeam() {
-        this.teamData = [];
-        this.loading = true;
-        TeamServices.getAllTeam().then(res=>{
-            if(res.success){
-              this.teamData = res.data
-            }
-            this.loading = false
-        }).catch(e=>{
-            this.loading = false
-            console.log("Error getting documents", e)
+      this.teamData = [];
+      this.loading = true;
+      TeamServices.getAllTeam()
+        .then((res) => {
+          if (res.success) {
+            this.teamData = res.data;
+          }
+          this.loading = false;
         })
+        .catch((e) => {
+          this.loading = false;
+          console.log("Error getting documents", e);
+        });
     },
-    close(){
+    close() {
       this.dialog = false;
-      this.emailDialog=false;
-      this.output.data.success?
-        this.$emit('showSuccess', "Added Success")
-      : this.$emit('failed', this.output.data.msg)
-
+      this.emailDialog = false;
+      this.$emit("showSuccess", "Added Success")
     },
-    addUser() {
-        this.loading = true
-        let userData = this.teamData.filter(team=>team.id == this.selectedUser)
-        userData[0]['userType'] = this.userRole
-        userData[0]['communityEmail'] = this.generalConfig.email
-        userData[0]['communityName'] = this.generalConfig.name
-        let appp = firebase.functions.httpsCallable('team-createAuthUser')
-        appp(userData[0]).then(res1=>{
-            // console.log(res1)
-            this.output = res1
-            this.emailDialog = true
-            this.loading = false
-        }).catch(e=>{
-            console.log(e)
-            this.output = e
-            this.emailDialog = true
-            this.loading = false
-        })
-    }
-  }
+
+    async addUser() {
+      this.loading = true;
+      try {
+        let { id, email } = this.teamData.filter((team) => team.id == this.selectedUser)[0];
+        const data = { id, email, userType: this.userRole };
+        const userAddData = await UsersService.addUser(data);
+        this.output = `User Signup Link Generated, Please send Link to user <a href="${window.location.origin}/onboard/${data.id}" target="_blank">${window.location.origin}/onboard/${data.id}</a>`;
+        this.emailDialog = true;
+        this.loading = false;
+      } catch (e) {
+        console.log(e);
+        this.output = e.message;
+        this.emailDialog = true;
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>

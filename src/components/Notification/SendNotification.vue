@@ -68,7 +68,6 @@ export default {
                 fetch("https://fcm.googleapis.com/fcm/send", options)
                   .then(res => res.json())
                   .then(data => {
-                    // console.log(data);
                     if (data.failure == 1) {
                       firebase.firestore
                         .collection("apiEnd")
@@ -83,7 +82,6 @@ export default {
                     this.$emit("errorRecived", err);
                   });
               });
-              // console.log(docs);
               this.$emit("addedSuccess", "Push Notifications Sent Success");
               this.dialog = false;
             }).catch(e=>{
