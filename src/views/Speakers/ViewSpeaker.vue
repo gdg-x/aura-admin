@@ -94,7 +94,7 @@
                   <v-avatar size="130">
                     <img
                       :src="
-                        speakerInfo.image.length > 0
+                        speakerInfo.image && speakerInfo.image.length > 0
                           ? speakerInfo.image
                           : require('@/assets/img/default_avatar.jpg')
                       "
