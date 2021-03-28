@@ -128,6 +128,29 @@ let usersServices = {
             });
     }),
 
+    // Get All Pending Users Info
+
+    getAllPendingUsers: () => new Promise((resolve, reject) => {
+        let users = [];
+        firebase.firestore
+            .collection("teamOnboard")
+            .get()
+            .then(async (snapshot) => {
+                await snapshot.forEach(doc => {
+                    users.push(doc.data())
+                })
+
+                resolve({
+                    success: true,
+                    data: users
+                });
+            })
+            .catch(err => {
+                reject(err);
+            });
+    }),
+
+
     removeUser: (uid) => new Promise((resolve, reject) => {
         firebase.firestore.collection("users").doc(uid).delete().then(res => {
             resolve({
