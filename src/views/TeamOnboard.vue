@@ -66,7 +66,6 @@ export default {
     teamOnboardService
       .getUserById(this.$route.params.id)
       .then((result) => {
-        console.log(result);
         this.finalUser = result;
         this.userData = { ...result };
         this.isVisible = true;

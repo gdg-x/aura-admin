@@ -41,10 +41,9 @@ let teamServices = {
                 })
             })
             .catch(err => {
-                reject(err)
-                // console.log("Error getting documents", err);
+                reject(err);
             });
-        })
+        });
     },
 
     // Get Team Member Details whose id = id

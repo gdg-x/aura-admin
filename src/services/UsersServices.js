@@ -31,14 +31,12 @@ let usersServices = {
                 success: false,
                 msg: e
             });
-            // console.log(e)
         });
     }),
 
     getUserRole: () => new Promise((resolve, reject) => {
         const uid = firebase.auth.currentUser.uid;
         firebase.firestore.collection('users').doc(uid).get().then(docs => {
-            // console.log(docs)
             resolve({
                 success: true,
                 data: docs.data(),
@@ -49,14 +47,12 @@ let usersServices = {
                 success: false,
                 msg: e
             });
-            // console.log(e)
         });
     }),
     updateUser: (docid, userType) => new Promise((resolve, reject) => {
         firebase.firestore.collection('users').doc(docid).update({
             userType: userType
         }).then(() => {
-            // console.log(docs)
             resolve({
                 success: true,
                 msg: "User role updated"
@@ -76,7 +72,6 @@ let usersServices = {
         user.reauthenticateWithCredential(cred).then(() => {
             var user = firebase.auth.currentUser;
             user.updatePassword(newPassword).then(() => {
-                // console.log("Password updated!");
                 resolve({
                     success: true,
                     msg: "Password updated!"

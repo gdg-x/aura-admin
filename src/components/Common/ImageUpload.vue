@@ -85,8 +85,6 @@ export default {
           this.imageUploading = false;
           this.$emit("emptyUserId", e);
         });
-
-      //   console.log(url);
     }
   }
 };

@@ -163,7 +163,7 @@ export default {
           })
           .catch(e => {
             this.loading = false;
-            // console.log(e);
+            console.log(e);
             alert("Something went wrong\n" + e);
           });
       }

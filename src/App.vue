@@ -119,7 +119,6 @@ export default {
     getData() {
       this.isLoading = true;
       UserService.getUserRole().then(async (res) => {
-        // console.log(res);
         if (res.success) {
           if (!res.exists) {
             this.addFirstTime = true;
@@ -136,7 +135,6 @@ export default {
           this.roleSet(res.data.userType);
           await TeamService.getTeamMemberDetails(res.data.id)
             .then((res) => {
-              // console.log(res)
               if (res.isFound) {
                 this.userDetailsSet(res.data);
               }

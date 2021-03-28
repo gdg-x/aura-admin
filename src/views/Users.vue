@@ -440,7 +440,6 @@ export default {
       this.showDialog = true;
       UsersServices.disableUser(uid)
         .then((res) => {
-          // console.log(res)
           this.showDialog = false;
           this.showSnakeBar("User Disabled");
         })
@@ -453,7 +452,6 @@ export default {
       this.showDialog = true;
       UsersServices.enableUser(uid)
         .then((res) => {
-          // console.log(res)
           this.showDialog = false;
           this.showSnakeBar("User Enabled");
         })

@@ -94,7 +94,6 @@ export default {
       this.loading = true;
       UsersServices.removeUser(data.uid)
         .then((res) => {
-          console.log(res);
           this.loading = false;
           // this.showSnakeBar('User Removed')
           this.successDialog = true;

@@ -66,7 +66,7 @@
                     <v-container fluid>
                       <v-row class="pa-0">
                         <v-col cols="12" class="pa-1 ma-0">
-                          {{ output }}
+                          <span v-html="output"></span>
                           <!-- <p
                             :class="[
                               !output.data.success
@@ -169,22 +169,17 @@ export default {
     close() {
       this.dialog = false;
       this.emailDialog = false;
-      this.output.data.success
-        ? this.$emit("showSuccess", "Added Success")
-        : this.$emit("failed", this.output.data.msg);
+      this.$emit("showSuccess", "Added Success")
     },
+
     async addUser() {
       this.loading = true;
       try {
         let { id, email } = this.teamData.filter((team) => team.id == this.selectedUser)[0];
         const data = { id, email, userType: this.userRole };
-        console.log(data);
         const userAddData = await UsersService.addUser(data);
-        console.log(userAddData);
-        this.output = `User Signup Link Generated, Please send Link to user ${window.location.origin}/onboard/${data.id}`;
+        this.output = `User Signup Link Generated, Please send Link to user <a href="${window.location.origin}/onboard/${data.id}" target="_blank">${window.location.origin}/onboard/${data.id}</a>`;
         this.emailDialog = true;
-        // if (userAddData.success) {
-        // }
         this.loading = false;
       } catch (e) {
         console.log(e);
@@ -192,22 +187,6 @@ export default {
         this.emailDialog = true;
         this.loading = false;
       }
-      // userData[0]['userType'] = this.userRole
-      // userData[0]['communityEmail'] = this.generalConfig.email
-      // userData[0]['communityName'] = this.generalConfig.name
-
-      // let appp = firebase.functions.httpsCallable('team-createAuthUser')
-      // appp(userData[0]).then(res1=>{
-      //     // console.log(res1)
-      //     this.output = res1
-      //     this.emailDialog = true
-      //     this.loading = false
-      // }).catch(e=>{
-      //     console.log(e)
-      //     this.output = e
-      //     this.emailDialog = true
-      //     this.loading = false
-      // })
     },
   },
 };
