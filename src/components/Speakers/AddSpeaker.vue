@@ -46,22 +46,23 @@
                       </p>
                     </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
+                    <v-col md="3" cols="12" class="pa-1 py-0 ma-0">
                       <v-select
                         :items="items"
                         v-model="newUserData.visible"
                         label="Visiblity Status*"
                         outlined
+                        clearable
                       ></v-select>
                     </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
+                    <v-col md="3" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
                         v-model="newUserData.id"
-                        class="ma-0"
                         label="Speaker ID*"
                         type="text"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -82,6 +83,8 @@
                         class="ma-0"
                         label="Full Name*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
@@ -92,6 +95,8 @@
                         :rules="nameRules"
                         label="Designation*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
@@ -102,6 +107,8 @@
                         :rules="nameRules"
                         label="Company Name*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
@@ -111,6 +118,8 @@
                         :rules="urlRules"
                         label="Company URL*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
@@ -121,6 +130,8 @@
                         :rules="nameRules"
                         label="City*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
@@ -131,15 +142,20 @@
                         :rules="nameRules"
                         label="Country*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
                     <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
                       <v-text-field
+                        transition="fade-transition"
                         v-model="newUserData.image"
                         class="ma-0"
                         label="Image URL"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
@@ -157,6 +173,7 @@
                         name="input-7-4"
                         v-model="newUserData.bio"
                         label="Bio"
+                        clearable
                       ></v-textarea>
                     </v-col>
                   </v-row>
@@ -175,6 +192,7 @@
                         v-model="newUserData.mbnumber"
                         label="Contact Number"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -185,6 +203,7 @@
                         :rules="emailRules"
                         label="Email ID*"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -203,6 +222,7 @@
                         placeholder="https://www.facebook.com/"
                         outlined
                         v-model="newUserData.socialLinks.facebook"
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -213,6 +233,7 @@
                         v-model="newUserData.socialLinks.github"
                         placeholder="https://www.github.com/"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -223,6 +244,7 @@
                         placeholder="https://www.linkedin.com/"
                         label="Linkedin"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -233,6 +255,7 @@
                         placeholder="https://medium.com/"
                         label="Medium"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -243,6 +266,7 @@
                         placeholder="https://www.twitter.com/"
                         label="Twitter"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
 
@@ -253,6 +277,7 @@
                         placeholder="Website/Blog URL"
                         label="Website/Blog"
                         outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -294,8 +319,8 @@ export default {
     return {
       valid: true,
       nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => (v && v.length <= 50) || "Name must be less than 50 characters",
+        (v) => !!v || "Input is required",
+        (v) => (v && v.length <= 50) || "Input must be less than 50 characters",
       ],
       emailRules: [
         (v) => !!v || "E-mail is required",
@@ -326,10 +351,10 @@ export default {
           url: "",
         },
         createdBy: {
-          name: null,
-          id: null,
+          name: "",
+          id: "",
         },
-        createdOn: null,
+        createdOn: "",
         lastUpdatedOn: "",
         lastUpdatedBy: {
           name: "",
