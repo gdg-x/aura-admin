@@ -2,18 +2,29 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="1200">
       <template v-slot:activator="{ on }">
-        <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Speaker</v-btn>
-        <v-btn fab x-small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
+        <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on"
+          >Add New Speaker</v-btn
+        >
+        <v-btn
+          fab
+          x-small
+          color="indigo"
+          outlined
+          class="hidden-md-and-up"
+          dark
+          v-on="on"
+        >
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
       <v-card v-if="dialog">
         <v-card-title
           class="google-font"
-          style="border-bottom:1px solid #e0e0e0;"
+          style="border-bottom: 1px solid #e0e0e0"
           primary-title
           dark
-        >Add New Speaker</v-card-title>
+          >Add New Speaker</v-card-title
+        >
         <v-card-text>
           <v-container fluid>
             <v-row class="pa-0">
@@ -22,21 +33,37 @@
                   <!-- Speaker Status -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p class="google-font mb-0" style="color:red">*indicates required field</p>
-                      <p
-                        style="color:red"
-                      >ID should be unique, Once you assigned an ID to event, it can't be changed</p>
+                      <p class="google-font mb-0" style="color: red">
+                        *indicates required field
+                      </p>
+                      <p style="color: red">
+                        Speaker ID should be unique, it cannot be revised later
+                      </p>
                     </v-col>
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0 mb-2">Speaker Status</p>
+                      <p style="font-size: 120%" class="my-0 mb-2">
+                        Speaker Status
+                      </p>
                     </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
-                      <v-select :items="items" v-model="visible" label="Visiblity Status*" outlined></v-select>
+                    <v-col md="3" cols="12" class="pa-1 py-0 ma-0">
+                      <v-select
+                        :items="items"
+                        v-model="newUserData.visible"
+                        label="Visiblity Status*"
+                        outlined
+                        clearable
+                      ></v-select>
                     </v-col>
 
-                    <v-col md="3" xs="3" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="userId" class="ma-0" label="ID*" type="text" outlined></v-text-field>
+                    <v-col md="3" cols="12" class="pa-1 py-0 ma-0">
+                      <v-text-field
+                        v-model="newUserData.id"
+                        label="Speaker ID*"
+                        type="text"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                   <!-- Speaker Status -->
@@ -44,128 +71,214 @@
                   <!-- Speaker Info -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Speaker Info</p>
+                      <p style="font-size: 120%" class="my-0 mb-2">
+                        Speaker Info
+                      </p>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="name"
+                        v-model="newUserData.name"
                         :rules="nameRules"
                         class="ma-0"
                         label="Full Name*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="designation"
+                        v-model="newUserData.designation"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Desigination *"
+                        label="Designation*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="companyName"
+                        v-model="newUserData.company.name"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Company Name *"
+                        label="Company Name*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
-                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0 ">
+                    <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="companyURL"
+                        v-model="newUserData.company.url"
                         class="ma-0"
                         :rules="urlRules"
-                        label="Company URL *"
+                        label="Company URL*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="city"
+                        v-model="newUserData.city"
                         class="ma-0"
                         :rules="nameRules"
-                        label="City *"
+                        label="City*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                       <v-text-field
-                        v-model="country"
+                        v-model="newUserData.country"
                         class="ma-0"
                         :rules="nameRules"
-                        label="Country *"
+                        label="Country*"
                         outlined
+                        clearable
+                        counter="50"
                       ></v-text-field>
                     </v-col>
-                    
+
                     <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="imageURL" class="ma-0" label="Image URL" outlined></v-text-field>
+                      <v-text-field
+                        transition="fade-transition"
+                        v-model="newUserData.image"
+                        class="ma-0"
+                        label="Image URL"
+                        outlined
+                        clearable
+                        counter="50"
+                      ></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
-                      <UploadImage type="speaker" :userId="userId" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
+                      <UploadImage
+                        type="speaker"
+                        :userId="newUserData.id"
+                        @message="showMessageSnakeBar"
+                        @uploadedImage="imageUploadDone"
+                      />
                     </v-col>
 
                     <v-col md="12" xs="12" cols="12" class="pa-1 py-0 ma-0">
-                      <v-textarea outlined name="input-7-4" v-model="bio" label="Bio"></v-textarea>
+                      <v-textarea
+                        outlined
+                        name="input-7-4"
+                        v-model="newUserData.bio"
+                        label="Bio"
+                        clearable
+                      ></v-textarea>
                     </v-col>
                   </v-row>
 
                   <!-- Personal Info -->
                   <v-row class="pa-3 py-0 my-0">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Personal Info</p>
-                    </v-col>
-
-                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
-                      <v-text-field class="ma-0" v-model="mbnumber" label="Contact Number" outlined></v-text-field>
+                      <p style="font-size: 120%" class="my-0 mb-2">
+                        Personal Info
+                      </p>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
-                        v-model="email"
-                        :rules="emailRules"
-                        label="Email Id *"
+                        v-model="newUserData.mbnumber"
+                        label="Contact Number"
                         outlined
+                        clearable
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                      <v-text-field
+                        class="ma-0"
+                        v-model="newUserData.email"
+                        :rules="emailRules"
+                        label="Email ID*"
+                        outlined
+                        clearable
                       ></v-text-field>
                     </v-col>
                   </v-row>
                   <!-- Personal Info -->
                   <v-row class="pa-3">
                     <v-col md="12" cols="12" class="pa-1 ma-0">
-                      <p style="font-size:120%" class="my-0">Social Links</p>
+                      <p style="font-size: 120%" class="my-0 mb-2">
+                        Social Links
+                      </p>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" label="Facebook" outlined v-model="facebook"></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        label="Facebook"
+                        placeholder="https://www.facebook.com/"
+                        outlined
+                        v-model="newUserData.socialLinks.facebook"
+                        clearable
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" label="Github" v-model="github" outlined></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        label="Github"
+                        v-model="newUserData.socialLinks.github"
+                        placeholder="https://www.github.com/"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" v-model="linkedin" label="Linkedin" outlined></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        v-model="newUserData.socialLinks.linkedin"
+                        placeholder="https://www.linkedin.com/"
+                        label="Linkedin"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" v-model="medium" label="Medium" outlined></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        v-model="newUserData.socialLinks.medium"
+                        placeholder="https://medium.com/"
+                        label="Medium"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" v-model="twitter" label="Twitter" outlined></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        v-model="newUserData.socialLinks.twitter"
+                        placeholder="https://www.twitter.com/"
+                        label="Twitter"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
-                      <v-text-field class="ma-0" v-model="website" label="Website/Blog" outlined></v-text-field>
+                      <v-text-field
+                        class="ma-0"
+                        v-model="newUserData.socialLinks.web"
+                        placeholder="Website/Blog URL"
+                        label="Website/Blog"
+                        outlined
+                        clearable
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                 </v-form>
@@ -177,16 +290,17 @@
         <v-divider></v-divider>
 
         <v-card-actions>
-          <div class="flex-grow-1"></div>
+          <v-spacer></v-spacer>
           <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
           <v-btn
-            dark
+            class="white--text"
             depressed
             color="indigo"
             :disabled="!valid"
             :loading="loading"
             @click="SaveSpeaker"
-          >Add New Speaker</v-btn>
+            >Add New Speaker</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -198,109 +312,95 @@ import { mapState } from "vuex";
 import SpeakerServices from "@/services/SpeakersServices";
 export default {
   props: [],
-  components:{
+  components: {
     UploadImage: () => import("@/components/Common/ImageUpload"),
   },
   data() {
     return {
       valid: true,
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length <= 50) || "Name must be less than 50 characters"
+        (v) => !!v || "Input is required",
+        (v) => (v && v.length <= 50) || "Input must be less than 50 characters",
       ],
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       urlRules: [
-        v => !!v || "URL is required",
-        v => /^(www\.|http:\/\/|https:\/\/|ftp:\/\/)\w+\.\w+/.test(v) || "URL must be valid"
+        (v) => !!v || "URL is required",
+        (v) =>
+          /^(www\.|http:\/\/|https:\/\/|ftp:\/\/)\w+\.\w+/.test(v) ||
+          "URL must be valid",
       ],
       dialog: false,
       loading: false,
       items: [true, false],
-      visible: Boolean,
-      userId: "",
-      mbnumber: "",
-      companyName: "",
-      companyURL: "",
-      country: "",
-      city: "",
-      name: "",
-      facebook: "",
-      github: "",
-      linkedin: "",
-      email: "",
-      medium: "",
-      twitter: "",
-      password: "",
-      website: "",
-      bio: "",
-      imageURL: "",
-      designation: ""
+      newUserData: {
+        visible: Boolean,
+        id: "",
+        name: "",
+        designation: "",
+        mbnumber: "",
+        email: "",
+        image: "",
+        bio: "",
+        city: "",
+        country: "",
+        company: {
+          name: "",
+          url: "",
+        },
+        createdBy: {
+          name: "",
+          id: "",
+        },
+        createdOn: "",
+        lastUpdatedOn: "",
+        lastUpdatedBy: {
+          name: "",
+          id: "",
+        },
+        socialLinks: {
+          facebook: "",
+          github: "",
+          linkedin: "",
+          medium: "",
+          twitter: "",
+          web: "",
+        },
+      },
     };
   },
   computed: {
-    ...mapState(["userDetails"])
+    ...mapState(["userDetails"]),
   },
   methods: {
-    showMessageSnakeBar(text){
+    showMessageSnakeBar(text) {
       this.$emit("message", text);
     },
-    imageUploadDone(text){
+    imageUploadDone(text) {
       this.imageURL = text;
     },
     SaveSpeaker() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        var Data = {
-          visible: this.visible,
-          id: this.userId,
-          name: this.name,
-          designation: this.designation,
-          mbnumber: this.mbnumber,
-          email: this.email,
-          image: this.imageURL,
-          bio: this.bio,
-          city: this.city,
-          country: this.country,
-          company: {
-            name: this.companyName,
-            url: this.companyURL
-          },
-          createdBy: {
-            name: this.userDetails.name,
-            id: this.userDetails.id
-          },
-          createdOn: new Date(),
-          lastUpdatedOn: "",
-          lastUpdatedBy: {
-            name: "",
-            id: ""
-          },
-          socialLinks: {
-            facebook: this.facebook,
-            github: this.github,
-            linkedin: this.linkedin,
-            medium: this.medium,
-            twitter: this.twitter,
-            web: this.website
-          }
-        };
-        SpeakerServices.addSpeaker(Data.id, Data)
-          .then(res => {
+        this.newUserData.createdBy.name = this.userDetails.name;
+        this.newUserData.createdBy.id = this.userDetails.id;
+        this.newUserData.createdOn = new Date();
+        SpeakerServices.addSpeaker(this.newUserData.id, this.newUserData)
+          .then((res) => {
             if (res.success == true) {
               this.loading = false;
               this.dialog = false;
               this.$emit("showSuccess", res.msg);
             }
           })
-          .catch(e => {
+          .catch((e) => {
             this.loading = false;
             this.$emit("message", e.msg);
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
