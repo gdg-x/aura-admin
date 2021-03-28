@@ -158,7 +158,7 @@
                           <v-avatar size="100">
                             <img
                               :src="
-                                item.image.length > 0
+                                item.image && item.image.length > 0
                                   ? item.image
                                   : require('@/assets/img/default_avatar.jpg')
                               "
