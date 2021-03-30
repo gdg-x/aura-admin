@@ -89,7 +89,7 @@
               <!-- Check the Condition Where we have a Data or not -->
               <!-- Table View -->
               <div class="pa-0 ma-0">
-                <UsersDataLayout :showAction="true" :usersData="usersData" :search.sync="search" :showSnakeBar.sync="showSnakeBar" />
+                <UsersDataLayout :loading.sync="onboardedUserLoading" :usersData="usersData" :search.sync="search" :showSnakeBar.sync="showSnakeBar" />
               </div>
               <!-- Table View --> 
               </v-tab-item>  
@@ -97,7 +97,7 @@
               <!-- Pending Users -->
               <v-tab-item value="pendingUsers" >   
                 <div class="pa-0 ma-0">
-                  <PendingUsersDataLayout :showAction="false" :usersData="pendingUsersData" :search.sync="search" :showSnakeBar.sync="showSnakeBar" />
+                  <PendingUsersDataLayout :loading.sync="pendingUsersLoading" :usersData="pendingUsersData" :search.sync="search" />
                 </div>
               </v-tab-item>
             </v-tabs-items>
@@ -143,10 +143,11 @@ export default {
     isSnakeBarVisible: false,
     snakeBarColor: "green",
     snakeBarTimeOut: 5000,
-    
     showDialog: false,
     usersData: [],
-    pendingUsersData:[]
+    pendingUsersData:[],
+    onboardedUserLoading:false,
+    pendingUsersLoading: false
     
   }),
   computed: { ...mapState(["role"]) },
@@ -180,22 +181,26 @@ export default {
     },
     async showData() {
       this.usersData = [];
-      this.isLoading = true;
+      this.onboardedUserLoading = true;
       await UsersServices.getAllUsers()
         .then((res) => {
           this.usersData = res.data;
-          this.isLoading = false;
+          this.onboardedUserLoading = false;
         })
         .catch((e) => {
-          this.isLoading = false;
+          this.onboardedUserLoading = false;
           console.log("Error getting documents", e);
         });
-
+      
+      // Get All Pending Users Info
+      this.pendingUsersLoading= true
       await UsersServices.getAllPendingUsers().then(res=>{
         if(res.success){
           this.pendingUsersData = res.data
+          this.pendingUsersLoading= false
         }
       })
+      this.pendingUsersLoading= false
     },   
     
   },

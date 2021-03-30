@@ -10,16 +10,14 @@
             background: white;
             "
           :search="search"
-          :loading="isLoading"
+          :loading="loading"
           :headers="headers"
           sort-by="disabled"
           :items="usersData"
           :items-per-page="10"
           class="elevation-0 ma-0 pa-0"
         >
-         
-          
-          <template v-slot:item.actions="{ item }" >
+          <template v-slot:item.actions="{ item }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -47,23 +45,20 @@
 <script>
 export default {
   name: "UserDataLayout",
-  components: {
-  },
-  props: ["usersData", "search","showSnakeBar", "showAction"],
+  components: {},
+  props: ["usersData", "search", "loading"],
   data: () => ({
-         showDialog: false,
-    isLoading: false,
     headers: [
       { text: "User ID", value: "id", width: "20%" },
-      { text: 'Email', value: 'email' },
+      { text: "Email", value: "email" },
       { text: "User Type", value: "userType" },
       { text: "Actions", value: "actions", sortable: false },
     ],
   }),
-  methods:{
+  methods: {
     gotoTeamDetails(id) {
       this.$router.push("/team/" + id);
     },
-  }
+  },
 };
 </script>

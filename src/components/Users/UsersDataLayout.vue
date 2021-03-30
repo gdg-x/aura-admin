@@ -5,7 +5,7 @@
         <v-data-iterator
           class="hidden-md-and-up"
           :items="usersData"
-          :loading="isLoading"
+          :loading="loading"
           loading-text="Loading Users Data"
           :search="search"
           disable-pagination
@@ -84,7 +84,7 @@
                     <!-- View Button -->
 
                     <!-- Disable Button -->
-                    <v-tooltip bottom v-if="showAction">
+                    <v-tooltip bottom>
                       <template v-slot:activator="{ on }">
                         <v-btn
                           fab
@@ -104,7 +104,7 @@
                     <!-- Disable Button -->
 
                     <!-- Enable Button -->
-                    <v-tooltip bottom v-if="showAction">
+                    <v-tooltip bottom>
                       <template v-slot:activator="{ on }">
                         <v-btn
                           fab
@@ -123,11 +123,11 @@
                     <!-- Enable Button -->
 
                     <!-- Edit Button -->
-                    <EditUser v-if="showAction" @EditSuccess="showSnakeBar" :data="item" />
+                    <EditUser @EditSuccess="showSnakeBar" :data="item" />
                     <!-- Edit Button -->
 
                     <!-- Delete Button -->
-                    <DeleteUser v-if="showAction" @RemovedSuccess="showSnakeBar" :data="item" />
+                    <DeleteUser @RemovedSuccess="showSnakeBar" :data="item" />
                     <!-- Delete Button -->
                   </v-card-actions>
                 </v-card>
@@ -144,7 +144,7 @@
                         background: white;
                       "
           :search="search"
-          :loading="isLoading"
+          :loading="loading"
           :headers="headers"
           sort-by="disabled"
           :items="usersData"
@@ -175,13 +175,13 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-          <template v-slot:item.disabled="{ item }" >
+          <template v-slot:item.disabled="{ item }">
             <v-chip small dark v-if="item.disabled" class="red"
               >Disabled</v-chip
             >
             <v-chip small dark v-else class="green">Enabled</v-chip>
           </template>
-          <template v-slot:item.actions="{ item }" >
+          <template v-slot:item.actions="{ item }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn
@@ -200,7 +200,7 @@
               <span>{{ item.name }} Details</span>
             </v-tooltip>
 
-            <v-tooltip bottom v-if="showAction">
+            <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn
                   fab
@@ -218,7 +218,7 @@
               <span>Disable {{ item.name }}</span>
             </v-tooltip>
 
-            <v-tooltip bottom v-if="showAction">
+            <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn
                   fab
@@ -234,8 +234,8 @@
               </template>
               <span>Enable {{ item.name }}</span>
             </v-tooltip>
-            <EditUser @EditSuccess="showSnakeBar" :data="item" v-if="showAction" />
-            <DeleteUser @RemovedSuccess="showSnakeBar" :data="item" v-if="showAction" />
+            <EditUser @EditSuccess="showSnakeBar" :data="item" />
+            <DeleteUser @RemovedSuccess="showSnakeBar" :data="item" />
           </template>
         </v-data-table>
       </v-col>
@@ -251,10 +251,9 @@ export default {
     DeleteUser: () => import("@/components/Users/DeleteUser"),
     EditUser: () => import("@/components/Users/editUser"),
   },
-  props: ["usersData", "search","showSnakeBar", "showAction"],
+  props: ["usersData", "search", "showSnakeBar", "loading"],
   data: () => ({
-         showDialog: false,
-    isLoading: false,
+    showDialog: false,
     headers: [
       { text: "User Name", value: "name", width: "20%" },
       // { text: 'Email', value: 'email' },
@@ -264,7 +263,7 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
   }),
-  methods:{
+  methods: {
     enableUser(uid) {
       this.showDialog = true;
       UsersServices.enableUser(uid)
@@ -292,6 +291,6 @@ export default {
     gotoTeamDetails(id) {
       this.$router.push("/team/" + id);
     },
-  }
+  },
 };
 </script>
