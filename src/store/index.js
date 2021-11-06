@@ -38,16 +38,6 @@ export default new Vuex.Store({
         }
       },
       {
-        text: 'Connect',
-        to: '/connect',
-        icon: 'mdi-chat',
-        access: {
-          "Super Admin": true,
-          "Admin": true,
-          "Viewer":true
-        }
-      },
-      {
         text: 'Team',
         to: '/team',
         icon: 'mdi-nature-people',

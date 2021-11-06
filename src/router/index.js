@@ -193,36 +193,21 @@ const routes = [{
       }
     }
   },
-  {
-    path: '/connect',
-    name: "connect",
-    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Connect'),
-    meta: {
-      requiresAuth: true,
-      title: "Connect",
-      bottomVisible: false,
-      access: {
-        "Super Admin": true,
-        "Admin": true,
-        "Viewer": true
-      }
-    }
-  },
-  {
-    path: '/emails',
-    name: "Email",
-    component: () => import( /* webpackChunkName: "email" */ '@/views/Email'),
-    meta: {
-      requiresAuth: true,
-      title: "Email",
-      bottomVisible: true,
-      access: {
-        "Super Admin": true,
-        "Admin": true,
-        "Viewer": false
-      }
-    }
-  },
+  // {
+  //   path: '/emails',
+  //   name: "Email",
+  //   component: () => import( /* webpackChunkName: "email" */ '@/views/Email'),
+  //   meta: {
+  //     requiresAuth: true,
+  //     title: "Email",
+  //     bottomVisible: true,
+  //     access: {
+  //       "Super Admin": true,
+  //       "Admin": true,
+  //       "Viewer": false
+  //     }
+  //   }
+  // },
   {
     path: '/roles',
     name: "UserManagement",
