@@ -8,6 +8,7 @@ export default new Vuex.Store({
     drawer: true,
     isLoggedin: false,
     role: "",
+    unsub: {},
     userDetails:{},
     generalConfig:{
       email:'',
@@ -135,6 +136,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    unsub: (state, payload) => (state.unsub = payload),
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer),
     roleSet: (state, payload) => (state.role = payload),

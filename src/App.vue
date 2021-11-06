@@ -61,7 +61,6 @@ export default {
     refreshing: false,
     registration: null,
     snackBtnText: "",
-    isLoggedIn: false,
     snackWithBtnText: "",
     snackWithButtons: false,
     timeout: 25000,
@@ -82,7 +81,7 @@ export default {
     });
   },
   async mounted() {
-    if (firebase.auth.currentUser) {
+    if (this.isLoggedIn()) {
       if (this.role.length <= 0) await this.getData();
 
       Object.keys(this.generalConfig).length <= 2 &&
@@ -98,10 +97,8 @@ export default {
       "roleSet",
       "userDetailsSet",
     ]),
-    loggedIn(){
-      if(firebase.auth.currentUser){
-          this.isLoggedIn = true;
-      }
+    isLoggedIn(){
+      if(firebase.auth.currentUser) return true;
     },
     showRefreshUI(e) {
       this.registration = e.detail;

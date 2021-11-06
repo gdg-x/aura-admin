@@ -10,7 +10,7 @@
           class="text-center mt-md-5"
           v-if="isVisible && (!error || error.length < 1)"
         >
-          <p class="google-font" style="font-size:2.5em">Team Onboard</p>
+          <p class="google-font" style="font-size: 2.5em">Team Onboard</p>
           <v-divider class="mb-md-10"></v-divider>
           <br />
           <v-text-field
@@ -54,10 +54,10 @@
           class="google-font text-center"
           v-else-if="!successDialog && error.length > 1"
         >
-          <p class="google-font" style="font-size:2.5em">Team Onboard</p>
+          <p class="google-font" style="font-size: 2.5em">Team Onboard</p>
           <v-divider></v-divider>
 
-          <p class="mt-md-10 mt-4" style="font-size:1.2em">{{ error }}</p>
+          <p class="mt-md-10 mt-4" style="font-size: 1.2em">{{ error }}</p>
           <v-btn class="mt-3" to="/" color="primary" depressed
             >Back to Login</v-btn
           >
@@ -68,13 +68,13 @@
         <v-card>
           <v-card-title
             class="google-font grey lighten-2"
-            style="font-size:1.3em"
+            style="font-size: 1.3em"
           >
             Success
           </v-card-title>
 
           <v-card-text>
-            <p class="google-font mt-4 mb-0" style="font-size:1.2em">
+            <p class="google-font mt-4 mb-0" style="font-size: 1.2em">
               Your account is created
             </p>
           </v-card-text>
@@ -94,6 +94,8 @@
 <script>
 import teamOnboardService from "@/services/onboardService";
 import firebase from "@/config/firebase";
+import { mapState } from "vuex";
+
 export default {
   name: "teamonboard",
   data: () => ({
@@ -109,6 +111,9 @@ export default {
       password: "",
     },
   }),
+  computed: {
+    ...mapState(["unsub"]),
+  },
   mounted() {
     teamOnboardService
       .getUserById(this.$route.params.id)
@@ -128,19 +133,20 @@ export default {
       this.loading = true;
       if (this.cpassword == this.userData.password) {
         try {
-          const firebaseUser = await firebase.auth.createUserWithEmailAndPassword(
-            this.finalUser.email,
-            this.userData.password
-          );
+          this.unsub();
+          const firebaseUser =
+            await firebase.auth.createUserWithEmailAndPassword(
+              this.finalUser.email,
+              this.userData.password
+            );
           await firebase.auth.signOut();
           const deleteData = await teamOnboardService.deleteTempUse(
             this.$route.params.id
           );
           if (!deleteData.success) throw { message: "Something went wrong" };
           const data = { uid: firebaseUser.user.uid, ...this.finalUser };
-          const userAdd = await teamOnboardService.addOnBoardUserToUserManagement(
-            data
-          );
+          const userAdd =
+            await teamOnboardService.addOnBoardUserToUserManagement(data);
           const updateTeamFields = await teamOnboardService.updateTeamWithUID(
             data.uid,
             data.id
@@ -152,15 +158,15 @@ export default {
           console.log(e);
           this.loading = false;
         }
-      }else{
-        alert('Password Not Match')
+      } else {
+        alert("Password Not Match");
         this.loading = false;
       }
     },
 
     dialogOkay() {
       this.successDialog = false;
-      this.$router.replace("/login");
+      window.location.href = "/login";
     },
   },
 };
