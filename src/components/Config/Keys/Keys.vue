@@ -30,20 +30,6 @@
       <v-col cols="12" md="6" class="mb-0 pb-0">
         <v-text-field class="my-0 py-0" label="Cloud Messaging Web Push Certificates" v-model="key.web_push_certificate" outlined></v-text-field>
       </v-col>
-      <!-- <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field class="my-0 py-0" label="Mail Gun API Key" :hidden="true" v-model="key.mail_champ" outlined></v-text-field>
-      </v-col>
-      <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field class="my-0 py-0" label="Mail Champ API Key" :hidden="true" v-model="key.mail_gun" outlined></v-text-field>
-      </v-col> -->
-      <v-col cols="12" md="6" class="mb-0 pb-0">
-        <v-text-field
-          class="my-0 py-0"
-          label="Meetup Community UserName"
-          v-model="key.meetup"
-          outlined
-        ></v-text-field>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -62,7 +48,6 @@ export default {
       mail_gun: "",
       server_key:"",
       web_push_certificate:"",
-      meetup: ""
     }
   }),
   created() {

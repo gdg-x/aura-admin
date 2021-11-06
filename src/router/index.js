@@ -226,7 +226,7 @@ const routes = [{
   {
     path: '/profile',
     name: "profile",
-    component: () => import( /* webpackChunkName: "roles" */ '@/views/Profile/Profile'),
+    component: () => import( /* webpackChunkName: "profile" */ '@/views/Profile/Profile'),
     meta: {
       requiresAuth: true,
       title: "Profile Settings",
@@ -241,7 +241,7 @@ const routes = [{
   {
     path: '/emails/:id',
     name: "EmailView",
-    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Email/ViewEmail'),
+    component: () => import( /* webpackChunkName: "emailview" */ '@/views/Email/ViewEmail'),
     meta: {
       requiresAuth: true,
       title: "Email",
@@ -271,7 +271,7 @@ const routes = [{
   {
     path: '/onboard/:id',
     name: "OnBoard",
-    component: () => import( /* webpackChunkName: "roles" */ '@/views/TeamOnboard'),
+    component: () => import( /* webpackChunkName: "onboard" */ '@/views/TeamOnboard'),
     meta: {
       requiresAuth: false,
       title: "Team Onboard",
