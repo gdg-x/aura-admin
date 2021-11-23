@@ -284,6 +284,21 @@ const routes = [{
     }
   },
   {
+    path: '/install',
+    name: "InstallApp",
+    component: () => import( /* webpackChunkName: "onboard" */ '@/views/InstallApp'),
+    meta: {
+      requiresAuth: false,
+      title: "Install App",
+      bottomVisible: false,
+      access: {
+        "Super Admin": true,
+        "Admin": true,
+        "Viewer": true
+      }
+    }
+  },
+  {
     path: '*',
     name: 'redirect',
     redirect: {
