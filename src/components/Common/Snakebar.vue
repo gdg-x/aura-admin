@@ -10,15 +10,15 @@ export default {
   name: "CustomSnakebar",
   props: ["message", "isShow", "color", "timeout"],
   computed: {
-        showS: {
-            get: function() {
-                return this.isShow
-            },
-            set: function(value) {
-                this.$emit('update:isShow', value)
-            }
-        }
-    }
+    showS: {
+      get: function () {
+        return this.isShow;
+      },
+      set: function (value) {
+        this.$emit("update:isShow", value);
+      },
+    },
+  },
 };
 </script>
 
