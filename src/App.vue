@@ -22,7 +22,6 @@
     <AuraAdminBottomNav
       v-if="$route.meta.requiresAuth && $route.meta.bottomVisible"
     />
-    <AddTeamFirst v-if="addFirstTime && $route.name !=='OnBoard' && isLoggedIn" :dialog.sync="addFirstTime" />
     <v-main class="fill-height" v-if="isLoading">
       <v-container class="fill-height">
         <v-row justify="center" align="center" class>
@@ -46,7 +45,6 @@ import firebase from "@/config/firebase";
 import { mapState, mapMutations } from "vuex";
 import UserService from "@/services/UsersServices";
 import TeamService from "@/services/TeamServices";
-// import AddTeamFirst from '@/components/Team/AddTeam'
 
 export default {
   name: "App",
@@ -55,7 +53,6 @@ export default {
     AuraAdminDrawer: () => import("@/components/Core/Drawer"),
     AuraAdminBottomNav: () => import("@/components/Core/BottomNav"),
     AuraAdminView: () => import("@/components/Core/Views"),
-    AddTeamFirst: () => import("@/components/Common/AddFirstTime"),
   },
   data: () => ({
     refreshing: false,
@@ -97,8 +94,9 @@ export default {
       "roleSet",
       "userDetailsSet",
     ]),
-    isLoggedIn(){
-      if(firebase.auth.currentUser) return true;
+    isLoggedIn() {
+      if (firebase.auth.currentUser) return true;
+      else return false;
     },
     showRefreshUI(e) {
       this.registration = e.detail;
@@ -108,9 +106,7 @@ export default {
     },
     refreshApp() {
       this.snackWithButtons = false;
-      if (!this.registration || !this.registration.waiting) {
-        return;
-      }
+      if (!this.registration || !this.registration.waiting) return;
       this.registration.waiting.postMessage("skipWaiting");
     },
     getData() {
@@ -118,7 +114,8 @@ export default {
       UserService.getUserRole().then(async (res) => {
         if (res.success) {
           if (!res.exists) {
-            this.addFirstTime = true;
+            alert("You have been Removed :(");
+            await firebase.auth.signOut();
             this.isLoading = false;
             return;
           }
@@ -126,6 +123,7 @@ export default {
           if (res.data.disabled) {
             alert("You have been disabled");
             await firebase.auth.signOut();
+            this.isLoading = false;
             return;
           }
 
@@ -141,9 +139,14 @@ export default {
               console.log(e);
             });
           this.isLoading = false;
+        } else {
+          alert("Something went wrong");
+          await firebase.auth.signOut();
+          this.isLoading = false;
         }
       });
     },
+
     getDataFromServer() {
       this.speakersData = [];
       this.isLoading = true;
