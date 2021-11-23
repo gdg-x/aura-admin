@@ -158,26 +158,6 @@ export default {
         console.log(parsedResult);
         this.maintainers = parsedResult.maintainers;
         this.contributors = parsedResult.contributors;
-        this.contributors = [
-          {
-            name: "Vrijraj Singh",
-            photo: "https://avatars.githubusercontent.com/u/10599101",
-            links: {
-              github: "https://github.com/vrijraj/",
-              linkedin: "https://www.linkedin.com/in/vrijraj/",
-              twitter: "https://twitter.com/VrijrajSingh/",
-            },
-          },
-          {
-            name: "Bharat Agarwal",
-            photo: "https://avatars.githubusercontent.com/u/43988371",
-            links: {
-              github: "https://github.com/bharatagsrwal/",
-              linkedin: "https://www.linkedin.com/in/bharatagsrwal/",
-              twitter: "https://twitter.com/bharatagsrwal/",
-            },
-          },
-        ];
       } catch (e) {
         console.log(e);
       } finally {
