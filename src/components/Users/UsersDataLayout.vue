@@ -71,7 +71,7 @@
                           x-small
                           icon
                           outlined
-                          color="indigo"
+                          color="primary"
                           class="mr-1"
                           v-on="on"
                           @click="gotoTeamDetails(item.id)"
@@ -92,7 +92,7 @@
                           icon
                           v-if="!item.disabled"
                           outlined
-                          color="indigo"
+                          color="primary"
                           v-on="on"
                           @click="disableUser(item.uid)"
                         >
@@ -110,7 +110,7 @@
                           fab
                           x-small
                           v-if="item.disabled"
-                          color="indigo"
+                          color="primary"
                           outlined
                           v-on="on"
                           @click="enableUser(item.uid)"
@@ -189,7 +189,7 @@
                   x-small
                   icon
                   outlined
-                  color="indigo"
+                  color="primary"
                   class="mr-1"
                   v-on="on"
                   @click="gotoTeamDetails(item.id)"
@@ -208,7 +208,7 @@
                   icon
                   v-if="!item.disabled"
                   outlined
-                  color="indigo"
+                  color="primary"
                   v-on="on"
                   @click="disableUser(item.uid)"
                 >
@@ -224,7 +224,7 @@
                   fab
                   x-small
                   v-if="item.disabled"
-                  color="indigo"
+                  color="primary"
                   outlined
                   v-on="on"
                   @click="enableUser(item.uid)"

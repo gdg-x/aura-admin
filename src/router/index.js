@@ -193,21 +193,6 @@ const routes = [{
       }
     }
   },
-  // {
-  //   path: '/emails',
-  //   name: "Email",
-  //   component: () => import( /* webpackChunkName: "email" */ '@/views/Email'),
-  //   meta: {
-  //     requiresAuth: true,
-  //     title: "Email",
-  //     bottomVisible: true,
-  //     access: {
-  //       "Super Admin": true,
-  //       "Admin": true,
-  //       "Viewer": false
-  //     }
-  //   }
-  // },
   {
     path: '/roles',
     name: "UserManagement",

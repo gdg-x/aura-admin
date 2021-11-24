@@ -51,7 +51,7 @@
           <v-btn
             fab
             x-small
-            color="indigo"
+            color="primary"
             @click="openCloseSearch"
             class="mr-2 hidden-md-and-up"
             outlined
@@ -71,11 +71,10 @@
 
           <template v-slot:extension>
             <v-tabs v-model="userModel">
-              <v-tab href="#onboardedUsers">Onboarded Users</v-tab>
-              <v-tab href="#pendingUsers">Pending Users</v-tab>
+              <v-tab href="#onboardedUsers">Onboarded Users <span v-if="usersData.length>0"> ({{usersData.length}})</span></v-tab>
+              <v-tab href="#pendingUsers">Pending Users <span v-if="pendingUsersData.length>0"> ({{pendingUsersData.length}})</span></v-tab>
             </v-tabs>
           </template>
-
         </v-toolbar>
       </v-col>
     </v-row>

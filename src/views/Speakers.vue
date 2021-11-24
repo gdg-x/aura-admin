@@ -50,7 +50,7 @@
           <v-btn
             fab
             x-small
-            color="indigo"
+            color="primary"
             @click="openCloseSearch"
             class="mr-2 hidden-md-and-up"
             outlined
@@ -66,7 +66,7 @@
             v-if="speakersData.length"
             borderless
             background-color="white"
-            color="indigo"
+            color="primary"
             dense
             v-model="dataView"
             class="hidden-sm-and-down"

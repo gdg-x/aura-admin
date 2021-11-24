@@ -8,7 +8,7 @@
             x-small
             icon
             outlined
-            color="indigo"
+            color="primary"
             v-on="on"
             class="mx-1"
             @click.stop="dialog = true"

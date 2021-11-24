@@ -58,7 +58,7 @@
           <v-divider></v-divider>
 
           <p class="mt-md-10 mt-4" style="font-size: 1.2em">{{ error }}</p>
-          <v-btn class="mt-3" to="/" color="primary" depressed
+          <v-btn class="mt-3" to="/login" color="primary" depressed
             >Back to Login</v-btn
           >
         </v-col>

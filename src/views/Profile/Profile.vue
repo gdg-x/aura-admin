@@ -33,7 +33,7 @@
               <v-progress-circular
                 :width="5"
                 :size="50"
-                color="indigo"
+                color="primary"
                 indeterminate
               ></v-progress-circular>
             </v-col>
@@ -165,7 +165,7 @@
                 outlined
               ></v-text-field>
               <v-btn
-                color="indigo"
+                color="primary"
                 dark
                 depressed
                 @click="updatePassword"

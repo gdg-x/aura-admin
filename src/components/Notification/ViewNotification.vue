@@ -7,7 +7,7 @@
             fab
             outlined
             icon
-            color="indigo"
+            color="primary"
             x-small
             v-on="on"
             class="mx-1"
@@ -68,7 +68,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

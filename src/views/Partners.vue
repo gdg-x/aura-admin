@@ -42,14 +42,14 @@
             ></v-text-field>
           </v-slide-x-reverse-transition>
 
-          <v-btn fab x-small color="indigo" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
+          <v-btn fab x-small color="primary" @click="openCloseSearch" class="mr-2 hidden-md-and-up" outlined dark>
             <v-icon dark v-if="!isSearch">mdi-account-search</v-icon>
             <v-icon dark v-else>mdi-close</v-icon>
           </v-btn>
           <!-- Mobile -->
           &nbsp;
           <!-- Toggle Menu for View -->
-          <v-btn-toggle v-if="partnersData.length" borderless background-color="white" color="indigo" dense v-model="dataView" class="hidden-sm-and-down">
+          <v-btn-toggle v-if="partnersData.length" borderless background-color="white" color="primary" dense v-model="dataView" class="hidden-sm-and-down">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn v-on="on">

@@ -25,7 +25,7 @@
                   x-small
                   icon
                   outlined
-                  color="indigo"
+                  color="primary"
                   class="mr-1"
                   v-on="on"
                   @click="gotoTeamDetails(item.id)"

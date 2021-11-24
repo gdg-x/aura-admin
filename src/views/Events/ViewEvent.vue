@@ -39,7 +39,7 @@
 
     <v-row justify="center" align="center" class v-if="showLoader">
       <v-col cols="12" md="12" class="text-center">
-        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+        <v-progress-circular :width="5" :size="50" color="primary" indeterminate></v-progress-circular>
       </v-col>
     </v-row>
 
@@ -86,7 +86,7 @@
                 >Call For Speakers</v-btn>
 
                 <v-btn
-                  color="indigo"
+                  color="primary"
                   dark
                   target="_blank"
                   v-if="eventInfo.links.facebook"
@@ -333,7 +333,7 @@
               >The requested URL /{{this.$route.params.id}} was not found on this server. That’s all we know.</p>
               <br />
               <v-btn
-                color="indigo"
+                color="primary"
                 dark
                 depressed
                 @click="goToEvents"

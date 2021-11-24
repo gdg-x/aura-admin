@@ -30,7 +30,7 @@
     data () {
       return {
         colors: [
-          'indigo',
+          'primary',
           'warning',
           'pink darken-2',
           'red lighten-1',

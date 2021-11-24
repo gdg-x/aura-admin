@@ -9,7 +9,7 @@
     <v-row class="my-0 py-0">
       <v-col cols="12">
         <v-toolbar class="elevation-0 mb-5" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">All Custom Events: {{customEventData.length}}</v-toolbar-title>
+          <v-toolbar-title class="google-font mr-3">All Events: {{customEventData.length}}</v-toolbar-title>
           <v-spacer></v-spacer>
 
           <!-- Desktop -->
@@ -45,7 +45,7 @@
           <v-btn
             fab
             x-small
-            color="indigo"
+            color="primary"
             @click="openCloseSearch"
             class="mr-2 hidden-md-and-up"
             outlined

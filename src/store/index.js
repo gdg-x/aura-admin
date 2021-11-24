@@ -20,7 +20,7 @@ export default new Vuex.Store({
     items: [{
         text: 'Home',
         to: '/home',
-        icon: 'mdi-home',
+        icon: 'mdi-home-outline',
         access: {
           "Super Admin": true,
           "Admin": true,
@@ -30,7 +30,7 @@ export default new Vuex.Store({
       {
         text: 'Events',
         to: '/events',
-        icon: 'mdi-assistant',
+        icon: 'mdi-monitor-dashboard',
         access: {
           "Super Admin": true,
           "Admin": true,
@@ -40,7 +40,7 @@ export default new Vuex.Store({
       {
         text: 'Team',
         to: '/team',
-        icon: 'mdi-nature-people',
+        icon: 'mdi-card-account-details-outline',
         access: {
           "Super Admin": true,
           "Admin": true,
@@ -50,7 +50,7 @@ export default new Vuex.Store({
       {
         text: 'Speakers',
         to: '/speakers',
-        icon: 'mdi-account-multiple',
+        icon: 'mdi-account-supervisor-outline',
         access: {
           "Super Admin": true,
           "Admin": true,
@@ -67,20 +67,10 @@ export default new Vuex.Store({
           "Viewer":true
         }
       },
-      // {
-      //   text: 'Email',
-      //   to: '/emails',
-      //   icon: 'mdi-email-outline',
-      //   access: {
-      //     "Super Admin": true,
-      //     "Admin": true,
-      //     "Viewer":false
-      //   }
-      // },
       {
         text: 'User Manangment',
         to: '/roles',
-        icon: 'mdi-account-group',
+        icon: 'mdi-account-group-outline',
         access: {
           "Super Admin": true,
           "Admin": false,
@@ -90,7 +80,7 @@ export default new Vuex.Store({
       {
         text: 'Push Notifications',
         to: '/notification',
-        icon: 'mdi-bell',
+        icon: 'mdi-bell-check-outline',
         access: {
           "Super Admin": true,
           "Admin": true,
@@ -100,7 +90,7 @@ export default new Vuex.Store({
       {
         text: 'Config',
         to: '/config',
-        icon: 'mdi-widgets',
+        icon: 'mdi-widgets-outline',
         access: {
           "Super Admin": true,
           "Admin": false,
@@ -110,7 +100,7 @@ export default new Vuex.Store({
       {
         text: 'Profile',
         to: '/profile',
-        icon: 'mdi-account-circle',
+        icon: 'mdi-account-circle-outline',
         access: {
           "Super Admin": true,
           "Admin": true,

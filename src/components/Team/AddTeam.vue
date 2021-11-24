@@ -3,9 +3,9 @@
     <v-dialog v-model="dialog" persistent scrollable width="1100">
       <template v-slot:activator="{ on }">
         <!-- For Large screen (Laptops and up) -->
-        <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
+        <v-btn color="primary hidden-sm-and-down" depressed dark v-on="on">Add New Team Member</v-btn>
         <!-- For small Screen (Tablet and smaller) -->
-        <v-btn fab x-small color="indigo" outlined class="hidden-md-and-up" dark v-on="on">
+        <v-btn fab x-small color="primary" outlined class="hidden-md-and-up" dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
@@ -150,9 +150,9 @@
 
         <v-card-actions class="grey lighten-4 py-5">
           <div class="flex-grow-1"></div>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="indigo"
+            color="primary"
             dark
             depressed
             :disabled="!valid"

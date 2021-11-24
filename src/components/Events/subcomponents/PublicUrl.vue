@@ -3,7 +3,7 @@
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn  v-on="on" dark color="indigo" class="mx-1" outlined @click.stop="dialog = true">
+          <v-btn  v-on="on" dark color="primary" class="mx-1" outlined @click.stop="dialog = true">
             Public Url
           </v-btn>
         </template>

@@ -35,6 +35,7 @@
                 v-on="{ ...tooltip, ...menu }"
                 :src="(userDetails.image && userDetails.image.length>0)?userDetails.image:require('@/assets/img/default_avatar.jpg')"
                 alt="John"
+                class="circle"
               />
             </v-avatar>
           </template>
@@ -125,3 +126,23 @@ export default {
   }
 };
 </script>
+
+<style>
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  background-size: 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(white, white),
+    linear-gradient(30deg, #ea4335 36%, #4285f4 30%),
+      linear-gradient(120deg, #4285f4 36%, #34a853 30%),
+        linear-gradient(300deg, #fbbc04 36%, #ea4335 30%),
+          linear-gradient(210deg, #34a853 36%, #fbbc04 30%);
+  background-position: center center, left top, right top, left bottom,
+    right bottom;
+  background-origin: content-box, border-box, border-box, border-box, border-box;
+  background-clip: content-box, border-box, border-box, border-box, border-box;
+}
+</style>
