@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" hide-overlay persistent width="300">
         <template v-slot:activator="{ on }">
-          <v-btn fab x-small icon color="indigo" class="mx-1" outlined v-on="on" @click="send" >
+          <v-btn fab x-small icon color="primary" class="mx-1" outlined v-on="on" @click="send" >
             <v-icon>mdi-send</v-icon>
           </v-btn>
         </template>

@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="indigo" dark v-on="on" @click="getData"
+        <v-btn depressed color="primary" dark v-on="on" @click="getData"
           >Add User</v-btn
         >
       </template>
@@ -97,7 +97,7 @@
 
                   <v-card-actions class="grey lighten-4">
                     <div class="flex-grow-1"></div>
-                    <v-btn color="indigo" text @click="close()">Close</v-btn>
+                    <v-btn color="primary" text @click="close()">Close</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -109,9 +109,9 @@
 
         <v-card-actions class="grey lighten-4">
           <div class="flex-grow-1"></div>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="indigo"
+            color="primary"
             dark
             @click="addUser"
             depressed

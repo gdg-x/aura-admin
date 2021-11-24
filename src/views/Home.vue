@@ -10,7 +10,7 @@
     <v-row class="mt-0 pt-0" justify="center" align="center">
       <v-col
         class="ma-3 px-5 mt-0"
-        style="background:#BBDEFB;border:1px solid #BBDEFB;border-radius:5px;"
+        style="background:#BBDEFB;border:1px solid #BBDEFB;border-radius:12px;"
       >
         <v-container class="mb-5 py-5">
           <v-row class="mb-5">
@@ -28,7 +28,7 @@
 
     <v-row class="px-5" style="margin-top:-80px">
       <v-col class="pa-1" md="3" sm="6" lg="3" cols="6" style>
-        <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+        <div style="border:1px solid #e0e0e0;border-radius:12px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 text-center d-none d-sm-none d-md-block">
@@ -50,7 +50,7 @@
       </v-col>
 
       <v-col class="pa-1" md="3" sm="6" cols="6" lg="3" style>
-        <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+        <div style="border:1px solid #e0e0e0;border-radius:12px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
@@ -77,7 +77,7 @@
       </v-col>
 
       <v-col class="pa-1" md="3" lg="3" style>
-        <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+        <div style="border:1px solid #e0e0e0;border-radius:12px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">
@@ -108,7 +108,7 @@
       </v-col>
 
       <v-col class="pa-1" md="3" lg="3" style>
-        <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+        <div style="border:1px solid #e0e0e0;border-radius:12px;background:white">
           <v-container class="py-0">
             <v-row justify="center" align="center">
               <v-col md="6" lg="4" class="pa-5 py-auto text-center d-none d-sm-none d-md-block">

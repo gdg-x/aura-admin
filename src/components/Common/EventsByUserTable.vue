@@ -42,7 +42,7 @@
       <v-btn
         fab
         x-small
-        color="indigo"
+        color="primary"
         @click="openCloseSearch"
         class="mr-2 hidden-md-and-up"
         outlined

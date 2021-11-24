@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="500">
       <template v-slot:activator="{ on }">
-        <v-btn fab x-small color="indigo" outlined dark v-on="on">
+        <v-btn fab x-small color="primary" outlined dark v-on="on">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
@@ -32,9 +32,9 @@
 
         <v-card-actions class="grey lighten-4">
           <div class="flex-grow-1"></div>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="indigo"
+            color="primary"
             dark
             depressed
             @click="addGuid"

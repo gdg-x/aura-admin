@@ -9,7 +9,7 @@
             icon
             v-on="on"
             dark
-            color="indigo"
+            color="primary"
             class="mx-1"
             outlined
             @click.stop="dialog = true"

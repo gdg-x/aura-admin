@@ -7,7 +7,7 @@
             fab
             x-small
             icon
-            color="indigo"
+            color="primary"
             class="mx-1"
             outlined
             v-on="on"
@@ -225,9 +225,9 @@
 
       <v-card-actions>
         <div class="flex-grow-1"></div>
-        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn
-          color="indigo"
+          color="primary"
           depressed
           dark
           :disabled="!valid"

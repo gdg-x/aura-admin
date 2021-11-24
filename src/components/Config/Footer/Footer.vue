@@ -8,7 +8,7 @@
     />
     <v-row justify="center" align="center" class v-if="isLoading">
       <v-col cols="12" md="12" class="text-center">
-        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+        <v-progress-circular :width="5" :size="50" color="primary" indeterminate></v-progress-circular>
         <p class="google-font mt-2">Getting Footer Settings</p>
       </v-col>
     </v-row>
@@ -19,7 +19,7 @@
             <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
                 <v-toolbar-title class="google-font mr-3">Manage Links </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn dark :loading="isAdding" @click="saveData" class="indigo mx-2" depressed>Save Links</v-btn>
+                <v-btn dark :loading="isAdding" @click="saveData" class="primary mx-2" depressed>Save Links</v-btn>
                 <FooterLink @show="showSnakeBar" :data="this.linksData" />
             </v-toolbar>
             <p class="mb-0 mt-3 google-font" style="color:red"><b>Important! </b> Links will not be saved until and unless, if you will click the save button</p>

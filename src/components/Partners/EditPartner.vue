@@ -3,7 +3,7 @@
     <template v-slot:activator="{  }">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn fab x-small outlined class="mx-1" icon color="indigo" v-on="on" @click.stop="dialog = true" dark>
+          <v-btn fab x-small outlined class="mx-1" icon color="primary" v-on="on" @click.stop="dialog = true" dark>
             <v-icon>mdi-lead-pencil</v-icon>
           </v-btn>
         </template>
@@ -159,9 +159,9 @@
 
       <v-card-actions>
         <div class="flex-grow-1"></div>
-        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn
-          color="indigo"
+          color="primary"
           depressed
           dark
           :disabled="!valid"

@@ -4,7 +4,7 @@
       <template v-slot:activator="{ }">
             <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
-                    <v-btn fab x-small outlined icon v-on="on" dark color="indigo" @click.stop="dialog = true">
+                    <v-btn fab x-small outlined icon v-on="on" dark color="primary" @click.stop="dialog = true">
                         <v-icon>mdi-lead-pencil</v-icon>
                     </v-btn>
                 </template>
@@ -56,9 +56,9 @@
 
         <v-card-actions class="grey lighten-4">
           <div class="flex-grow-1"></div>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn
-            color="indigo"
+            color="primary"
             dark
             depressed
             @click="addGuid"

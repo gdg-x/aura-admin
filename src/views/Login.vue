@@ -13,12 +13,12 @@
         lg="10"
         offset-md="1"
         sm="12"
-        class="py-5"
-        style="max-width: 1300px; margin-left: auto; margin-right: auto"
+        class="py-1"
+        style="max-width: 1300px; margin-left: auto; margin-right: auto;"
       >
-        <v-container fluid class="ma-0 pa-0 white elevation-1 mt-5">
+        <v-container fluid class="ma-0 pa-0 elevation-0" style="background:white;border:1px solid #E0E0E0;border-radius:15px">
           <v-row align="stretch" justify="center" class="ma-0 pa-0">
-            <v-col md="5" lg="5" sm="6" class="pa-5">
+            <v-col md="5" lg="5" sm="6" class="pa-md-8">
               <h4 class="google-font primary--text mb-5">Aura Admin</h4>
               <br />
               <p

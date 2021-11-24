@@ -3,7 +3,7 @@
         app
         grow
         v-model="bottomNav"
-        color="indigo"
+        color="primary"
         class="hidden-md-and-up"
     >
         <v-btn to="/home">

@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" width="800" scrollable>
     <template v-slot:activator="{ on }">
-      <v-btn v-on="on" class="indigo white--text ml-2" elevation="0">Add Notification</v-btn>
+      <v-btn v-on="on" class="primary white--text ml-2" elevation="0">Add Notification</v-btn>
     </template>
     <v-card v-if="dialog">
       <v-card-title class="headline google-font" primary-title>Add Notification</v-card-title>

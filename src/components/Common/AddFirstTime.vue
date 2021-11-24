@@ -1,13 +1,13 @@
 <template>
   <div class="">
-    <v-card class style="border-radius: 7px">
+    <v-card class="" style="border-radius: 12px;border:1px solid #fafafa;background:white">
       <v-card-title
         class="google-font"
         primary-title
         style="border-bottom: 1px solid #e0e0e0"
         dark
       >
-        Add First Time
+        Install Aura Admin
       </v-card-title>
       <v-card-text class="px-1">
         <v-container fluid>
@@ -28,7 +28,7 @@
                   <v-col md="12" cols="12" class="pa-1 ma-0">
                     <p style="font-size: 120%" class="my-0 mb-2">Login Info</p>
                   </v-col>
-                  <v-col sm="12" md="6" class="pa-1 ma-0">
+                  <v-col sm="12" md="4" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0 pa-0"
                       label="Email"
@@ -36,7 +36,7 @@
                       outlined
                     ></v-text-field>
                   </v-col>
-                  <v-col sm="12" md="6" class="pa-1 ma-0">
+                  <v-col sm="12" md="4" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0 pa-0"
                       label="Password"
@@ -107,13 +107,13 @@
       <v-card-actions class="grey lighten-4 py-5">
         <div class="flex-grow-1"></div>
         <v-btn
-          color="indigo"
+          color="primary"
           dark
           depressed
           :disabled="!valid"
           :loading="loading"
           @click="saveUser"
-          >Add</v-btn
+          >Install</v-btn
         >
       </v-card-actions>
     </v-card>

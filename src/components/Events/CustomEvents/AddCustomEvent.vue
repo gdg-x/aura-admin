@@ -10,7 +10,7 @@
       <template v-slot:activator="{ }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn fab x-small color="indigo" outlined dark v-on="on" @click.stop="dialog = true">
+            <v-btn fab x-small color="primary" outlined dark v-on="on" @click.stop="dialog = true">
               <v-icon dark>mdi-plus</v-icon>
             </v-btn>
           </template>
@@ -24,7 +24,7 @@
           </v-btn>
           <v-toolbar-title class="google-font">New Custom Event</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn color="indigo" :loading="loading" depressed dark @click="SaveEvent">Save Event</v-btn>
+          <v-btn color="primary" :loading="loading" depressed dark @click="SaveEvent">Save Event</v-btn>
         </v-toolbar>
         <v-card-text class="px-1">
           <v-container fluid class style>
@@ -395,7 +395,7 @@
                           >
                             <template v-slot:item.actions="{ item }">
                               <EditAgenda :data.sync="item" />
-                              <v-btn fab x-small color="indigo" class="mx-1" outlined dark>
+                              <v-btn fab x-small color="primary" class="mx-1" outlined dark>
                                 <v-icon @click="deleteData(idx)">mdi-delete</v-icon>
                               </v-btn>
                               <!-- <RemoveAgenda :data.sync = "item"/> -->

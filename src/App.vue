@@ -29,7 +29,7 @@
             <v-progress-circular
               :width="5"
               :size="50"
-              color="indigo"
+              color="primary"
               indeterminate
             ></v-progress-circular>
           </v-col>

@@ -2,13 +2,13 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="1200">
       <template v-slot:activator="{ on }">
-        <v-btn color="indigo hidden-sm-and-down" depressed dark v-on="on"
+        <v-btn color="primary hidden-sm-and-down" depressed dark v-on="on"
           >Add New Speaker</v-btn
         >
         <v-btn
           fab
           x-small
-          color="indigo"
+          color="primary"
           outlined
           class="hidden-md-and-up"
           dark
@@ -291,11 +291,11 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn
             class="white--text"
             depressed
-            color="indigo"
+            color="primary"
             :disabled="!valid"
             :loading="loading"
             @click="SaveSpeaker"

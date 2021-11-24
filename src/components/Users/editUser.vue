@@ -9,7 +9,7 @@
             icon
             v-on="on"
             dark
-            color="indigo"
+            color="primary"
             class="mx-1"
             outlined
             @click.stop="dialog = true"
@@ -46,8 +46,8 @@
 
       <v-card-actions class="grey lighten-4">
         <div class="flex-grow-1"></div>
-        <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
-        <v-btn color="indigo" dark @click="updateUser" depressed :loading="loading">Update</v-btn>
+        <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+        <v-btn color="primary" dark @click="updateUser" depressed :loading="loading">Update</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

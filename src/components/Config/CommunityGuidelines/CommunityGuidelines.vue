@@ -2,7 +2,7 @@
   <v-container fluid class="ma-0 pa-0">
     <v-row justify="center" align="center" class v-if="isLoading">
       <v-col cols="12" md="12" class="text-center">
-        <v-progress-circular :width="5" :size="50" color="indigo" indeterminate></v-progress-circular>
+        <v-progress-circular :width="5" :size="50" color="primary" indeterminate></v-progress-circular>
         <p class="google-font mt-2">Getting Community Guidelines Settings</p>
       </v-col>
     </v-row>
@@ -14,7 +14,7 @@
             <v-spacer></v-spacer>
             <v-btn
               depressed
-              color="indigo"
+              color="primary"
               dark
               :loading="isAdding"
               @click="setData"

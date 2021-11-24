@@ -2,22 +2,22 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="400">
       <template v-slot:activator="{ on }">
-        <v-btn color="indigo" depressed text dark v-on="on"
+        <v-btn color="primary" depressed text dark v-on="on"
           >Reset Password</v-btn
         >
       </template>
-      <v-card v-if="dialog">
+      <v-card v-if="dialog" style="border-radius:12px">
         <v-card-title
-          class="google-font"
-          style="border-bottom: 1px solid #e0e0e0"
+          class="google-font text-center"
           primary-title
           dark
           >Reset Password</v-card-title
         >
         <v-card-text>
-          <v-container fluid>
-            <v-row class="pa-0">
-              <v-col md="12" cols="12">
+          <v-container fluid class="my-0 py-0">
+            <v-row class="pa-0 mb-0 pb-0">
+              <v-col md="12" cols="12" class="mb-0 pb-0 px-0">
+                <p>Provide your account email for which you want to reset your password.</p>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
                     class="ma-0 pa-0"
@@ -32,20 +32,21 @@
           </v-container>
         </v-card-text>
 
-        <v-divider></v-divider>
+        <!-- <v-divider></v-divider> -->
 
-        <v-card-actions>
+        <v-card-actions class="px-6 pb-6 mt-n5">
           <v-spacer></v-spacer>
-          <v-btn color="indigo" text @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" outlined @click="dialog = false">Close</v-btn>
           <v-btn
             class="white--text"
             depressed
-            color="indigo"
+            color="primary"
             :disabled="!valid"
             :loading="loading"
             @click="resetUserPassword"
             >Reset Password</v-btn
           >
+          
         </v-card-actions>
       </v-card>
     </v-dialog>
