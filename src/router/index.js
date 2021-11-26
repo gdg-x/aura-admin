@@ -224,21 +224,6 @@ const routes = [{
     }
   },
   {
-    path: '/emails/:id',
-    name: "EmailView",
-    component: () => import( /* webpackChunkName: "emailview" */ '@/views/Email/ViewEmail'),
-    meta: {
-      requiresAuth: true,
-      title: "Email",
-      bottomVisible: true,
-      access: {
-        "Super Admin": true,
-        "Admin": true,
-        "Viewer": false
-      }
-    }
-  },
-  {
     path: '/about',
     name: 'About',
     component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue'),
