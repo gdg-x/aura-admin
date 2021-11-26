@@ -66,7 +66,6 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
 import PushNotificationServicers from '@/services/NotificationServices'
 import { mapState } from 'vuex'
 export default {

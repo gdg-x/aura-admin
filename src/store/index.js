@@ -9,13 +9,13 @@ export default new Vuex.Store({
     isLoggedin: false,
     role: "",
     unsub: {},
-    userDetails:{},
-    generalConfig:{
-      email:'',
-      name:''
+    userDetails: {},
+    generalConfig: {
+      email: '',
+      name: ''
     },
-    keysandsecurity:{
-      meetup:''
+    keysandsecurity: {
+      meetup: ''
     },
     items: [{
         text: 'Home',
@@ -24,7 +24,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       },
       {
@@ -34,7 +34,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       },
       {
@@ -44,7 +44,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       },
       {
@@ -54,7 +54,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       },
       {
@@ -64,7 +64,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       },
       {
@@ -74,7 +74,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": false,
-          "Viewer":false
+          "Viewer": false
         }
       },
       {
@@ -84,7 +84,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":false
+          "Viewer": false
         }
       },
       {
@@ -94,7 +94,7 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": false,
-          "Viewer":false
+          "Viewer": false
         }
       },
       {
@@ -104,10 +104,10 @@ export default new Vuex.Store({
         access: {
           "Super Admin": true,
           "Admin": true,
-          "Viewer":true
+          "Viewer": true
         }
       }
-      
+
     ]
   },
   getters: {
@@ -120,9 +120,9 @@ export default new Vuex.Store({
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer),
     roleSet: (state, payload) => (state.role = payload),
-    setGeneral:(state, payload)=>(state.generalConfig = payload),
-    userDetailsSet:(state, payload)=>(state.userDetails = payload),
-    setKeysAndSecutity:(state, payload)=>(state.keysandsecurity= payload),
+    setGeneral: (state, payload) => (state.generalConfig = payload),
+    userDetailsSet: (state, payload) => (state.userDetails = payload),
+    setKeysAndSecutity: (state, payload) => (state.keysandsecurity = payload),
   },
   actions: {},
   modules: {}

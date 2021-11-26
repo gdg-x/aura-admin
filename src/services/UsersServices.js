@@ -16,6 +16,14 @@ let usersServices = {
         });
     }),
 
+    removePendingUser: (userId) => new Promise((resolve, reject) => {
+        firebase.firestore.collection("teamOnboard").doc(userId).delete().then(()=>{
+            resolve({success: true});
+        }).catch(e=>{
+            reject({success: false, msg: e});
+        });
+    }),
+
     getCurrentUserDetails: () => new Promise((resolve, reject) => {
         const uid = firebase.auth.currentUser.uid;
         firebase.firestore.collection('team').where("uid", "==", uid).get().then(docs => {

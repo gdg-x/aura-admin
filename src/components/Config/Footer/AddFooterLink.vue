@@ -6,7 +6,7 @@
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card v-if="dialog" class >
+      <v-card v-if="dialog" class>
         <v-card-title class="google-font" primary-title dark>
           Add New Footer Link
         </v-card-title>
@@ -14,25 +14,25 @@
           <v-container fluid>
             <v-row class="pa-0">
               <v-col cols="12" class="pa-1 ma-0" ref="form">
-                  <!-- {{data}} -->
+                <!-- {{data}} -->
                 <v-select
-                    :items="items"
-                    outlined
-                    label="Link Type"
-                    v-model="SelectedLinkType"
+                  :items="items"
+                  outlined
+                  label="Link Type"
+                  v-model="SelectedLinkType"
                 ></v-select>
 
                 <v-text-field
-                    label="Link Name"
-                    :rules="[() => !!linkname || 'This field is required']"
-                    v-model="linkname"
-                    outlined
+                  label="Link Name"
+                  :rules="[() => !!linkname || 'This field is required']"
+                  v-model="linkname"
+                  outlined
                 ></v-text-field>
                 <v-text-field
-                    label="Link"
-                    v-model="link"
-                    :rules="[() => !!link || 'This field is required']"
-                    outlined
+                  label="Link"
+                  v-model="link"
+                  :rules="[() => !!link || 'This field is required']"
+                  outlined
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -50,7 +50,8 @@
             depressed
             @click="addData"
             :loading="loading"
-          >Add</v-btn>
+            >Add</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -58,52 +59,49 @@
 </template>
 
 <script>
-import firebase from '@/config/firebase';
 export default {
-    props:['data'],
-    components:{
-    },
-    data:()=>({
-        dialog:false,
-        loading:false,
-        isAdding: false,
-        SelectedLinkType:'',
-        link:'',
-        linkname:'',
-        items:[
-            "About",
-            "Resources",
-            "Developer Console",
-            "Footer End Session Link"
-        ]
-    }),
-    mounted(){
-        // this.ShowPartners()
-    },
-    methods:{
-        addData(){
+  name:"AddFooterConfig",
+  props: ["data"],
+  components: {},
+  data: () => ({
+    dialog: false,
+    loading: false,
+    isAdding: false,
+    SelectedLinkType: "",
+    link: "",
+    linkname: "",
+    items: [
+      "About",
+      "Resources",
+      "Developer Console",
+      "Footer End Session Link",
+    ],
+  }),
+  mounted() {
+    // this.ShowPartners()
+  },
+  methods: {
+    addData() {
+      this.loading = true;
+      var datalink = {
+        link: this.link,
+        linkname: this.linkname,
+        linktype: this.SelectedLinkType,
+      };
 
-            this.loading = true
-            var datalink={
-                link:this.link,
-                linkname:this.linkname,
-                linktype:this.SelectedLinkType
-            }
-
-            if(this.SelectedLinkType == 'About'){
-                this.data['About'].push(datalink)
-            }else if(this.SelectedLinkType == 'Resources'){
-                this.data['Resources'].push(datalink)
-            }else if(this.SelectedLinkType == 'Developer Console'){
-                this.data['Developer Console'].push(datalink)
-            }else if(this.SelectedLinkType == 'Footer End Session Link'){
-                this.data['Footer End Session Link'].push(datalink)
-            }
-            this.loading = false;  
-            this.dialog = false
-        },
-     
-    }
+      if (this.SelectedLinkType == "About") {
+        this.data["About"].push(datalink);
+      } else if (this.SelectedLinkType == "Resources") {
+        this.data["Resources"].push(datalink);
+      } else if (this.SelectedLinkType == "Developer Console") {
+        this.data["Developer Console"].push(datalink);
+      } else if (this.SelectedLinkType == "Footer End Session Link") {
+        this.data["Footer End Session Link"].push(datalink);
+      }
+      this.loading = false;
+      this.dialog = false;
+    },
+  },
 };
 </script>
 

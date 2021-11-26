@@ -28,6 +28,7 @@
 <script>
 import SpeakerServices from '@/services/SpeakersServices'
 export default {
+  name:"DeleteSpeaker",
   props: {
     SpeakerInfo: {}
   },

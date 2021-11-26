@@ -71,8 +71,18 @@
 
           <template v-slot:extension>
             <v-tabs v-model="userModel">
-              <v-tab href="#onboardedUsers">Onboarded Users <span v-if="usersData.length>0"> ({{usersData.length}})</span></v-tab>
-              <v-tab href="#pendingUsers">Pending Users <span v-if="pendingUsersData.length>0"> ({{pendingUsersData.length}})</span></v-tab>
+              <v-tab href="#onboardedUsers"
+                >Onboarded Users
+                <span v-if="usersData.length > 0"
+                  >({{ usersData.length }})</span
+                ></v-tab
+              >
+              <v-tab href="#pendingUsers"
+                >Pending Users
+                <span v-if="pendingUsersData.length > 0"
+                  >({{ pendingUsersData.length }})</span
+                ></v-tab
+              >
             </v-tabs>
           </template>
         </v-toolbar>
@@ -80,26 +90,40 @@
     </v-row>
 
     <v-row class="px-2">
-      <v-col cols="12 " class=" mx-0 px-0">
-        <v-container fluid class="pa-0 ma-0" >
-            <v-tabs-items v-model="userModel" class="pa-0 ma-0" style="background:#fafafa">
-              <!-- For Onboarded User -->
-              <v-tab-item value="onboardedUsers" class="pa-0 ma-0" >
+      <v-col cols="12 " class="mx-0 px-0">
+        <v-container fluid class="pa-0 ma-0">
+          <v-tabs-items
+            v-model="userModel"
+            class="pa-0 ma-0"
+            style="background: #fafafa"
+          >
+            <!-- For Onboarded User -->
+            <v-tab-item value="onboardedUsers" class="pa-0 ma-0">
               <!-- Check the Condition Where we have a Data or not -->
               <!-- Table View -->
               <div class="pa-0 ma-0">
-                <UsersDataLayout :loading.sync="onboardedUserLoading" :usersData="usersData" :search.sync="search" :showSnakeBar.sync="showSnakeBar" />
+                <UsersDataLayout
+                  :loading.sync="onboardedUserLoading"
+                  :usersData="usersData"
+                  :search.sync="search"
+                  :showSnakeBar.sync="showSnakeBar"
+                />
               </div>
-              <!-- Table View --> 
-              </v-tab-item>  
+              <!-- Table View -->
+            </v-tab-item>
 
-              <!-- Pending Users -->
-              <v-tab-item value="pendingUsers" >   
-                <div class="pa-0 ma-0">
-                  <PendingUsersDataLayout :loading.sync="pendingUsersLoading" :usersData="pendingUsersData" :search.sync="search" />
-                </div>
-              </v-tab-item>
-            </v-tabs-items>
+            <!-- Pending Users -->
+            <v-tab-item value="pendingUsers">
+              <div class="pa-0 ma-0">
+                <PendingUsersDataLayout
+                  :loading.sync="pendingUsersLoading"
+                  :usersData="pendingUsersData"
+                  :search.sync="search"
+                  :showSnakeBar.sync="showSnakeBar"
+                />
+              </div>
+            </v-tab-item>
+          </v-tabs-items>
         </v-container>
       </v-col>
     </v-row>
@@ -128,13 +152,13 @@ export default {
   name: "TeamView",
   inject: ["theme"],
   components: {
-    UsersDataLayout: ()=> import("@/components/Users/UsersDataLayout"),
-    PendingUsersDataLayout: ()=> import("@/components/Users/PendingUsersData"),
+    UsersDataLayout: () => import("@/components/Users/UsersDataLayout"),
+    PendingUsersDataLayout: () => import("@/components/Users/PendingUsersData"),
     Snakebar: () => import("@/components/Common/Snakebar"),
     AddUser: () => import("@/components/Users/addUser"),
   },
   data: () => ({
-    userModel:'onboardedUsers',
+    userModel: "onboardedUsers",
     dataView: 0,
     isSearch: false,
     search: "",
@@ -144,10 +168,9 @@ export default {
     snakeBarTimeOut: 5000,
     showDialog: false,
     usersData: [],
-    pendingUsersData:[],
-    onboardedUserLoading:false,
-    pendingUsersLoading: false
-    
+    pendingUsersData: [],
+    onboardedUserLoading: false,
+    pendingUsersLoading: false,
   }),
   computed: { ...mapState(["role"]) },
   beforeMount() {
@@ -157,9 +180,8 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.query.msg) {
-      this.showSnakeBar("User Removed Sucessfully");
-    } else this.showData();
+    if (this.$route.query.msg) this.showSnakeBar("User Removed Sucessfully");
+    else this.showData();
   },
   methods: {
     changeSnakebar(vale) {
@@ -190,18 +212,17 @@ export default {
           this.onboardedUserLoading = false;
           console.log("Error getting documents", e);
         });
-      
+
       // Get All Pending Users Info
-      this.pendingUsersLoading= true
-      await UsersServices.getAllPendingUsers().then(res=>{
-        if(res.success){
-          this.pendingUsersData = res.data
-          this.pendingUsersLoading= false
+      this.pendingUsersLoading = true;
+      await UsersServices.getAllPendingUsers().then((res) => {
+        if (res.success) {
+          this.pendingUsersData = res.data;
+          this.pendingUsersLoading = false;
         }
-      })
-      this.pendingUsersLoading= false
-    },   
-    
+      });
+      this.pendingUsersLoading = false;
+    },
   },
 };
 </script>

@@ -28,6 +28,7 @@
 <script>
 import TeamServices from '@/services/TeamServices'
 export default {
+  name:"DeleteTeamMember",
   props: {
     TeamInfo: {}
   },

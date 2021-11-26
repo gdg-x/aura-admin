@@ -197,7 +197,7 @@ import firebase from "@/config/firebase";
 import TeamServices from "@/services/TeamServices";
 import {mapState} from "vuex"
 export default {
-  name: "ViewTeam",
+  name: "DetailTeamView",
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteTeam: () => import("@/components/Team/DeleteTeam"),

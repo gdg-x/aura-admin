@@ -271,7 +271,7 @@
 import SpeakerServices from "@/services/SpeakersServices";
 import { mapState } from "vuex";
 export default {
-  name: "ViewTeam",
+  name: "DetailSpeakerView",
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),
     DeleteSpeaker: () => import("@/components/Speakers/DeleteSpeaker"),

@@ -3,7 +3,17 @@
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn fab x-small outlined class="mx-1" icon v-on="on" dark color="primary" @click.stop="dialog = true">
+          <v-btn
+            fab
+            x-small
+            outlined
+            class="mx-1"
+            icon
+            v-on="on"
+            dark
+            color="primary"
+            @click.stop="dialog = true"
+          >
             <v-icon>mdi-link</v-icon>
           </v-btn>
         </template>
@@ -12,8 +22,17 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="google-font heading">Here is Your Public URL</v-card-title>
-      <v-card-text class="google-font"><a :href="generalConfig.website+url" style="text-decoration:none" target="_blank">{{ generalConfig.website }}{{ url }}</a></v-card-text>
+      <v-card-title class="google-font heading"
+        >Here is Your Public URL</v-card-title
+      >
+      <v-card-text class="google-font"
+        ><a
+          :href="generalConfig.website + url"
+          style="text-decoration: none"
+          target="_blank"
+          >{{ generalConfig.website }}{{ url }}</a
+        ></v-card-text
+      >
       <v-card-actions>
         <div class="flex-grow-1"></div>
 
@@ -24,19 +43,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
-  props:['url','name'],
+  name:"ShareUrlComponent",
+  props: ["url", "name"],
   data: () => ({
     dialog: false,
-    loading: false
+    loading: false,
   }),
-  computed:{
-      ...mapState(['generalConfig'])
+  computed: {
+    ...mapState(["generalConfig"]),
   },
-  methods: {
-      
-  }
+  methods: {},
 };
 </script>

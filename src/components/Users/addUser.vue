@@ -125,11 +125,11 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
 import TeamServices from "@/services/TeamServices";
 import UsersService from "@/services/UsersServices";
 import { mapState } from "vuex";
 export default {
+  name: "AddUserMgn",
   components: {},
   data: () => ({
     dialog: false,
@@ -169,13 +169,15 @@ export default {
     close() {
       this.dialog = false;
       this.emailDialog = false;
-      this.$emit("showSuccess", "Added Success")
+      this.$emit("showSuccess", "Added Success");
     },
 
     async addUser() {
       this.loading = true;
       try {
-        let { id, email } = this.teamData.filter((team) => team.id == this.selectedUser)[0];
+        let { id, email } = this.teamData.filter(
+          (team) => team.id == this.selectedUser
+        )[0];
         const data = { id, email, userType: this.userRole };
         const userAddData = await UsersService.addUser(data);
         this.output = `User Signup Link Generated, Please send Link to user <a href="${window.location.origin}/onboard/${data.id}" target="_blank">${window.location.origin}/onboard/${data.id}</a>`;

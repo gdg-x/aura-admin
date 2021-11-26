@@ -359,7 +359,7 @@ import { mapState } from 'vuex'
 import firebase from "@/config/firebase";
 
 export default {
-  name: "ViewTeam",
+  name: "DetailEventView",
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),
     DeleteEvent:()=>import('@/components/Events/subcomponents/DeleteEvent'),
