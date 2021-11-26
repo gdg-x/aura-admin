@@ -22,7 +22,7 @@ const routes = [{
   {
     path: '/home',
     name: 'HomePage',
-    component: () => import( /* webpackChunkName: "home1" */ '@/views/Home'),
+    component: () => import( /* webpackChunkName: "home" */ '@/views/Home'),
     meta: {
       requiresAuth: true,
       title: "Home",
@@ -256,7 +256,7 @@ const routes = [{
   {
     path: '/install',
     name: "InstallApp",
-    component: () => import( /* webpackChunkName: "onboard" */ '@/views/InstallApp'),
+    component: () => import( /* webpackChunkName: "installApp" */ '@/views/InstallApp'),
     meta: {
       requiresAuth: false,
       title: "Install App",
