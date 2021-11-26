@@ -35,6 +35,7 @@
 <script>
 import TeamServices from '@/services/TeamServices'
 export default {
+  name:"SuccessDialog",
   components: {},
   props:['data'],
   data: () => ({

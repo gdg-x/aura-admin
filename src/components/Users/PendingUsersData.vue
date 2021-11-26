@@ -8,7 +8,7 @@
             border: 1px solid #e0e0e0;
             border-radius: 5px;
             background: white;
-            "
+          "
           :search="search"
           :loading="loading"
           :headers="headers"
@@ -35,6 +35,23 @@
               </template>
               <span>{{ item.name }} Details</span>
             </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  fab
+                  x-small
+                  icon
+                  outlined
+                  color="primary"
+                  class="mr-1"
+                  v-on="on"
+                  @click="removeUserFromPending(item.id)"
+                >
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </template>
+              <span>{{ item.name }} Remove</span>
+            </v-tooltip>
           </template>
         </v-data-table>
       </v-col>
@@ -43,10 +60,11 @@
 </template>
 
 <script>
+import UserService from "@/services/UsersServices";
 export default {
-  name: "UserDataLayout",
+  name: "PendingUserData",
   components: {},
-  props: ["usersData", "search", "loading"],
+  props: ["usersData", "search", "loading", "showSnakeBar"],
   data: () => ({
     headers: [
       { text: "User ID", value: "id", width: "20%" },
@@ -58,6 +76,18 @@ export default {
   methods: {
     gotoTeamDetails(id) {
       this.$router.push("/team/" + id);
+    },
+    async removeUserFromPending(id) {
+      let confirm = window.confirm("you sure want to delete " + id);
+      if (confirm) {
+        try {
+          await UserService.removePendingUser(id);
+          this.showSnakeBar("User Deleted");
+        } catch (e) {
+          alert(e.message);
+          console.log(e);
+        }
+      }
     },
   },
 };

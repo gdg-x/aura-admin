@@ -77,6 +77,7 @@
 import UsersServices from "@/services/UsersServices";
 import { mapState } from "vuex";
 export default {
+  name:"DeleteUserMgn",
   props: ["data"],
   data: () => ({
     dialog: false,

@@ -3,7 +3,14 @@
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <v-btn  v-on="on" dark color="primary" class="mx-1" outlined @click.stop="dialog = true">
+          <v-btn
+            v-on="on"
+            dark
+            color="primary"
+            class="mx-1"
+            outlined
+            @click.stop="dialog = true"
+          >
             Public Url
           </v-btn>
         </template>
@@ -12,8 +19,17 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="google-font heading">Here is Your Event's Public URL</v-card-title>
-      <v-card-text class="google-font"><a :href="generalConfig.website+'/events/'+EventInfo.id" style="text-decoration:none" target="_blank">{{ generalConfig.website }}/events/{{ EventInfo.id }}</a></v-card-text>
+      <v-card-title class="google-font heading"
+        >Here is Your Event's Public URL</v-card-title
+      >
+      <v-card-text class="google-font"
+        ><a
+          :href="generalConfig.website + '/events/' + EventInfo.id"
+          style="text-decoration: none"
+          target="_blank"
+          >{{ generalConfig.website }}/events/{{ EventInfo.id }}</a
+        ></v-card-text
+      >
       <v-card-actions>
         <div class="flex-grow-1"></div>
 
@@ -24,21 +40,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
+  name:"PublicUriForEvent",
   props: {
-    EventInfo: {}
+    EventInfo: {},
   },
   data: () => ({
     dialog: false,
-    loading: false
+    loading: false,
   }),
-  computed:{
-      ...mapState(['generalConfig'])
+  computed: {
+    ...mapState(["generalConfig"]),
   },
-  methods: {
-      
-  }
+  methods: {},
 };
 </script>

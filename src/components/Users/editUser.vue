@@ -56,6 +56,7 @@
 <script>
 import UserService from "@/services/UsersServices";
 export default {
+  name:"EditUserMgn",
   props: ["data"],
   data: () => ({
     dialog: false,

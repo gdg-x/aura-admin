@@ -22,7 +22,7 @@ const routes = [{
   {
     path: '/home',
     name: 'HomePage',
-    component: () => import( /* webpackChunkName: "home1" */ '@/views/Home'),
+    component: () => import( /* webpackChunkName: "home" */ '@/views/Home'),
     meta: {
       requiresAuth: true,
       title: "Home",
@@ -224,21 +224,6 @@ const routes = [{
     }
   },
   {
-    path: '/emails/:id',
-    name: "EmailView",
-    component: () => import( /* webpackChunkName: "emailview" */ '@/views/Email/ViewEmail'),
-    meta: {
-      requiresAuth: true,
-      title: "Email",
-      bottomVisible: true,
-      access: {
-        "Super Admin": true,
-        "Admin": true,
-        "Viewer": false
-      }
-    }
-  },
-  {
     path: '/about',
     name: 'About',
     component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue'),
@@ -271,7 +256,7 @@ const routes = [{
   {
     path: '/install',
     name: "InstallApp",
-    component: () => import( /* webpackChunkName: "onboard" */ '@/views/InstallApp'),
+    component: () => import( /* webpackChunkName: "installApp" */ '@/views/InstallApp'),
     meta: {
       requiresAuth: false,
       title: "Install App",

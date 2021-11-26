@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" persistent scrollable width="1200">
-    <template v-slot:activator="{  }">
+    <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn
@@ -17,16 +17,17 @@
             <v-icon>mdi-lead-pencil</v-icon>
           </v-btn>
         </template>
-        <span>Edit {{teamData.name}} Details</span>
+        <span>Edit {{ teamData.name }} Details</span>
       </v-tooltip>
     </template>
 
     <v-card v-if="dialog">
       <v-card-title
         class="google-font"
-        style="border-bottom:1px solid #e0e0e0;"
+        style="border-bottom: 1px solid #e0e0e0"
         primary-title
-      >Edit {{teamData.name}} Details</v-card-title>
+        >Edit {{ teamData.name }} Details</v-card-title
+      >
 
       <v-card-text class>
         <v-container fluid class="pa-0">
@@ -36,18 +37,28 @@
                 <!-- Row 1 -->
                 <v-row class="pa-3">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
-                    <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                    <p class="google-font mb-0" style="color: red">
+                      *indicates required field
+                    </p>
                   </v-col>
                   <v-col
                     md="12"
                     cols="12"
                     class="pa-1 ma-0"
-                    v-if="(role==='Super Admin' || role==='Admin')"
+                    v-if="role === 'Super Admin' || role === 'Admin'"
                   >
-                    <p style="font-size:120%" class="my-0">Team Member Status</p>
+                    <p style="font-size: 120%" class="my-0">
+                      Team Member Status
+                    </p>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
+                  <v-col
+                    md="3"
+                    xs="3"
+                    cols="12"
+                    class="pa-1 ma-0"
+                    v-if="role === 'Super Admin'"
+                  >
                     <v-select
                       :items="items"
                       v-model="updatedData.active"
@@ -56,7 +67,13 @@
                     ></v-select>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
+                  <v-col
+                    md="3"
+                    xs="3"
+                    cols="12"
+                    class="pa-1 ma-0"
+                    v-if="role === 'Super Admin'"
+                  >
                     <v-select
                       :items="items"
                       v-model="updatedData.visible"
@@ -70,7 +87,7 @@
                     xs="3"
                     cols="12"
                     class="pa-1 ma-0"
-                    v-if="(role==='Super Admin' || role==='Admin')"
+                    v-if="role === 'Super Admin' || role === 'Admin'"
                   >
                     <v-text-field
                       v-model="updatedData.id"
@@ -82,8 +99,19 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="3" xs="3" cols="12" class="pa-1 ma-0" v-if="(role==='Super Admin')">
-                    <v-select :items="teamRole" v-model="updatedData.role" label="Role" outlined></v-select>
+                  <v-col
+                    md="3"
+                    xs="3"
+                    cols="12"
+                    class="pa-1 ma-0"
+                    v-if="role === 'Super Admin'"
+                  >
+                    <v-select
+                      :items="teamRole"
+                      v-model="updatedData.role"
+                      label="Role"
+                      outlined
+                    ></v-select>
                   </v-col>
                 </v-row>
                 <!-- Row 1 -->
@@ -91,7 +119,7 @@
                 <!-- Row 2 -->
                 <v-row class="pa-3">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
-                    <p style="font-size:120%" class="my-0">Team Member Info</p>
+                    <p style="font-size: 120%" class="my-0">Team Member Info</p>
                   </v-col>
 
                   <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
@@ -115,14 +143,29 @@
                   </v-col>
 
                   <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
-                      <v-text-field v-model="updatedData.image" class="ma-0" label="Image URL" outlined></v-text-field>
-                    </v-col>
-                    <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
-                      <UploadImage type="team" :userId="updatedData.id" @message="showMessageSnakeBar" @uploadedImage="imageUploadDone"/>
-                    </v-col>
+                    <v-text-field
+                      v-model="updatedData.image"
+                      class="ma-0"
+                      label="Image URL"
+                      outlined
+                    ></v-text-field>
+                  </v-col>
+                  <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                    <UploadImage
+                      type="team"
+                      :userId="updatedData.id"
+                      @message="showMessageSnakeBar"
+                      @uploadedImage="imageUploadDone"
+                    />
+                  </v-col>
 
                   <v-col md="12" xs="12" cols="12" class="pa-1 ma-0">
-                    <v-textarea outlined name="input-7-4" v-model="updatedData.bio" label="Bio"></v-textarea>
+                    <v-textarea
+                      outlined
+                      name="input-7-4"
+                      v-model="updatedData.bio"
+                      label="Bio"
+                    ></v-textarea>
                   </v-col>
                 </v-row>
                 <!-- Row 2 -->
@@ -130,7 +173,7 @@
                 <!-- Row 3 -->
                 <v-row class="pa-3">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
-                    <p style="font-size:120%" class="my-0">Personal Info</p>
+                    <p style="font-size: 120%" class="my-0">Personal Info</p>
                   </v-col>
 
                   <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
@@ -142,7 +185,13 @@
                     ></v-text-field>
                   </v-col>
 
-                  <v-col v-if="(role==='Super Admin')" md="8" xs="8" cols="12" class="pa-1 ma-0">
+                  <v-col
+                    v-if="role === 'Super Admin'"
+                    md="8"
+                    xs="8"
+                    cols="12"
+                    class="pa-1 ma-0"
+                  >
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.email"
@@ -157,7 +206,7 @@
                 <!-- Row 4 -->
                 <v-row class="pa-3">
                   <v-col md="12" cols="12" class="pa-1 ma-0">
-                    <p style="font-size:120%" class="my-0">Social Links</p>
+                    <p style="font-size: 120%" class="my-0">Social Links</p>
                   </v-col>
 
                   <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
@@ -233,7 +282,8 @@
           :disabled="!valid"
           :loading="loading"
           @click="UpdateData"
-        >Update {{teamData.name.split(" ")[0]}} Details</v-btn>
+          >Update {{ teamData.name.split(" ")[0] }} Details</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -243,22 +293,23 @@
 import TeamServices from "@/services/TeamServices";
 import { mapState } from "vuex";
 export default {
+  name:"EditTeamMember",
   props: {
-    teamData: {}
+    teamData: {},
   },
-  components:{
+  components: {
     UploadImage: () => import("@/components/Common/ImageUpload"),
   },
   data() {
     return {
       valid: true,
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length <= 50) || "Name must be less than 50 characters"
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 50) || "Name must be less than 50 characters",
       ],
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       teamRole: ["Core Team", "Organizing Team", "Volunteer"],
       dialog: false,
@@ -281,17 +332,17 @@ export default {
           linkedin: this.teamData.socialLinks.linkedin,
           medium: this.teamData.socialLinks.medium,
           twitter: this.teamData.socialLinks.twitter,
-          web: this.teamData.socialLinks.web
-        }
-      }
+          web: this.teamData.socialLinks.web,
+        },
+      },
     };
   },
   computed: { ...mapState(["role", "userDetails"]) },
   methods: {
-    showMessageSnakeBar(text){
+    showMessageSnakeBar(text) {
       this.$emit("message", text);
     },
-    imageUploadDone(text){
+    imageUploadDone(text) {
       this.updatedData.image = text;
     },
     UpdateData() {
@@ -311,7 +362,7 @@ export default {
           lastUpdatedOn: new Date(),
           lastUpdatedBy: {
             name: this.userDetails.name,
-            id: this.userDetails.id
+            id: this.userDetails.id,
           },
           socialLinks: {
             facebook: this.updatedData.socialLinks.facebook,
@@ -319,23 +370,23 @@ export default {
             linkedin: this.updatedData.socialLinks.linkedin,
             medium: this.updatedData.socialLinks.medium,
             twitter: this.updatedData.socialLinks.twitter,
-            web: this.updatedData.socialLinks.web
-          }
+            web: this.updatedData.socialLinks.web,
+          },
         };
         TeamServices.editTeamMember(this.teamData.id, data)
-          .then(res => {
+          .then((res) => {
             if (res.success == true) {
               this.loading = false;
               this.dialog = false;
               this.$emit("editedSuccess", res.msg);
             }
           })
-          .catch(e => {
+          .catch((e) => {
             console.log(e.msg);
             this.loading = false;
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>

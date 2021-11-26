@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" persistent width="800" scrollable>
-    <template v-slot:activator="{ }">
+    <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
           <v-btn
@@ -21,44 +21,61 @@
     </template>
 
     <v-card v-if="dialog">
-      <v-card-title class="headline google-font" primary-title>{{ dialogData.title }}</v-card-title>
+      <v-card-title class="headline google-font" primary-title>{{
+        dialogData.title
+      }}</v-card-title>
       <v-card-text>
         <v-row align="center">
           <v-col cols="12" md="7">
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">Body:</span>
+              <span style="font-weight: 500" class="black--text">Body:</span>
               {{ dialogData.body }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">Number of times Sent:</span>
+              <span style="font-weight: 500" class="black--text"
+                >Number of times Sent:</span
+              >
               {{ dialogData.noTimeSend }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">Created on :</span>
+              <span style="font-weight: 500" class="black--text"
+                >Created on :</span
+              >
               {{ getDate(dialogData.createdOn) }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">Last Sent on :</span>
+              <span style="font-weight: 500" class="black--text"
+                >Last Sent on :</span
+              >
               {{ getDate(dialogData.sentTime) }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">Learn More:</span>
+              <span style="font-weight: 500" class="black--text"
+                >Learn More:</span
+              >
               {{ dialogData.learnMore }}
             </p>
             <p class="google-font">
-              <span style="font-weight:500" class="black--text">RegLink:</span>
+              <span style="font-weight: 500" class="black--text">RegLink:</span>
               {{ dialogData.regLink }}
             </p>
           </v-col>
           <v-col cols="12" md="5">
             <v-img
-              :src="(dialogData.image.length > 10)?dialogData.image:require('@/assets/img/dontremove/noimage.jpg')"
+              :src="
+                dialogData.image.length > 10
+                  ? dialogData.image
+                  : require('@/assets/img/dontremove/noimage.jpg')
+              "
               max-height="300"
               contain
             >
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                  <v-progress-circular
+                    indeterminate
+                    color="primary"
+                  ></v-progress-circular>
                 </v-row>
               </template>
             </v-img>
@@ -79,20 +96,17 @@ export default {
   name: "ViewNotification",
   props: ["dialogData"],
   data: () => ({
-    dialog: false
+    dialog: false,
   }),
   methods: {
     getDate(date) {
       if (date.toString().length > 0) {
-        return date
-          .toDate()
-          .toString()
-          .split("(")[0];
+        return date.toDate().toString().split("(")[0];
       } else {
         return date;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -7,14 +7,22 @@
       transition="dialog-bottom-transition"
       scrollable
     >
-      <template v-slot:activator="{ }">
+      <template v-slot:activator="{}">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn fab x-small color="primary" outlined dark v-on="on" @click.stop="dialog = true">
+            <v-btn
+              fab
+              x-small
+              color="primary"
+              outlined
+              dark
+              v-on="on"
+              @click.stop="dialog = true"
+            >
               <v-icon dark>mdi-lead-pencil</v-icon>
             </v-btn>
           </template>
-          <span>Edit {{eventInfo.name}}</span>
+          <span>Edit {{ eventInfo.name }}</span>
         </v-tooltip>
       </template>
       <v-card v-if="dialog" class style>
@@ -22,9 +30,18 @@
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
-          <v-toolbar-title class="google-font">Edit {{eventInfo.name}}</v-toolbar-title>
+          <v-toolbar-title class="google-font"
+            >Edit {{ eventInfo.name }}</v-toolbar-title
+          >
           <v-spacer></v-spacer>
-          <v-btn color="primary" :loading="loading" depressed dark @click="SaveEvent">Edit Event</v-btn>
+          <v-btn
+            color="primary"
+            :loading="loading"
+            depressed
+            dark
+            @click="SaveEvent"
+            >Edit Event</v-btn
+          >
         </v-toolbar>
         <v-card-text class="px-1">
           <v-container fluid class style>
@@ -32,11 +49,13 @@
               <v-row justify="center" align="start">
                 <v-col md="3" lg="2" cols="12" sm="3">
                   <img
-                    style="width:100%;text-align:center"
+                    style="width: 100%; text-align: center"
                     :src="require('@/assets/img/svg/dataentry.svg')"
                   />
-                  <h3 class="google-font">Edit {{eventInfo.name}}</h3>
-                  <p class="google-font mb-0" style="color:red">*indicates required field</p>
+                  <h3 class="google-font">Edit {{ eventInfo.name }}</h3>
+                  <p class="google-font mb-0" style="color: red">
+                    *indicates required field
+                  </p>
                   <p>Event ID should be Unique</p>
                 </v-col>
                 <v-col md="8" lg="9" cols="12" sm="8">
@@ -109,14 +128,21 @@
                             v-on="on"
                           ></v-text-field>
                         </template>
-                        <v-date-picker v-model="updatedeventData.date" no-title scrollable>
+                        <v-date-picker
+                          v-model="updatedeventData.date"
+                          no-title
+                          scrollable
+                        >
                           <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="menu = false"
+                            >Cancel</v-btn
+                          >
                           <v-btn
                             text
                             color="primary"
                             @click="$refs.menu.save(updatedeventData.date)"
-                          >OK</v-btn>
+                            >OK</v-btn
+                          >
                         </v-date-picker>
                       </v-menu>
                     </v-col>
@@ -144,12 +170,17 @@
                           full-width
                         >
                           <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="modal2 = false"
+                            >Cancel</v-btn
+                          >
                           <v-btn
                             text
                             color="primary"
-                            @click="$refs.dialog.save(updatedeventData.time.starttime)"
-                          >OK</v-btn>
+                            @click="
+                              $refs.dialog.save(updatedeventData.time.starttime)
+                            "
+                            >OK</v-btn
+                          >
                         </v-time-picker>
                       </v-dialog>
 
@@ -186,12 +217,17 @@
                           full-width
                         >
                           <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal1 = false">Cancel</v-btn>
+                          <v-btn text color="primary" @click="modal1 = false"
+                            >Cancel</v-btn
+                          >
                           <v-btn
                             text
                             color="primary"
-                            @click="$refs.dialog1.save(updatedeventData.time.endtime)"
-                          >OK</v-btn>
+                            @click="
+                              $refs.dialog1.save(updatedeventData.time.endtime)
+                            "
+                            >OK</v-btn
+                          >
                         </v-time-picker>
                       </v-dialog>
 
@@ -255,7 +291,9 @@
                         multiple
                         outlined
                       >
-                        <template v-slot:selection="{ attrs, item, select, selected }">
+                        <template
+                          v-slot:selection="{ attrs, item, select, selected }"
+                        >
                           <v-chip
                             v-bind="attrs"
                             :input-value="selected"
@@ -297,10 +335,9 @@
                           <v-chip small v-if="index === 0">
                             <span>{{ item.name }}</span>
                           </v-chip>
-                          <span
-                            v-if="index === 1"
-                            class="grey--text caption"
-                          >(+{{ speakersData.length - 1 }} others)</span>
+                          <span v-if="index === 1" class="grey--text caption"
+                            >(+{{ speakersData.length - 1 }} others)</span
+                          >
                         </template>
                       </v-autocomplete>
                     </v-col>
@@ -318,10 +355,9 @@
                           <v-chip small v-if="index === 0">
                             <span>{{ item.name }}</span>
                           </v-chip>
-                          <span
-                            v-if="index === 1"
-                            class="grey--text caption"
-                          >(+{{ partnersData.length - 1 }} others)</span>
+                          <span v-if="index === 1" class="grey--text caption"
+                            >(+{{ partnersData.length - 1 }} others)</span
+                          >
                         </template>
                       </v-autocomplete>
                     </v-col>
@@ -341,10 +377,12 @@
                           <v-chip small v-if="index === 0">
                             <span>{{ item.name }}</span>
                           </v-chip>
-                          <span
-                            v-if="index === 1"
-                            class="grey--text caption"
-                          >(+{{ updatedeventData.team.length - 1 }} others)</span>
+                          <span v-if="index === 1" class="grey--text caption"
+                            >(+{{
+                              updatedeventData.team.length - 1
+                            }}
+                            others)</span
+                          >
                         </template>
                       </v-autocomplete>
                     </v-col>
@@ -411,21 +449,29 @@
                     <v-col class="ma-0" md="12" cols="12">
                       <v-toolbar
                         class="elevation-0"
-                        style="border:1px solid #e0e0e0;border-radius:5px;"
+                        style="border: 1px solid #e0e0e0; border-radius: 5px"
                       >
-                        <v-toolbar-title class="google-font mr-3">Event Agenda</v-toolbar-title>
+                        <v-toolbar-title class="google-font mr-3"
+                          >Event Agenda</v-toolbar-title
+                        >
                         <v-spacer></v-spacer>
                         <AddNewAgenda :data.sync="updatedeventData.agenda" />
                       </v-toolbar>
                     </v-col>
 
-                    <v-col cols="12" v-if="updatedeventData.agenda.length<=0" class>
+                    <v-col
+                      cols="12"
+                      v-if="updatedeventData.agenda.length <= 0"
+                      class
+                    >
                       <v-img
                         :src="require('@/assets/img/svg/DataNotFound.svg')"
                         :height="150"
                         contain
                       ></v-img>
-                      <p class="google-font my-0 py-0 mb-2 text-center">No Agenda found</p>
+                      <p class="google-font my-0 py-0 mb-2 text-center">
+                        No Agenda found
+                      </p>
                     </v-col>
 
                     <v-col cols="12" v-else>
@@ -440,8 +486,17 @@
                           >
                             <template v-slot:item.actions="{ item }">
                               <EditAgenda :data.sync="item" />
-                              <v-btn fab x-small color="primary" class="mx-1" outlined dark>
-                                <v-icon @click="deleteData(idx)">mdi-delete</v-icon>
+                              <v-btn
+                                fab
+                                x-small
+                                color="primary"
+                                class="mx-1"
+                                outlined
+                                dark
+                              >
+                                <v-icon @click="deleteData(idx)"
+                                  >mdi-delete</v-icon
+                                >
                               </v-btn>
                             </template>
                           </v-data-table>
@@ -468,16 +523,17 @@ import PartnersServices from "@/services/PartnersServices";
 import SpeakerServices from "@/services/SpeakersServices";
 import CustomEventServices from "@/services/CustomEventServices";
 export default {
+  name:"EditCustomEvent",
   components: {
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
-    UploadImage: () => import("@/components/Common/ImageUpload")
+    UploadImage: () => import("@/components/Common/ImageUpload"),
   },
   computed: {
-    ...mapState(["userDetails"])
+    ...mapState(["userDetails"]),
   },
   props: {
-    eventInfo: {}
+    eventInfo: {},
   },
   data() {
     return {
@@ -487,28 +543,28 @@ export default {
       headers: [
         {
           text: "Start Time",
-          value: "starttime"
+          value: "starttime",
         },
         {
           text: "End Time",
-          value: "endtime"
+          value: "endtime",
         },
         { text: "Title", value: "title" },
         { text: "Description", value: "des" },
-        { text: "Actions", sortable: false, value: "actions" }
+        { text: "Actions", sortable: false, value: "actions" },
       ],
       valid: true,
       idRules: [
-        v => !!v || "Field Value is required",
-        v => (v && v.length <= 30) || "Name must be less than 30 characters"
+        (v) => !!v || "Field Value is required",
+        (v) => (v && v.length <= 30) || "Name must be less than 30 characters",
       ],
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length <= 50) || "Name must be less than 50 characters"
+        (v) => !!v || "Name is required",
+        (v) => (v && v.length <= 50) || "Name must be less than 50 characters",
       ],
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       teamRole: ["Organizing Team", "Core Team", "Volunteer"],
       dialog: false,
@@ -525,7 +581,7 @@ export default {
         des: this.eventInfo.des,
         venue: {
           name: this.eventInfo.venue.name,
-          googlemapsurl: this.eventInfo.venue.googlemapsurl
+          googlemapsurl: this.eventInfo.venue.googlemapsurl,
         },
         links: {
           meetup: this.eventInfo.links.meetup,
@@ -533,21 +589,21 @@ export default {
           registration: this.eventInfo.links.registration,
           feedback: this.eventInfo.links.feedback,
           callforspeaker: this.eventInfo.links.callforspeaker,
-          youtube: this.eventInfo.links.youtube
+          youtube: this.eventInfo.links.youtube,
         },
         time: {
           starttime: this.eventInfo.time.starttime,
-          endtime: this.eventInfo.time.endtime
+          endtime: this.eventInfo.time.endtime,
         },
         hashtags: this.eventInfo.hashtags,
         speakers: this.eventInfo.speakers,
         partners: this.eventInfo.partners,
         team: this.eventInfo.team,
-        agenda: this.eventInfo.agenda
+        agenda: this.eventInfo.agenda,
       },
       speakersData: [],
       partnersData: [],
-      teamData: []
+      teamData: [],
     };
   },
   mounted() {
@@ -568,34 +624,34 @@ export default {
     ShowSpeakers() {
       this.speakersData = [];
       SpeakerServices.getAllSpeakers()
-        .then(res => {
+        .then((res) => {
           if (res.success == true) {
             this.speakersData = res.data;
           }
         })
-        .catch(e => {
+        .catch((e) => {
           console.log("Error getting documents", e);
         });
     },
     ShowPartners() {
       this.partnersData = [];
       PartnersServices.getAllPartners()
-        .then(res => {
+        .then((res) => {
           if (res.success == true) {
             this.partnersData = res.data;
           }
         })
-        .catch(e => {
+        .catch((e) => {
           console.log("Error getting documents", e);
         });
     },
     ShowTeam() {
       this.teamData = [];
       TeamServices.getAllTeam()
-        .then(res => {
+        .then((res) => {
           this.teamData = res.data;
         })
-        .catch(e => {
+        .catch((e) => {
           console.log("Error getting documents", e);
         });
     },
@@ -617,12 +673,12 @@ export default {
         des: this.updatedeventData.des,
         venue: {
           name: this.updatedeventData.venue.name,
-          googlemapsurl: this.updatedeventData.venue.googlemapsurl
+          googlemapsurl: this.updatedeventData.venue.googlemapsurl,
         },
         lastUpdatedOn: new Date(),
         lastUpdatedBy: {
           name: this.userDetails.name,
-          id: this.userDetails.id
+          id: this.userDetails.id,
         },
         links: {
           meetup: this.updatedeventData.links.meetup,
@@ -630,33 +686,33 @@ export default {
           registration: this.updatedeventData.links.registration,
           feedback: this.updatedeventData.links.feedback,
           callforspeaker: this.updatedeventData.links.callforspeaker,
-          youtube: this.updatedeventData.links.youtube
+          youtube: this.updatedeventData.links.youtube,
         },
         time: {
           starttime: this.updatedeventData.time.starttime,
-          endtime: this.updatedeventData.time.endtime
+          endtime: this.updatedeventData.time.endtime,
         },
         hashtags: this.updatedeventData.hashtags,
         speakers: this.updatedeventData.speakers,
         partners: this.updatedeventData.partners,
         team: this.updatedeventData.team,
-        agenda: this.updatedeventData.agenda
+        agenda: this.updatedeventData.agenda,
       };
       CustomEventServices.editCustomEvent(this.eventInfo.id, datatoupdate)
-        .then(res => {
+        .then((res) => {
           if (res.success == true) {
             this.loading = false;
             this.dialog = false;
             this.$emit("editedSuccess", res.msg);
           }
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e.msg);
           this.loading = false;
           this.$emit("message", e.msg);
         });
-    }
-  }
+    },
+  },
   // }
 };
 </script>

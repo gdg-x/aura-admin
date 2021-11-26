@@ -44,7 +44,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title style="font-size:100%" v-text="link.text" />
+            <v-list-item-title style="font-size: 100%" v-text="link.text" />
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -82,15 +82,15 @@
     </v-list>
     <template v-slot:append>
       <div class="pl-2">
-        <p class="google-font my-0" style="color:#616161;font-size:80%">
+        <p class="google-font my-0" style="color: #616161; font-size: 80%">
           Version: 3.1.1 - AURA
         </p>
-        <p class="google-font my-0 mb-3" style="color:#616161;font-size:80%">
+        <p class="google-font my-0 mb-3" style="color: #616161; font-size: 80%">
           Based on Project
           <a
             href="https://github.com/gdg-x/aura-admin/"
             target="_blank"
-            style="text-decoration:none"
+            style="text-decoration: none"
             >Aura Admin</a
           >
         </p>
@@ -101,7 +101,6 @@
 
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
-import firebase from "@/config/firebase";
 export default {
   name: "Drawer",
   data: () => ({}),

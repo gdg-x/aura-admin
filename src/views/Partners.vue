@@ -226,7 +226,7 @@
 import PartnersServices from "@/services/PartnersServices"
 import {mapState} from 'vuex';
 export default {
-  name: "TeamView",
+  name: "PartnerView",
   inject: ['theme'],
   components: {
     Snakebar:()=>import('@/components/Common/Snakebar'),

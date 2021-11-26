@@ -313,7 +313,7 @@
 import SpeakerServices from "@/services/SpeakersServices";
 import { mapState } from "vuex";
 export default {
-  name: "TeamView",
+  name: "SpeakerView",
   inject: ["theme"],
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),

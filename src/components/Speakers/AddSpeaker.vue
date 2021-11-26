@@ -311,7 +311,7 @@
 import { mapState } from "vuex";
 import SpeakerServices from "@/services/SpeakersServices";
 export default {
-  props: [],
+  name:"AddSpeaker",
   components: {
     UploadImage: () => import("@/components/Common/ImageUpload"),
   },

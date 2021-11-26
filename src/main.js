@@ -9,7 +9,7 @@ import './style.css';
 
 Vue.config.productionTip = false;
 
-let unsub = firebase.auth.onAuthStateChanged(()=>{
+let unsub = firebase.auth.onAuthStateChanged(() => {
   new Vue({
     router,
     store,

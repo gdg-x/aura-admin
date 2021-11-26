@@ -2,15 +2,18 @@
   <div class="text-center">
     <v-dialog v-model="dialog" persistent scrollable width="600">
       <template v-slot:activator="{ on }">
-        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData">Add/Update Feature Event</v-btn>
+        <v-btn depressed color="#5AB55E" dark v-on="on" @click="getData"
+          >Add/Update Feature Event</v-btn
+        >
       </template>
       <v-card v-if="dialog" class>
         <v-card-title
           class="google-font"
-          style="border-bottom:1px solid #e0e0e0;"
+          style="border-bottom: 1px solid #e0e0e0"
           primary-title
           dark
-        >Add Feature Events</v-card-title>
+          >Add Feature Events</v-card-title
+        >
         <v-card-text class="px-5">
           <v-container fluid>
             <v-form ref="form" v-model="valid" lazy-validation>
@@ -34,10 +37,9 @@
                       <v-chip small v-if="index === 0">
                         <span>{{ item.name }}</span>
                       </v-chip>
-                      <span
-                        v-if="index === 1"
-                        class="grey--text caption"
-                      >(+{{ selectedEvents.length - 1 }} others)</span>
+                      <span v-if="index === 1" class="grey--text caption"
+                        >(+{{ selectedEvents.length - 1 }} others)</span
+                      >
                     </template>
                   </v-autocomplete>
                 </v-col>
@@ -57,7 +59,8 @@
             @click="addFeatureEvents"
             depressed
             :loading="loading"
-          >Add</v-btn>
+            >Add</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -67,6 +70,7 @@
 <script>
 import firebase from "@/config/firebase";
 export default {
+  name:"AddFeatureEvents",
   components: {},
   data: () => ({
     dialog: false,
@@ -75,16 +79,14 @@ export default {
     name: "",
     des: "",
     valid: false,
-    event: [v => v.length <= 4 || "Can not exceed 4"],
+    event: [(v) => v.length <= 4 || "Can not exceed 4"],
     selectedEvents: [],
     eventsData: [],
-    isAdding: false
+    isAdding: false,
   }),
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
-    getData(){
+    getData() {
       this.ShowEvents();
       this.loadFeatureEvents();
     },
@@ -93,13 +95,13 @@ export default {
       firebase.firestore
         .collection("events")
         .get()
-        .then(snapshot => {
-          snapshot.forEach(doc => {
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
             this.eventsData.push(doc.data());
           });
           this.loading = false;
         })
-        .catch(err => {
+        .catch((err) => {
           this.loading = false;
           console.log("Error getting documents", err);
         });
@@ -110,7 +112,7 @@ export default {
         .collection("featureevents")
         .doc("data")
         .get()
-        .then(snapshot => {
+        .then((snapshot) => {
           if (!snapshot.exists) {
             this.isLoading = false;
             return;
@@ -118,9 +120,9 @@ export default {
           this.selectedEvents = snapshot.data().eventid;
           this.loading = false;
         })
-        .catch(err => {
+        .catch((err) => {
           this.loading = false;
-          this.$emit("show", "Error getting documents")
+          this.$emit("show", "Error getting documents");
           console.log("Error getting documents", err);
         });
     },
@@ -128,7 +130,7 @@ export default {
       if (this.$refs.form.validate()) {
         this.loading = true;
         var UpdatedEventData = {
-          eventid: this.selectedEvents
+          eventid: this.selectedEvents,
         };
         firebase.firestore
           .collection("featureevents")
@@ -139,13 +141,13 @@ export default {
             this.$emit("show", "Feature Events Data Added Success");
             this.loading = false;
           })
-          .catch(e => {
+          .catch((e) => {
             this.$emit("show", e);
             this.loading = false;
             console.log(e);
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>

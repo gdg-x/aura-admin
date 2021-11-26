@@ -75,36 +75,6 @@
       </v-col>
     </v-row>
 
-    <!-- <v-row class="px-1">
-      <v-col md="3" lg="2">
-         <v-select
-            :items="items"
-            class="mr-2"
-            label="Member Status"
-            outlined
-            dense
-          ></v-select>
-      </v-col>
-      <v-col md="3" lg="2">
-         <v-select
-            :items="items"
-            class="mr-2"
-            label="Member Role"
-            outlined
-            dense
-          ></v-select>
-      </v-col>
-      <v-col md="3" lg="2">
-         <v-select
-            :items="items"
-            class="mr-2"
-            label="Visibility"
-            outlined
-            dense
-          ></v-select>
-      </v-col>
-    </v-row> -->
-
     <v-row class="px-2">
       <v-col cols="12 ">
         <v-container fluid class="pa-0">

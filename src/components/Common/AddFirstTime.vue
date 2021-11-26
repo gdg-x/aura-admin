@@ -1,6 +1,9 @@
 <template>
   <div class="">
-    <v-card class="" style="border-radius: 12px;border:1px solid #fafafa;background:white">
+    <v-card
+      class=""
+      style="border-radius: 12px; border: 1px solid #fafafa; background: white"
+    >
       <v-card-title
         class="google-font"
         primary-title
@@ -124,6 +127,7 @@
 import firebase from "@/config/firebase";
 import TeamServices from "@/services/TeamServices";
 export default {
+  name:"AddFirstTimeUser",
   data() {
     return {
       valid: true,

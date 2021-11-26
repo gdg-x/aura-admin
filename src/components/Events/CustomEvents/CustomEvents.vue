@@ -8,8 +8,13 @@
     />
     <v-row class="my-0 py-0">
       <v-col cols="12">
-        <v-toolbar class="elevation-0 mb-5" style="border:1px solid #e0e0e0;border-radius:5px;">
-          <v-toolbar-title class="google-font mr-3">All Events: {{customEventData.length}}</v-toolbar-title>
+        <v-toolbar
+          class="elevation-0 mb-5"
+          style="border: 1px solid #e0e0e0; border-radius: 5px"
+        >
+          <v-toolbar-title class="google-font mr-3"
+            >All Events: {{ customEventData.length }}</v-toolbar-title
+          >
           <v-spacer></v-spacer>
 
           <!-- Desktop -->
@@ -56,7 +61,12 @@
           </v-btn>
           <!-- Mobile -->
           &nbsp;
-          <AddNewCustomEvent v-if="(role=='Super Admin' || role=='Admin')" @showSuccess="showSnakeBar" @message="showMessageSnakeBar"  class="ml-2" />
+          <AddNewCustomEvent
+            v-if="role == 'Super Admin' || role == 'Admin'"
+            @showSuccess="showSnakeBar"
+            @message="showMessageSnakeBar"
+            class="ml-2"
+          />
         </v-toolbar>
 
         <!-- {{MeetupData}}   -->
@@ -67,12 +77,18 @@
           :loading="isLoading"
           :items="customEventData"
           :items-per-page="5"
-          style="border:1px solid #e0e0e0;border-radius:5px;"
+          style="border: 1px solid #e0e0e0; border-radius: 5px"
         >
-          <template v-slot:item.venue.name="{ item }">{{item.venue.name | summary(20) }}</template>
-          <template v-slot:item.name="{ item }">{{item.name | summary(12) }}</template>
+          <template v-slot:item.venue.name="{ item }">{{
+            item.venue.name | summary(20)
+          }}</template>
+          <template v-slot:item.name="{ item }">{{
+            item.name | summary(12)
+          }}</template>
           <template v-slot:item.active="{ item }">
-            <v-chip small v-if="item.active == false" dark color="red">Inactive</v-chip>
+            <v-chip small v-if="item.active == false" dark color="red"
+              >Inactive</v-chip
+            >
             <v-chip v-else small dark color="green">Active</v-chip>
           </template>
           <template v-slot:item.view="{ item }">
@@ -83,7 +99,7 @@
                   <v-icon>mdi-eye</v-icon>
                 </v-btn>
               </template>
-              <span>{{item.name}} Details</span>
+              <span>{{ item.name }} Details</span>
             </v-tooltip>
           </template>
         </v-data-table>
@@ -93,14 +109,15 @@
 </template>
 
 <script>
-import CustomEventServices from '@/services/CustomEventServices'
-import {mapState} from 'vuex'
+import CustomEventServices from "@/services/CustomEventServices";
+import { mapState } from "vuex";
 export default {
+  name:"CustomEvent",
   components: {
-    AddNewCustomEvent: () => import("@/components/Events/CustomEvents/AddCustomEvent"),
-    Snakebar: () => import("@/components/Common/Snakebar")
+    AddNewCustomEvent: () =>
+      import("@/components/Events/CustomEvents/AddCustomEvent"),
+    Snakebar: () => import("@/components/Common/Snakebar"),
   },
-  name: "MeetupEvents",
   data: () => ({
     search: "",
     isSearch: false,
@@ -109,48 +126,49 @@ export default {
       {
         text: "Event Name",
         align: "start",
-        value: "name"
+        value: "name",
       },
       { text: "Date", value: "date" },
       { text: "Active", value: "active" },
       { text: "Venue", value: "venue.name" },
-      { text: "View", value: "view" }
+      { text: "View", value: "view" },
     ],
     snakeBarMessage: "",
     isSnakeBarVisible: false,
     snakeBarColor: "green",
     snakeBarTimeOut: 5000,
-    customEventData: []
+    customEventData: [],
   }),
-  computed:{
-    ...mapState(['role'])
+  computed: {
+    ...mapState(["role"]),
   },
   mounted() {
     if (this.$route.query.msg) {
       this.showSnakeBar(this.$route.query.msg);
-    }else
-      this.showCustomEvents();
+    } else this.showCustomEvents();
   },
   methods: {
     goToEventDetails(id) {
       this.$router.push("/events/" + id);
     },
-    showMessageSnakeBar(text){
+    showMessageSnakeBar(text) {
       this.snakeBarMessage = text;
       this.isSnakeBarVisible = true;
     },
     showCustomEvents() {
       this.isLoading = true;
       this.customEventData = [];
-      CustomEventServices.getAllCustomEvents().then(res=>{
-        if(res.success==true){
-          this.customEventData= res.data
+      CustomEventServices.getAllCustomEvents()
+        .then((res) => {
+          if (res.success == true) {
+            this.customEventData = res.data;
+            this.isLoading = false;
+          }
+        })
+        .catch((e) => {
           this.isLoading = false;
-        }
-      }).catch(e=>{
-        this.isLoading = false;
-        console.log("Error getting documents", e);
-      })
+          console.log("Error getting documents", e);
+        });
     },
     showSnakeBar(e) {
       this.snakeBarMessage = e;
@@ -160,7 +178,7 @@ export default {
     openCloseSearch() {
       this.isSearch = !this.isSearch;
       this.search = "";
-    }
+    },
   },
   filters: {
     summary: (val, num) => {
@@ -169,7 +187,7 @@ export default {
       } else {
         return val;
       }
-    }
-  }
+    },
+  },
 };
 </script>
