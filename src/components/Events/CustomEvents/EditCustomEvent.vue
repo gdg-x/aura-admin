@@ -146,6 +146,47 @@
                         </v-date-picker>
                       </v-menu>
                     </v-col>
+                    <v-col md="3" xs="3" cols="12" class="ma-0">
+                      <v-menu
+                        ref="endDateModal"
+                        v-model="endDateModal"
+                        :close-on-content-click="false"
+                        :return-value.sync="updatedeventData.endDate"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="updatedeventData.endDate"
+                            label="End Date *"
+                            outlined
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="updatedeventData.endDate"
+                          no-title
+                          scrollable
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="endDateModal = false"
+                            >Cancel</v-btn
+                          >
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="
+                              $refs.endDateModal.save(updatedeventData.endDate)
+                            "
+                            >OK</v-btn
+                          >
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
                       <v-dialog
@@ -523,7 +564,7 @@ import PartnersServices from "@/services/PartnersServices";
 import SpeakerServices from "@/services/SpeakersServices";
 import CustomEventServices from "@/services/CustomEventServices";
 export default {
-  name:"EditCustomEvent",
+  name: "EditCustomEvent",
   components: {
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
@@ -540,6 +581,7 @@ export default {
       menu: false,
       modal2: false,
       modal1: false,
+      endDateModal: false,
       headers: [
         {
           text: "Start Time",
@@ -578,6 +620,7 @@ export default {
         name: this.eventInfo.name,
         image: this.eventInfo.image,
         date: this.eventInfo.date,
+        endDate: this.eventInfo.endDate,
         des: this.eventInfo.des,
         venue: {
           name: this.eventInfo.venue.name,
@@ -670,6 +713,7 @@ export default {
         name: this.updatedeventData.name,
         image: this.updatedeventData.image,
         date: this.updatedeventData.date,
+        endDate: this.updatedeventData.endDate,
         des: this.updatedeventData.des,
         venue: {
           name: this.updatedeventData.venue.name,

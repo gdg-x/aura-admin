@@ -50,12 +50,12 @@
             <div class="pa-3" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
               <p class="google-font" style="font-size:180%">{{eventInfo.name}}</p>
               <p class="google-font my-0">
-                <b>Time: </b>
-                {{eventInfo.time.starttime}} - {{eventInfo.time.endtime}}
+                <b>Start: </b>
+               {{eventInfo.date}} {{eventInfo.time.starttime}}
               </p>
               <p class="google-font my-0">
-                <b>Date: </b>
-                {{eventInfo.date}}
+                <b>End: </b>
+                {{eventInfo.endDate}} {{eventInfo.time.endtime}}
               </p>
               <p class="google-font my-0">
                 <b>Venue: </b>

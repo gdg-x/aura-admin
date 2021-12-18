@@ -71,9 +71,10 @@
 
 <script>
 export default {
-  name:"AddNewAgendaForEvent",
+  name: "AddNewAgendaForEvent",
   props: ["data"],
   data: () => ({
+    agenda: [],
     dialog: false,
     loading: false,
     name: "",
@@ -82,6 +83,7 @@ export default {
     starttime: "",
     endtime: "",
   }),
+  
   methods: {
     addGuid() {
       this.data.push({

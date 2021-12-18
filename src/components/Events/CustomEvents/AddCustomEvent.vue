@@ -125,7 +125,7 @@
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="eventData.date"
-                            label="Date *"
+                            label="Start Date *"
                             outlined
                             v-on="on"
                           ></v-text-field>
@@ -143,6 +143,46 @@
                             text
                             color="primary"
                             @click="$refs.menu.save(eventData.date)"
+                            >OK</v-btn
+                          >
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+
+                    <v-col md="3" xs="3" cols="12" class="ma-0">
+                      <v-menu
+                        ref="endDateModal"
+                        v-model="endDateModal"
+                        :close-on-content-click="false"
+                        :return-value.sync="eventData.endDate"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="eventData.endDate"
+                            label="End Date *"
+                            outlined
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="eventData.endDate"
+                          no-title
+                          scrollable
+                        >
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="endDateModal = false"
+                            >Cancel</v-btn
+                          >
+                          <v-btn
+                            text
+                            color="primary"
+                            @click="$refs.endDateModal.save(eventData.endDate)"
                             >OK</v-btn
                           >
                         </v-date-picker>
@@ -414,60 +454,88 @@
                   <v-row class>
                     <v-col class="ma-0" md="12" cols="12" style>
                       <h4 class="google-font mb-0">Event Agenda Info</h4>
-                    </v-col>
-                    <v-col class="ma-0" md="12" cols="12">
-                      <v-toolbar
-                        class="elevation-0"
-                        style="border: 1px solid #e0e0e0; border-radius: 5px"
-                      >
-                        <v-toolbar-title class="google-font mr-3"
-                          >Event Agenda</v-toolbar-title
-                        >
-                        <v-spacer></v-spacer>
-                        <AddNewAgenda :data.sync="eventData.agenda" />
-                      </v-toolbar>
-                    </v-col>
-
-                    <v-col cols="12" v-if="eventData.agenda.length <= 0" class>
-                      <v-img
-                        :src="require('@/assets/img/svg/DataNotFound.svg')"
-                        :height="150"
-                        contain
-                      ></v-img>
-                      <p class="google-font my-0 py-0 mb-2 text-center">
-                        No Agenda found
+                      <p class="subheading">
+                        Choose Start Date Time and End Date Time to Add Agenda
                       </p>
                     </v-col>
 
-                    <v-col cols="12" v-else>
-                      <v-row>
-                        <v-col md="12" class="my-1 py-0">
-                          <v-data-table
-                            :headers="headers"
-                            mobile-breakpoint="0"
-                            :items.sync="eventData.agenda"
-                            :items-per-page="5"
-                            class="elevation-0 lightModeCard"
-                          >
-                            <template v-slot:item.actions="{ item }">
-                              <EditAgenda :data.sync="item" />
-                              <v-btn
-                                fab
-                                x-small
-                                color="primary"
-                                class="mx-1"
-                                outlined
-                                dark
+                    <v-col
+                      md="12"
+                      v-if="
+                        eventData.date &&
+                        eventData.endDate &&
+                        eventData.time.endtime &&
+                        eventData.time.starttime
+                      "
+                    >
+                      <v-tabs v-model="activeTabForAgenda" dark>
+                        <v-tab
+                          v-for="idx in findNumberOfDays()"
+                          :key="idx"
+                        >
+                          {{ "Day " + idx }}
+                        </v-tab>
+                      </v-tabs>
+                      
+
+                      <v-tabs-items v-model="activeTabForAgenda">
+                        <v-tab-item
+                          v-for="dayAganda in findNumberOfDays()"
+                          :key="dayAganda"
+                          :value="dayAganda-1"
+                        >
+                          <v-col class="ma-0" md="12" cols="12">
+                            <v-toolbar
+                              class="elevation-0"
+                              style="
+                                border: 1px solid #e0e0e0;
+                                border-radius: 5px;
+                              "
+                            >
+                              <v-toolbar-title class="google-font mr-3"
+                                >Event Agenda for Day
+                                {{ dayAganda }}</v-toolbar-title
                               >
-                                <v-icon @click="deleteData(idx)"
-                                  >mdi-delete</v-icon
+                              <v-spacer></v-spacer>
+                              <AddNewAgenda
+                                :data.sync="eventData.agendaV2[dayAganda - 1]"
+                              />
+                            </v-toolbar>
+                          </v-col>
+
+                          <v-col cols="12">
+                            <v-row>
+                              <v-col md="12" class="my-1 py-0">
+                                <v-data-table
+                                  :headers="headers"
+                                  :mobile-breakpoint="0"
+                                  :items="getAgendaDataByIndex(dayAganda - 1)"
+                                  :key="'table'+ dayAganda -1"
+                                  :items-per-page="5"
+                                  class="elevation-0 lightModeCard"
                                 >
-                              </v-btn>
-                              <!-- <RemoveAgenda :data.sync = "item"/> -->
-                            </template>
-                          </v-data-table>
-                        </v-col>
-                      </v-row>
+                                  <template v-slot:item.actions="{ item, idx }">
+                                    <EditAgenda :data.sync="item" />
+                                    <v-btn
+                                      fab
+                                      x-small
+                                      color="primary"
+                                      class="mx-1"
+                                      outlined
+                                      dark
+                                    >
+                                      <v-icon @click="deleteData(idx, dayAganda - 1)"
+                                        >mdi-delete</v-icon
+                                      >
+                                    </v-btn>
+                                  <!-- <RemoveAgenda :data.sync = "item"/> -->
+                                  </template>
+                                </v-data-table>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                        </v-tab-item>
+                      </v-tabs-items>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -489,7 +557,7 @@ import PartnersServices from "@/services/PartnersServices";
 import SpeakerServices from "@/services/SpeakersServices";
 import CustomEventServices from "@/services/CustomEventServices";
 export default {
-  name:"AddCustomEvent",
+  name: "AddCustomEvent",
   components: {
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
@@ -501,6 +569,10 @@ export default {
       menu: false,
       modal2: false,
       modal1: false,
+      endDateModal: false,
+      activeTabForAgenda: 0,
+      numberOfDays: 0,
+      agendaItems: [],
       headers: [
         { text: "Start Time", value: "starttime" },
         { text: "End Time", value: "endtime" },
@@ -534,6 +606,7 @@ export default {
         name: "",
         image: "",
         date: "",
+        endDate: "",
         des: "",
         venue: {
           name: "",
@@ -556,6 +629,7 @@ export default {
         partners: [],
         team: [],
         agenda: [],
+        agendaV2: {"0":[]},
       },
       speakersData: [],
       partnersData: [],
@@ -568,14 +642,34 @@ export default {
     this.ShowTeam();
   },
   methods: {
+    findNumberOfDays() {
+      const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+      const firstDate = new Date(
+        this.eventData.date + " " + this.eventData.time.starttime
+      );
+      const secondDate = new Date(
+        this.eventData.endDate + " " + this.eventData.time.endtime
+      );
+
+      this.numberOfDays =
+        Math.round(Math.abs((firstDate - secondDate) / oneDay)) + 1;
+
+      return this.numberOfDays;
+    },
+    getAgendaDataByIndex(idx){
+      if(!this.eventData.agendaV2[idx]){
+        this.$set(this.eventData.agendaV2, idx, []); // create reactive array property
+      }
+      return this.eventData.agendaV2[idx];
+    },
     showMessageSnakeBar(text) {
       this.$emit("message", text);
     },
     imageUploadDone(text) {
       this.eventData.image = text;
     },
-    deleteData(index) {
-      this.eventData.agenda.splice(index, 1);
+    deleteData(index, agendaDay) {
+      this.eventData.agendaV2[agendaDay].splice(index, 1);
     },
     ShowSpeakers() {
       this.speakersData = [];
@@ -642,6 +736,5 @@ export default {
         });
     },
   },
-  // }
 };
 </script>

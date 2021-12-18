@@ -72,7 +72,7 @@
         <!-- {{MeetupData}}   -->
         <v-data-table
           :search="search"
-          mobile-breakpoint="no"
+          :mobile-breakpoint="0"
           :headers="headers"
           :loading="isLoading"
           :items="customEventData"
