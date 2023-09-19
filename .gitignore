@@ -26,3 +26,4 @@ firebase-config.js
 */firebase-config.js
 
 *.cache
+.firebase
