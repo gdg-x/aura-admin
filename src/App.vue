@@ -115,6 +115,7 @@ export default {
         if (res.success) {
           if (!res.exists) {
             alert("You have been Removed :(");
+            await firebase.auth.currentUser.delete();
             await firebase.auth.signOut();
             this.isLoading = false;
             return;
