@@ -21,7 +21,7 @@
               >Aura Admin Repo</v-btn
             ><v-btn
               color="primary"
-              href="https://github.com/gdg-x/aura-admin"
+              href="https://github.com/gdg-x/aura"
               class="ma-1 ml-0"
               small
               target="_blank"
@@ -150,7 +150,7 @@ export default {
       this.isLoading = true;
       try {
         const result = await fetch(
-          "https://raw.githubusercontent.com/gdg-x/aura-admin/master/extras/about.json",
+          "https://raw.githubusercontent.com/gdg-x/aura-admin/master/docs/data/app.json",
           {
             pragma: "no-cache",
             "cache-control": "no-cache",
@@ -158,6 +158,7 @@ export default {
         );
         const parsedResult = await result.json();
         console.log(parsedResult);
+        this.version = parsedResult.version
         this.maintainers = parsedResult.maintainers;
         this.contributors = parsedResult.contributors;
       } catch (e) {
