@@ -179,21 +179,6 @@ const routes = [{
     }
   },
   {
-    path: '/notification',
-    name: "Notification",
-    component: () => import( /* webpackChunkName: "notifications" */ '@/views/Notifications'),
-    meta: {
-      requiresAuth: true,
-      title: "Notifications",
-      bottomVisible: true,
-      access: {
-        "Super Admin": true,
-        "Admin": true,
-        "Viewer": false
-      }
-    }
-  },
-  {
     path: '/roles',
     name: "UserManagement",
     component: () => import( /* webpackChunkName: "roles" */ '@/views/Users'),

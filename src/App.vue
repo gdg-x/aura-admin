@@ -65,7 +65,7 @@ export default {
     isLoading: false,
   }),
   computed: {
-    ...mapState(["generalConfig", "keysandsecurity", "role"]),
+    ...mapState(["generalConfig", "role"]),
   },
   created() {
     // Listen for swUpdated event and display refresh snackbar as required.
@@ -81,8 +81,7 @@ export default {
     if (this.isLoggedIn()) {
       if (this.role.length <= 0) await this.getData();
 
-      Object.keys(this.generalConfig).length <= 2 &&
-      Object.keys(this.keysandsecurity).length <= 2
+      Object.keys(this.generalConfig).length <= 2
         ? await this.getDataFromServer()
         : console.log("data froung in vuex");
     }
@@ -90,7 +89,6 @@ export default {
   methods: {
     ...mapMutations([
       "setGeneral",
-      "setKeysAndSecutity",
       "roleSet",
       "userDetailsSet",
     ]),
@@ -162,8 +160,6 @@ export default {
           snapshot.forEach((doc) => {
             if (doc.id == "general") {
               this.setGeneral(doc.data());
-            } else if (doc.id == "keysandsecurity") {
-              this.setKeysAndSecutity(doc.data());
             }
           });
           this.isLoading = false;

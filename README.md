@@ -24,7 +24,6 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 | **Mobile first**              | Mobo Friendly Web app can be installed as a native app on your phone |
 | **SEO optimized**             | index all content and get to the top in search results               |
 | **Easy in management**        | Store all the data in Cloud Firestore                                |
-| **Trigger Push Notification** | Trigger Push Notification to Aura Main                               |
 | **User Management**           | Role based Authentication for the Team                               |
 | **Connect**                   | Team Member can communicate in Group                                 |
 | **Usability**                 | Any Tech Communities can use                                         |
@@ -101,21 +100,6 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
    - `npm run build`
    - A directory named dist will be created
 1. For testing: `npm run test`
-
-### Push Notification Setup
-
-1. Go to Firebase Project Dashboard
-1. Go to Firebase Projects Settings then navigate to Cloud Messaging
-1. Copy the `server key`
-1. Go to your Aura Admin Dashboard and paste at the server key at `Config -> Keys & Securities` as `Cloud Messaging Server Key`
-1. Again, in the Firebase Project Dashboard, go to `Projects Settings -> Cloud Messaging` and scroll down to the `Web configuration section` and click on `Generate Key pair`
-1. Copy the generated key and Paste it at Aura Admin Dashboard’s `Config -> Keys & Securities` as `Cloud Messaging Web Push certificate`
-1. Save the Config by clicking on Save `Keys and Security`
-1. For Sending Push Notification from Aura Admin Dashboard
-   - Go to Notification
-   - Click on Add Notification
-   - Fill fields as required
-   - Click on Send Push Notification Button in Table
 
 ## Deployment on Firebase
 

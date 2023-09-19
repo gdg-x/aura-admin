@@ -14,9 +14,6 @@ export default new Vuex.Store({
       email: '',
       name: ''
     },
-    keysandsecurity: {
-      meetup: ''
-    },
     items: [{
         text: 'Home',
         to: '/home',
@@ -78,16 +75,6 @@ export default new Vuex.Store({
         }
       },
       {
-        text: 'Push Notifications',
-        to: '/notification',
-        icon: 'mdi-bell-check-outline',
-        access: {
-          "Super Admin": true,
-          "Admin": true,
-          "Viewer": false
-        }
-      },
-      {
         text: 'Config',
         to: '/config',
         icon: 'mdi-widgets-outline',
@@ -121,8 +108,7 @@ export default new Vuex.Store({
     toggleDrawer: state => (state.drawer = !state.drawer),
     roleSet: (state, payload) => (state.role = payload),
     setGeneral: (state, payload) => (state.generalConfig = payload),
-    userDetailsSet: (state, payload) => (state.userDetails = payload),
-    setKeysAndSecutity: (state, payload) => (state.keysandsecurity = payload),
+    userDetailsSet: (state, payload) => (state.userDetails = payload)
   },
   actions: {},
   modules: {}

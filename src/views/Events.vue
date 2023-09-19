@@ -49,7 +49,7 @@ export default {
     communityName:''
   }),
   computed:{
-      ...mapState(['generalConfig',"keysandsecurity",'role']),
+      ...mapState(['generalConfig','role']),
   },
   methods:{
     getConfig(){
