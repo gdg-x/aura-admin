@@ -12,7 +12,6 @@
       <v-tab key="item1">General</v-tab>
       <v-tab key="item2">Community Guidelines</v-tab>
       <v-tab key="item3">Footer Config</v-tab>
-      <v-tab key="item5">Keys & Securities</v-tab>
     </v-tabs>
 
     <v-tabs-items
@@ -36,13 +35,6 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
-      <v-tab-item key="item5">
-        <v-card flat>
-          <v-card-text>
-            <KeysAndSecurity @show="showSnakeBar" />
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
     </v-tabs-items>
   </v-container>
 </template>
@@ -57,7 +49,6 @@ export default {
       import("@/components/Config/CommunityGuidelines/CommunityGuidelines"),
     Snakebar: () => import("@/components/Common/Snakebar"),
     Footer: () => import("@/components/Config/Footer/Footer"),
-    KeysAndSecurity: () => import("@/components/Config/Keys/Keys"),
   },
   computed: { ...mapState(["role"]) },
   beforeMount() {

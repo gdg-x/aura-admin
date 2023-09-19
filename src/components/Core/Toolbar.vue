@@ -138,7 +138,6 @@ export default {
     ...mapMutations([
       "toggleDrawer",
       "setGeneral",
-      "setKeysAndSecutity",
       "userDetailsSet",
       "roleSet",
     ]),
@@ -150,7 +149,6 @@ export default {
     logout() {
       firebase.auth.signOut().then(() => {
         this.setGeneral({});
-        this.setKeysAndSecutity({});
         this.userDetailsSet({});
         this.roleSet("");
         this.$router.replace("/login");
