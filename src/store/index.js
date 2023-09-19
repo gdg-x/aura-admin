@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     drawer: true,
+    appVersion: process.env.VUE_APP_VERSION,
     isLoggedin: false,
     role: "",
     unsub: {},

@@ -3,7 +3,7 @@
     <v-container class="mt-10">
       <v-row justify="center" align="center" class="">
         <v-col cols="12" md="11">
-          <p class="google-font mb-1" style="font-size:60px;font-weight:600">Aura Admin 3.1.1</p>
+          <p class="google-font mb-1" style="font-size:60px;font-weight:600">Aura Admin - {{ $store.state.appVersion }}</p>
           <p class="google-font">
             Aura Admin is the Web App that helps you to mange the Tech
             Communities like GDGs, DSCs or any other tech communities.

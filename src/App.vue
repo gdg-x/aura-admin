@@ -46,6 +46,7 @@ import { mapState, mapMutations } from "vuex";
 import UserService from "@/services/UsersServices";
 import TeamService from "@/services/TeamServices";
 
+
 export default {
   name: "App",
   components: {
@@ -65,7 +66,7 @@ export default {
     isLoading: false,
   }),
   computed: {
-    ...mapState(["generalConfig", "role"]),
+    ...mapState(["generalConfig", "role", "appVersion"]),
   },
   created() {
     // Listen for swUpdated event and display refresh snackbar as required.
@@ -85,6 +86,8 @@ export default {
         ? await this.getDataFromServer()
         : console.log("data froung in vuex");
     }
+
+    console.log("Current App version", this.appVersion)
   },
   methods: {
     ...mapMutations([
