@@ -83,7 +83,7 @@
     <template v-slot:append>
       <div class="pl-2">
         <p class="google-font my-0" style="color: #616161; font-size: 80%">
-          Version: 3.1.1 - AURA
+          Version: {{appVersion}} - AURA
         </p>
         <p class="google-font my-0 mb-3" style="color: #616161; font-size: 80%">
           Based on Project
@@ -105,7 +105,7 @@ export default {
   name: "Drawer",
   data: () => ({}),
   computed: {
-    ...mapState(["userDetails", "role", "generalConfig"]),
+    ...mapState(["userDetails", "role", "generalConfig", "appVersion"]),
     ...mapGetters(["links"]),
     drawer: {
       get() {

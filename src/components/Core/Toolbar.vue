@@ -10,7 +10,7 @@
   >
     <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
     <v-toolbar-title class="google-font ml-n5">
-      {{ generalConfig.name || "Community Name" }} - Aura Admin 3.1
+      {{ generalConfig.name || "Community Name" }} - Aura Admin {{appVersion}}
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -131,7 +131,7 @@ export default {
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   }),
   computed: {
-    ...mapState(["generalConfig", "userDetails"]),
+    ...mapState(["generalConfig", "userDetails", "appVersion"]),
     ...mapGetters(["links"]),
   },
   methods: {

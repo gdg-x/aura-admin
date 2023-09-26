@@ -1,7 +1,7 @@
 # Aura Admin
 
 <img src="https://raw.githubusercontent.com/GDG-Jalandhar/WebsiteData/master/Aura%20Admin%20V-3.1.png" width="100%">
-Version: 3.1.1
+Version: 3.5.0
 
 [Click Here](https://auradmin.web.app/)
 
@@ -13,7 +13,6 @@ Version: 3.1.1
 
 Aura Admin is the Web App that helps you to mange the Tech Communities like GDGs, DSCs or any other tech communities.
 
-The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) team experience of running meetups/events.
 
 ## Features
 
@@ -25,40 +24,29 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 | **SEO optimized**             | index all content and get to the top in search results               |
 | **Easy in management**        | Store all the data in Cloud Firestore                                |
 | **User Management**           | Role based Authentication for the Team                               |
-| **Connect**                   | Team Member can communicate in Group                                 |
 | **Usability**                 | Any Tech Communities can use                                         |
+| **Easy to install**           | Added support to install admin panel with install route              |
+| **Easy to onboard team**      | Added support for onboard a user in user management                  |
+
+## Contributors
+<b>Maintainer:</b> 
+1. [Vrijraj Singh](https://github.com/vrijraj)  
+1. [Bharat Agarwal](https://github.com/bharatagsrwal) 
+
 
 ## Getting Started
 
-1. [Fork this repository](https://github.com/gdg-x/aura-admin/fork) & [Aura Main](https://github.com/Vrijraj/aura/fork) (Important) and clone both repo locally
+1. [Fork this repository](https://github.com/gdg-x/aura-admin/fork) & [Aura Main](https://github.com/gdg-x/aura/fork) (Important) and clone both repo locally
 1. Setup Environment
-   - Install [Node.js (v8.9.4 or above)](https://nodejs.org/en/download/)
+   - Install [Node.js (v8.9.4 - v12.13.0)](https://nodejs.org/en/download/)
    - Install vue cli: `npm install -g @vue/cli`
 1. Install project dependencies: `npm install`
-1. If you already have setup [Aura Main](https://github.com/Vrijraj/aura/fork) then use same Firebase Project
+1. If you already have setup [Aura Main](https://github.com/gdg-x/aura/fork) then use same Firebase Project
 1. Otherwise Create [Firebase account](https://console.firebase.google.com) and Create a new Project
 1. Go to Firebase Project Dashboard
 1. Go to Cloud Firestore Database and Enable the database in test mode
 1. Once the database is created, Click on Rules navigation pill and add the following lines in the rules edit
-   ```js
-       rules_version = '2';
-       service cloud.firestore {
-           match /databases/{database}/documents {
-               match /apiEnd/{apiEndpoint}{
-                   allow read, create : if true;
-                 allow delete : if request.auth.uid != null;
-                 allow update : if request.auth.uid != null;
-                 allow list: if request.auth.uid != null;
-               }
-               match /{document=**} {
-                 allow read : if true;
-                 allow delete : if request.auth.uid != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.userType == "Super Admin";
-                 allow create : if request.auth.uid != null;
-                 allow update : if request.auth.uid != null;
-               }
-           }
-       }
-   ```
+   Add rules from file `/firebase-rules/firestore.rules` copy and paste in firestore rules
 1. Go to Firebase Storage
 1. Copy the code which looks similar to the below sample and update the rule for Firebase Storage
    ```js
@@ -88,12 +76,6 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
 1. Click on Authentication in the left navigation.
 1. Click on Sign-in method and enable Email/Password
    - Create user with Email and Password
-1. For Cloud Functions
-   - `npm install` for installing dependencies
-   - Go to functions folder and then in the terminal run this command
-     ```js
-         firebase functions:config:set someservice.email="yourmail@gmail.com" someservice.password="yourpassword"
-     ```
 1. Run locally
    `npm run serve`
 1. When you are ready to build for production, use the following command -
@@ -134,8 +116,6 @@ The template is created by [GDG Jalandhar](https://meetup.com/GDG-Jalandhar/) te
    ```
 1. In your terminal at the root directory of the project, build and deploy using the following command
    - `firebase deploy`
-1. [Google LessSecure App](https://myaccount.google.com/lesssecureapps) open this link and enable Less secure app access
-   Also Allow access to your Google account from this [url](https://accounts.google.com/b/0/DisplayUnlockCaptcha)
 1. If the project is successfully deployed, you should be able to visit your domain as found, and see the Aura Admin Dashboard. In future, we’ll refer to this website as your Aura Admin Dashboard.
 
 ### Documentation
@@ -168,11 +148,6 @@ Awesome! Contributions of all kinds are greatly appreciated. To help smoothen th
 - Lint your code with eslint (config provided)
 - Include relevant test updates/additions
 - Pull requests _must_ be made against `develop` branch. Any other branch (unless specified by the maintainers) will get rejected.
-
-## Contributors
-
-<b>Maintainer:</b> [Vrijraj Singh](https://github.com/vrijraj) & [Bharat Agarwal](https://github.com/bharatagsrwal) <br>
-<b>Developers:</b> [Vrijraj Singh](https://github.com/vrijraj) & [Bharat Agarwal](https://github.com/bharatagsrwal)
 
 ### View Website Built with Projects
 
