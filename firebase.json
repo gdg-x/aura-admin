@@ -15,8 +15,5 @@
   "firestore": {
     "rules": "firebase-rules/firestore.rules",
     "indexes": "firebase-rules/firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "firebase-rules/storage.rules"
   }
 }
