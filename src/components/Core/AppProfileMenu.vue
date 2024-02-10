@@ -58,6 +58,7 @@
           color="white"
           elevation="0"
           to="/profile"
+          large
           >Profile</v-btn
         >
         <v-btn
@@ -65,6 +66,7 @@
           style="border-radius: 0rem 1rem 1rem 0rem"
           elevation="0"
           color="white"
+          large
           @click="logout"
         >
           <v-icon>mdi-logout-variant</v-icon>Logout

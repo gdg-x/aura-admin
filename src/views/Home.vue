@@ -1,16 +1,10 @@
 <template>
   <v-main class="pa-0 ma-0">
     <v-container fluid>
-      <!-- <v-row class="mb-0">
-        <v-col class>
-          <h1 class="google-font d-none d-sm-none d-md-block">Dashboard</h1>
-          <p class="google-font d-block d-sm-none mb-0">Dashboard</p>
-        </v-col>
-      </v-row> -->
 
       <v-row class="mt-0 pt-0" justify="center" align="center">
         <v-col
-          class="ma-3 px-5 mt-0"
+          class="mt-0"
           style="
             background-color: #a9c9ff;
             background-image: linear-gradient(76deg, #deeaff 31%, #ffbbec 420%);
@@ -20,7 +14,7 @@
         >
           <v-container class="mb-0 py-0">
             <v-row>
-              <v-col md="12" class="my-0 py-6">
+              <v-col md="12" class="my-0 py-md-10">
                 <h1 class="google-font mb-0" style="">
                   Welcome
                   {{
@@ -30,11 +24,7 @@
                 <p class="google-font mb-0">Manage your community</p>
               </v-col>
             </v-row>
-          </v-container>
-        </v-col>
-      </v-row>
-
-      <v-row class="px-2">
+            <v-row class="px-2">
         <!-- Events -->
         <v-col
           class="pa-1"
@@ -87,6 +77,11 @@
         </v-col>
         <!-- Events -->
       </v-row>
+          </v-container>
+        </v-col>
+      </v-row>
+
+     
     </v-container>
   </v-main>
 </template>
