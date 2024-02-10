@@ -15,7 +15,7 @@
       <v-col md="12" class="my-0 py-0 mt-5">
         <v-toolbar
           class="elevation-0"
-          style="border: 1px solid #e0e0e0; border-radius: 5px"
+          style="border-radius: 12px"
         >
           <v-toolbar-title class="google-font mr-3"
             >Manage Community Data

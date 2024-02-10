@@ -16,7 +16,7 @@
 
     <v-tabs-items
       v-model="tab"
-      style="border: 1px solid #e0e0e0; border-radius: 5px"
+      style="border-radius: 12px"
     >
       <v-tab-item key="item1" class="pa-0 ma-0">
         <v-card flat class="pa-0 ma-0 px-2">

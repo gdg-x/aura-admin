@@ -16,7 +16,7 @@
       <v-col md="12" class="my-0 py-0 mt-5">
         <v-toolbar
           class="elevation-0"
-          style="border: 1px solid #e0e0e0; border-radius: 5px"
+          style="border-radius: 12px"
         >
           <v-toolbar-title class="google-font mr-3"
             >Manage Community Guidelines
@@ -39,7 +39,7 @@
       <v-col cols="12" sm="6" md="6" class="">
         <v-toolbar
           class="elevation-0 mb-3"
-          style="border: 1px solid #e0e0e0; border-radius: 5px"
+          style="border-radius: 12px"
         >
           <v-toolbar-title class="google-font mr-3"
             >Community Guidelines Setting v.2</v-toolbar-title

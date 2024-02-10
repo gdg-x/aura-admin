@@ -5,7 +5,7 @@
     v-model="drawer"
     floating
     width="280px"
-    color="grey lighten-5"
+    color="#F5F8FC"
   >
     <v-list-item two-line class="py-2">
       <v-list-item-avatar>

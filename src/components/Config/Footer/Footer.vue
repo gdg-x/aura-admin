@@ -23,7 +23,7 @@
           <v-col md="12" class="my-0 py-0">
             <v-toolbar
               class="elevation-0"
-              style="border: 1px solid #e0e0e0; border-radius: 5px"
+              style="border-radius: 12px"
             >
               <v-toolbar-title class="google-font mr-3"
                 >Manage Links
@@ -66,7 +66,7 @@
                     <v-col class="my-0 py-1">
                       <v-toolbar
                         class="elevation-0"
-                        style="border: 1px solid #e0e0e0; border-radius: 5px"
+                        style="border-radius: 12px"
                       >
                         <v-toolbar-title class="google-font mr-3"
                           >{{ item.linkname }}
@@ -107,7 +107,7 @@
                     <v-col class="my-0 py-1">
                       <v-toolbar
                         class="elevation-0"
-                        style="border: 1px solid #e0e0e0; border-radius: 5px"
+                        style="border-radius: 12px"
                       >
                         <v-toolbar-title class="google-font mr-3"
                           >{{ item.linkname ? item.linkname : "Not Found" }}
@@ -149,7 +149,7 @@
                     <v-col class="my-0 py-1">
                       <v-toolbar
                         class="elevation-0"
-                        style="border: 1px solid #e0e0e0; border-radius: 5px"
+                        style="border-radius: 12px"
                       >
                         <v-toolbar-title class="google-font mr-3"
                           >{{ item.linkname ? item.linkname : "Not Found" }}
@@ -191,7 +191,7 @@
                     <v-col class="my-0 py-1">
                       <v-toolbar
                         class="elevation-0"
-                        style="border: 1px solid #e0e0e0; border-radius: 5px"
+                        style="border-radius: 12px"
                       >
                         <v-toolbar-title class="google-font mr-3"
                           >{{ item.linkname ? item.linkname : "Not Found" }}
