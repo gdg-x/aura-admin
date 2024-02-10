@@ -58,7 +58,7 @@
                   style="
                   user-select: none;
                   border: 1px solid #e0e0e0;
-                  border-radius: 5px;
+                  border-radius: 12px;
                 "
                   height="100%"
                   class="text-center elevation-0"

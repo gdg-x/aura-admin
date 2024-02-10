@@ -118,7 +118,7 @@
                       class="pa-1"
                     >
                       <v-card
-                        style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
+                        style="cursor: pointer;user-select: none;border-radius: 12px;"
                         height="100%"
                         v-ripple
                         @click="gotoTeamDetails(item.id)"
@@ -161,7 +161,7 @@
                   <v-col class="pa-1">
                     <v-data-table
                       :mobile-breakpoint="0"
-                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      style="border-radius: 12px;background:white;"
                       :search="search"
                       :loading="isLoading"
                       :headers="headers"
@@ -215,7 +215,7 @@
             <div v-else>
               <v-row justify="center" align="center">
                 <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                  <v-container fluid class="" style="border-radius: 12px;background:white">
                     <v-row justify="center" align="center" class="pa-3">
                       <v-col md="4" class="text-center">
                         <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>

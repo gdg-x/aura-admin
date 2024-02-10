@@ -94,7 +94,7 @@
       <v-container fluid class="ma-0 pa-0" style="height: 100vh">
         <v-row class="ma-0 pa-0 py-5 blue">
           <v-col class="ma-0 py-auto text-center">
-            <!-- <span style="border:1px solid #e0e0e0;border-radius:5px;font-size:80%;color:white;width:300px" class="pa-2 google-font primary">This Portal in Development Mode</span> -->
+            <!-- <span style="border-radius: 12px;font-size:80%;color:white;width:300px" class="pa-2 google-font primary">This Portal in Development Mode</span> -->
 
             <v-img :src="require('@/assets/img/home.svg')"></v-img>
             <h2 class="google-font mb-3 white--text">Aura Admin</h2>

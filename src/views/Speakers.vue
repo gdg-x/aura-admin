@@ -147,7 +147,7 @@
                           cursor: pointer;
                           user-select: none;
                           border: 1px solid #e0e0e0;
-                          border-radius: 5px;
+                          border-radius: 12px;
                         "
                         height="100%"
                         v-ripple
@@ -201,7 +201,7 @@
                       :mobile-breakpoint="0"
                       style="
                         border: 1px solid #e0e0e0;
-                        border-radius: 5px;
+                        border-radius: 12px;
                         background: white;
                       "
                       :search="search"
@@ -276,7 +276,7 @@
                     class
                     style="
                       border: 1px solid #e0e0e0;
-                      border-radius: 5px;
+                      border-radius: 12px;
                       background: white;
                     "
                   >

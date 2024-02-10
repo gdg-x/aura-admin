@@ -8,7 +8,7 @@
     />
     <v-row>
       <v-col cols="12">
-        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+        <v-toolbar class="elevation-0" style="border-radius: 12px;">
           <v-btn
             text
             @click="goToTeam"
@@ -160,7 +160,7 @@
         <v-container
           fluid
           class
-          style="border:1px solid #e0e0e0;border-radius:5px;background:white"
+          style="border-radius: 12px;background:white"
         >
           <v-row justify="center" align="center" class="pa-3">
             <v-col md="4" class="text-center">
@@ -278,7 +278,7 @@ export default {
 <style scoped>
 .team-details {
   border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  border-radius: 12px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-left: 0px;

@@ -8,10 +8,7 @@
     />
     <v-row class>
       <v-col>
-        <v-toolbar
-          class="elevation-0"
-          style="border-radius: 12px"
-        >
+        <v-toolbar class="elevation-0" style="border-radius: 12px">
           <v-toolbar-title class="google-font mr-3"
             >Profile Settings</v-toolbar-title
           >
@@ -39,14 +36,7 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-container
-          v-else
-          style="
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            background: white;
-          "
-        >
+        <v-container v-else style="border-radius: 12px; background: white">
           <v-row>
             <v-col class>
               <v-list-item>
@@ -127,13 +117,7 @@
         </v-container>
       </v-col>
       <v-col cols="12" md="5">
-        <v-container
-          style="
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
-            background: white;
-          "
-        >
+        <v-container style="border-radius: 12px; background: white">
           <v-row justify="center" align="center">
             <v-col class="px-5">
               <h1 class="google-font">Password</h1>

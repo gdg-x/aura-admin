@@ -8,7 +8,7 @@
     />
     <v-row class="">
       <v-col>
-        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+        <v-toolbar class="elevation-0" style="border-radius: 12px;">
           <v-toolbar-title class="google-font mr-3">Partners: {{ partnersData.length }}</v-toolbar-title>
           <v-spacer></v-spacer>
 
@@ -120,7 +120,7 @@
                       class="py-0" 
                       v-ripple
                       @click="gotoPartnerDetails(item.id)"
-                      style="height:100% !important;border:1px solid #e0e0e0;border-radius:5px;background:white;cursor: pointer;user-select: none;">
+                      style="height:100% !important;border-radius: 12px;background:white;cursor: pointer;user-select: none;">
                         <v-row class="">
                           <v-col class="grey lighten-4 pa-0" >
                             <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/dontremove/noimage.jpg')"></v-img>
@@ -158,7 +158,7 @@
                 <v-row>
                   <v-col class="pa-1">
                     <v-data-table
-                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      style="border-radius: 12px;background:white;"
                       :search="search"
                       :mobile-breakpoint="0"
                       :loading="isLoading"
@@ -199,7 +199,7 @@
             <div v-else>
               <v-row justify="center" align="center">
                 <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                  <v-container fluid class="" style="border-radius: 12px;background:white">
                     <v-row justify="center" align="center" class="pa-3">
                       <v-col md="4" class="text-center">
                         <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>

@@ -17,7 +17,7 @@
             @click="goToTeam"
             class="ma-0 google-font mb-0"
             style="
-              border-radius: 5px;
+              border-radius: 12px;
               text-transform: capitalize;
               text-decoration: none;
             "
@@ -225,8 +225,7 @@
           fluid
           class=""
           style="
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            border-radius: 12px;
             background: white;
           "
         >
@@ -249,7 +248,7 @@
                 @click="goToTeam"
                 class="ma-0 google-font mb-0"
                 style="
-                  border-radius: 5px;
+                  border-radius: 12px;
                   text-transform: capitalize;
                   text-decoration: none;
                 "
@@ -354,7 +353,7 @@ export default {
 <style scoped>
 .team-details {
   border: 1px solid #e0e0e0;
-  border-radius: 5px;
+  border-radius: 12px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border-left: 0px;

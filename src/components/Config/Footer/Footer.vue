@@ -53,7 +53,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -88,7 +88,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -129,7 +129,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -171,7 +171,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
