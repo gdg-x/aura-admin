@@ -30,7 +30,7 @@
             >Save General Settings</v-btn
           >
         </v-toolbar>
-        <p class="mb-0 mt-3 google-font" style="color: red">
+        <p class="mb-0 mt-3 mx-4 google-font" style="color: red">
           <b>Important! </b> Settings will not be saved until and unless, if you
           will click the save button
         </p>

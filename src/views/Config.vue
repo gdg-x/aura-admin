@@ -35,7 +35,7 @@
     </v-tabs>
 
     <v-tabs-items v-model="tab" style="border-radius: 12px !important">
-      <v-tab-item key="item1" class="pa-0 ma-0" style="border-radius: 12px">
+      <v-tab-item key="item1" class="pa-0 ma-0">
         <v-card flat class="pa-0 ma-0 px-2">
           <General @show="showSnakeBar" />
         </v-card>

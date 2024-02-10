@@ -23,7 +23,7 @@
     </v-row>
 
     <v-row class="px-0">
-      <v-col cols="12" md="7">
+      <v-col cols="12" md="8">
         <v-container v-if="isLoading" class="fill-height">
           <v-row justify="center" align="center" class>
             <v-col cols="12" md="12" class="text-center">
@@ -116,7 +116,7 @@
           </v-row>
         </v-container>
       </v-col>
-      <v-col cols="12" md="5">
+      <v-col cols="12" md="4">
         <v-container style="border-radius: 12px; background: white">
           <v-row justify="center" align="center">
             <v-col class="px-5">
