@@ -28,100 +28,20 @@
       >Offline</v-toolbar-title
     >
 
-    <v-menu
-      v-model="menu"
-      :close-on-content-click="false"
-      :nudge-width="100"
-      :max-width="320"
-      class="elevation-0"
-      offset-y
-      transition="slide-y-transition"
-      bottom
-    >
-      <template v-slot:activator="{ on: menu }">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: tooltip }">
-            <v-avatar size="36" style="cursor: pointer">
-              <img
-                v-on="{ ...tooltip, ...menu }"
-                :src="
-                  userDetails.image && userDetails.image.length > 0
-                    ? userDetails.image
-                    : require('@/assets/img/default_avatar.jpg')
-                "
-                alt="John"
-                class="circle"
-              />
-            </v-avatar>
-          </template>
-          <span>Profile Settings</span>
-        </v-tooltip>
-      </template>
-
-      <v-card elevation="0">
-        <v-container fluid>
-          <v-row class justify="center" align="center">
-            <v-col cols="12" class="ma-0 pb-0 text-center">
-              <v-avatar size="100">
-                <img
-                  :src="
-                    userDetails.image && userDetails.image.length > 0
-                      ? userDetails.image
-                      : require('@/assets/img/default_avatar.jpg')
-                  "
-                />
-              </v-avatar>
-            </v-col>
-            <v-col cols="12" class="text-center ma-0 pa-0">
-              <v-list>
-                <v-list-item-content>
-                  <v-list-item-title class="google-font">{{
-                    userDetails.name || "User-Name"
-                  }}</v-list-item-title>
-                  <v-list-item-subtitle class="google-font">{{
-                    userDetails.email || "User-Email"
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list>
-            </v-col>
-            <v-col cols="12" class="text-center ma-0 pa-0">
-              <v-btn
-                small
-                to="/profile"
-                class="google-font text-none"
-                rounded
-                color="#3c4043"
-                outlined
-                >Manage Your Profile</v-btn
-              >
-            </v-col>
-            <v-col cols="12" class="px-0">
-              <v-divider></v-divider>
-            </v-col>
-            <v-col cols="12" class="px-0 text-center">
-              <v-btn
-                @click="logout"
-                class="google-font grey--text darken-3 text-none"
-                outlined
-                color="grey"
-                ><v-icon left>mdi-logout-variant</v-icon> Signout from
-                AURA</v-btn
-              >
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
-    </v-menu>
+   <AppProfileMenuVue :userDetails="userDetails"/>
   </v-app-bar>
 </template>
 <script>
+
 import offline from "v-offline";
 import firebase from "@/config/firebase";
 import { mapGetters, mapState, mapMutations } from "vuex";
+import AppProfileMenuVue from './AppProfileMenu.vue';
 export default {
   name: "Toolbar",
   components: {
     offline,
+    AppProfileMenuVue
   },
   data: () => ({
     isOffline: false,
@@ -165,21 +85,5 @@ export default {
 </script>
 
 <style>
-.circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 2.5px solid transparent;
-  background-size: 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(white, white),
-    linear-gradient(30deg, #ea4335 36%, #4285f4 30%),
-    linear-gradient(120deg, #4285f4 36%, #34a853 30%),
-    linear-gradient(300deg, #fbbc04 36%, #ea4335 30%),
-    linear-gradient(210deg, #34a853 36%, #fbbc04 30%);
-  background-position: center center, left top, right top, left bottom,
-    right bottom;
-  background-origin: content-box, border-box, border-box, border-box, border-box;
-  background-clip: content-box, border-box, border-box, border-box, border-box;
-}
+
 </style>

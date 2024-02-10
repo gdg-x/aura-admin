@@ -12,15 +12,16 @@
         <v-col
           class="ma-3 px-5 mt-0"
           style="
-            background: #bbdefb;
-            border: 1px solid #bbdefb;
+            background-color: #a9c9ff;
+            background-image: linear-gradient(76deg, #deeaff 31%, #ffbbec 420%);
+
             border-radius: 12px;
           "
         >
           <v-container class="mb-0 py-0">
             <v-row>
               <v-col md="12" class="my-0 py-6">
-                <h1 class="google-font mb-0" style="color: #3f51b5">
+                <h1 class="google-font mb-0" style="">
                   Welcome
                   {{
                     (userDetails.name && userDetails.name.split(" ")[0]) || ""
@@ -35,13 +36,16 @@
 
       <v-row class="px-2">
         <!-- Events -->
-        <v-col class="pa-1" md="3" sm="6" lg="3" cols="6" v-for="(item, index) in summeryData" :key="index">
-          <div
-            style="
-              border-radius: 12px;
-              background: white;
-            "
-          >
+        <v-col
+          class="pa-1"
+          md="3"
+          sm="6"
+          lg="3"
+          cols="6"
+          v-for="(item, index) in summeryData"
+          :key="index"
+        >
+          <div style="border-radius: 12px; background: white">
             <v-container class="py-0">
               <v-row justify="center" align="center">
                 <v-col
@@ -57,13 +61,13 @@
                   >
                 </v-col>
                 <v-col md="6" lg="6">
-                  <p class="google-font my-0">{{item.name}}</p>
+                  <p class="google-font my-0">{{ item.name }}</p>
                   <p
                     class="google-font my-0"
                     v-on:click="goToRoute(item.to)"
                     style="font-size: 80%; cursor: pointer; user-select: none"
                   >
-                    View All {{item.name}}
+                    View All {{ item.name }}
                   </p>
                 </v-col>
                 <v-col md="4" lg="4" class="text-center">
@@ -75,14 +79,13 @@
                   ></v-progress-circular> -->
                   <p class="google-font my-0" style="font-size: 280%">
                     {{ item.count }}
-                  </p>     
+                  </p>
                 </v-col>
               </v-row>
             </v-container>
           </div>
         </v-col>
         <!-- Events -->
-   
       </v-row>
     </v-container>
   </v-main>
@@ -101,7 +104,7 @@ export default {
     userEmail: "",
     teamData: [],
     teamLoader: true,
-    summeryData:[],
+    summeryData: [],
     speakersData: [],
     speakersLoader: true,
     partnersData: [],
@@ -143,11 +146,11 @@ export default {
             this.teamData.push(doc.data());
           });
           this.summeryData.push({
-            name:'Team',
+            name: "Team",
             count: this.teamData.length,
-            icon: 'mdi-nature-people',
-            to:'/team'
-          })
+            icon: "mdi-nature-people",
+            to: "/team",
+          });
           this.teamLoader = false;
         })
         .catch((err) => {
@@ -166,11 +169,11 @@ export default {
             this.speakersData.push(doc.data());
           });
           this.summeryData.push({
-            name:'Speakers',
+            name: "Speakers",
             count: this.speakersData.length,
-            icon: 'mdi-account-multiple',
-            to:'/speakers'
-          })
+            icon: "mdi-account-multiple",
+            to: "/speakers",
+          });
           this.speakersLoader = false;
         })
         .catch((err) => {
@@ -189,11 +192,11 @@ export default {
             this.partnersData.push(doc.data());
           });
           this.summeryData.push({
-            name:'Partners',
+            name: "Partners",
             count: this.partnersData.length,
-            icon: 'mdi-toaster-oven',
-            to:'/partners'
-          })
+            icon: "mdi-toaster-oven",
+            to: "/partners",
+          });
           this.partnersLoader = false;
         })
         .catch((err) => {
@@ -211,11 +214,11 @@ export default {
             this.customEventData.push(doc.data());
           });
           this.summeryData.push({
-            name:'Events',
+            name: "Events",
             count: this.customEventData.length,
-            icon: 'mdi-assistant',
-            to:'/events'
-          })
+            icon: "mdi-assistant",
+            to: "/events",
+          });
           this.eventLoader = false;
         })
         .catch((err) => {
