@@ -17,9 +17,9 @@
             border-radius: 12px;
           "
         >
-          <v-container class="mb-5 py-5">
-            <v-row class="mb-5">
-              <v-col md="9" class="my-0 py-0">
+          <v-container class="mb-0 py-0">
+            <v-row>
+              <v-col md="12" class="my-0 py-6">
                 <h1 class="google-font mb-0" style="color: #3f51b5">
                   Welcome
                   {{
@@ -28,23 +28,16 @@
                 </h1>
                 <p class="google-font mb-0">Manage your community</p>
               </v-col>
-              <v-col
-                md="3"
-                style="margin-top: -185px"
-                class="d-none d-sm-none d-md-block"
-              >
-                <v-img :src="require('@/assets/img/svg/login.svg')"></v-img>
-              </v-col>
             </v-row>
           </v-container>
         </v-col>
       </v-row>
 
       <v-row class="px-2">
-        <v-col class="pa-1" md="3" sm="6" lg="3" cols="6" style>
+        <!-- Events -->
+        <v-col class="pa-1" md="3" sm="6" lg="3" cols="6" v-for="(item, index) in summeryData" :key="index">
           <div
             style="
-              border: 1px solid #e0e0e0;
               border-radius: 12px;
               background: white;
             "
@@ -52,179 +45,44 @@
             <v-container class="py-0">
               <v-row justify="center" align="center">
                 <v-col
-                  md="6"
-                  lg="4"
-                  class="pa-5 text-center d-none d-sm-none d-md-block"
+                  md="2"
+                  lg="2"
+                  class="text-center d-none d-sm-none d-md-block"
                 >
                   <v-icon
-                    class="my-auto"
+                    class="my-auto mx-auto"
                     color="primary"
-                    style="font-size: 400%"
-                    >mdi-assistant</v-icon
+                    style="font-size: 200%"
+                    >{{ item.icon }}</v-icon
                   >
                 </v-col>
-                <v-col md="6" lg="8" class="pa-5">
-                  <p class="google-font my-0">Events</p>
-                  <v-progress-circular
+                <v-col md="6" lg="6">
+                  <p class="google-font my-0">{{item.name}}</p>
+                  <p
+                    class="google-font my-0"
+                    v-on:click="goToRoute(item.to)"
+                    style="font-size: 80%; cursor: pointer; user-select: none"
+                  >
+                    View All {{item.name}}
+                  </p>
+                </v-col>
+                <v-col md="4" lg="4" class="text-center">
+                  <!-- <v-progress-circular
                     indeterminate
                     v-if="eventLoader"
                     class="my-4"
                     color="primary"
-                  ></v-progress-circular>
-                  <p v-else class="google-font my-0" style="font-size: 280%">
-                    {{ customEventData.length }}
-                  </p>
-                  <p
-                    class="google-font my-0"
-                    v-on:click="goToRoute('/events')"
-                    style="font-size: 80%; cursor: pointer; user-select: none"
-                  >
-                    View All Events
-                  </p>
+                  ></v-progress-circular> -->
+                  <p class="google-font my-0" style="font-size: 280%">
+                    {{ item.count }}
+                  </p>     
                 </v-col>
               </v-row>
             </v-container>
           </div>
         </v-col>
-
-        <v-col class="pa-1" md="3" sm="6" cols="6" lg="3" style>
-          <div
-            style="
-              border: 1px solid #e0e0e0;
-              border-radius: 12px;
-              background: white;
-            "
-          >
-            <v-container class="py-0">
-              <v-row justify="center" align="center">
-                <v-col
-                  md="6"
-                  lg="4"
-                  class="pa-5 py-auto text-center d-none d-sm-none d-md-block"
-                >
-                  <v-icon
-                    class="my-auto"
-                    color="primary"
-                    style="font-size: 400%"
-                    >mdi-nature-people</v-icon
-                  >
-                </v-col>
-                <v-col md="6" lg="8" class="pa-5">
-                  <p class="google-font my-0">Team</p>
-                  <v-progress-circular
-                    indeterminate
-                    v-if="teamLoader"
-                    class="my-4"
-                    color="primary"
-                  ></v-progress-circular>
-                  <p v-else class="google-font my-0" style="font-size: 280%">
-                    {{ teamData.length ? teamData.length : 0 }}
-                  </p>
-
-                  <p
-                    class="google-font my-0"
-                    v-on:click="goToRoute('/team')"
-                    style="font-size: 80%; cursor: pointer; user-select: none"
-                  >
-                    View Team
-                  </p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
-        </v-col>
-
-        <v-col class="pa-1" md="3" lg="3" style>
-          <div
-            style="
-              border: 1px solid #e0e0e0;
-              border-radius: 12px;
-              background: white;
-            "
-          >
-            <v-container class="py-0">
-              <v-row justify="center" align="center">
-                <v-col
-                  md="6"
-                  lg="4"
-                  class="pa-5 py-auto text-center d-none d-sm-none d-md-block"
-                >
-                  <v-icon
-                    class="my-auto"
-                    color="primary"
-                    style="font-size: 400%"
-                    >mdi-account-multiple</v-icon
-                  >
-                </v-col>
-                <v-col md="6" lg="8" class="pa-5">
-                  <p class="google-font my-0">Speakers</p>
-                  <v-progress-circular
-                    indeterminate
-                    v-if="speakersLoader"
-                    class="my-4"
-                    color="primary"
-                  ></v-progress-circular>
-                  <p v-else class="google-font my-0" style="font-size: 280%">
-                    {{ speakersData.length ? speakersData.length : 0 }}
-                  </p>
-                  <p
-                    class="google-font my-0"
-                    v-on:click="goToRoute('/speakers')"
-                    style="font-size: 80%; cursor: pointer; user-select: none"
-                  >
-                    View All Speakers
-                  </p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
-        </v-col>
-
-        <v-col class="pa-1" md="3" lg="3" style>
-          <div
-            style="
-              border: 1px solid #e0e0e0;
-              border-radius: 12px;
-              background: white;
-            "
-          >
-            <v-container class="py-0">
-              <v-row justify="center" align="center">
-                <v-col
-                  md="6"
-                  lg="4"
-                  class="pa-5 py-auto text-center d-none d-sm-none d-md-block"
-                >
-                  <v-icon
-                    class="my-auto"
-                    color="primary"
-                    style="font-size: 400%"
-                    >mdi-toaster-oven</v-icon
-                  >
-                </v-col>
-                <v-col md="6" lg="8" class="pa-5">
-                  <p class="google-font my-0">Partners</p>
-                  <v-progress-circular
-                    indeterminate
-                    v-if="partnersLoader"
-                    class="my-4"
-                    color="primary"
-                  ></v-progress-circular>
-                  <p v-else class="google-font my-0" style="font-size: 280%">
-                    {{ partnersData.length ? partnersData.length : 0 }}
-                  </p>
-                  <p
-                    class="google-font my-0"
-                    v-on:click="goToRoute('/partners')"
-                    style="font-size: 80%; cursor: pointer; user-select: none"
-                  >
-                    View All Partners
-                  </p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
-        </v-col>
+        <!-- Events -->
+   
       </v-row>
     </v-container>
   </v-main>
@@ -243,6 +101,7 @@ export default {
     userEmail: "",
     teamData: [],
     teamLoader: true,
+    summeryData:[],
     speakersData: [],
     speakersLoader: true,
     partnersData: [],
@@ -283,6 +142,12 @@ export default {
           snapshot.forEach((doc) => {
             this.teamData.push(doc.data());
           });
+          this.summeryData.push({
+            name:'Team',
+            count: this.teamData.length,
+            icon: 'mdi-nature-people',
+            to:'/team'
+          })
           this.teamLoader = false;
         })
         .catch((err) => {
@@ -300,6 +165,12 @@ export default {
           snapshot.forEach((doc) => {
             this.speakersData.push(doc.data());
           });
+          this.summeryData.push({
+            name:'Speakers',
+            count: this.speakersData.length,
+            icon: 'mdi-account-multiple',
+            to:'/speakers'
+          })
           this.speakersLoader = false;
         })
         .catch((err) => {
@@ -317,6 +188,12 @@ export default {
           snapshot.forEach((doc) => {
             this.partnersData.push(doc.data());
           });
+          this.summeryData.push({
+            name:'Partners',
+            count: this.partnersData.length,
+            icon: 'mdi-toaster-oven',
+            to:'/partners'
+          })
           this.partnersLoader = false;
         })
         .catch((err) => {
@@ -333,6 +210,12 @@ export default {
           snapshot.forEach((doc) => {
             this.customEventData.push(doc.data());
           });
+          this.summeryData.push({
+            name:'Events',
+            count: this.customEventData.length,
+            icon: 'mdi-assistant',
+            to:'/events'
+          })
           this.eventLoader = false;
         })
         .catch((err) => {
