@@ -11,7 +11,8 @@
         class="elevation-0"
         style="
           border-radius: 12px;
-          border-left: 8px solid #5ab55e;
+          background-color: #f2da77;
+          background-image: linear-gradient(243deg, #ffe57f 1%, #82d5bf 37%, #ffffff 110%);
         "
       >
         <v-toolbar-title class="google-font mr-3"
