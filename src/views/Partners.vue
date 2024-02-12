@@ -120,7 +120,7 @@
                       class="py-0" 
                       v-ripple
                       @click="gotoPartnerDetails(item.id)"
-                      style="height:100% !important;border-radius: 12px;background:white;cursor: pointer;user-select: none;">
+                      style="border-radius: 12px;background:white;cursor: pointer;user-select: none;">
                         <v-row class="">
                           <v-col class="grey lighten-4 pa-0" >
                             <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/dontremove/noimage.jpg')"></v-img>

@@ -56,7 +56,7 @@
     <!-- :search="search" -->
     <v-data-table
       :mobile-breakpoint="0"
-      style="border: 1px solid #e0e0e0; border-radius: 12px; background: white"
+      style="border-radius: 12px; background: white"
       :loading="isLoading"
       :headers="headers"
       :search="search"

@@ -75,9 +75,8 @@
               xl="2"
               class="pa-0 text-center"
               style="
-                border: 1px solid #e0e0e0;
                 background: white;
-                border-radius: 12px;
+                border-radius: 12px !important;
               "
             >
               <div class="pa-0">

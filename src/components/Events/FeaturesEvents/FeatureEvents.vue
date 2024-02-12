@@ -11,8 +11,8 @@
         class="elevation-0"
         style="
           border-radius: 12px;
-          background-color: #f2da77;
-          background-image: linear-gradient(243deg, #ffe57f 1%, #82d5bf 37%, #ffffff 110%);
+          background-color: #a9c9ff;
+            background-image: linear-gradient(76deg, #deeaff 31%, #ffbbec 420%);
         "
       >
         <v-toolbar-title class="google-font mr-3"
@@ -33,12 +33,12 @@
       <v-col class="my-0" md="3" lg="3" sm="6" cols="12">
         <div
           class="lightModeCard pa-5 text-center"
-          style="border-left: 8px solid #5ab55e"
+          style="border-left: 8px solid #a9c9ff"
         >
           <v-progress-circular
             :width="5"
             :size="50"
-            color="success"
+            color="#649CFD"
             indeterminate
           ></v-progress-circular>
         </div>
@@ -55,7 +55,7 @@
         :key="i"
       >
         <div
-          style="cursor: pointer; border-left: 8px solid #5ab55e"
+          style="cursor: pointer; border-left: 8px solid #a9c9ff"
           class="pa-2 ma-0 lightModeCard"
           @click="goToEventDetails(item.id)"
         >
@@ -76,7 +76,7 @@
       v-else-if="featureEvendsID.length == 0 && !showNetworkError"
     >
       <v-col class="my-0 text-center" md="3" lg="3" sm="6" cols="12">
-        <div class="lightModeCard pa-3" style="border-left: 8px solid #5ab55e">
+        <div class="lightModeCard pa-3" style="border-left: 8px solid #a9c9ff">
           <img
             style="width: 20%; text-align: center"
             :src="require('@/assets/img/svg/DataNotFound.svg')"
@@ -87,7 +87,7 @@
     </v-row>
     <v-row class="my-0 pa-0" v-if="showNetworkError">
       <v-col class="my-0 text-center" md="3" lg="3" sm="6" cols="12">
-        <div class="lightModeCard pa-3" style="border-left: 8px solid #5ab55e">
+        <div class="lightModeCard pa-3" style="border-left: 8px solid #a9c9ff">
           <img
             style="width: 20%; text-align: center"
             :src="require('@/assets/img/svg/DataNotFound.svg')"

@@ -138,11 +138,7 @@
 
         <v-data-table
           :mobile-breakpoint="0"
-          style="
-                        border: 1px solid #e0e0e0;
-                        border-radius: 12px;
-                        background: white;
-                      "
+          style="border-radius: 12px; background: white"
           :search="search"
           :loading="loading"
           :headers="headers"

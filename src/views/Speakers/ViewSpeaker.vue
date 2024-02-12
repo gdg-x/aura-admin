@@ -77,7 +77,7 @@
               <v-card
                 height="100%"
                 class="elevation-0"
-                style="border: 1px solid #e0e0e0"
+                style="border-radius: 12px;"
               >
                 <v-card-title
                   class="grey lighten-4 google-font"

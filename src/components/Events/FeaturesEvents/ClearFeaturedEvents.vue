@@ -7,7 +7,7 @@
             class="ml-3"
             fab
             x-small
-            color="#5AB55E"
+            color="#649CFD"
             outlined
             dark
             v-on="on"
