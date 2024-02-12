@@ -7,9 +7,7 @@
             Install Aura Admin
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
-            asperiores amet iusto, nulla facere quae culpa eos modi rerum fugit
-            molestiae pariatur ex
+            Aura Admin Installation
           </p>
 
           <div>
