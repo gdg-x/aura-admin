@@ -8,7 +8,7 @@
         :timeout="5000"
       />
       <!-- Desktop -->
-      <v-row align="center" justify="center" class="d-none d-sm-block">
+      <v-row align="center" justify="center" class="d-none d-sm-block my-md-15 my-10 py-10">
         <v-col
           md="8"
           lg="10"
@@ -22,7 +22,6 @@
             class="ma-0 pa-0 elevation-0"
             style="
               background: white;
-              border: 1px solid #e0e0e0;
               border-radius: 15px;
             "
           >

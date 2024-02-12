@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent scrollable width="1200">
+  <v-dialog v-model="dialog" persistent scrollable width="1000">
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -22,10 +22,9 @@
       </v-tooltip>
     </template>
 
-    <v-card v-if="dialog">
+    <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
       <v-card-title
-        class="google-font"
-        style="border-bottom: 1px solid #e0e0e0"
+        class="google-font white"
         primary-title
         >Edit {{ speakerData.name }} Details | Speaker</v-card-title
       >
@@ -52,6 +51,7 @@
                       :items="items"
                       v-model="updatedData.visible"
                       label="Visiblity Status"
+                      background-color="white"
                       outlined
                     ></v-select>
                   </v-col>
@@ -63,6 +63,7 @@
                       disabled
                       label="ID"
                       type="text"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -81,6 +82,7 @@
                       :rules="nameRules"
                       class="ma-0"
                       label="Name *"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -91,6 +93,7 @@
                       class="ma-0"
                       :rules="nameRules"
                       label="Desigination *"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -108,6 +111,7 @@
                       v-model="updatedData.company.name"
                       class="ma-0"
                       :rules="nameRules"
+                      background-color="white"
                       label="Company Name *"
                       outlined
                     ></v-text-field>
@@ -117,6 +121,7 @@
                       v-model="updatedData.company.url"
                       class="ma-0"
                       label="Company URL"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -126,6 +131,7 @@
                       v-model="updatedData.city"
                       class="ma-0"
                       :rules="nameRules"
+                      background-color="white"
                       label="City *"
                       outlined
                     ></v-text-field>
@@ -134,6 +140,7 @@
                   <v-col md="4" xs="4" cols="12" class="pa-1 py-0 ma-0">
                     <v-text-field
                       v-model="updatedData.country"
+                      background-color="white"
                       class="ma-0"
                       :rules="nameRules"
                       label="Country *"
@@ -144,6 +151,7 @@
                   <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
                     <v-text-field
                       v-model="updatedData.image"
+                      background-color="white"
                       class="ma-0"
                       label="Image URL"
                       outlined
@@ -163,6 +171,7 @@
                       outlined
                       name="input-7-4"
                       v-model="updatedData.bio"
+                      background-color="white"
                       label="Bio"
                     ></v-textarea>
                   </v-col>
@@ -179,6 +188,7 @@
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.mbnumber"
+                      background-color="white"
                       label="Contact Number"
                       outlined
                     ></v-text-field>
@@ -188,6 +198,7 @@
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.email"
+                      background-color="white"
                       :rules="emailRules"
                       label="Email Id *"
                       outlined
@@ -206,6 +217,7 @@
                     <v-text-field
                       class="ma-0"
                       label="Facebook"
+                      background-color="white"
                       outlined
                       v-model="updatedData.socialLinks.facebook"
                     ></v-text-field>
@@ -215,6 +227,7 @@
                     <v-text-field
                       class="ma-0"
                       label="Github"
+                      background-color="white"
                       v-model="updatedData.socialLinks.github"
                       outlined
                     ></v-text-field>
@@ -225,6 +238,7 @@
                       class="ma-0"
                       v-model="updatedData.socialLinks.linkedin"
                       label="Linkedin"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -234,6 +248,7 @@
                       class="ma-0"
                       v-model="updatedData.socialLinks.medium"
                       label="Medium"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -243,6 +258,7 @@
                       class="ma-0"
                       v-model="updatedData.socialLinks.twitter"
                       label="Twitter"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -252,6 +268,7 @@
                       class="ma-0"
                       v-model="updatedData.socialLinks.web"
                       label="Website/Blog"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -265,7 +282,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-actions>
+      <v-card-actions class="white">
         <div class="flex-grow-1"></div>
         <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn

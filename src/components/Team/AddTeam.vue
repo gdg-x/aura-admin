@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent scrollable width="1100">
+    <v-dialog v-model="dialog" persistent scrollable width="1000">
       <template v-slot:activator="{ on }">
         <!-- For Large screen (Laptops and up) -->
         <v-btn color="primary hidden-sm-and-down" depressed dark v-on="on"
@@ -19,11 +19,10 @@
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card v-if="dialog" class="" style="border-radius: 7px">
+      <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
         <v-card-title
-          class="google-font"
+          class="google-font white"
           primary-title
-          style="border-bottom: 1px solid #e0e0e0"
           dark
           >Add New Team Member
           <!-- <div class="flex-grow-1"></div> asd -->
@@ -54,6 +53,7 @@
                         :items="items"
                         v-model="active"
                         label="Active Status*"
+                        background-color="white"
                         outlined
                       ></v-select>
                     </v-col>
@@ -63,6 +63,7 @@
                         :items="items"
                         v-model="visible"
                         label="Visiblity Status*"
+                        background-color="white"
                         outlined
                       ></v-select>
                     </v-col>
@@ -73,6 +74,7 @@
                         class="ma-0"
                         :rules="idRules"
                         label="ID *"
+                        background-color="white"
                         type="text"
                         outlined
                       ></v-text-field>
@@ -83,6 +85,7 @@
                         :items="teamRole"
                         v-model="role"
                         :rules="idRules"
+                        background-color="white"
                         label="Role *"
                         outlined
                       ></v-select>
@@ -98,6 +101,7 @@
                     <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         v-model="name"
+                        background-color="white"
                         :rules="nameRules"
                         class="ma-0"
                         label="Name *"
@@ -108,6 +112,7 @@
                     <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         v-model="designation"
+                        background-color="white"
                         class="ma-0"
                         :rules="nameRules"
                         label="Desigination *"
@@ -119,6 +124,7 @@
                         v-model="imageURL"
                         class="ma-0"
                         label="Image URL"
+                        background-color="white"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -136,6 +142,7 @@
                         outlined
                         name="input-7-4"
                         v-model="bio"
+                        background-color="white"
                         label="Bio"
                       ></v-textarea>
                     </v-col>
@@ -149,6 +156,7 @@
                       <v-text-field
                         class="ma-0"
                         v-model="mbnumber"
+                        background-color="white"
                         label="Contact Number"
                         outlined
                       ></v-text-field>
@@ -159,6 +167,7 @@
                         class="ma-0"
                         v-model="email"
                         :rules="emailRules"
+                        background-color="white"
                         label="Email Id *"
                         outlined
                       ></v-text-field>
@@ -173,6 +182,7 @@
                       <v-text-field
                         class="ma-0"
                         label="Facebook"
+                        background-color="white"
                         outlined
                         v-model="facebook"
                       ></v-text-field>
@@ -183,6 +193,7 @@
                         class="ma-0"
                         label="Github"
                         v-model="github"
+                        background-color="white"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -192,6 +203,7 @@
                         class="ma-0"
                         v-model="linkedin"
                         label="Linkedin"
+                        background-color="white"
                         outlined
                       ></v-text-field>
                     </v-col>
@@ -199,6 +211,7 @@
                     <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
                       <v-text-field
                         class="ma-0"
+                        background-color="white"
                         v-model="medium"
                         label="Medium"
                         outlined
@@ -209,6 +222,7 @@
                       <v-text-field
                         class="ma-0"
                         v-model="twitter"
+                        background-color="white"
                         label="Twitter"
                         outlined
                       ></v-text-field>
@@ -218,6 +232,7 @@
                       <v-text-field
                         class="ma-0"
                         v-model="web"
+                        background-color="white"
                         label="Website/Blog"
                         outlined
                       ></v-text-field>
@@ -231,7 +246,7 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions class="grey lighten-4 py-5">
+        <v-card-actions class="white">
           <div class="flex-grow-1"></div>
           <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn

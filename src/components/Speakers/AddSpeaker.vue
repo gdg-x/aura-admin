@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent scrollable width="1200">
+    <v-dialog v-model="dialog" persistent scrollable width="1000">
       <template v-slot:activator="{ on }">
         <v-btn color="primary hidden-sm-and-down" depressed dark v-on="on"
           >Add New Speaker</v-btn
@@ -17,10 +17,9 @@
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
       </template>
-      <v-card v-if="dialog">
+      <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
         <v-card-title
-          class="google-font"
-          style="border-bottom: 1px solid #e0e0e0"
+          class="google-font white"
           primary-title
           dark
           >Add New Speaker</v-card-title
@@ -53,6 +52,7 @@
                         label="Visiblity Status*"
                         outlined
                         clearable
+                        background-color="white"
                       ></v-select>
                     </v-col>
 
@@ -62,6 +62,7 @@
                         label="Speaker ID*"
                         type="text"
                         outlined
+                        background-color="white"
                         clearable
                       ></v-text-field>
                     </v-col>
@@ -82,6 +83,7 @@
                         :rules="nameRules"
                         class="ma-0"
                         label="Full Name*"
+                        background-color="white"
                         outlined
                         clearable
                         counter="50"
@@ -94,6 +96,7 @@
                         class="ma-0"
                         :rules="nameRules"
                         label="Designation*"
+                        background-color="white"
                         outlined
                         clearable
                         counter="50"
@@ -106,6 +109,7 @@
                         class="ma-0"
                         :rules="nameRules"
                         label="Company Name*"
+                        background-color="white"
                         outlined
                         clearable
                         counter="50"
@@ -117,6 +121,7 @@
                         class="ma-0"
                         :rules="urlRules"
                         label="Company URL*"
+                        background-color="white"
                         outlined
                         clearable
                         counter="50"
@@ -128,6 +133,7 @@
                         v-model="newUserData.city"
                         class="ma-0"
                         :rules="nameRules"
+                        background-color="white"
                         label="City*"
                         outlined
                         clearable
@@ -140,6 +146,7 @@
                         v-model="newUserData.country"
                         class="ma-0"
                         :rules="nameRules"
+                        background-color="white"
                         label="Country*"
                         outlined
                         clearable
@@ -151,6 +158,7 @@
                       <v-text-field
                         transition="fade-transition"
                         v-model="newUserData.image"
+                        background-color="white"
                         class="ma-0"
                         label="Image URL"
                         outlined
@@ -172,6 +180,7 @@
                         outlined
                         name="input-7-4"
                         v-model="newUserData.bio"
+                        background-color="white"
                         label="Bio"
                         clearable
                       ></v-textarea>
@@ -191,6 +200,7 @@
                         class="ma-0"
                         v-model="newUserData.mbnumber"
                         label="Contact Number"
+                        background-color="white"
                         outlined
                         clearable
                       ></v-text-field>
@@ -201,6 +211,7 @@
                         class="ma-0"
                         v-model="newUserData.email"
                         :rules="emailRules"
+                        background-color="white"
                         label="Email ID*"
                         outlined
                         clearable
@@ -222,6 +233,7 @@
                         placeholder="https://www.facebook.com/"
                         outlined
                         v-model="newUserData.socialLinks.facebook"
+                        background-color="white"
                         clearable
                       ></v-text-field>
                     </v-col>
@@ -232,6 +244,7 @@
                         label="Github"
                         v-model="newUserData.socialLinks.github"
                         placeholder="https://www.github.com/"
+                        background-color="white"
                         outlined
                         clearable
                       ></v-text-field>
@@ -242,6 +255,7 @@
                         class="ma-0"
                         v-model="newUserData.socialLinks.linkedin"
                         placeholder="https://www.linkedin.com/"
+                        background-color="white"
                         label="Linkedin"
                         outlined
                         clearable
@@ -253,6 +267,7 @@
                         class="ma-0"
                         v-model="newUserData.socialLinks.medium"
                         placeholder="https://medium.com/"
+                        background-color="white"
                         label="Medium"
                         outlined
                         clearable
@@ -264,6 +279,7 @@
                         class="ma-0"
                         v-model="newUserData.socialLinks.twitter"
                         placeholder="https://www.twitter.com/"
+                        background-color="white"
                         label="Twitter"
                         outlined
                         clearable
@@ -276,6 +292,7 @@
                         v-model="newUserData.socialLinks.web"
                         placeholder="Website/Blog URL"
                         label="Website/Blog"
+                        background-color="white"
                         outlined
                         clearable
                       ></v-text-field>
@@ -289,7 +306,7 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions>
+        <v-card-actions class="white">
           <v-spacer></v-spacer>
           <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn

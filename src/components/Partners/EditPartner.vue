@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent scrollable width="1200">
+  <v-dialog v-model="dialog" persistent scrollable width="1000">
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -21,10 +21,9 @@
       </v-tooltip>
     </template>
 
-    <v-card v-if="dialog">
+    <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
       <v-card-title
-        class="google-font"
-        style="border-bottom: 1px solid #e0e0e0"
+        class="google-font white"
         primary-title
         >Edit {{ partnerData.name }} Details</v-card-title
       >
@@ -50,6 +49,7 @@
                       :items="items"
                       v-model="updatedData.active"
                       label="Active Status"
+                      background-color="white"
                       outlined
                     ></v-select>
                   </v-col>
@@ -59,6 +59,7 @@
                       :items="items"
                       v-model="updatedData.visible"
                       label="Visiblity Status"
+                      background-color="white"
                       outlined
                     ></v-select>
                   </v-col>
@@ -68,6 +69,7 @@
                       v-model="updatedData.id"
                       class="ma-0"
                       disabled
+                      background-color="white"
                       label="ID"
                       type="text"
                       outlined
@@ -87,6 +89,7 @@
                       v-model="updatedData.name"
                       :rules="nameRules"
                       class="ma-0"
+                      background-color="white"
                       label="Name *"
                       outlined
                     ></v-text-field>
@@ -96,6 +99,7 @@
                       v-model="updatedData.pocEmail"
                       class="ma-0"
                       label="Partner POC Email"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -105,6 +109,7 @@
                       v-model="updatedData.image"
                       class="ma-0"
                       label="Image URL"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -122,6 +127,7 @@
                       outlined
                       name="input-7-4"
                       v-model="updatedData.des"
+                      background-color="white"
                       label="Description"
                     ></v-textarea>
                   </v-col>
@@ -140,6 +146,7 @@
                       label="Facebook"
                       outlined
                       v-model="updatedData.socialLinks.facebook"
+                      background-color="white"
                     ></v-text-field>
                   </v-col>
 
@@ -148,6 +155,7 @@
                       class="ma-0"
                       label="Github"
                       v-model="updatedData.socialLinks.github"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -156,6 +164,7 @@
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.linkedin"
+                      background-color="white"
                       label="Linkedin"
                       outlined
                     ></v-text-field>
@@ -165,6 +174,7 @@
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.twitter"
+                      background-color="white"
                       label="Twitter"
                       outlined
                     ></v-text-field>
@@ -174,6 +184,7 @@
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.web"
+                      background-color="white"
                       label="Website/Blog"
                       outlined
                     ></v-text-field>
@@ -188,7 +199,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-actions>
+      <v-card-actions class="white">
         <div class="flex-grow-1"></div>
         <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn

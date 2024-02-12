@@ -20,7 +20,7 @@
       </v-tooltip>
     </template>
 
-    <v-card v-if="dialog">
+    <v-card v-if="dialog" style="border-radius: 12px;">
       <v-card-title class="headline google-font"
         ><span class="google-font"
           >{{ dialogData.name.split(" ")[0] }}'s Activity Log</span

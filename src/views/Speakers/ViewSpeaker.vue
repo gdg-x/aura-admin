@@ -142,7 +142,8 @@
               </v-card>
             </v-col>
 
-            <v-col cols="12" sm="7" md="9" xl="10" class="py-5 text-left pa-5">
+            <v-col cols="12" sm="7" md="9" xl="10" class="py-0 text-left pa-5">
+              <div style="background-color: white;border-radius: 12px;" class="pa-5">
               <p class="mb-0">
                 <b>Bio</b>
               </p>
@@ -208,7 +209,7 @@
                   </a>
                 </span>
               </p>
-
+            </div>
               <EventByUserTable
                 v-if="events.length > 0"
                 :events.sync="events"
