@@ -165,10 +165,9 @@
 </template>
 
 <script>
-import firebase from "@/config/firebase";
 import UsersServices from "@/services/UsersServices";
 export default {
-  name: "Profile",
+  name: "ProfilePage",
   inject: ["theme"],
   components: {
     Snakebar: () => import("@/components/Common/Snakebar"),

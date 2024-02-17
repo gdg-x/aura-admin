@@ -148,7 +148,7 @@ import firebase from "@/config/firebase";
 import ResetPassword from "@/components/ResetPassword/ResetPassword";
 import Snakebar from "@/components/Common/Snakebar";
 export default {
-  name: "Login",
+  name: "LoginPage",
   components: {
     ResetPassword,
     Snakebar,

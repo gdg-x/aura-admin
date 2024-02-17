@@ -97,7 +97,7 @@ import firebase from "@/config/firebase";
 import { mapState } from "vuex";
 
 export default {
-  name: "teamonboard",
+  name: "teamOnboard",
   data: () => ({
     show1: false,
     show2: false,

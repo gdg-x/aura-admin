@@ -38,7 +38,7 @@ import firebase from "@/config/firebase";
 import { mapGetters, mapState, mapMutations } from "vuex";
 import AppProfileMenuVue from './AppProfileMenu.vue';
 export default {
-  name: "Toolbar",
+  name: "AppToolbar",
   components: {
     offline,
     AppProfileMenuVue

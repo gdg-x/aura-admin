@@ -102,7 +102,7 @@
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
 export default {
-  name: "Drawer",
+  name: "AppDrawer",
   data: () => ({}),
   computed: {
     ...mapState(["userDetails", "role", "generalConfig", "appVersion"]),

@@ -167,15 +167,15 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
-                      <template v-slot:item.active="{ item }">
+                      <template v-slot:[`item.active`]="{ item }">
                         <v-chip small v-if="item.active == true" color="success">Active</v-chip>
                         <v-chip v-else small dark color="red">Inctive</v-chip>
                       </template>
-                      <template v-slot:item.visible="{ item }">
+                      <template v-slot:[`item.visible`]="{ item }">
                         <v-chip small v-if="item.visible == true" color="success">Visible</v-chip>
                         <v-chip v-else small dark color="red">Not Visible</v-chip>
                       </template>
-                      <template v-slot:item.actions="{ item }">
+                      <template v-slot:[`item.actions`]="{ item }">
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">

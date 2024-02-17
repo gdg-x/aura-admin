@@ -116,139 +116,37 @@
                     </v-col>
 
                     <v-col md="3" xs="3" cols="12" class="ma-0">
-                      <v-menu
-                        ref="menu"
-                        v-model="menu"
-                        :close-on-content-click="false"
-                        :return-value.sync="updatedeventData.date"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="290px"
-                      >
-                        <template v-slot:activator="{ on }">
-                          <v-text-field
-                            v-model="updatedeventData.date"
-                            label="Date *"
-                            outlined
-                            background-color="white"
-                            v-on="on"
-                          ></v-text-field>
-                        </template>
-                        <v-date-picker
-                          v-model="updatedeventData.date"
-                          no-title
-                          scrollable
-                        >
-                          <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="menu = false"
-                            >Cancel</v-btn
-                          >
-                          <v-btn
-                            text
-                            color="primary"
-                            @click="$refs.menu.save(updatedeventData.date)"
-                            >OK</v-btn
-                          >
-                        </v-date-picker>
-                      </v-menu>
+                      <v-text-field
+                        v-model="updatedeventData.date"
+                        class="ma-0"
+                        label="Date *"
+                        type="date"
+                        outlined
+                        background-color="white"
+                      ></v-text-field>
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
-                      <v-dialog
-                        ref="dialog"
-                        v-model="modal2"
-                        :return-value.sync="updatedeventData.time.starttime"
-                        persistent
-                        width="290px"
-                      >
-                        <template v-slot:activator="{ on }">
-                          <v-text-field
-                            v-model="updatedeventData.time.starttime"
-                            label="Start Time"
-                            readonly
-                            outlined
-                            background-color="white"
-                            v-on="on"
-                          ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="modal2"
-                          v-model="updatedeventData.time.starttime"
-                          full-width
-                        >
-                          <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal2 = false"
-                            >Cancel</v-btn
-                          >
-                          <v-btn
-                            text
-                            color="primary"
-                            @click="
-                              $refs.dialog.save(updatedeventData.time.starttime)
-                            "
-                            >OK</v-btn
-                          >
-                        </v-time-picker>
-                      </v-dialog>
-
-                      <!-- <v-text-field
+                      <v-text-field
                         v-model="updatedeventData.time.starttime"
                         class="ma-0"
-                        :rules="idRules"
-                        label="Event Start Time*"
+                        label="Start Time"
                         type="time"
                         outlined
                         background-color="white"
-                      ></v-text-field>-->
+                      ></v-text-field>
+                      
                     </v-col>
 
                     <v-col md="2" xs="3" cols="12" class="ma-0">
-                      <v-dialog
-                        ref="dialog1"
-                        v-model="modal1"
-                        :return-value.sync="updatedeventData.time.endtime"
-                        persistent
-                        width="290px"
-                      >
-                        <template v-slot:activator="{ on }">
-                          <v-text-field
-                            v-model="updatedeventData.time.endtime"
-                            label="End Time"
-                            readonly
-                            outlined
-                            background-color="white"
-                            v-on="on"
-                          ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="modal1"
-                          v-model="updatedeventData.time.endtime"
-                          full-width
-                        >
-                          <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="modal1 = false"
-                            >Cancel</v-btn
-                          >
-                          <v-btn
-                            text
-                            color="primary"
-                            @click="
-                              $refs.dialog1.save(updatedeventData.time.endtime)
-                            "
-                            >OK</v-btn
-                          >
-                        </v-time-picker>
-                      </v-dialog>
-
-                      <!-- <v-text-field
+                      <v-text-field
                         v-model="updatedeventData.time.endtime"
                         class="ma-0"
-                        :rules="idRules"
-                        label="Event End Time*"
+                        label="End Time"
                         type="time"
                         outlined
                         background-color="white"
-                      ></v-text-field>-->
+                      ></v-text-field>
                     </v-col>
                     <v-col md="4" xs="4" cols="12" class="ma-0">
                       <v-text-field
@@ -481,7 +379,7 @@
                           >Event Agenda</v-toolbar-title
                         >
                         <v-spacer></v-spacer>
-                        <AddNewAgenda :data.sync="updatedeventData.agenda" />
+                        <AddNewAgenda @add="updatedeventData.agenda=$event" :item.sync="updatedeventData.agenda" />
                       </v-toolbar>
                     </v-col>
 
@@ -510,8 +408,8 @@
                             :items-per-page="5"
                             class="elevation-0 lightModeCard"
                           >
-                            <template v-slot:item.actions="{ item }">
-                              <EditAgenda :data.sync="item" />
+                            <template v-slot:[`item.actions`]="{ item }">
+                              <EditAgenda :item="item" />
                               <v-btn
                                 fab
                                 x-small

@@ -15,7 +15,7 @@
             <v-row class="pa-0">
               <v-col cols="12" class="pa-1 ma-0">
                 <v-text-field
-                  v-model="data.name"
+                  v-model="updatedData.name"
                   class="ma-0"
                   label="Name"
                   outlined
@@ -24,7 +24,7 @@
               <v-col cols="12" class="pa-1 ma-0">
                 <v-textarea
                   outlined
-                  v-model="data.des"
+                  v-model="updatedData.des"
                   label="Description"
                 ></v-textarea>
               </v-col>
@@ -54,13 +54,26 @@
 <script>
 export default {
   name:"EditGuidelinesConfig",
-  props: ["data"],
+  props: ["item"],
   data: () => ({
     dialog: false,
     loading: false,
     name: "",
     des: "",
+    updatedData: null
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   methods: {
     addGuid() {
       this.dialog = false;

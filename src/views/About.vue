@@ -132,7 +132,7 @@
 <script>
 import SocialInfo from "@/components/Common/SocialInfo";
 export default {
-  name: "about",
+  name: "aboutPage",
   components: {
     SocialInfo,
   },

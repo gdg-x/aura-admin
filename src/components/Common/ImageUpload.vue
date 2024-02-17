@@ -57,7 +57,7 @@
 import firebase from "@/config/firebase";
 
 export default {
-  name: "Imageupload",
+  name: "ImageUpload",
   props: ["type", "userId", "buttonName"],
   data: () => ({
     imageDialog: false,

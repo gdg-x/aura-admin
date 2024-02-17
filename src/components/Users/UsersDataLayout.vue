@@ -147,7 +147,7 @@
           :items-per-page="10"
           class="elevation-0 ma-0 pa-0 hidden-sm-and-down"
         >
-          <template v-slot:item.name="{ item }">
+          <template v-slot:[`item.name`]="{ item }">
             <v-list-item>
               <v-list-item-avatar>
                 <v-img
@@ -171,13 +171,13 @@
               </v-list-item-content>
             </v-list-item>
           </template>
-          <template v-slot:item.disabled="{ item }">
+          <template v-slot:[`item.disabled`]="{ item }">
             <v-chip small dark v-if="item.disabled" class="red"
               >Disabled</v-chip
             >
             <v-chip small dark v-else class="green">Enabled</v-chip>
           </template>
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn

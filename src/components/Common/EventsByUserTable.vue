@@ -66,7 +66,7 @@
       :items-per-page="5"
       class="elevation-0 ma-0 pa-0"
     >
-      <template v-slot:item.view="{ item }">
+      <template v-slot:[`item.view`]="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on" @click="goToEventDetails(item.id)">

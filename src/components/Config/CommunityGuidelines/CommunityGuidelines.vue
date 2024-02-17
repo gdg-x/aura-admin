@@ -45,7 +45,7 @@
             >Community Guidelines Setting v.2</v-toolbar-title
           >
           <v-spacer></v-spacer>
-          <AddGuideline :data.sync="communityGuidelines.communityGuidelines" />
+          <AddGuideline :item.sync="communityGuidelines.communityGuidelines" />
         </v-toolbar>
         <v-row class="ma-0 pa-0">
           <v-col
@@ -78,7 +78,7 @@
             <v-list-item-action>
               <v-row>
                 <v-col cols="1">
-                  <EditGuideline :data.sync="item" />
+                  <EditGuideline :item="item" />
                 </v-col>
                 <v-col cols="1" class="mx-3">
                   <v-btn icon class="mx-1">

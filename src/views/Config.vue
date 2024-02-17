@@ -59,7 +59,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "Config",
+  name: "ConfigPage",
   components: {
     General: () => import("@/components/Config/General/General"),
     CommunityGuidelines: () =>

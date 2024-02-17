@@ -16,7 +16,7 @@
           :items-per-page="10"
           class="elevation-0 ma-0 pa-0"
         >
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-btn

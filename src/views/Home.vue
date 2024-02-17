@@ -1,7 +1,6 @@
 <template>
   <v-main class="pa-0 ma-0">
     <v-container fluid>
-
       <v-row class="mt-0 pt-0" justify="center" align="center">
         <v-col
           class="mt-0"
@@ -24,64 +23,66 @@
                 <p class="google-font mb-0">Manage your community</p>
               </v-col>
             </v-row>
-            <v-row class="px-2">
-        <!-- Events -->
-        <v-col
-          class="pa-1"
-          md="3"
-          sm="6"
-          lg="3"
-          cols="6"
-          v-for="(item, index) in summeryData"
-          :key="index"
-        >
-          <div style="border-radius: 12px; background: white">
-            <v-container class="py-0">
-              <v-row justify="center" align="center">
-                <v-col
-                  md="2"
-                  lg="2"
-                  class="text-center d-none d-sm-none d-md-block"
-                >
-                  <v-icon
-                    class="my-auto mx-auto"
-                    color="primary"
-                    style="font-size: 200%"
-                    >{{ item.icon }}</v-icon
-                  >
-                </v-col>
-                <v-col md="6" lg="6">
-                  <p class="google-font my-0">{{ item.name }}</p>
-                  <p
-                    class="google-font my-0"
-                    v-on:click="goToRoute(item.to)"
-                    style="font-size: 80%; cursor: pointer; user-select: none"
-                  >
-                    View All {{ item.name }}
-                  </p>
-                </v-col>
-                <v-col md="4" lg="4" class="text-center">
-                  <!-- <v-progress-circular
+            <v-row class="px-2 mb-3">
+              <!-- Events -->
+              <v-col
+                class="pa-1"
+                md="3"
+                sm="6"
+                lg="3"
+                cols="6"
+                v-for="(item, index) in summeryData"
+                :key="index"
+              >
+                <div style="border-radius: 12px; background: white">
+                  <v-container class="py-0">
+                    <v-row justify="center" align="center">
+                      <v-col
+                        md="2"
+                        lg="2"
+                        class="text-center d-none d-sm-none d-md-block"
+                      >
+                        <v-icon
+                          class="my-auto mx-auto"
+                          color="primary"
+                          style="font-size: 200%"
+                          >{{ item.icon }}</v-icon
+                        >
+                      </v-col>
+                      <v-col md="6" lg="6">
+                        <p class="google-font my-0">{{ item.name }}</p>
+                        <p
+                          class="google-font my-0"
+                          v-on:click="goToRoute(item.to)"
+                          style="
+                            font-size: 80%;
+                            cursor: pointer;
+                            user-select: none;
+                          "
+                        >
+                          View All {{ item.name }}
+                        </p>
+                      </v-col>
+                      <v-col md="4" lg="4" class="text-center">
+                        <!-- <v-progress-circular
                     indeterminate
                     v-if="eventLoader"
                     class="my-4"
                     color="primary"
                   ></v-progress-circular> -->
-                  <p class="google-font my-0" style="font-size: 280%">
-                    {{ item.count }}
-                  </p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
-        </v-col>
-        <!-- Events -->
-      </v-row>
+                        <p class="google-font my-0" style="font-size: 280%">
+                          {{ item.count }}
+                        </p>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </div>
+              </v-col>
+              <!-- Events -->
+            </v-row>
           </v-container>
         </v-col>
       </v-row>
-
-     
     </v-container>
   </v-main>
 </template>
@@ -92,7 +93,7 @@ import firebase from "@/config/firebase";
 import { mapState } from "vuex";
 
 export default {
-  name: "Home",
+  name: "HomePage",
   components: {},
   data: () => ({
     alert: true,

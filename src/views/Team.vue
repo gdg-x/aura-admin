@@ -170,7 +170,7 @@
                       :items-per-page="10"
                       class="elevation-0 ma-0 pa-0"
                     > 
-                      <template v-slot:item.name="{ item }">
+                      <template v-slot:[`item.name`]="{ item }">
                         <v-list-item>
                           <v-list-item-avatar>
                             <v-img :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
@@ -182,15 +182,15 @@
                           </v-list-item-content>
                         </v-list-item>
                       </template>
-                      <template v-slot:item.active="{ item }">
+                      <template v-slot:[`item.active`]="{ item }">
                         <v-chip x-small v-if="item.active == true" color="success">Active</v-chip>
                         <v-chip v-else x-small dark color="red">Inctive</v-chip>
                       </template>
-                      <template v-slot:item.visible="{ item }">
+                      <template v-slot:[`item.visible`]="{ item }">
                         <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
                         <v-chip v-else x-small dark color="red">Not Visible</v-chip>
                       </template>
-                      <template v-slot:item.actions="{ item }">
+                      <template v-slot:[`item.actions`]="{ item }">
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
