@@ -1,20 +1,19 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" persistent scrollable width="600">
+    <v-dialog v-model="dialog" persistent scrollable width="500">
       <template v-slot:activator="{ on }">
         <v-btn depressed color="primary" dark v-on="on" @click="getData"
           >Add User</v-btn
         >
       </template>
-      <v-card v-if="dialog" class>
+      <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
         <v-card-title
-          class="google-font"
-          style="border-bottom: 1px solid #e0e0e0"
+          class="google-font white"
           primary-title
           dark
           >Add User</v-card-title
         >
-        <v-card-text class="px-5">
+        <v-card-text class="pa-5">
           <v-container fluid>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-row class="pa-0">
@@ -29,6 +28,7 @@
                     item-value="id"
                     small-chips
                     label="Select Users"
+                    background-color="white"
                   >
                     <template v-slot:selection="{ item, index }">
                       <v-chip small v-if="index === 0">
@@ -46,6 +46,7 @@
                     v-model="userRole"
                     label="Role"
                     outlined
+                    background-color="white"
                   ></v-select>
                 </v-col>
               </v-row>
@@ -57,7 +58,7 @@
                 <v-card v-if="emailDialog" class>
                   <v-card-title
                     class="google-font"
-                    style="border-bottom: 1px solid #e0e0e0"
+                   
                     primary-title
                     dark
                     >Status</v-card-title
@@ -95,7 +96,7 @@
 
                   <v-divider></v-divider>
 
-                  <v-card-actions class="grey lighten-4">
+                  <v-card-actions class="white">
                     <div class="flex-grow-1"></div>
                     <v-btn color="primary" text @click="close()">Close</v-btn>
                   </v-card-actions>
@@ -107,7 +108,7 @@
 
         <v-divider></v-divider>
 
-        <v-card-actions class="grey lighten-4">
+        <v-card-actions class="white">
           <div class="flex-grow-1"></div>
           <v-btn color="primary" text @click="dialog = false">Close</v-btn>
           <v-btn

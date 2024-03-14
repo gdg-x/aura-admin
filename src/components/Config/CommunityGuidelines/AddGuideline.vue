@@ -54,16 +54,29 @@
 <script>
 export default {
   name:"AddGuidelinesConfig",
-  props: ["data"],
+  props: ["item"],
   data: () => ({
     dialog: false,
     loading: false,
     name: "",
     des: "",
+    updatedData: null
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   methods: {
     addGuid() {
-      this.data.push({
+      this.updatedData.push({
         name: this.name,
         des: this.des,
       });
@@ -74,6 +87,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

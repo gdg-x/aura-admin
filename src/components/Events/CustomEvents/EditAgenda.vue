@@ -28,7 +28,7 @@
           <v-row class="pa-0">
             <v-col md="6" lg="6" cols="6" class="pa-1 ma-0">
               <v-text-field
-                v-model="data.starttime"
+                v-model="updatedData.starttime"
                 class="ma-0"
                 label="Start Time"
                 outlined
@@ -37,7 +37,7 @@
             </v-col>
             <v-col md="6" lg="6" cols="6" class="pa-1 ma-0">
               <v-text-field
-                v-model="data.endtime"
+                v-model="updatedData.endtime"
                 class="ma-0"
                 label="End Time"
                 outlined
@@ -46,7 +46,7 @@
             </v-col>
             <v-col cols="12" class="pa-1 ma-0">
               <v-text-field
-                v-model="data.title"
+                v-model="updatedData.title"
                 class="ma-0"
                 label="Title"
                 outlined
@@ -55,7 +55,7 @@
             <v-col cols="12" class="pa-1 ma-0">
               <v-textarea
                 outlined
-                v-model="data.des"
+                v-model="updatedData.des"
                 label="Description"
               ></v-textarea>
             </v-col>
@@ -84,7 +84,7 @@
 <script>
 export default {
   name:"EditAgendaForEvent",
-  props: ["data"],
+  props: ["item"],
   data: () => ({
     dialog: false,
     loading: false,
@@ -92,7 +92,20 @@ export default {
     des: "",
     starttime: "",
     endtime: "",
+    updatedData: null
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   methods: {
     addGuid() {
       this.dialog = false;
@@ -100,6 +113,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

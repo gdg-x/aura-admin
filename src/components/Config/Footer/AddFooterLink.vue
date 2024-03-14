@@ -61,7 +61,7 @@
 <script>
 export default {
   name:"AddFooterConfig",
-  props: ["data"],
+  props: ["item"],
   components: {},
   data: () => ({
     dialog: false,
@@ -76,7 +76,20 @@ export default {
       "Developer Console",
       "Footer End Session Link",
     ],
+    updatedData:null
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   mounted() {
     // this.ShowPartners()
   },
@@ -90,20 +103,18 @@ export default {
       };
 
       if (this.SelectedLinkType == "About") {
-        this.data["About"].push(datalink);
+        this.updatedData["About"].push(datalink);
       } else if (this.SelectedLinkType == "Resources") {
-        this.data["Resources"].push(datalink);
+        this.updatedData["Resources"].push(datalink);
       } else if (this.SelectedLinkType == "Developer Console") {
-        this.data["Developer Console"].push(datalink);
+        this.updatedData["Developer Console"].push(datalink);
       } else if (this.SelectedLinkType == "Footer End Session Link") {
-        this.data["Footer End Session Link"].push(datalink);
+        this.updatedData["Footer End Session Link"].push(datalink);
       }
+      this.$emit('add', this.updatedData)
       this.loading = false;
       this.dialog = false;
     },
   },
 };
 </script>
-
-<style>
-</style>

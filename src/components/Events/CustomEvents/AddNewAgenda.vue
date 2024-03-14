@@ -72,7 +72,7 @@
 <script>
 export default {
   name:"AddNewAgendaForEvent",
-  props: ["data"],
+  props: ["item"],
   data: () => ({
     dialog: false,
     loading: false,
@@ -81,15 +81,29 @@ export default {
     title: "",
     starttime: "",
     endtime: "",
+    updatedData:[]
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   methods: {
     addGuid() {
-      this.data.push({
+      this.updatedData.push({
         starttime: this.starttime,
         endtime: this.endtime,
         title: this.title,
         des: this.des,
       });
+      this.$emit('add', this.updatedData)
       this.name = "";
       this.des = "";
       this.dialog = false;
@@ -97,6 +111,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

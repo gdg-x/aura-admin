@@ -4,7 +4,7 @@
     clipped
     v-model="drawer"
     floating
-    width="280px"
+    width="250px"
     color="#F5F8FC"
   >
     <v-list-item two-line class="py-2">
@@ -40,11 +40,11 @@
           color="primary"
         >
           <v-list-item-icon>
-            <v-icon v-text="link.icon"></v-icon>
+            <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title style="font-size: 100%" v-text="link.text" />
+            <v-list-item-title style="font-size: 85%">{{ link.text }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -102,7 +102,7 @@
 <script>
 import { mapGetters, mapState, mapMutations } from "vuex";
 export default {
-  name: "Drawer",
+  name: "AppDrawer",
   data: () => ({}),
   computed: {
     ...mapState(["userDetails", "role", "generalConfig", "appVersion"]),

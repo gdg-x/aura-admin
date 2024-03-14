@@ -17,7 +17,7 @@
             @click="goToPartner"
             class="ma-0 google-font mb-0"
             style="
-              border-radius: 5px;
+              border-radius: 12px;
               text-transform: capitalize;
               text-decoration: none;
             "
@@ -75,9 +75,8 @@
               xl="2"
               class="pa-0 text-center"
               style="
-                border: 1px solid #e0e0e0;
                 background: white;
-                border-radius: 5px;
+                border-radius: 12px !important;
               "
             >
               <div class="pa-0">
@@ -185,8 +184,7 @@
           fluid
           class=""
           style="
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            border-radius: 12px;
             background: white;
           "
         >
@@ -209,7 +207,7 @@
                 @click="goToPartner"
                 class="ma-0 google-font mb-0"
                 style="
-                  border-radius: 5px;
+                  border-radius: 12px;
                   text-transform: capitalize;
                   text-decoration: none;
                 "

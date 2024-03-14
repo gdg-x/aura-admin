@@ -21,14 +21,13 @@
       </v-tooltip>
     </template>
 
-    <v-card v-if="dialog">
+    <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
       <v-card-title
-        class="google-font"
+        class="google-font white"
         style="border-bottom: 1px solid #e0e0e0"
         primary-title
         >Edit {{ teamData.name }} Details</v-card-title
       >
-
       <v-card-text class>
         <v-container fluid class="pa-0">
           <v-row class="pa-0">
@@ -36,7 +35,7 @@
               <v-form ref="form" v-model="valid" lazy-validation>
                 <!-- Row 1 -->
                 <v-row class="pa-3">
-                  <v-col md="12" cols="12" class="pa-1 ma-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0 mb-3">
                     <p class="google-font mb-0" style="color: red">
                       *indicates required field
                     </p>
@@ -47,13 +46,13 @@
                     class="pa-1 ma-0"
                     v-if="role === 'Super Admin' || role === 'Admin'"
                   >
-                    <p style="font-size: 120%" class="my-0">
+                    <p style="font-size: 120%" class="my-0 mb-2">
                       Team Member Status
                     </p>
                   </v-col>
 
                   <v-col
-                    md="3"
+                    md="2"
                     xs="3"
                     cols="12"
                     class="pa-1 ma-0"
@@ -63,12 +62,13 @@
                       :items="items"
                       v-model="updatedData.active"
                       label="Active Status"
+                      background-color="white"
                       outlined
                     ></v-select>
                   </v-col>
 
                   <v-col
-                    md="3"
+                    md="2"
                     xs="3"
                     cols="12"
                     class="pa-1 ma-0"
@@ -79,11 +79,12 @@
                       v-model="updatedData.visible"
                       label="Visiblity Status"
                       outlined
+                      background-color="white"
                     ></v-select>
                   </v-col>
 
                   <v-col
-                    md="3"
+                    md="2"
                     xs="3"
                     cols="12"
                     class="pa-1 ma-0"
@@ -95,6 +96,7 @@
                       disabled
                       label="ID"
                       type="text"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -109,6 +111,7 @@
                     <v-select
                       :items="teamRole"
                       v-model="updatedData.role"
+                      background-color="white"
                       label="Role"
                       outlined
                     ></v-select>
@@ -118,39 +121,42 @@
 
                 <!-- Row 2 -->
                 <v-row class="pa-3">
-                  <v-col md="12" cols="12" class="pa-1 ma-0">
+                  <v-col md="12" cols="12" class="pa-1 ma-0 mb-3">
                     <p style="font-size: 120%" class="my-0">Team Member Info</p>
                   </v-col>
 
-                  <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="6" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       v-model="updatedData.name"
                       :rules="nameRules"
                       class="ma-0"
                       label="Name *"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="6" xs="6" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="6" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       v-model="updatedData.designation"
                       class="ma-0"
                       :rules="nameRules"
                       label="Desigination *"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="7" xs="7" cols="6" class="pa-1 py-0 ma-0">
+                  <v-col md="4" xs="7" cols="6" class="pa-1 ma-0">
                     <v-text-field
                       v-model="updatedData.image"
                       class="ma-0"
                       label="Image URL"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
-                  <v-col md="4" xs="4" cols="6" class="pa-1 py-0 ma-0">
+                  <v-col md="2" xs="4" cols="6" class="pa-1 ma-0">
                     <UploadImage
                       type="team"
                       :userId="updatedData.id"
@@ -164,6 +170,7 @@
                       outlined
                       name="input-7-4"
                       v-model="updatedData.bio"
+                      background-color="white"
                       label="Bio"
                     ></v-textarea>
                   </v-col>
@@ -176,10 +183,11 @@
                     <p style="font-size: 120%" class="my-0">Personal Info</p>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.mbnumber"
+                      background-color="white"
                       label="Contact Number"
                       outlined
                     ></v-text-field>
@@ -187,7 +195,7 @@
 
                   <v-col
                     v-if="role === 'Super Admin'"
-                    md="8"
+                    md="4"
                     xs="8"
                     cols="12"
                     class="pa-1 ma-0"
@@ -197,6 +205,7 @@
                       v-model="updatedData.email"
                       :rules="emailRules"
                       label="Email Id *"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -209,55 +218,61 @@
                     <p style="font-size: 120%" class="my-0">Social Links</p>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       label="Facebook"
                       outlined
                       v-model="updatedData.socialLinks.facebook"
+                      background-color="white"
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       label="Github"
                       v-model="updatedData.socialLinks.github"
+                      background-color="white"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.linkedin"
+                      background-color="white"
                       label="Linkedin"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.medium"
+                      background-color="white"
                       label="Medium"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.twitter"
+                      background-color="white"
                       label="Twitter"
                       outlined
                     ></v-text-field>
                   </v-col>
 
-                  <v-col md="4" xs="4" cols="12" class="pa-1 ma-0">
+                  <v-col md="3" xs="4" cols="12" class="pa-1 ma-0">
                     <v-text-field
                       class="ma-0"
                       v-model="updatedData.socialLinks.web"
+                      background-color="white"
                       label="Website/Blog"
                       outlined
                     ></v-text-field>
@@ -272,7 +287,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-actions>
+      <v-card-actions class="white">
         <div class="flex-grow-1"></div>
         <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn

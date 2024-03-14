@@ -118,7 +118,7 @@
                       class="pa-1"
                     >
                       <v-card
-                        style="cursor: pointer;user-select: none;border:1px solid #e0e0e0;border-radius:5px;"
+                        style="cursor: pointer;user-select: none;border-radius: 12px;"
                         height="100%"
                         v-ripple
                         @click="gotoTeamDetails(item.id)"
@@ -161,7 +161,7 @@
                   <v-col class="pa-1">
                     <v-data-table
                       :mobile-breakpoint="0"
-                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      style="border-radius: 12px;background:white;"
                       :search="search"
                       :loading="isLoading"
                       :headers="headers"
@@ -170,7 +170,7 @@
                       :items-per-page="10"
                       class="elevation-0 ma-0 pa-0"
                     > 
-                      <template v-slot:item.name="{ item }">
+                      <template v-slot:[`item.name`]="{ item }">
                         <v-list-item>
                           <v-list-item-avatar>
                             <v-img :src="(item.image.length>0)?item.image:require('@/assets/img/default_avatar.jpg')"></v-img>
@@ -182,15 +182,15 @@
                           </v-list-item-content>
                         </v-list-item>
                       </template>
-                      <template v-slot:item.active="{ item }">
+                      <template v-slot:[`item.active`]="{ item }">
                         <v-chip x-small v-if="item.active == true" color="success">Active</v-chip>
                         <v-chip v-else x-small dark color="red">Inctive</v-chip>
                       </template>
-                      <template v-slot:item.visible="{ item }">
+                      <template v-slot:[`item.visible`]="{ item }">
                         <v-chip x-small v-if="item.visible == true" color="success">Visible</v-chip>
                         <v-chip v-else x-small dark color="red">Not Visible</v-chip>
                       </template>
-                      <template v-slot:item.actions="{ item }">
+                      <template v-slot:[`item.actions`]="{ item }">
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
@@ -215,7 +215,7 @@
             <div v-else>
               <v-row justify="center" align="center">
                 <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                  <v-container fluid class="" style="border-radius: 12px;background:white">
                     <v-row justify="center" align="center" class="pa-3">
                       <v-col md="4" class="text-center">
                         <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
@@ -317,12 +317,3 @@ export default {
   }
 };
 </script>
-<style>
-.v-badge--dot .v-badge__badge {
-    border-radius: 6px;
-    height: 12px;
-    min-width: 0;
-    padding: 0;
-    width: 12px;
-}
-</style>

@@ -34,7 +34,7 @@ import firebase from "@/config/firebase";
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Events',
+  name: 'EventsPage',
   components:{
     CustomEvents:()=>import('@/components/Events/CustomEvents/CustomEvents'),
     Snakebar:()=>import('@/components/Common/Snakebar'),

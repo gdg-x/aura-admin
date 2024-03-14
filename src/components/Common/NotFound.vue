@@ -19,6 +19,3 @@ export default {
   props: ["text"],
 };
 </script>
-
-<style>
-</style>

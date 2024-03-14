@@ -2,7 +2,7 @@
   <div class="">
     <v-card
       class=""
-      style="border-radius: 12px; border: 1px solid #fafafa; background: white"
+      style="border-radius: 15px; background: white"
     >
       <v-card-title
         class="google-font"

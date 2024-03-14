@@ -90,12 +90,12 @@
     </v-row>
 
     <v-row class="px-2">
-      <v-col cols="12 " class="mx-0 px-0">
+      <v-col cols="12 " class="ma-0 pa-0">
         <v-container fluid class="pa-0 ma-0">
           <v-tabs-items
             v-model="userModel"
             class="pa-0 ma-0"
-            style="background: #fafafa"
+            style="background-color: #F5F8FC;"
           >
             <!-- For Onboarded User -->
             <v-tab-item value="onboardedUsers" class="pa-0 ma-0">

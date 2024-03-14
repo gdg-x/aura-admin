@@ -8,7 +8,7 @@
     />
     <v-row class="">
       <v-col>
-        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+        <v-toolbar class="elevation-0" style="border-radius: 12px;">
           <v-toolbar-title class="google-font mr-3">Partners: {{ partnersData.length }}</v-toolbar-title>
           <v-spacer></v-spacer>
 
@@ -120,7 +120,7 @@
                       class="py-0" 
                       v-ripple
                       @click="gotoPartnerDetails(item.id)"
-                      style="height:100% !important;border:1px solid #e0e0e0;border-radius:5px;background:white;cursor: pointer;user-select: none;">
+                      style="border-radius: 12px;background:white;cursor: pointer;user-select: none;">
                         <v-row class="">
                           <v-col class="grey lighten-4 pa-0" >
                             <v-img :aspect-ratio="16/6.5" :src="(item.image.length>0)?item.image:require('@/assets/img/dontremove/noimage.jpg')"></v-img>
@@ -158,7 +158,7 @@
                 <v-row>
                   <v-col class="pa-1">
                     <v-data-table
-                      style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                      style="border-radius: 12px;background:white;"
                       :search="search"
                       :mobile-breakpoint="0"
                       :loading="isLoading"
@@ -167,15 +167,15 @@
                       :items-per-page="5"
                       class="elevation-0 ma-0 pa-0"
                     >
-                      <template v-slot:item.active="{ item }">
+                      <template v-slot:[`item.active`]="{ item }">
                         <v-chip small v-if="item.active == true" color="success">Active</v-chip>
                         <v-chip v-else small dark color="red">Inctive</v-chip>
                       </template>
-                      <template v-slot:item.visible="{ item }">
+                      <template v-slot:[`item.visible`]="{ item }">
                         <v-chip small v-if="item.visible == true" color="success">Visible</v-chip>
                         <v-chip v-else small dark color="red">Not Visible</v-chip>
                       </template>
-                      <template v-slot:item.actions="{ item }">
+                      <template v-slot:[`item.actions`]="{ item }">
 
                         <v-tooltip bottom>
                           <template v-slot:activator="{ on }">
@@ -199,7 +199,7 @@
             <div v-else>
               <v-row justify="center" align="center">
                 <v-col cols="12" md="12" class="pa-1">
-                  <v-container fluid class="" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+                  <v-container fluid class="" style="border-radius: 12px;background:white">
                     <v-row justify="center" align="center" class="pa-3">
                       <v-col md="4" class="text-center">
                         <img style="width:50%;text-align:center" :src="require('@/assets/img/svg/DataNotFound.svg')"/>
@@ -307,18 +307,5 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.client-logo{
-    height: 90px;
-    padding: 12px 12px;
-    border-radius: 7px;
-    background: white;
-    border: 1px solid #ebebeb;
-    text-align: center;
-}  
-</style>
-
-
 // TODO: TO UPDATE SNAKEBAR a
 // https://stackoverflow.com/questions/39868963/vue-2-mutating-props-vue-warn 

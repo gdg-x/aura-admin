@@ -13,10 +13,7 @@
     </v-row>
     <v-row class="ma-0 pa-0" v-else>
       <v-col md="12" class="my-0 py-0 mt-5">
-        <v-toolbar
-          class="elevation-0"
-          style="border-radius: 12px"
-        >
+        <v-toolbar class="elevation-0" style="border-radius: 12px">
           <v-toolbar-title class="google-font mr-3"
             >Manage Community Data
           </v-toolbar-title>
@@ -30,264 +27,278 @@
             >Save General Settings</v-btn
           >
         </v-toolbar>
-        <p class="mb-0 mt-3 google-font" style="color: red">
+        <p class="mb-0 mt-3 mx-4 google-font" style="color: red">
           <b>Important! </b> Settings will not be saved until and unless, if you
           will click the save button
         </p>
       </v-col>
-      <v-col md="4" cols="12">
-        <v-row>
-          <v-col>
-            <div
-              class="pa-4"
-              style="
-                border: 1px solid #e0e0e0;
-                border-radius: 5px;
-                background: #fafafa;
-              "
-            >
-              <p class="google-font my-0 py-0 mb-2">Community Info</p>
-              <v-text-field
-                class="my-0 py-0"
-                label="Community Name"
-                v-model="communityinfo.name"
-                outlined
-              ></v-text-field>
-              <v-text-field
-                class="my-0 py-0"
-                label="Community Short Name"
-                v-model="communityinfo.shortName"
-                outlined
-              ></v-text-field>
-              <v-text-field
-                class="my-0 py-0"
-                label="Community Email"
-                type="email"
-                v-model="communityinfo.email"
-                outlined
-              ></v-text-field>
-              <v-text-field
-                class="my-0 py-0"
-                label="Community Website Link"
-                type="url"
-                v-model="communityinfo.website"
-                outlined
-              ></v-text-field>
+      <!-- Content -->
+      <v-col md="12">
+        <v-container fluid class="px-4">
+          <v-row class="">
+            <!-- 1st Column -->
+            <v-col md="4" cols="12">
+              <v-row>
+                <v-col>
+                  <div
+                    class="pa-4"
+                    style="
+                      border: 1px solid #e0e0e0;
+                      border-radius: 12px;
+                      background: #fafafa;
+                    "
+                  >
+                    <p class="google-font my-0 py-0 mb-2">Community Info</p>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Community Name"
+                      v-model="communityinfo.name"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Community Short Name"
+                      v-model="communityinfo.shortName"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Community Email"
+                      type="email"
+                      v-model="communityinfo.email"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Community Website Link"
+                      type="url"
+                      v-model="communityinfo.website"
+                      outlined
+                    ></v-text-field>
 
-              <v-text-field
-                class="my-0 py-0"
-                label="Community Meetup Link"
-                v-model="communityinfo.meetupLink"
-                outlined
-              ></v-text-field>
-              <v-text-field
-                class="my-0 py-0"
-                label="Become A Member Link"
-                v-model="communityinfo.becomemember"
-                outlined
-              ></v-text-field>
-              <v-text-field
-                class="my-0 py-0"
-                label="Learn More Link"
-                v-model="communityinfo.learnMoreLink"
-                outlined
-              ></v-text-field>
-            </div>
-            <div
-              class="pa-4 mt-5"
-              style="
-                border: 1px solid #e0e0e0;
-                border-radius: 5px;
-                background: #fafafa;
-              "
-            >
-              <p class="google-font my-0 py-0 mb-2">Blogs</p>
-              <v-text-field
-                class="my-0 py-0"
-                label="Medium Blog Username"
-                v-model="communityinfo.blogs.medium"
-                outlined
-              ></v-text-field>
-            </div>
-          </v-col>
-        </v-row>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Community Meetup Link"
+                      v-model="communityinfo.meetupLink"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Become A Member Link"
+                      v-model="communityinfo.becomemember"
+                      outlined
+                    ></v-text-field>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Learn More Link"
+                      v-model="communityinfo.learnMoreLink"
+                      outlined
+                    ></v-text-field>
+                  </div>
+                  <div
+                    class="pa-4 mt-5"
+                    style="
+                      border: 1px solid #e0e0e0;
+                      border-radius: 12px;
+                      background: #fafafa;
+                    "
+                  >
+                    <p class="google-font my-0 py-0 mb-2">Blogs</p>
+                    <v-text-field
+                      class="my-0 py-0"
+                      label="Medium Blog Username"
+                      v-model="communityinfo.blogs.medium"
+                      outlined
+                    ></v-text-field>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-col>
+            <!-- 1st Column -->
+            <!-- 2nd Column -->
+            <v-col md="8" cols="12">
+              <v-row
+                class="my-0 py-0 pb-5"
+                style="border: 1px solid #e0e0e0e0; border-radius: 7px"
+              >
+                <v-col class="mb-0 pb-0 text-center" cols="7">
+                  <p class="google-font">Home Page Image</p>
+                  <v-img
+                    :src="
+                      homeImage.length > 0
+                        ? homeImage
+                        : require('@/assets/img/svg/home.svg')
+                    "
+                    style="border: 1px solid #e0e0e0e0; border-radius: 7px"
+                    contain
+                    height="200px"
+                  ></v-img>
+                  <ImageUpload
+                    type="general"
+                    buttonName="Upload"
+                    userId="home"
+                    @message="showMessageSnakeBar"
+                    @uploadedImage="homeImageUploaded"
+                  />
+                  <v-btn
+                    color="error"
+                    class="mt-2 ml-1"
+                    depressed
+                    @click="removeImage('home')"
+                    >Remove Image</v-btn
+                  >
+                </v-col>
+
+                <v-col class="mb-0 pb-0 text-center" cols="5">
+                  <p class="google-font">Toolbar Icon Image</p>
+                  <v-img
+                    :src="toolbarImage.length > 0 ? toolbarImage : ''"
+                    style="border: 1px solid #e0e0e0e0; border-radius: 7px"
+                    contain
+                    height="200px"
+                  ></v-img>
+                  <ImageUpload
+                    type="general"
+                    buttonName="Upload"
+                    userId="toolbar"
+                    @message="showMessageSnakeBar"
+                    @uploadedImage="toolbarImageUploaded"
+                  />
+                  <v-btn
+                    color="error"
+                    class="mt-2 ml-1"
+                    depressed
+                    @click="removeImage('toolbar')"
+                    >Remove Image</v-btn
+                  >
+                </v-col>
+              </v-row>
+              <v-row class="my-0 py-0">
+                <v-col class="mb-0 pb-0" cols="12">
+                  <v-textarea
+                    outlined
+                    label="Community Short Description"
+                    v-model="communityinfo.shortDescription"
+                    class="mb-0 pb-0"
+                  ></v-textarea>
+                </v-col>
+                <v-col class="mb-0 pb-0" cols="12">
+                  <v-textarea
+                    outlined
+                    label="Community Long Description"
+                    v-model="communityinfo.longDescription"
+                    class="mb-0 pb-0"
+                  ></v-textarea>
+                </v-col>
+              </v-row>
+
+              <!-- Socail Links -->
+              <v-row class="my-0 py-0">
+                <v-col md="12" class="my-0 py-0">
+                  <p>Social Links</p>
+                </v-col>
+                <v-col class="my-0 py-0" cols="12">
+                  <v-row class="my-0 py-0">
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Linkedin"
+                        v-model="communityinfo.socialLinks.linkedin"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Twitter"
+                        v-model="communityinfo.socialLinks.twitter"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Github"
+                        v-model="communityinfo.socialLinks.github"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row class="my-0 py-0">
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Instagram"
+                        v-model="communityinfo.socialLinks.instagram"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Facebook"
+                        v-model="communityinfo.socialLinks.facebook"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="Medium"
+                        v-model="communityinfo.socialLinks.medium"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                    <v-col class="my-0 py-0" md="4" cols="12">
+                      <v-text-field
+                        class="my-0 py-0"
+                        label="YouTube"
+                        v-model="communityinfo.socialLinks.youtube"
+                        outlined
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+              <!-- Socail Links -->
+
+              <!-- Hashtag -->
+              <v-row class="my-0 py-0">
+                <v-col md="12" class="my-0 py-0" cols="12">
+                  <p>HashTags</p>
+                </v-col>
+                <v-col class="my-0 py-0" cols="12">
+                  <v-combobox
+                    v-model="communityinfo.hashtags"
+                    chips
+                    clearable
+                    label="Community Hashtags"
+                    multiple
+                    outlined
+                  >
+                    <template
+                      v-slot:selection="{ attrs, item, select, selected }"
+                    >
+                      <v-chip
+                        v-bind="attrs"
+                        :input-value="selected"
+                        close
+                        @click="select"
+                        @click:close="remove(item)"
+                      >
+                        <strong class="google-font">{{ item }}</strong>
+                      </v-chip>
+                    </template>
+                  </v-combobox>
+                </v-col>
+              </v-row>
+              <!-- Hashtag -->
+            </v-col>
+            <!-- 2nd Column -->
+          </v-row>
+        </v-container>
       </v-col>
-      <v-col md="8" cols="12">
-        <v-row
-          class="my-0 py-0 pb-5 mb-2"
-          style="border: 1px solid #e0e0e0e0; border-radius: 7px"
-        >
-          <v-col class="mb-0 pb-0 text-center" cols="7">
-            <p class="google-font">Home Page Image</p>
-            <v-img
-              :src="
-                homeImage.length > 0
-                  ? homeImage
-                  : require('@/assets/img/svg/home.svg')
-              "
-              style="border: 1px solid #e0e0e0e0; border-radius: 7px"
-              contain
-              height="200px"
-            ></v-img>
-            <ImageUpload
-              type="general"
-              buttonName="Upload"
-              userId="home"
-              @message="showMessageSnakeBar"
-              @uploadedImage="homeImageUploaded"
-            />
-            <v-btn
-              color="error"
-              class="mt-2 ml-1"
-              depressed
-              @click="removeImage('home')"
-              >Remove Image</v-btn
-            >
-          </v-col>
-
-          <v-col class="mb-0 pb-0 text-center" cols="5">
-            <p class="google-font">Toolbar Icon Image</p>
-            <v-img
-              :src="toolbarImage.length > 0 ? toolbarImage : ''"
-              style="border: 1px solid #e0e0e0e0; border-radius: 7px"
-              contain
-              height="200px"
-            ></v-img>
-            <ImageUpload
-              type="general"
-              buttonName="Upload"
-              userId="toolbar"
-              @message="showMessageSnakeBar"
-              @uploadedImage="toolbarImageUploaded"
-            />
-            <v-btn
-              color="error"
-              class="mt-2 ml-1"
-              depressed
-              @click="removeImage('toolbar')"
-              >Remove Image</v-btn
-            >
-          </v-col>
-        </v-row>
-        <v-row class="my-0 py-0">
-          <v-col class="mb-0 pb-0" cols="12">
-            <v-textarea
-              outlined
-              label="Community Short Description"
-              v-model="communityinfo.shortDescription"
-              class="mb-0 pb-0"
-            ></v-textarea>
-          </v-col>
-          <v-col class="mb-0 pb-0" cols="12">
-            <v-textarea
-              outlined
-              label="Community Long Description"
-              v-model="communityinfo.longDescription"
-              class="mb-0 pb-0"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-
-        <!-- Socail Links -->
-        <v-row class="my-0 py-0">
-          <v-col md="12" class="my-0 py-0">
-            <p>Social Links</p>
-          </v-col>
-          <v-col class="my-0 py-0" cols="12">
-            <v-row class="my-0 py-0">
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Linkedin"
-                  v-model="communityinfo.socialLinks.linkedin"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Twitter"
-                  v-model="communityinfo.socialLinks.twitter"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Github"
-                  v-model="communityinfo.socialLinks.github"
-                  outlined
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row class="my-0 py-0">
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Instagram"
-                  v-model="communityinfo.socialLinks.instagram"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Facebook"
-                  v-model="communityinfo.socialLinks.facebook"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="Medium"
-                  v-model="communityinfo.socialLinks.medium"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col class="my-0 py-0" md="4" cols="12">
-                <v-text-field
-                  class="my-0 py-0"
-                  label="YouTube"
-                  v-model="communityinfo.socialLinks.youtube"
-                  outlined
-                ></v-text-field>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <!-- Socail Links -->
-
-        <!-- Hashtag -->
-        <v-row class="my-0 py-0">
-          <v-col md="12" class="my-0 py-0" cols="12">
-            <p>HashTags</p>
-          </v-col>
-          <v-col class="my-0 py-0" cols="12">
-            <v-combobox
-              v-model="communityinfo.hashtags"
-              chips
-              clearable
-              label="Community Hashtags"
-              multiple
-              outlined
-            >
-              <template v-slot:selection="{ attrs, item, select, selected }">
-                <v-chip
-                  v-bind="attrs"
-                  :input-value="selected"
-                  close
-                  @click="select"
-                  @click:close="remove(item)"
-                >
-                  <strong class="google-font">{{ item }}</strong>
-                </v-chip>
-              </template>
-            </v-combobox>
-          </v-col>
-        </v-row>
-        <!-- Hashtag -->
-      </v-col>
+      <!-- Content -->
     </v-row>
   </v-container>
 </template>

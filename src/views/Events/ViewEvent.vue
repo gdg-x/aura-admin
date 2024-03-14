@@ -8,7 +8,7 @@
     />
     <v-row>
       <v-col cols="12">
-        <v-toolbar class="elevation-0" style="border:1px solid #e0e0e0;border-radius:5px;">
+        <v-toolbar class="elevation-0" style="border-radius: 12px;">
           <v-btn
             text
             @click="goToEvents"
@@ -47,7 +47,7 @@
       <v-container fluid class>
         <v-row class="pa-0">
           <v-col md="3" class>
-            <div class="pa-3" style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+            <div class="pa-3" style="border-radius: 12px;background:white">
               <p class="google-font" style="font-size:180%">{{eventInfo.name}}</p>
               <p class="google-font my-0">
                 <b>Time: </b>
@@ -142,7 +142,7 @@
             </div>
           </v-col>
           <v-col class="pa-3" md="9">
-            <div style="border:1px solid #e0e0e0;border-radius:5px;background:white">
+            <div style="border-radius: 12px;background:white">
               <v-img
                 :src="(eventInfo.image.length>0)?eventInfo.image:require('@/assets/img/dontremove/eventbanner.jpg')"
                 width="100%"
@@ -297,7 +297,7 @@
                       <dir v-else>
                         <v-data-table
                           :mobile-breakpoint="0"
-                          style="border:1px solid #e0e0e0;border-radius:5px;background:white;"
+                          style="border-radius: 12px;background:white;"
                           :headers="headers"
                           :items="eventInfo.agenda"
                           :items-per-page="5"
@@ -319,7 +319,7 @@
         <v-container
           fluid
           class
-          style="border:1px solid #e0e0e0;border-radius:5px;background:white"
+          style="border-radius: 12px;background:white"
         >
           <v-row justify="center" align="center" class="pa-3">
             <v-col md="4" class="text-center">
@@ -490,14 +490,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.team-details {
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left: 0px;
-  background: white;
-}
-</style>

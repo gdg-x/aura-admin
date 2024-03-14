@@ -56,7 +56,7 @@
     <!-- :search="search" -->
     <v-data-table
       :mobile-breakpoint="0"
-      style="border: 1px solid #e0e0e0; border-radius: 5px; background: white"
+      style="border-radius: 12px; background: white"
       :loading="isLoading"
       :headers="headers"
       :search="search"
@@ -66,7 +66,7 @@
       :items-per-page="5"
       class="elevation-0 ma-0 pa-0"
     >
-      <template v-slot:item.view="{ item }">
+      <template v-slot:[`item.view`]="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on" @click="goToEventDetails(item.id)">

@@ -6,18 +6,35 @@
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     />
-    <h3 class="google-font mb-0">Config</h3>
-    <p class="google-font mb-5">Manage Your Community Info</p>
-    <v-tabs v-model="tab" show-arrows background-color="grey lighten-3">
+    <!-- <h3 class="google-font mb-0">Config</h3>
+    <p class="google-font mb-5">Manage Your Community Info</p> -->
+    <v-toolbar class="elevation-0 mb-4" style="border-radius: 12px">
+      <v-toolbar-title class="google-font mr-3">Config</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+    <v-tabs
+      v-model="tab"
+      class="my-4"
+      centered
+      show-arrows
+      style="
+        border-radius: 12px;
+        background-color: #a9c9ff;
+        background-image: linear-gradient(
+          76deg,
+          #a9c9ff 15%,
+          #ffbbec 69%,
+          #ffffff 97%
+        ) !important;
+      "
+    >
       <v-tab key="item1">General</v-tab>
       <v-tab key="item2">Community Guidelines</v-tab>
       <v-tab key="item3">Footer Config</v-tab>
     </v-tabs>
 
-    <v-tabs-items
-      v-model="tab"
-      style="border-radius: 12px"
-    >
+    <v-tabs-items v-model="tab" style="border-radius: 12px !important">
       <v-tab-item key="item1" class="pa-0 ma-0">
         <v-card flat class="pa-0 ma-0 px-2">
           <General @show="showSnakeBar" />
@@ -42,7 +59,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "Config",
+  name: "ConfigPage",
   components: {
     General: () => import("@/components/Config/General/General"),
     CommunityGuidelines: () =>

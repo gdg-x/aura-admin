@@ -16,21 +16,21 @@
               <v-col cols="12" class="pa-1 ma-0">
                 <v-select
                   :items="items"
-                  v-model="data.linktype"
+                  v-model="updatedData.linktype"
                   outlined
                   disabled
                   label="Link Type"
                 ></v-select>
                 <v-text-field
                   label="Link Name"
-                  :rules="[() => !!data.linkname || 'This field is required']"
-                  v-model="data.linkname"
+                  :rules="[() => !!updatedData.linkname || 'This field is required']"
+                  v-model="updatedData.linkname"
                   outlined
                 ></v-text-field>
                 <v-text-field
                   label="Link"
-                  v-model="data.link"
-                  :rules="[() => !!data.link || 'This field is required']"
+                  v-model="updatedData.link"
+                  :rules="[() => !!updatedData.link || 'This field is required']"
                   outlined
                 ></v-text-field>
               </v-col>
@@ -60,7 +60,7 @@
 <script>
 export default {
   name:"EditFooterConfig",
-  props: ["data"],
+  props: ["item"],
   data: () => ({
     dialog: false,
     loading: false,
@@ -73,7 +73,20 @@ export default {
       "Developer Console",
       "Footer End Session Link",
     ],
+    updatedData: null
   }),
+  watch: {
+    dialog: {
+      handler() {
+        if (this.dialog) {
+          // if edit
+          if (this.item && Object.keys(this.item).length) {
+            this.updatedData = this.item;
+          }
+        }
+      },
+    },
+  },
   methods: {
     addGuid() {
       this.dialog = false;
@@ -81,6 +94,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

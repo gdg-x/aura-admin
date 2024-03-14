@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent scrollable width="600">
+  <v-dialog v-model="dialog" persistent scrollable width="500">
     <template v-slot:activator="{}">
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -20,22 +20,21 @@
         <span>Edit {{ data.name }}</span>
       </v-tooltip>
     </template>
-    <v-card v-if="dialog" class>
+    <v-card v-if="dialog" style="border-radius: 12px;background-color: #F5F8FC;">
       <v-card-title
-        class="google-font"
-        style="border-bottom:1px solid #e0e0e0;"
+        class="google-font white"
         primary-title
         dark
       >Update {{ data.name.split(" ")[0] }}</v-card-title>
-      <v-card-text class="px-5">
+      <v-card-text class="pa-5">
         <v-container fluid>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-row class="pa-0">
               <v-col cols="12" class="pa-1 ma-0">
-                <v-text-field v-model="name" label="Name" disabled outlined></v-text-field>
+                <v-text-field background-color="white" v-model="name" label="Name" disabled outlined></v-text-field>
               </v-col>
               <v-col cols="12" class="pa-1 ma-0">
-                <v-select :items="items" v-model="userRole" label="Role" outlined></v-select>
+                <v-select background-color="white" :items="items" v-model="userRole" label="Role" outlined></v-select>
               </v-col>
             </v-row>
           </v-form>
@@ -44,7 +43,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-actions class="grey lighten-4">
+      <v-card-actions class="white">
         <div class="flex-grow-1"></div>
         <v-btn color="primary" text @click="dialog = false">Close</v-btn>
         <v-btn color="primary" dark @click="updateUser" depressed :loading="loading">Update</v-btn>

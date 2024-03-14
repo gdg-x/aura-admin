@@ -30,7 +30,7 @@
         <div class="flex-grow-1"></div>
 
         <v-btn color="green darken-1" text @click="dialog = false"
-          >Disagree</v-btn
+          >Cancel</v-btn
         >
 
         <v-btn

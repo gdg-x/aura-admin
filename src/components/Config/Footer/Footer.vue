@@ -2,7 +2,7 @@
   <v-container fluid class="ma-0 pa-0">
     <Snakebar
       :message="snakeBarMessage"
-      :isShow.sync="isSnakeBarVisible"
+      :isShow="isSnakeBarVisible"
       :color="snakeBarColor"
       :timeout="snakeBarTimeOut"
     />
@@ -37,7 +37,7 @@
                 depressed
                 >Save Links</v-btn
               >
-              <FooterLink @show="showSnakeBar" :data="this.linksData" />
+              <FooterLink @show="showSnakeBar" @add="linksData=$event" :item="linksData" />
             </v-toolbar>
             <p class="mb-0 mt-3 google-font" style="color: red">
               <b>Important! </b> Links will not be saved until and unless, if
@@ -53,7 +53,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -72,7 +72,7 @@
                           >{{ item.linkname }}
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <UpdateFooterLink :data.sync="item" />
+                        <UpdateFooterLink :item="item" />
                         <v-btn fab outlined x-small text>
                           <v-icon @click="deleteData(i, item.linktype)"
                             >mdi-delete</v-icon
@@ -88,7 +88,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -113,7 +113,7 @@
                           >{{ item.linkname ? item.linkname : "Not Found" }}
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <UpdateFooterLink :data.sync="item" />
+                        <UpdateFooterLink :item="item" />
                         <v-btn fab outlined x-small text>
                           <v-icon @click="deleteData(i, item.linktype)"
                             >mdi-delete</v-icon
@@ -129,7 +129,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -155,7 +155,7 @@
                           >{{ item.linkname ? item.linkname : "Not Found" }}
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <UpdateFooterLink :data.sync="item" />
+                        <UpdateFooterLink :item="item" />
                         <v-btn fab outlined x-small text>
                           <v-icon @click="deleteData(i, item.linktype)"
                             >mdi-delete</v-icon
@@ -171,7 +171,7 @@
                   class="px-2 py-5"
                   style="
                     border: 1px solid #e0e0e0;
-                    border-radius: 5px;
+                    border-radius: 12px;
                     background: #fafafa;
                   "
                 >
@@ -197,7 +197,7 @@
                           >{{ item.linkname ? item.linkname : "Not Found" }}
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <UpdateFooterLink :data.sync="item" />
+                        <UpdateFooterLink :item="item" />
                         <v-btn fab outlined x-small text>
                           <v-icon @click="deleteData(i, item.linktype)"
                             >mdi-delete</v-icon

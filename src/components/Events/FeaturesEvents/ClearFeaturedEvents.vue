@@ -7,7 +7,7 @@
             class="ml-3"
             fab
             x-small
-            color="#5AB55E"
+            color="#649CFD"
             outlined
             dark
             v-on="on"
@@ -29,7 +29,7 @@
         <div class="flex-grow-1"></div>
 
         <v-btn color="green darken-1" text @click="dialog = false"
-          >Disagree</v-btn
+          >Cancel</v-btn
         >
 
         <v-btn
@@ -75,6 +75,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

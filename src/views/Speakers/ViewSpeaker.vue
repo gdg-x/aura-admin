@@ -17,7 +17,7 @@
             @click="goToTeam"
             class="ma-0 google-font mb-0"
             style="
-              border-radius: 5px;
+              border-radius: 12px;
               text-transform: capitalize;
               text-decoration: none;
             "
@@ -77,7 +77,7 @@
               <v-card
                 height="100%"
                 class="elevation-0"
-                style="border: 1px solid #e0e0e0"
+                style="border-radius: 12px;"
               >
                 <v-card-title
                   class="grey lighten-4 google-font"
@@ -142,7 +142,8 @@
               </v-card>
             </v-col>
 
-            <v-col cols="12" sm="7" md="9" xl="10" class="py-5 text-left pa-5">
+            <v-col cols="12" sm="7" md="9" xl="10" class="py-0 text-left pa-5">
+              <div style="background-color: white;border-radius: 12px;" class="pa-5">
               <p class="mb-0">
                 <b>Bio</b>
               </p>
@@ -208,7 +209,7 @@
                   </a>
                 </span>
               </p>
-
+            </div>
               <EventByUserTable
                 v-if="events.length > 0"
                 :events.sync="events"
@@ -225,8 +226,7 @@
           fluid
           class=""
           style="
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            border-radius: 12px;
             background: white;
           "
         >
@@ -249,7 +249,7 @@
                 @click="goToTeam"
                 class="ma-0 google-font mb-0"
                 style="
-                  border-radius: 5px;
+                  border-radius: 12px;
                   text-transform: capitalize;
                   text-decoration: none;
                 "
@@ -350,14 +350,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.team-details {
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border-left: 0px;
-  background: white;
-}
-</style>

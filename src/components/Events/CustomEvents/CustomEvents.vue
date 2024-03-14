@@ -69,29 +69,28 @@
           />
         </v-toolbar>
 
-        <!-- {{MeetupData}}   -->
         <v-data-table
           :search="search"
-          mobile-breakpoint="no"
+          :mobile-breakpoint="0"
           :headers="headers"
           :loading="isLoading"
           :items="customEventData"
           :items-per-page="5"
           style="border-radius: 12px"
         >
-          <template v-slot:item.venue.name="{ item }">{{
+          <template v-slot:[`item.venue.name`]="{ item }">{{
             item.venue.name | summary(20)
           }}</template>
-          <template v-slot:item.name="{ item }">{{
+          <template v-slot:[`item.name`]="{ item }">{{
             item.name | summary(12)
           }}</template>
-          <template v-slot:item.active="{ item }">
+          <template v-slot:[`item.active`]="{ item }">
             <v-chip small v-if="item.active == false" dark color="red"
               >Inactive</v-chip
             >
             <v-chip v-else small dark color="green">Active</v-chip>
           </template>
-          <template v-slot:item.view="{ item }">
+          <template v-slot:[`item.view`]="{ item }">
             <!-- <p @click="goToEventDetails(item.id)">See More</p> -->
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
