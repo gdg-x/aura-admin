@@ -1,17 +1,54 @@
-  
 @font-face {
-    font-family: google-sans;
-    src: url(assets/fonts/google-font.woff2);
+  font-family: google-sans;
+  src: url(assets/fonts/google-font.woff2);
 }
-.google-font{
-    font-family: google-sans
-};
-
-body{
-    font-family: google-sans
+.google-font {
+  font-family: google-sans;
 }
 
-.lightModeCard{
-    background-color:#ffff;
-    border-radius:12px
+body {
+  font-family: google-sans;
+}
+
+.lightModeCard {
+  background-color: #ffff;
+  border-radius: 12px;
+}
+.aura-feature-event-card {
+  height: 100%;
+  padding: 0.5rem;
+  margin: 0;
+}
+.aura-mobile-view {
+  height: 100vh !important;
+  background: white;
+}
+.aura-a {
+  color: black !important;
+  font-size: 90%;
+  text-decoration: none;
+}
+.aura-menu-card {
+  border-radius: 1.5rem;
+  position: absolute;
+  top: calc(100% + 0px) !important; /* Adjust this value as needed */
+  right: 2rem;
+  z-index: 1000; /* Ensure the card is above other content */
+}
+.aura-circle {
+  /* width: 200px;
+    height: 200px; */
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  background-size: 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(white, white),
+    linear-gradient(30deg, #ea4335 36%, #4285f4 30%),
+    linear-gradient(120deg, #4285f4 36%, #34a853 30%),
+    linear-gradient(300deg, #fbbc04 36%, #ea4335 30%),
+    linear-gradient(210deg, #34a853 36%, #fbbc04 30%);
+  background-position: center center, left top, right top, left bottom,
+    right bottom;
+  background-origin: content-box, border-box, border-box, border-box, border-box;
+  background-clip: content-box, border-box, border-box, border-box, border-box;
 }

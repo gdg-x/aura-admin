@@ -8,14 +8,14 @@
             : require('@/assets/img/default_avatar.jpg')
         "
         alt="John"
-        class="circle"
+        class="aura-circle"
       />
     </v-avatar>
 
     <v-card
       v-if="menuOpen"
       elevation="5"
-      class="menu-card"
+      class="aura-menu-card"
       outlined
       flat
       style="background-color: #f5f8fc"
@@ -33,7 +33,7 @@
                 ? userDetails.image
                 : require('@/assets/img/default_avatar.jpg')
             "
-            class="circle"
+            class="aura-circle"
           />
         </v-avatar>
 
@@ -96,7 +96,7 @@
                     : require('@/assets/img/default_avatar.jpg')
                 "
                 alt="John"
-                class="circle"
+                class="aura-circle"
               />
             </v-avatar>
           </template>
@@ -193,29 +193,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.menu-card {
-  border-radius: 1.5rem;
-  position: absolute;
-  top: calc(100% + 0px); /* Adjust this value as needed */
-  right: 2rem;
-  z-index: 1000; /* Ensure the card is above other content */
-}
-.circle {
-  /* width: 200px;
-  height: 200px; */
-  border-radius: 50%;
-  border: 2.5px solid transparent;
-  background-size: 100% 100%, 50% 50%, 50% 50%, 50% 50%, 50% 50%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(white, white),
-    linear-gradient(30deg, #ea4335 36%, #4285f4 30%),
-    linear-gradient(120deg, #4285f4 36%, #34a853 30%),
-    linear-gradient(300deg, #fbbc04 36%, #ea4335 30%),
-    linear-gradient(210deg, #34a853 36%, #fbbc04 30%);
-  background-position: center center, left top, right top, left bottom,
-    right bottom;
-  background-origin: content-box, border-box, border-box, border-box, border-box;
-  background-clip: content-box, border-box, border-box, border-box, border-box;
-}
-</style>

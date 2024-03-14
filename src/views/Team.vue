@@ -317,12 +317,3 @@ export default {
   }
 };
 </script>
-<style>
-.v-badge--dot .v-badge__badge {
-    border-radius: 6px;
-    height: 12px;
-    min-width: 0;
-    padding: 0;
-    width: 12px;
-}
-</style>

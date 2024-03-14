@@ -56,7 +56,7 @@
       >
         <div
           style="cursor: pointer; border-left: 8px solid #a9c9ff"
-          class="pa-2 ma-0 lightModeCard"
+          class="aura-feature-event-card lightModeCard"
           @click="goToEventDetails(item.id)"
         >
           <p class="google-font ma-0 mt-0" style="font-size: 120%">

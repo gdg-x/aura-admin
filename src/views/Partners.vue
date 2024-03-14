@@ -307,18 +307,5 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.client-logo{
-    height: 90px;
-    padding: 12px 12px;
-    border-radius: 7px;
-    background: white;
-    border: 1px solid #ebebeb;
-    text-align: center;
-}  
-</style>
-
-
 // TODO: TO UPDATE SNAKEBAR a
 // https://stackoverflow.com/questions/39868963/vue-2-mutating-props-vue-warn 
