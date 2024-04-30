@@ -172,7 +172,7 @@
                   <v-row>
                     <v-col>
                       <h1 class="google-font">{{eventInfo.name}} Details</h1>
-                      <p class="google-font">{{eventInfo.des}}</p>
+                      <p class="google-font" v-html="eventInfo.des"></p>
 
                       <span v-for="(item,i) in eventInfo.hashtags" :key="i">
                         <v-chip class="mr-1" label small>{{item}}</v-chip>

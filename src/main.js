@@ -6,6 +6,7 @@ import store from './store';
 import vuetify from './plugins/vuetify';
 import firebase from './config/firebase';
 import './style.css';
+import './plugins/tiptap-vuetify'
 
 Vue.config.productionTip = false;
 

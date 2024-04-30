@@ -221,13 +221,19 @@
                     </v-col>
 
                     <v-col md="12" xs="12" cols="12" class="ma-0">
-                      <v-textarea
-                        outlined
-                        background-color="white"
-                        name="input-7-4"
+
+                      <tiptap-vuetify
                         v-model="updatedeventData.des"
-                        label="Event Description"
-                      ></v-textarea>
+                        :extensions="extensions"
+                        class="elevation-0"
+                        placeholder="Event Description"
+                        :card-props="{
+                          flat: true,
+                          color: '#F0F0F0',
+                          outlined: true,
+                        }"
+                        :toolbar-attributes="{ color: '#e0e0e0' }"
+                      />
                     </v-col>
                   </v-row>
 
@@ -442,6 +448,25 @@
 </template>
 
 <script>
+import {
+  TiptapVuetify,
+  Heading,
+  Bold,
+  Italic,
+  Strike,
+  Underline,
+  Code,
+  Image,
+  Paragraph,
+  BulletList,
+  OrderedList,
+  ListItem,
+  Link,
+  Blockquote,
+  HardBreak,
+  HorizontalRule,
+  History,
+} from "tiptap-vuetify";
 import { mapState } from "vuex";
 import TeamServices from "@/services/TeamServices";
 import PartnersServices from "@/services/PartnersServices";
@@ -450,6 +475,7 @@ import CustomEventServices from "@/services/CustomEventServices";
 export default {
   name:"EditCustomEvent",
   components: {
+    TiptapVuetify,
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
     UploadImage: () => import("@/components/Common/ImageUpload"),
@@ -529,6 +555,31 @@ export default {
       speakersData: [],
       partnersData: [],
       teamData: [],
+      extensions: [
+        History,
+        Blockquote,
+        Link,
+        Underline,
+        Strike,
+        Italic,
+        ListItem,
+        BulletList,
+        OrderedList,
+        [
+          Heading,
+          {
+            options: {
+              levels: [1, 2, 3],
+            },
+          },
+        ],
+        Bold,
+        Code,
+        Image,
+        HorizontalRule,
+        Paragraph,
+        HardBreak,
+      ],
     };
   },
   mounted() {

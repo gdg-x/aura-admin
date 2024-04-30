@@ -26,7 +26,7 @@
           <span>Add New Custom Event</span>
         </v-tooltip>
       </template>
-      <v-card v-if="dialog" class style="background-color: #F5F8FC;">
+      <v-card v-if="dialog" class style="background-color: #f5f8fc">
         <v-toolbar color="white">
           <v-btn icon @click="dialog = false">
             <v-icon>mdi-close</v-icon>
@@ -62,7 +62,14 @@
                     Once you assigned an ID to event, it can't be changed
                   </p>
                 </v-col>
-                <v-col md="8" lg="9" cols="12" sm="8" style="background-color: white;border-radius: 12px;" class="pa-md-8">
+                <v-col
+                  md="8"
+                  lg="9"
+                  cols="12"
+                  sm="8"
+                  style="background-color: white; border-radius: 12px"
+                  class="pa-md-8"
+                >
                   <v-row>
                     <v-col class="ma-0" md="12" cols="12">
                       <h4 class="google-font mb-0">Event Status</h4>
@@ -211,13 +218,19 @@
                     </v-col>
 
                     <v-col md="12" xs="12" cols="12" class="ma-0">
-                      <v-textarea
-                        outlined
-                        background-color="white"
-                        name="input-7-4"
+
+                      <tiptap-vuetify
                         v-model="eventData.des"
-                        label="Event Description"
-                      ></v-textarea>
+                        :extensions="extensions"
+                        class="elevation-0"
+                        placeholder="Event Description"
+                        :card-props="{
+                          flat: true,
+                          color: '#F0F0F0',
+                          outlined: true,
+                        }"
+                        :toolbar-attributes="{ color: '#e0e0e0' }"
+                      />
                     </v-col>
                   </v-row>
 
@@ -433,9 +446,30 @@ import TeamServices from "@/services/TeamServices";
 import PartnersServices from "@/services/PartnersServices";
 import SpeakerServices from "@/services/SpeakersServices";
 import CustomEventServices from "@/services/CustomEventServices";
+import {
+  TiptapVuetify,
+  Heading,
+  Bold,
+  Italic,
+  Strike,
+  Underline,
+  Code,
+  Image,
+  Paragraph,
+  BulletList,
+  OrderedList,
+  ListItem,
+  Link,
+  Blockquote,
+  HardBreak,
+  HorizontalRule,
+  History,
+} from "tiptap-vuetify";
+
 export default {
-  name:"AddCustomEvent",
+  name: "AddCustomEvent",
   components: {
+    TiptapVuetify,
     AddNewAgenda: () => import("@/components/Events/CustomEvents/AddNewAgenda"),
     EditAgenda: () => import("@/components/Events/CustomEvents/EditAgenda"),
     UploadImage: () => import("@/components/Common/ImageUpload"),
@@ -505,6 +539,31 @@ export default {
       speakersData: [],
       partnersData: [],
       teamData: [],
+      extensions: [
+        History,
+        Blockquote,
+        Link,
+        Underline,
+        Strike,
+        Italic,
+        ListItem,
+        BulletList,
+        OrderedList,
+        [
+          Heading,
+          {
+            options: {
+              levels: [1, 2, 3],
+            },
+          },
+        ],
+        Bold,
+        Code,
+        Image,
+        HorizontalRule,
+        Paragraph,
+        HardBreak,
+      ],
     };
   },
   mounted() {
