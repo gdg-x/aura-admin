@@ -8,13 +8,8 @@
     color="#F5F8FC"
     class="text-center"
   >
-    <v-avatar
-      :color="'#F5F8FC'"
-      size="55"
-      class=""
-    >
-      <v-icon>mdi-google</v-icon>
-    </v-avatar>
+    <img :src="require('@/assets/img/aura-logo.svg')" />
+
     <v-list>
       <v-btn
         depressed
@@ -27,24 +22,33 @@
         :to="link.to"
       >
         <div>
-          <v-icon style="display: block" size="20" class="mb-1">{{
-            link.icon
-          }}</v-icon>
+          <v-icon
+            style="display: block"
+            size="24"
+            class="material-symbols-outlined"
+            >{{ link.icon }}</v-icon
+          >
           <span
             style="
               font-size: 10px;
               text-transform: capitalize;
               font-weight: 600;
             "
-            class="mb-0 mt-4 google-font"
+            class="google-font caption"
             >{{ link.text }}</span
           >
         </div>
       </v-btn>
     </v-list>
 
-    <v-divider></v-divider>
-    <v-list dense>
+    <img class="mt-10" :src="require('@/assets/img/aura_ai.svg')" />
+    <v-icon style="display: block" size="24" class="material-symbols-outlined"
+      >info</v-icon
+    >
+
+    <p class="caption font-weight-bold mt-8">V5 Aura</p>
+
+    <!-- <v-list dense>
       <v-list-item
         to="/about"
         target="_blank"
@@ -73,8 +77,9 @@
           <v-list-item-title v-text="'Help'" />
         </v-list-item-content>
       </v-list-item>
-    </v-list>
-    <template v-slot:append>
+    </v-list> -->
+
+    <!-- <template v-slot:append>
       <div class="pl-2">
         <p class="google-font my-0" style="color: #616161; font-size: 80%">
           Version: {{ appVersion }} - AURA
@@ -89,7 +94,7 @@
           >
         </p>
       </div>
-    </template>
+    </template> -->
   </v-navigation-drawer>
 </template>
 
@@ -129,3 +134,20 @@ export default {
   },
 };
 </script>
+<style scoped>
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  color: #000;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+</style>
